@@ -11,34 +11,20 @@
                     <view key="view" contentMode="scaleToFill" id="16">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="First View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="20">
-                                <rect key="frame" x="23" y="113" width="280" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" editable="NO" text="Loaded by the first view controller — an instance of CSFirstViewController — specified in the app delegate." textAlignment="center" id="21">
-                                <rect key="frame" x="23" y="181" width="280" height="88"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="7"/>
+                    <tabBarItem key="tabBarItem" title="First" id="7"/>
                     <navigationItem key="navigationItem" id="wnF-6m-AgW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="753" y="-894"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - 1-->
         <scene sceneID="PVE-Ht-c0H">
             <objects>
                 <navigationController definesPresentationContext="YES" id="8Do-JQ-rtU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="oi1-S5-OeF"/>
+                    <tabBarItem key="tabBarItem" title="1" id="oi1-S5-OeF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D4z-jJ-kyM">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -50,11 +36,11 @@
             </objects>
             <point key="canvasLocation" x="194" y="-885"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - 4-->
         <scene sceneID="50P-6p-ve1">
             <objects>
                 <navigationController definesPresentationContext="YES" id="6s2-ZD-qDY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gA8-hi-C0f"/>
+                    <tabBarItem key="tabBarItem" title="4" id="gA8-hi-C0f"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RTg-Rn-k3Z">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -66,16 +52,16 @@
             </objects>
             <point key="canvasLocation" x="198" y="1567"/>
         </scene>
-        <!--View Controller - forth-->
+        <!--Forth View Controller-->
         <scene sceneID="YZu-ia-ynu">
             <objects>
-                <viewController id="fXq-1p-qvZ" sceneMemberID="viewController">
+                <viewController id="fXq-1p-qvZ" customClass="CSForthViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r3v-3h-5Vm">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="forth" image="second" id="Dpp-gU-0QN"/>
+                    <tabBarItem key="tabBarItem" title="" id="Dpp-gU-0QN"/>
                     <navigationItem key="navigationItem" id="ndG-TH-bT4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -83,11 +69,11 @@
             </objects>
             <point key="canvasLocation" x="709" y="1575"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - 5-->
         <scene sceneID="yQN-dX-v0O">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Ecg-Am-nyC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="447-IQ-hhV"/>
+                    <tabBarItem key="tabBarItem" title="5" id="447-IQ-hhV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ata-B3-0y8">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -99,16 +85,16 @@
             </objects>
             <point key="canvasLocation" x="198" y="2393"/>
         </scene>
-        <!--View Controller - fifth-->
+        <!--Fifth View Controller-->
         <scene sceneID="EhS-GA-i0C">
             <objects>
-                <viewController id="na6-gM-ckJ" sceneMemberID="viewController">
+                <viewController id="na6-gM-ckJ" customClass="CSFifthViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qze-5o-pxG">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="fifth" image="first" id="1dB-DX-fKJ"/>
+                    <tabBarItem key="tabBarItem" title="" id="1dB-DX-fKJ"/>
                     <navigationItem key="navigationItem" id="D0I-OS-Jvm"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -116,11 +102,11 @@
             </objects>
             <point key="canvasLocation" x="745" y="2395"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - 3-->
         <scene sceneID="H0K-bf-wFd">
             <objects>
                 <navigationController definesPresentationContext="YES" id="bmd-RO-Axt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="d4h-rM-5NQ"/>
+                    <tabBarItem key="tabBarItem" title="3" id="d4h-rM-5NQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y2F-qX-cDN">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -132,16 +118,16 @@
             </objects>
             <point key="canvasLocation" x="210" y="743"/>
         </scene>
-        <!--View Controller - third-->
+        <!--Third View Controller-->
         <scene sceneID="O45-6Z-iqa">
             <objects>
-                <viewController id="LkM-0p-bNX" sceneMemberID="viewController">
+                <viewController id="LkM-0p-bNX" customClass="CSThirdViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rpO-zz-9jC">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="third" image="first" id="6cc-XQ-Hes"/>
+                    <tabBarItem key="tabBarItem" title="" id="6cc-XQ-Hes"/>
                     <navigationItem key="navigationItem" id="A0T-WM-iZM"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -149,11 +135,11 @@
             </objects>
             <point key="canvasLocation" x="737" y="743"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - 2-->
         <scene sceneID="WxZ-Yf-b72">
             <objects>
                 <navigationController definesPresentationContext="YES" id="FU3-Tb-C4e" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="c9L-PA-zJ4"/>
+                    <tabBarItem key="tabBarItem" title="2" id="c9L-PA-zJ4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Z3-ud-teQ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -172,23 +158,9 @@
                     <view key="view" contentMode="scaleToFill" id="17">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="22">
-                                <rect key="frame" x="23" y="113" width="280" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" editable="NO" text="Loaded by the second view controller — an instance of CSSecondViewController — specified in the app delegate." textAlignment="center" id="23">
-                                <rect key="frame" x="23" y="185" width="280" height="88"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="6"/>
+                    <tabBarItem key="tabBarItem" title="" id="6"/>
                     <navigationItem key="navigationItem" id="6qg-H9-GsT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
@@ -218,16 +190,21 @@
             <point key="canvasLocation" x="-1154" y="84"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="first" width="16" height="16"/>
-        <image name="second" width="16" height="16"/>
-    </resources>
     <classes>
+        <class className="CSFifthViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CSFifthViewController.h"/>
+        </class>
         <class className="CSFirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CSFirstViewController.h"/>
         </class>
+        <class className="CSForthViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CSForthViewController.h"/>
+        </class>
         <class className="CSSecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CSSecondViewController.h"/>
+        </class>
+        <class className="CSThirdViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CSThirdViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
