@@ -23,7 +23,7 @@
     // 如果要关注网络及授权验证事件，请设定 generalDelegate参数
     BOOL ret = [_mapManager start:@"394bd9ecb346c4564c08d3ec4375041d"  generalDelegate:self];
     if (!ret) {
-        NSLog(@"manager start failed!");
+        NSLog(@"<<Chao-->CSAppDelegate-->didFinishLaunchingWithOptions-->manager start failed!");
     }
     
     // Override point for customization after application launch.
