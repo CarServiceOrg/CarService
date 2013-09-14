@@ -1,0 +1,32 @@
+一、 监控键盘的出现和消失 以及大小改变等操作 
+    //在AppDelegate中添加
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify_UIKeyboardWillChangeFrameNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+
+-(void)keyboardShow:(NSNotification *)notificaton{
+    UIWindow* tempWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:1];
+    //或者 [[[UIApplication sharedApplication] windows] lastObject];
+    for(int i=0; i<[tempWindow.subviews count]; i++){
+        UIView *  keyboard = [tempWindow.subviews objectAtIndex:i];
+        NSString * string=[NSString stringWithFormat:@"%@",[keyboard class]];
+        if ([string isEqual:@"UIPeripheralHostView"]){ 
+            //UIPeripheralHostView  //UIKeyboardCornerView
+            UIButton * btn=[UIButton buttonWithType:1];
+            [btn setFrame:CGRectMake(220, -30,1024, 30)];
+            [btn setBackgroundColor:[UIColor greenColor]];
+            [btn setTitle:@"keyBoard" forState:UIControlStateNormal];
+            [keyboard addSubview:btn];
+            [btn addTarget:self action:@selector(reseting:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
+}
+
+-(void)reseting:(id)sender{
+    UIWindow* window = [UIApplication sharedApplication].keyWindow;
+    UIView *firstResponder = [window performSelector:@selector(firstResponder)];
+    [firstResponder resignFirstResponder];
+}
+
+-(void)notify_UIKeyboardWillChangeFrameNotification:(NSNotification *)notificaton{
+    MyNSLog(@"notificaton:%@",notificaton);
+}

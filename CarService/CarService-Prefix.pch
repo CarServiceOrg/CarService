@@ -1,0 +1,24 @@
+//
+// Prefix header for all source files of the 'CarService' target in the 'CarService' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+
+    #define IsIOS6OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<7.0)
+    #define IsIOS5OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<6.0)
+    #define IsIOS4OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<5.0)
+    #define IsIOS4_0OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<4.1)
+    #define IsIOS4_2OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<4.3)
+    #define Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+    #define DiffHeight (Is_iPhone5?88:0) //(1136-960)/2
+    #define BGRect CGRectMake(0,0,320,568) //(1136-960)/2 //all BGs are 640*1136
+
+#endif
