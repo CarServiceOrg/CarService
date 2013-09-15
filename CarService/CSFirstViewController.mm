@@ -25,7 +25,7 @@
     [naviImgView release];
     
     //标题
-    UILabel* titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    UILabel* titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
