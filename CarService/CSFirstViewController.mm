@@ -18,22 +18,8 @@
 #pragma mark - view lifecycle
 -(void)init_NaviView
 {
-    //设置导航栏背景
-    UIImageView* naviImgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [naviImgView setImage:[UIImage imageWithCGImage:[[UIImage imageNamed:@"navi_bg.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10].CGImage scale:2.0 orientation:UIImageOrientationUp]];
-    [self.navigationController.navigationBar addSubview:naviImgView];
-    [naviImgView release];
-    
-    //标题
-    UILabel* titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [titleLabel setBackgroundColor:[UIColor clearColor]];
-    [titleLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    [titleLabel setTextColor:[UIColor whiteColor]];
-    [titleLabel setText:@"首页"];
-    [self.navigationController.navigationBar addSubview:titleLabel];
-    [titleLabel release];
+    [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
+    self.navigationItem.title=@"首页";
     
     //信息按钮
     UIButton* msgBtn=[[UIButton alloc] initWithFrame:CGRectMake(320-30-10, (40-46/2.0)/2.0, 60/2.0, 46/2.0)];
@@ -78,6 +64,23 @@
 -(void)init_scrollView
 {
     float x, y, width, height;
+
+    x=0; y=0; width=320;
+    if (Is_iPhone5) {
+        height=1136/2.0;
+    }else{
+        height=960/2.0;
+    }
+    //背景
+    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    if (Is_iPhone5) {
+        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone5.png"]];
+    }else{
+        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone4.png"]];
+    }
+    [self.view addSubview:bgImageView];
+    [bgImageView release];
+
     x=10; y=0; width=320-10*2; height=40+278/2+15.0+20+243/2.0;
     UIScrollView* scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [scrollView setTag:101];

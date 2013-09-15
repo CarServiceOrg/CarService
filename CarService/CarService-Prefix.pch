@@ -11,6 +11,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "ApplicationPublic.h"
 
     #define IsIOS6OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<7.0)
     #define IsIOS5OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<6.0)
