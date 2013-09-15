@@ -38,7 +38,7 @@
     //此为storyboard的局限，在Interface Builder时代，在MainWindow.xib中可以链接view controllers到App Delegate的outlets，但是现在不可以，只能写代码设置第一个controller是什么，或者谁知道有什么办法请告知，谢谢。
     _tabBarController = (UITabBarController *)self.window.rootViewController;
     _tabBarController.delegate=self;
-    _tabBarController.tabBar.tintColor=[UIColor blackColor];
+    _tabBarController.tabBar.tintColor=[UIColor colorWithRed:55/255.0 green:55/255.0 blue:55/255.0 alpha:1.0];
     //初始化建立图片点击视图
     [self init_imgViewArray];
     //默认先选中首页
@@ -80,7 +80,8 @@
 -(UIImageView*)setUpImgView:(CGRect)frame withImgStr:(NSString*)imgPath withText:(NSString*)text
 {
     UIImageView* imgView=[[UIImageView alloc] initWithFrame:frame];
-    [imgView setImage:[[UIImage imageNamed:@"black_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
+    [imgView setBackgroundColor:[UIColor colorWithRed:55/255.0 green:55/255.0 blue:55/255.0 alpha:1.0]];
+    //[imgView setImage:[[UIImage imageNamed:@"black_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
     {
         UIImageView* indexView=[[UIImageView alloc] initWithFrame:imgView.bounds];
         [indexView setTag:10];
