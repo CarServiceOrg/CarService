@@ -7,6 +7,7 @@
 //
 
 #import "CSFifthViewController.h"
+#import "CSMoreViewController.h"
 
 @interface CSFifthViewController ()
 
@@ -30,6 +31,10 @@
     self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     self.navigationItem.title=@"更多";
+    
+    CSMoreViewController *controller = [[CSMoreViewController alloc] initWithNibName:@"CSMoreViewController" bundle:nil];
+    controller.parentController = self;
+    [self.view addSubview:controller.view];
 }
 
 - (void)didReceiveMemoryWarning

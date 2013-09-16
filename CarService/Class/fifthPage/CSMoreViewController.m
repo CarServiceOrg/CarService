@@ -1,25 +1,22 @@
 //
-//  MemberCenterViewController.m
+//  CSMoreViewController.m
 //  CarService
 //
 //  Created by baidu on 13-9-16.
 //  Copyright (c) 2013年 Chao. All rights reserved.
 //
 
-#import "MemberCenterViewController.h"
-#import "ASIHTTPRequest.h"
-#import "CSForthViewController.h"
+#import "CSMoreViewController.h"
+#import "CSFifthViewController.h"
 
-@interface MemberCenterViewController ()
+@interface CSMoreViewController ()
 
 @property (nonatomic,retain) IBOutlet UITableView *contentTableView;
-@property (nonatomic,retain) ASIHTTPRequest *logoutRequest;
 
 @end
 
-@implementation MemberCenterViewController
+@implementation CSMoreViewController
 @synthesize contentTableView;
-@synthesize logoutRequest;
 @synthesize parentController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,9 +30,7 @@
 
 - (void)dealloc
 {
-    self.contentTableView = nil;
-    [logoutRequest clearDelegatesAndCancel];
-    [logoutRequest release];
+    [contentTableView release];
     [super dealloc];
 }
 
@@ -51,39 +46,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIView *)getFooterView
-{
-    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)] autorelease];
-    footerView.backgroundColor = [UIColor clearColor];
-    
-    UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    logoutButton.frame = CGRectMake(0,0 , 123, 30);
-    [logoutButton setBackgroundImage:[UIImage imageNamed:@"personpage_logout_button.png"] forState:UIControlStateNormal];
-    [logoutButton setBackgroundImage:[UIImage imageNamed:@"personpage_logout_button_click.png"] forState:UIControlStateHighlighted];
-    [logoutButton setTitle:@"退出" forState:UIControlStateNormal];
-    [logoutButton setTitle:@"退出" forState:UIControlStateHighlighted];
-    [logoutButton setTitleColor:[UIColor colorWithRed:(118/255.0) green:(40/255.0) blue:(24.0/255) alpha:1.0] forState:UIControlStateNormal];
-    [logoutButton setTitleColor:[UIColor colorWithRed:(118/255.0) green:(40/255.0) blue:(24.0/255) alpha:1.0] forState:UIControlStateHighlighted];
-    [logoutButton addTarget:self action:@selector(logoutButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    logoutButton.center = CGPointMake(footerView.frame.size.width/2, footerView.frame.size.height/2);
-    [footerView addSubview:logoutButton];
-    return  footerView;
-}
-
 #pragma mark - UITableView DataSource && Delegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (nil == [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
-    {
-        return 6;
-    }
-    else
-    {
-        CustomLog(@"error happen here");
-    }
     
-    return 0;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -134,12 +102,12 @@
         {
             normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_top.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
             selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_top_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"我的资料";
+            title.text = @"设置";
             UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
             if (nil != icon)
             {
-                icon.image = [UIImage imageNamed:@"membercenter_profile.png"];
-                icon.frame = CGRectMake(10, 13, 16, 15);
+                icon.image = [UIImage imageNamed:@"gengduo_setting.png"];
+                icon.frame = CGRectMake(10, 13, 18, 17);
             }
             
         }
@@ -147,12 +115,12 @@
         {
             normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
             selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"修改密码";
+            title.text = @"意见反馈";
             UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
             if (nil != icon)
             {
-                icon.image = [UIImage imageNamed:@"membercenter_password.png"];
-                icon.frame = CGRectMake(10, 13, 15, 16);
+                icon.image = [UIImage imageNamed:@"gengduo_feedback.png"];
+                icon.frame = CGRectMake(10, 13, 18, 17);
             }
             
         }
@@ -160,12 +128,12 @@
         {
             normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
             selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"我的消息";
+            title.text = @"检查更新";
             UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
             if (nil != icon)
             {
-                icon.image = [UIImage imageNamed:@"membercenter_message.png"];
-                icon.frame = CGRectMake(10, 13, 16, 12);
+                icon.image = [UIImage imageNamed:@"gengduo_update.png"];
+                icon.frame = CGRectMake(10, 13, 18, 17);
             }
             
         }
@@ -173,13 +141,13 @@
         {
             normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
             selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"我的消费纪录";
+            title.text = @"分享软件";
             
             UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
             if (nil != icon)
             {
-                icon.image = [UIImage imageNamed:@"membercenter_my_record.png"];
-                icon.frame = CGRectMake(10, 13, 17, 18);
+                icon.image = [UIImage imageNamed:@"gengduo_share.png"];
+                icon.frame = CGRectMake(10, 13, 18, 17);
             }
             
         }
@@ -187,13 +155,13 @@
         {
             normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
             selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"车辆跟踪";
+            title.text = @"客服电话";
             
             UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
             if (nil != icon)
             {
-                icon.image = [UIImage imageNamed:@"membercenter_car_trac.png"];
-                icon.frame = CGRectMake(10, 13, 16, 15);
+                icon.image = [UIImage imageNamed:@"gengduo_phone.png"];
+                icon.frame = CGRectMake(10, 13, 18, 17);
             }
             
         }
@@ -201,13 +169,13 @@
         {
             normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_bottom.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
             selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_bottom_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"我要评分";
+            title.text = @"关于";
             
             UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
             if (nil != icon)
             {
-                icon.image = [UIImage imageNamed:@"membercenter_rate.png"];
-                icon.frame = CGRectMake(10, 13, 15, 16);
+                icon.image = [UIImage imageNamed:@"gengduo_about.png"];
+                icon.frame = CGRectMake(10, 13, 18, 17);
             }
             
         }
@@ -242,21 +210,21 @@
         switch (indexPath.row)
         {
             case 0:
-                CustomLog(@"我的资料");
+                CustomLog(@"设置");
             case 1:
-                CustomLog(@"修改密码");
+                CustomLog(@"意见反馈");
                 break;
             case 2:
-                CustomLog(@"我的消息");
+                CustomLog(@"检查更新");
                 break;
             case 3:
-                CustomLog(@"我的消费纪录");
+                CustomLog(@"分享软件");
                 break;
             case 4:
-                CustomLog(@"车辆跟踪");
+                CustomLog(@"客服电话");
                 break;
             case 5:
-                CustomLog(@"我要评分");
+                CustomLog(@"关于");
                 break;
             default:
                 break;
@@ -271,41 +239,6 @@
 - (IBAction)backButtonPressed:(id)sender
 {
     [self.parentController.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)logoutUser
-{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserDefaultUserInfo];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    /*AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate cleanPushTag];
-    
-    [[Util sharedUtil] clearCookieInfo];
-    */
-    [self.contentTableView reloadData];
-    self.contentTableView.tableFooterView = nil;
-    
-    //向服务器发logout请求
-    self.logoutRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_logout]];
-    self.logoutRequest.delegate = nil;
-    [self.logoutRequest startAsynchronous];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 1)
-    {
-        
-        [self logoutUser];
-    }
-}
-
-- (IBAction)logoutButtonPressed:(id)sender
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"确定要退出帐户?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-    [alert show];
-    [alert release];
 }
 
 @end

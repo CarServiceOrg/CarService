@@ -125,11 +125,12 @@
     [self hideKeyBoard];
     
     [self.loginRequest clearDelegatesAndCancel];
-    self.loginRequest = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL_login]];
-    [self.loginRequest setRequestMethod:@"POST"];
+    self.loginRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_login]];
+    [loginRequest addRequestHeader:@"Referer" value:@"http://www.bjjtgl.gov.cn/portals/0/weifachaxun/new001_wfchaxun.htm"];
+    /*[self.loginRequest setRequestMethod:@"POST"];
     [self.loginRequest setPostValue:@"1" forKey:@"status"];
     [self.loginRequest setPostValue:self.userNameField.text forKey:@"username"];
-    [self.loginRequest setPostValue:self.passwordField.text forKey:@"password"];
+    [self.loginRequest setPostValue:self.passwordField.text forKey:@"password"];*/
     self.loginRequest.delegate = self;
     [self.loginRequest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.loginRequest setDidFailSelector:@selector(requestDidFailed:)];
@@ -197,6 +198,11 @@
 - (void)requestDidFinished:(ASIHTTPRequest *)request
 {
     [self hideActView];
+    NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    
+    NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding]autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    CustomLog(@"response string:%@",testResponseString);
     NSDictionary *requestDic = [[request responseString] JSONValue];
     CustomLog(@"login request request dic:%@",requestDic);
     if (nil == [requestDic objectForKey:@"code"]) 
