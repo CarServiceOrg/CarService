@@ -8,8 +8,13 @@
 
 #import "CSForthViewController.h"
 #import "CSLoginViewController.h"
+#import "MemberCenterViewController.h"
+
+#define ContentViewTag 1000
 
 @interface CSForthViewController ()
+
+- (void)resetContentView;
 
 @end
 
@@ -33,12 +38,30 @@
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     self.navigationItem.title=@"个人中心";
     
-    CSLogInViewController *controller = [[CSLogInViewController alloc] initWithNibName:@"CSLogInViewController" bundle:nil];
-    controller.parentController = self;
-    //CSLogInViewController *controller = [[CSLogInViewController alloc] init];
-    [self.view addSubview:controller.view];
+    [self resetContentView];
 }
 
+- (void)resetContentView
+{
+    UIView *tempView = [self.view viewWithTag:ContentViewTag];
+    if (nil != tempView)
+    {
+        [tempView removeFromSuperview];
+    }
+    
+    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    {
+        MemberCenterViewController *controller = [[MemberCenterViewController alloc] initWithNibName:@"MemberCenterViewController" bundle:nil];
+        controller.parentController = self;
+        [self.view addSubview:controller.view];
+    }
+    else
+    {
+        CSLogInViewController *controller = [[CSLogInViewController alloc] initWithNibName:@"CSLogInViewController" bundle:nil];
+        controller.parentController = self;
+        [self.view addSubview:controller.view];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
