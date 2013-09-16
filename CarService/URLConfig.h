@@ -8,6 +8,8 @@
 //************************************************************1.用户功能接口************************************************************
 //1.1	用户登录  
 #define URL_login [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
+#define URL_register [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
+
 //1.1.0 获取用户角色
 #define URL_login_roles [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL]
 

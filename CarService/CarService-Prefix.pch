@@ -11,7 +11,21 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "Constants.h"
+    #import "URLConfig.h"
+    #import "SBJSON.h"
+#define LOG_ON
 
+static inline void CustomLog(NSString *format, ...)
+{
+#ifdef LOG_ON
+    va_list args;
+    va_start(args, format);
+    NSString *str = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    NSLog( @"%@",str);
+#endif
+}
     #define IsIOS6OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<7.0)
     #define IsIOS5OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<6.0)
     #define IsIOS4OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<5.0)

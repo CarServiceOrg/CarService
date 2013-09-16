@@ -23,6 +23,11 @@
     return self;
 }
 
+- (void)test
+{
+    CustomLog(@"Test");
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

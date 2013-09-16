@@ -7,6 +7,7 @@
 //
 
 #import "CSForthViewController.h"
+#import "CSLoginViewController.h"
 
 @interface CSForthViewController ()
 
@@ -27,6 +28,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    CSLogInViewController *controller = [[CSLogInViewController alloc] initWithNibName:@"CSLogInViewController" bundle:nil];
+    controller.parentController = self;
+    //CSLogInViewController *controller = [[CSLogInViewController alloc] init];
+    [self.view addSubview:controller.view];
 }
 
 - (void)didReceiveMemoryWarning
