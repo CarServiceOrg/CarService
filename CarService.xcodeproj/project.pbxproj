@@ -112,6 +112,11 @@
 		E1C063E817E48D94003336B2 /* CSFifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E717E48D94003336B2 /* CSFifthViewController.m */; };
 		E1D0439E17E5D9EF008CBE90 /* CSRegisterUserNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D0439C17E5D9EF008CBE90 /* CSRegisterUserNameViewController.m */; };
 		E1D0439F17E5D9EF008CBE90 /* CSRegisterUserNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D0439D17E5D9EF008CBE90 /* CSRegisterUserNameViewController.xib */; };
+		E1D043AC17E6D366008CBE90 /* ApplicationPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043A217E6D366008CBE90 /* ApplicationPublic.m */; };
+		E1D043AD17E6D366008CBE90 /* CSCarCareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043A517E6D366008CBE90 /* CSCarCareViewController.m */; };
+		E1D043AE17E6D366008CBE90 /* CSDelegateServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043A717E6D366008CBE90 /* CSDelegateServiceViewController.m */; };
+		E1D043AF17E6D366008CBE90 /* CSInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043A917E6D366008CBE90 /* CSInsuranceViewController.m */; };
+		E1D043B017E6D366008CBE90 /* CSReportCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043AB17E6D366008CBE90 /* CSReportCaseViewController.m */; };
 		E53ABA3517E0DD020096754D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3417E0DD020096754D /* UIKit.framework */; };
 		E53ABA3717E0DD020096754D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3617E0DD020096754D /* Foundation.framework */; };
 		E53ABA3917E0DD020096754D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3817E0DD020096754D /* CoreGraphics.framework */; };
@@ -404,6 +409,16 @@
 		E1D0439B17E5D9EF008CBE90 /* CSRegisterUserNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRegisterUserNameViewController.h; sourceTree = "<group>"; };
 		E1D0439C17E5D9EF008CBE90 /* CSRegisterUserNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRegisterUserNameViewController.m; sourceTree = "<group>"; };
 		E1D0439D17E5D9EF008CBE90 /* CSRegisterUserNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSRegisterUserNameViewController.xib; sourceTree = "<group>"; };
+		E1D043A117E6D366008CBE90 /* ApplicationPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationPublic.h; sourceTree = "<group>"; };
+		E1D043A217E6D366008CBE90 /* ApplicationPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPublic.m; sourceTree = "<group>"; };
+		E1D043A417E6D366008CBE90 /* CSCarCareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCarCareViewController.h; sourceTree = "<group>"; };
+		E1D043A517E6D366008CBE90 /* CSCarCareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCarCareViewController.m; sourceTree = "<group>"; };
+		E1D043A617E6D366008CBE90 /* CSDelegateServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDelegateServiceViewController.h; sourceTree = "<group>"; };
+		E1D043A717E6D366008CBE90 /* CSDelegateServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDelegateServiceViewController.m; sourceTree = "<group>"; };
+		E1D043A817E6D366008CBE90 /* CSInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSInsuranceViewController.h; sourceTree = "<group>"; };
+		E1D043A917E6D366008CBE90 /* CSInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSInsuranceViewController.m; sourceTree = "<group>"; };
+		E1D043AA17E6D366008CBE90 /* CSReportCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSReportCaseViewController.h; sourceTree = "<group>"; };
+		E1D043AB17E6D366008CBE90 /* CSReportCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSReportCaseViewController.m; sourceTree = "<group>"; };
 		E53ABA3117E0DD020096754D /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53ABA3417E0DD020096754D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E53ABA3617E0DD020096754D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -761,11 +776,29 @@
 			path = source;
 			sourceTree = "<group>";
 		};
-		E1C063E917E48DA7003336B2 /* Class */ = {
+		E1D043A017E6D366008CBE90 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				E1D043A117E6D366008CBE90 /* ApplicationPublic.h */,
+				E1D043A217E6D366008CBE90 /* ApplicationPublic.m */,
+				E1D043A317E6D366008CBE90 /* thirdPage */,
 			);
 			path = Class;
+			sourceTree = "<group>";
+		};
+		E1D043A317E6D366008CBE90 /* thirdPage */ = {
+			isa = PBXGroup;
+			children = (
+				E1D043A417E6D366008CBE90 /* CSCarCareViewController.h */,
+				E1D043A517E6D366008CBE90 /* CSCarCareViewController.m */,
+				E1D043A617E6D366008CBE90 /* CSDelegateServiceViewController.h */,
+				E1D043A717E6D366008CBE90 /* CSDelegateServiceViewController.m */,
+				E1D043A817E6D366008CBE90 /* CSInsuranceViewController.h */,
+				E1D043A917E6D366008CBE90 /* CSInsuranceViewController.m */,
+				E1D043AA17E6D366008CBE90 /* CSReportCaseViewController.h */,
+				E1D043AB17E6D366008CBE90 /* CSReportCaseViewController.m */,
+			);
+			path = thirdPage;
 			sourceTree = "<group>";
 		};
 		E53ABA2817E0DD020096754D = {
@@ -841,7 +874,7 @@
 				E1D0439D17E5D9EF008CBE90 /* CSRegisterUserNameViewController.xib */,
 				E112190F17E23CB600926B05 /* URLConfig.h */,
 				E174C2B517E5BBDE00C1CE71 /* Constants.h */,
-				E1C063E917E48DA7003336B2 /* Class */,
+				E1D043A017E6D366008CBE90 /* Class */,
 				E53ABA7617E0E0E10096754D /* util */,
 				E53ABA6D17E0DF690096754D /* Images */,
 				E53ABA3B17E0DD020096754D /* Supporting Files */,
@@ -1497,6 +1530,11 @@
 				E174C2B117E5B97200C1CE71 /* Util.m in Sources */,
 				E174C2B417E5BAE300C1CE71 /* CommonViewController.m in Sources */,
 				E1D0439E17E5D9EF008CBE90 /* CSRegisterUserNameViewController.m in Sources */,
+				E1D043AC17E6D366008CBE90 /* ApplicationPublic.m in Sources */,
+				E1D043AD17E6D366008CBE90 /* CSCarCareViewController.m in Sources */,
+				E1D043AE17E6D366008CBE90 /* CSDelegateServiceViewController.m in Sources */,
+				E1D043AF17E6D366008CBE90 /* CSInsuranceViewController.m in Sources */,
+				E1D043B017E6D366008CBE90 /* CSReportCaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
