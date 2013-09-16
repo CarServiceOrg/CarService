@@ -27,6 +27,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
+    [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
+    self.navigationItem.title=@"更多";
 }
 
 - (void)didReceiveMemoryWarning

@@ -15,6 +15,7 @@
     #import "URLConfig.h"
     #import "SBJSON.h"
 #define LOG_ON
+    #import "ApplicationPublic.h"
 
 static inline void CustomLog(NSString *format, ...)
 {
