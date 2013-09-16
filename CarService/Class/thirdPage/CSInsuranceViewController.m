@@ -127,7 +127,7 @@
     [cell.contentView addSubview:imageView];
     [imageView release];
     
-    x=x+width+5; y=10; width=0; height=20;
+    x=x+width; y=10; width=0; height=20;
     UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [textLabel setTag:1002];
     [textLabel setBackgroundColor:[UIColor clearColor]];
@@ -149,6 +149,12 @@
     [detailLabel setText:@"（电话咨询）"];
     [cell.contentView addSubview:detailLabel];
     [detailLabel release];
+    
+    width=12/2.0+3; height=24/2.0+4.5; x=CGRectGetWidth(cell.bounds)-20-width; y=(45-height)/2.0;
+    UIImageView* triangleImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    triangleImageView.image=[UIImage imageNamed:@"membercenter_arrow.png"];
+    [cell.contentView addSubview:triangleImageView];
+    [triangleImageView release];
     
     x=40; y=45-2; width=320; height=2;
     UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
@@ -174,7 +180,10 @@
         switch (indexPath.row) {
             case 0:
             {
-                imageView.image=[UIImage imageNamed:@"daiweifuwu_check.png"];
+                float x, y, width, height;
+                width=27/2.0; height=35/2.0; x=10; y=(45-height)/2.0;
+                imageView.frame=CGRectMake(x, y, width, height);
+                imageView.image=[UIImage imageNamed:@"cheliangbaoxian_baofeiyusuan.png"];
                 textLabel.text=@"保费预算";
                 textLabel.frame=CGRectMake(CGRectGetMinX(textLabel.frame), CGRectGetMinY(textLabel.frame), 3+15*textLabel.text.length+3, CGRectGetHeight(textLabel.frame));
                 detailLabel.frame=CGRectMake(CGRectGetMaxX(textLabel.frame), CGRectGetMinY(detailLabel.frame), CGRectGetWidth(detailLabel.frame), CGRectGetHeight(textLabel.frame));
@@ -182,16 +191,21 @@
                 break;
             case 1:
             {
-                imageView.image=[UIImage imageNamed:@"daiweifuwu_check.png"];
+                float x, y, width, height;
+                width=28/2.0; height=34/2.0; x=10; y=(45-height)/2.0;
+                imageView.frame=CGRectMake(x, y, width, height);
+                imageView.image=[UIImage imageNamed:@"cheliangbaoxian_baoxianzhishiku.png"];
                 textLabel.text=@"保险知识库";
                 textLabel.frame=CGRectMake(CGRectGetMinX(textLabel.frame), CGRectGetMinY(textLabel.frame), 3+15*textLabel.text.length+3, CGRectGetHeight(textLabel.frame));
                 detailLabel.hidden=YES;
-                cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
             }
                 break;
             case 2:
             {
-                imageView.image=[UIImage imageNamed:@"daiweifuwu_check.png"];
+                float x, y, width, height;
+                width=35/2.0; height=37/2.0; x=10; y=(45-height)/2.0;
+                imageView.frame=CGRectMake(x, y, width, height);
+                imageView.image=[UIImage imageNamed:@"cheliangbaoxian_baoxianzixun.png"];
                 textLabel.text=@"保险咨询";
                 textLabel.frame=CGRectMake(CGRectGetMinX(textLabel.frame), CGRectGetMinY(textLabel.frame), 3+15*textLabel.text.length+3, CGRectGetHeight(textLabel.frame));
                 detailLabel.frame=CGRectMake(CGRectGetMaxX(textLabel.frame), CGRectGetMinY(detailLabel.frame), CGRectGetWidth(detailLabel.frame), CGRectGetHeight(textLabel.frame));

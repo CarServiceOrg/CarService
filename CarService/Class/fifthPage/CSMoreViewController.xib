@@ -36,31 +36,29 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="104879480">
+					<object class="IBUIImageView" id="492289293">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">310</int>
 						<string key="NSFrameSize">{320, 548}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">bg_iphone5.png</string>
 						</object>
 					</object>
-					<object class="IBUITableView" id="955483063">
+					<object class="IBUITableView" id="569319277">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">310</int>
 						<string key="NSFrameSize">{320, 548}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
-						<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics" id="981858355">
+						<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics" id="891715965">
 							<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>
 							<object class="NSMutableDictionary" key="IBUINormalizedOrientationToSizeMap">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -90,7 +88,6 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -99,7 +96,7 @@
 					</object>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<reference key="IBUISimulatedDestinationMetrics" ref="981858355"/>
+				<reference key="IBUISimulatedDestinationMetrics" ref="891715965"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
@@ -117,14 +114,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">contentTableView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="955483063"/>
+						<reference key="destination" ref="569319277"/>
 					</object>
 					<int key="connectionID">31</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
-						<reference key="source" ref="955483063"/>
+						<reference key="source" ref="569319277"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">29</int>
@@ -132,7 +129,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="955483063"/>
+						<reference key="source" ref="569319277"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">30</int>
@@ -150,8 +147,8 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="955483063"/>
-							<reference ref="104879480"/>
+							<reference ref="569319277"/>
+							<reference ref="492289293"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -168,12 +165,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
-						<reference key="object" ref="104879480"/>
+						<reference key="object" ref="492289293"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
-						<reference key="object" ref="955483063"/>
+						<reference key="object" ref="569319277"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -194,47 +191,14 @@
 			<nil key="sourceID"/>
 			<int key="maxID">31</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">CSMoreViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">backButtonPressed:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">backButtonPressed:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">backButtonPressed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">contentTableView</string>
-						<string key="NS.object.0">UITableView</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">contentTableView</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">contentTableView</string>
-							<string key="candidateClassName">UITableView</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CSMoreViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">bg_iphone5.png</string>
-			<string key="NS.object.0">{640, 1136}</string>
+			<string key="NS.object.0">{16, 16}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
