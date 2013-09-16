@@ -117,7 +117,7 @@
     [cell.contentView addSubview:imageView];
     [imageView release];
     
-    x=x+width+10; y=0; width=120; height=45;
+    x=x+width+5; y=0; width=120; height=45;
     UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [textLabel setTag:1002];
     [textLabel setBackgroundColor:[UIColor clearColor]];

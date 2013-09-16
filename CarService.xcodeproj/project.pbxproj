@@ -937,12 +937,12 @@
 		E1D043BC17E6DCC2008CBE90 /* thirdPage */ = {
 			isa = PBXGroup;
 			children = (
+				E1D043C117E6DCC2008CBE90 /* CSInsuranceViewController.h */,
+				E1D043C217E6DCC2008CBE90 /* CSInsuranceViewController.m */,
 				E1D043BD17E6DCC2008CBE90 /* CSCarCareViewController.h */,
 				E1D043BE17E6DCC2008CBE90 /* CSCarCareViewController.m */,
 				E1D043BF17E6DCC2008CBE90 /* CSDelegateServiceViewController.h */,
 				E1D043C017E6DCC2008CBE90 /* CSDelegateServiceViewController.m */,
-				E1D043C117E6DCC2008CBE90 /* CSInsuranceViewController.h */,
-				E1D043C217E6DCC2008CBE90 /* CSInsuranceViewController.m */,
 				E1D043C317E6DCC2008CBE90 /* CSReportCaseViewController.h */,
 				E1D043C417E6DCC2008CBE90 /* CSReportCaseViewController.m */,
 			);
