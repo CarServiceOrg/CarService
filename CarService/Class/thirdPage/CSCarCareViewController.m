@@ -128,7 +128,13 @@
     [textLabel setTextColor:[UIColor whiteColor]];
     [cell.contentView addSubview:textLabel];
     [textLabel release];
-        
+    
+    width=12/2.0+3; height=24/2.0+4.5; x=CGRectGetWidth(cell.bounds)-20-width; y=(45-height)/2.0;
+    UIImageView* triangleImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    triangleImageView.image=[UIImage imageNamed:@"membercenter_arrow.png"];
+    [cell.contentView addSubview:triangleImageView];
+    [triangleImageView release];
+
     x=40; y=45-2; width=320; height=2;
     UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     lineImageView.image=[UIImage imageNamed:@"black_bg.png"];
@@ -191,7 +197,7 @@
         }
     }
     
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType=UITableViewCellAccessoryNone;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     return cell;

@@ -122,6 +122,12 @@
     [cell.contentView addSubview:textLabel];
     [textLabel release];
     
+    width=14/2.0+3; height=25/2.0+4.5; x=CGRectGetWidth(cell.bounds)-50-width; y=20+(89/2.0+5-height)/2.0;
+    UIImageView* triangleImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    triangleImageView.image=[UIImage imageNamed:@"fuwuzhongxin_sanjiao.png"];
+    [cell.contentView addSubview:triangleImageView];
+    [triangleImageView release];
+    
     width=540/2.0; height=7/2.0; x=(CGRectGetWidth(cell.bounds)-width)/2.0; y=20+89/2.0+5-height;
     UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     lineImageView.image=[UIImage imageNamed:@"dianputuijian_line.png"];
@@ -173,7 +179,7 @@
         }
     }
         
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType=UITableViewCellAccessoryNone;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     return cell;
