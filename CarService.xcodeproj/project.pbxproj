@@ -138,6 +138,18 @@
 		E1D044C717E71BED008CBE90 /* woyaodianping_text_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D0446D17E71BED008CBE90 /* woyaodianping_text_bg.png */; };
 		E1D044C817E71BED008CBE90 /* xiugaimima_quxiao.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D0446E17E71BED008CBE90 /* xiugaimima_quxiao.png */; };
 		E1D044C917E71BED008CBE90 /* xiugaimima_quxiao_press.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D0446F17E71BED008CBE90 /* xiugaimima_quxiao_press.png */; };
+		E1E9F43417E72FE400660155 /* baoxianzhishiku_line.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F42817E72FE400660155 /* baoxianzhishiku_line.png */; };
+		E1E9F43517E72FE400660155 /* baoxianzhishiku_sanjiao.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F42917E72FE400660155 /* baoxianzhishiku_sanjiao.png */; };
+		E1E9F43617E72FE400660155 /* baoxianzhishiku_sousuo_press.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F42A17E72FE400660155 /* baoxianzhishiku_sousuo_press.png */; };
+		E1E9F43717E72FE400660155 /* baoxianzhishiku_sousuo.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F42B17E72FE400660155 /* baoxianzhishiku_sousuo.png */; };
+		E1E9F43817E72FE400660155 /* baoxianzhishiku_sousuokuang.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F42C17E72FE400660155 /* baoxianzhishiku_sousuokuang.png */; };
+		E1E9F43917E72FE400660155 /* cheliangbaoxian_baofeiyusuan.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F42D17E72FE400660155 /* cheliangbaoxian_baofeiyusuan.png */; };
+		E1E9F43A17E72FE400660155 /* cheliangbaoxian_baoxianzhishiku.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F42E17E72FE400660155 /* cheliangbaoxian_baoxianzhishiku.png */; };
+		E1E9F43B17E72FE400660155 /* cheliangbaoxian_baoxianzixun.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F42F17E72FE400660155 /* cheliangbaoxian_baoxianzixun.png */; };
+		E1E9F43C17E72FE400660155 /* cheliangbaoxian_sanjiao.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F43017E72FE400660155 /* cheliangbaoxian_sanjiao.png */; };
+		E1E9F43D17E72FE400660155 /* cheliangbaoyang_line.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F43117E72FE400660155 /* cheliangbaoyang_line.png */; };
+		E1E9F43E17E72FE400660155 /* fuwuzhongxin_line.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F43217E72FE400660155 /* fuwuzhongxin_line.png */; };
+		E1E9F43F17E72FE400660155 /* fuwuzhongxin_sanjiao.png in Resources */ = {isa = PBXBuildFile; fileRef = E1E9F43317E72FE400660155 /* fuwuzhongxin_sanjiao.png */; };
 		E53ABA3517E0DD020096754D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3417E0DD020096754D /* UIKit.framework */; };
 		E53ABA3717E0DD020096754D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3617E0DD020096754D /* Foundation.framework */; };
 		E53ABA3917E0DD020096754D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3817E0DD020096754D /* CoreGraphics.framework */; };
@@ -459,6 +471,18 @@
 		E1D0446D17E71BED008CBE90 /* woyaodianping_text_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woyaodianping_text_bg.png; sourceTree = "<group>"; };
 		E1D0446E17E71BED008CBE90 /* xiugaimima_quxiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiugaimima_quxiao.png; sourceTree = "<group>"; };
 		E1D0446F17E71BED008CBE90 /* xiugaimima_quxiao_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiugaimima_quxiao_press.png; sourceTree = "<group>"; };
+		E1E9F42817E72FE400660155 /* baoxianzhishiku_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baoxianzhishiku_line.png; sourceTree = "<group>"; };
+		E1E9F42917E72FE400660155 /* baoxianzhishiku_sanjiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baoxianzhishiku_sanjiao.png; sourceTree = "<group>"; };
+		E1E9F42A17E72FE400660155 /* baoxianzhishiku_sousuo_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baoxianzhishiku_sousuo_press.png; sourceTree = "<group>"; };
+		E1E9F42B17E72FE400660155 /* baoxianzhishiku_sousuo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baoxianzhishiku_sousuo.png; sourceTree = "<group>"; };
+		E1E9F42C17E72FE400660155 /* baoxianzhishiku_sousuokuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baoxianzhishiku_sousuokuang.png; sourceTree = "<group>"; };
+		E1E9F42D17E72FE400660155 /* cheliangbaoxian_baofeiyusuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cheliangbaoxian_baofeiyusuan.png; sourceTree = "<group>"; };
+		E1E9F42E17E72FE400660155 /* cheliangbaoxian_baoxianzhishiku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cheliangbaoxian_baoxianzhishiku.png; sourceTree = "<group>"; };
+		E1E9F42F17E72FE400660155 /* cheliangbaoxian_baoxianzixun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cheliangbaoxian_baoxianzixun.png; sourceTree = "<group>"; };
+		E1E9F43017E72FE400660155 /* cheliangbaoxian_sanjiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cheliangbaoxian_sanjiao.png; sourceTree = "<group>"; };
+		E1E9F43117E72FE400660155 /* cheliangbaoyang_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cheliangbaoyang_line.png; sourceTree = "<group>"; };
+		E1E9F43217E72FE400660155 /* fuwuzhongxin_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fuwuzhongxin_line.png; sourceTree = "<group>"; };
+		E1E9F43317E72FE400660155 /* fuwuzhongxin_sanjiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fuwuzhongxin_sanjiao.png; sourceTree = "<group>"; };
 		E53ABA3117E0DD020096754D /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53ABA3417E0DD020096754D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E53ABA3617E0DD020096754D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -868,6 +892,18 @@
 		E1D0441517E71BEC008CBE90 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E1E9F42817E72FE400660155 /* baoxianzhishiku_line.png */,
+				E1E9F42917E72FE400660155 /* baoxianzhishiku_sanjiao.png */,
+				E1E9F42A17E72FE400660155 /* baoxianzhishiku_sousuo_press.png */,
+				E1E9F42B17E72FE400660155 /* baoxianzhishiku_sousuo.png */,
+				E1E9F42C17E72FE400660155 /* baoxianzhishiku_sousuokuang.png */,
+				E1E9F42D17E72FE400660155 /* cheliangbaoxian_baofeiyusuan.png */,
+				E1E9F42E17E72FE400660155 /* cheliangbaoxian_baoxianzhishiku.png */,
+				E1E9F42F17E72FE400660155 /* cheliangbaoxian_baoxianzixun.png */,
+				E1E9F43017E72FE400660155 /* cheliangbaoxian_sanjiao.png */,
+				E1E9F43117E72FE400660155 /* cheliangbaoyang_line.png */,
+				E1E9F43217E72FE400660155 /* fuwuzhongxin_line.png */,
+				E1E9F43317E72FE400660155 /* fuwuzhongxin_sanjiao.png */,
 				E1D0441617E71BEC008CBE90 /* baoyangzixun_answer.png */,
 				E1D0441717E71BEC008CBE90 /* baoyangzixun_ask.png */,
 				E1D0441817E71BEC008CBE90 /* bg_iphone4.png */,
@@ -1536,6 +1572,18 @@
 				E1D044C717E71BED008CBE90 /* woyaodianping_text_bg.png in Resources */,
 				E1D044C817E71BED008CBE90 /* xiugaimima_quxiao.png in Resources */,
 				E1D044C917E71BED008CBE90 /* xiugaimima_quxiao_press.png in Resources */,
+				E1E9F43417E72FE400660155 /* baoxianzhishiku_line.png in Resources */,
+				E1E9F43517E72FE400660155 /* baoxianzhishiku_sanjiao.png in Resources */,
+				E1E9F43617E72FE400660155 /* baoxianzhishiku_sousuo_press.png in Resources */,
+				E1E9F43717E72FE400660155 /* baoxianzhishiku_sousuo.png in Resources */,
+				E1E9F43817E72FE400660155 /* baoxianzhishiku_sousuokuang.png in Resources */,
+				E1E9F43917E72FE400660155 /* cheliangbaoxian_baofeiyusuan.png in Resources */,
+				E1E9F43A17E72FE400660155 /* cheliangbaoxian_baoxianzhishiku.png in Resources */,
+				E1E9F43B17E72FE400660155 /* cheliangbaoxian_baoxianzixun.png in Resources */,
+				E1E9F43C17E72FE400660155 /* cheliangbaoxian_sanjiao.png in Resources */,
+				E1E9F43D17E72FE400660155 /* cheliangbaoyang_line.png in Resources */,
+				E1E9F43E17E72FE400660155 /* fuwuzhongxin_line.png in Resources */,
+				E1E9F43F17E72FE400660155 /* fuwuzhongxin_sanjiao.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
