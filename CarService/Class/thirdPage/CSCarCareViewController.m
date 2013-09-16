@@ -7,6 +7,7 @@
 //
 
 #import "CSCarCareViewController.h"
+#import "CSShopRecommendViewController.h"
 
 @interface CSCarCareViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -218,6 +219,9 @@
     switch (index) {
         case 0:
         {
+            CSShopRecommendViewController* ctrler=[[CSShopRecommendViewController alloc] init];
+            [self.navigationController pushViewController:ctrler animated:YES];
+            [ctrler release];
         }
             break;
         case 1:
@@ -227,9 +231,14 @@
             break;
         case 2:
         {
+            
         }
             break;
+        case 3:
+        {
             
+        }
+            break;
         default:
             break;
     }
