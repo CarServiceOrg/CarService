@@ -16,5 +16,6 @@
 //- (void)showDetailController:(NSDictionary *)actInfo;
 - (void)showFullActView:(UIActivityIndicatorViewStyle)style;
 - (void)hideFullActView;
+- (UIBarButtonItem *)getBackItem;
 
 @end

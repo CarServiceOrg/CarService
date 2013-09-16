@@ -7,9 +7,10 @@
 
 //************************************************************1.用户功能接口************************************************************
 //1.1	用户登录  
-#define URL_login [NSString stringWithFormat:@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/wzcx_preview.jsp",DEFAULT_URL_Login]
+#define URL_login [NSString stringWithFormat:@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/wzcx_preview.jsp"]
 #define URL_register [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_logout [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
+#define URL_changepassword [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 
 
 //1.1.0 获取用户角色

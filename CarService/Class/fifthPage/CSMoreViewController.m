@@ -95,7 +95,7 @@
     UIImage *normalImage = nil;
     UIImage *selectImage = nil;
     
-    if (nil == [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
     {
         
         if (indexPath.row == 0)
@@ -211,6 +211,7 @@
         {
             case 0:
                 CustomLog(@"设置");
+                break;
             case 1:
                 CustomLog(@"意见反馈");
                 break;

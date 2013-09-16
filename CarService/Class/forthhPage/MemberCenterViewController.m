@@ -9,6 +9,7 @@
 #import "MemberCenterViewController.h"
 #import "ASIHTTPRequest.h"
 #import "CSForthViewController.h"
+#import "ChangePasswordController.h"
 
 @interface MemberCenterViewController ()
 
@@ -74,7 +75,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (nil == [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
     {
         return 6;
     }
@@ -127,7 +128,7 @@
     UIImage *normalImage = nil;
     UIImage *selectImage = nil;
     
-    if (nil == [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
     {
         
         if (indexPath.row == 0)
@@ -245,6 +246,9 @@
                 CustomLog(@"我的资料");
             case 1:
                 CustomLog(@"修改密码");
+                ChangePasswordController *controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
                 break;
             case 2:
                 CustomLog(@"我的消息");

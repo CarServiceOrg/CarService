@@ -49,7 +49,7 @@
         [tempView removeFromSuperview];
     }
     
-    if (YES/*nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo]*/)
+    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
     {
         MemberCenterViewController *controller = [[MemberCenterViewController alloc] initWithNibName:@"MemberCenterViewController" bundle:nil];
         controller.parentController = self;

@@ -138,6 +138,8 @@
 		E1D044C717E71BED008CBE90 /* woyaodianping_text_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D0446D17E71BED008CBE90 /* woyaodianping_text_bg.png */; };
 		E1D044C817E71BED008CBE90 /* xiugaimima_quxiao.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D0446E17E71BED008CBE90 /* xiugaimima_quxiao.png */; };
 		E1D044C917E71BED008CBE90 /* xiugaimima_quxiao_press.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D0446F17E71BED008CBE90 /* xiugaimima_quxiao_press.png */; };
+		E1D044CD17E73445008CBE90 /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D044CB17E73444008CBE90 /* ChangePasswordController.m */; };
+		E1D044CE17E73445008CBE90 /* ChangePasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D044CC17E73444008CBE90 /* ChangePasswordController.xib */; };
 		E53ABA3517E0DD020096754D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3417E0DD020096754D /* UIKit.framework */; };
 		E53ABA3717E0DD020096754D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3617E0DD020096754D /* Foundation.framework */; };
 		E53ABA3917E0DD020096754D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3817E0DD020096754D /* CoreGraphics.framework */; };
@@ -459,6 +461,9 @@
 		E1D0446D17E71BED008CBE90 /* woyaodianping_text_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woyaodianping_text_bg.png; sourceTree = "<group>"; };
 		E1D0446E17E71BED008CBE90 /* xiugaimima_quxiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiugaimima_quxiao.png; sourceTree = "<group>"; };
 		E1D0446F17E71BED008CBE90 /* xiugaimima_quxiao_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiugaimima_quxiao_press.png; sourceTree = "<group>"; };
+		E1D044CA17E73443008CBE90 /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
+		E1D044CB17E73444008CBE90 /* ChangePasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordController.m; sourceTree = "<group>"; };
+		E1D044CC17E73444008CBE90 /* ChangePasswordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangePasswordController.xib; sourceTree = "<group>"; };
 		E53ABA3117E0DD020096754D /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53ABA3417E0DD020096754D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E53ABA3617E0DD020096754D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -846,6 +851,9 @@
 				E1D043CE17E6DF4E008CBE90 /* MemberCenterViewController.h */,
 				E1D043CF17E6DF4E008CBE90 /* MemberCenterViewController.m */,
 				E1D043D017E6DF4E008CBE90 /* MemberCenterViewController.xib */,
+				E1D044CA17E73443008CBE90 /* ChangePasswordController.h */,
+				E1D044CB17E73444008CBE90 /* ChangePasswordController.m */,
+				E1D044CC17E73444008CBE90 /* ChangePasswordController.xib */,
 			);
 			path = forthhPage;
 			sourceTree = "<group>";
@@ -1536,6 +1544,7 @@
 				E1D044C717E71BED008CBE90 /* woyaodianping_text_bg.png in Resources */,
 				E1D044C817E71BED008CBE90 /* xiugaimima_quxiao.png in Resources */,
 				E1D044C917E71BED008CBE90 /* xiugaimima_quxiao_press.png in Resources */,
+				E1D044CE17E73445008CBE90 /* ChangePasswordController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1623,6 +1632,7 @@
 				E1D043CD17E6DCC2008CBE90 /* CSReportCaseViewController.m in Sources */,
 				E1D043D117E6DF4F008CBE90 /* MemberCenterViewController.m in Sources */,
 				E1D043E417E6F0F7008CBE90 /* CSMoreViewController.m in Sources */,
+				E1D044CD17E73445008CBE90 /* ChangePasswordController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,8 +32,28 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationController.navigationBar.hidden = YES;
     self.view.backgroundColor = [UIColor blackColor];
+    
+}
+
+- (IBAction)backButtonPressed:(id)sender
+{
+}
+
+- (UIBarButtonItem *)getBackItem
+{
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 41, 21)];
+    [button setBackgroundImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"btn_back_press.png"] forState:UIControlStateSelected];
+    [button setTitle:@"返回" forState:UIControlStateNormal];
+    [button setTitle:@"返回" forState:UIControlStateHighlighted];
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithCustomView:button]autorelease];
+    [button release];
+    return item;
 }
 
 - (void)didReceiveMemoryWarning

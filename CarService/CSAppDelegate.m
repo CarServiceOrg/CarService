@@ -45,6 +45,11 @@
     [self updateSelectIndex:0];
     
     // Override point for customization after application launch.
+    
+    //测试登陆
+    [[NSUserDefaults standardUserDefaults] setObject:@"test"forKey:UserDefaultUserInfo];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     return YES;
 }
 
