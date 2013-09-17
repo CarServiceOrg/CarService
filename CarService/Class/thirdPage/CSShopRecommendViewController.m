@@ -259,7 +259,7 @@
     [queryBtn setBackgroundImage:[UIImage imageNamed:@"dianpuzixun_zixun_80.png"] forState:UIControlStateNormal];
     [queryBtn setBackgroundImage:[UIImage imageNamed:@"dianpuzixun_zixun_press_80.png"] forState:UIControlStateHighlighted];
     [queryBtn addTarget:self action:@selector(phoneBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:queryBtn];
+    [cell.contentView addSubview:queryBtn];
     [queryBtn release];
     
     UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectMake((CGRectGetWidth(cell.bounds)-540/2.0)/2.0, 0, 540/2.0, 7/2.0)];
@@ -358,7 +358,7 @@
         //咨询
         UIButton* queryBtn=(UIButton*)[cell.contentView viewWithTag:1005];
         if (queryBtn) {
-            width=80; height=60; x=320-10-width; y=[self heightForCell:indexPath]-10-height;
+            width=60; height=40; x=320-10-width; y=[self heightForCell:indexPath]-10-height;
             queryBtn.frame=CGRectMake(x, y, width, height);
         }
                 
