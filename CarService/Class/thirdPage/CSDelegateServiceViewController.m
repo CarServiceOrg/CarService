@@ -185,7 +185,8 @@
     }
     
     cell.accessoryType=UITableViewCellAccessoryNone;
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    cell.selectionStyle=UITableViewCellSelectionStyleGray;
+    cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"tianjiacheliang_cell_bg.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]]autorelease];
     
     return cell;
 }

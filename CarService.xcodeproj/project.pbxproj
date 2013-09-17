@@ -39,6 +39,7 @@
 		E152A9E517E8AF0A00E73902 /* 雷阵雨.png in Resources */ = {isa = PBXBuildFile; fileRef = E152A9C717E8AF0A00E73902 /* 雷阵雨.png */; };
 		E152A9E617E8AF0A00E73902 /* 雷阵雨伴有冰雹.png in Resources */ = {isa = PBXBuildFile; fileRef = E152A9C817E8AF0A00E73902 /* 雷阵雨伴有冰雹.png */; };
 		E152A9E717E8AF0A00E73902 /* 雾.png in Resources */ = {isa = PBXBuildFile; fileRef = E152A9C917E8AF0A00E73902 /* 雾.png */; };
+		E152A9EA17E8BFAB00E73902 /* CSCareRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E152A9E917E8BFAB00E73902 /* CSCareRecordViewController.m */; };
 		E174C2AD17E5B71C00C1CE71 /* KeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2AC17E5B71C00C1CE71 /* KeyChainUtil.m */; };
 		E174C2B117E5B97200C1CE71 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B017E5B97200C1CE71 /* Util.m */; };
 		E174C2B417E5BAE300C1CE71 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B317E5BAE100C1CE71 /* CommonViewController.m */; };
@@ -366,6 +367,8 @@
 		E152A9C717E8AF0A00E73902 /* 雷阵雨.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "雷阵雨.png"; sourceTree = "<group>"; };
 		E152A9C817E8AF0A00E73902 /* 雷阵雨伴有冰雹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "雷阵雨伴有冰雹.png"; sourceTree = "<group>"; };
 		E152A9C917E8AF0A00E73902 /* 雾.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "雾.png"; sourceTree = "<group>"; };
+		E152A9E817E8BFAB00E73902 /* CSCareRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCareRecordViewController.h; sourceTree = "<group>"; };
+		E152A9E917E8BFAB00E73902 /* CSCareRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCareRecordViewController.m; sourceTree = "<group>"; };
 		E174C2AB17E5B71C00C1CE71 /* KeyChainUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainUtil.h; sourceTree = "<group>"; };
 		E174C2AC17E5B71C00C1CE71 /* KeyChainUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainUtil.m; sourceTree = "<group>"; };
 		E174C2AF17E5B97200C1CE71 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
@@ -914,6 +917,8 @@
 				E19AE7D717E82082007B9F07 /* CSInsureAcknowledgeViewController.m */,
 				E19AE7DA17E82082007B9F07 /* CSShopRecommendViewController.h */,
 				E19AE7DB17E82082007B9F07 /* CSShopRecommendViewController.m */,
+				E152A9E817E8BFAB00E73902 /* CSCareRecordViewController.h */,
+				E152A9E917E8BFAB00E73902 /* CSCareRecordViewController.m */,
 			);
 			path = thirdPage;
 			sourceTree = "<group>";
@@ -1929,6 +1934,7 @@
 				E19AE81417E88855007B9F07 /* CSSettingsViewController.m in Sources */,
 				E19AE81917E88FFC007B9F07 /* CSFeedBackViewController.m in Sources */,
 				E19AE81E17E89CBD007B9F07 /* AboutViewController.m in Sources */,
+				E152A9EA17E8BFAB00E73902 /* CSCareRecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
