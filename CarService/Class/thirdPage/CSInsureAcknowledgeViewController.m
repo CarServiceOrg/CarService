@@ -121,7 +121,7 @@
     }
     
     [self init_selfView];
-    [self initSetUpTableView:CGRectMake(0, 25+40+10, 320, self.view.bounds.size.width-(25+40+10))];
+    [self initSetUpTableView:CGRectMake(0, 25+40+10, 320, self.view.bounds.size.height-40-55-(25+40+10))];
 }
 
 - (void)didReceiveMemoryWarning
@@ -139,7 +139,7 @@
 #pragma mark -UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [self.dataArray count];
 }
 
 //创建详细信息的Label

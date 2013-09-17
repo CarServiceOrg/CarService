@@ -185,7 +185,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
-    self.navigationItem.title=@"店铺推荐";
+    self.navigationItem.title=@"保养记录";
     self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
     self.dataArray=[NSMutableArray arrayWithCapacity:3];
     {
