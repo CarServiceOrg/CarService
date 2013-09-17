@@ -11,7 +11,7 @@
 #define URL_register [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_logout [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_changepassword [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
-
+#define URL_myconsumerecord [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 
 //1.1.0 获取用户角色
 #define URL_login_roles [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL]

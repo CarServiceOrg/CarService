@@ -13,6 +13,8 @@
 		E174C2B117E5B97200C1CE71 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B017E5B97200C1CE71 /* Util.m */; };
 		E174C2B417E5BAE300C1CE71 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B317E5BAE100C1CE71 /* CommonViewController.m */; };
 		E174C2B717E5BC9200C1CE71 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E174C2B617E5BC9100C1CE71 /* Security.framework */; };
+		E19AE7CD17E80326007B9F07 /* my_consume_record_header.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */; };
+		E19AE7CE17E80326007B9F07 /* profile_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7CC17E80326007B9F07 /* profile_background.png */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -140,6 +142,10 @@
 		E1D044C917E71BED008CBE90 /* xiugaimima_quxiao_press.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D0446F17E71BED008CBE90 /* xiugaimima_quxiao_press.png */; };
 		E1D044CD17E73445008CBE90 /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D044CB17E73444008CBE90 /* ChangePasswordController.m */; };
 		E1D044CE17E73445008CBE90 /* ChangePasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D044CC17E73444008CBE90 /* ChangePasswordController.xib */; };
+		E1D044D217E741A9008CBE90 /* CSMyConsumeRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D044D017E741A9008CBE90 /* CSMyConsumeRecordViewController.m */; };
+		E1D044D317E741A9008CBE90 /* CSMyConsumeRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D044D117E741A9008CBE90 /* CSMyConsumeRecordViewController.xib */; };
+		E1D044D717E74559008CBE90 /* CSMyConsumeRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */; };
+		E1D044D817E74559008CBE90 /* CSMyConsumeRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */; };
 		E53ABA3517E0DD020096754D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3417E0DD020096754D /* UIKit.framework */; };
 		E53ABA3717E0DD020096754D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3617E0DD020096754D /* Foundation.framework */; };
 		E53ABA3917E0DD020096754D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3817E0DD020096754D /* CoreGraphics.framework */; };
@@ -280,6 +286,8 @@
 		E174C2B317E5BAE100C1CE71 /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
 		E174C2B517E5BBDE00C1CE71 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E174C2B617E5BC9100C1CE71 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_consume_record_header.png; sourceTree = "<group>"; };
+		E19AE7CC17E80326007B9F07 /* profile_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_background.png; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -464,6 +472,12 @@
 		E1D044CA17E73443008CBE90 /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
 		E1D044CB17E73444008CBE90 /* ChangePasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordController.m; sourceTree = "<group>"; };
 		E1D044CC17E73444008CBE90 /* ChangePasswordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangePasswordController.xib; sourceTree = "<group>"; };
+		E1D044CF17E741A9008CBE90 /* CSMyConsumeRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMyConsumeRecordViewController.h; sourceTree = "<group>"; };
+		E1D044D017E741A9008CBE90 /* CSMyConsumeRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMyConsumeRecordViewController.m; sourceTree = "<group>"; };
+		E1D044D117E741A9008CBE90 /* CSMyConsumeRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMyConsumeRecordViewController.xib; sourceTree = "<group>"; };
+		E1D044D417E74558008CBE90 /* CSMyConsumeRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMyConsumeRecordCell.h; sourceTree = "<group>"; };
+		E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMyConsumeRecordCell.m; sourceTree = "<group>"; };
+		E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMyConsumeRecordCell.xib; sourceTree = "<group>"; };
 		E53ABA3117E0DD020096754D /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53ABA3417E0DD020096754D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E53ABA3617E0DD020096754D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -854,6 +868,12 @@
 				E1D044CA17E73443008CBE90 /* ChangePasswordController.h */,
 				E1D044CB17E73444008CBE90 /* ChangePasswordController.m */,
 				E1D044CC17E73444008CBE90 /* ChangePasswordController.xib */,
+				E1D044CF17E741A9008CBE90 /* CSMyConsumeRecordViewController.h */,
+				E1D044D017E741A9008CBE90 /* CSMyConsumeRecordViewController.m */,
+				E1D044D117E741A9008CBE90 /* CSMyConsumeRecordViewController.xib */,
+				E1D044D417E74558008CBE90 /* CSMyConsumeRecordCell.h */,
+				E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */,
+				E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */,
 			);
 			path = forthhPage;
 			sourceTree = "<group>";
@@ -931,6 +951,8 @@
 				E1D0444A17E71BED008CBE90 /* membercenter_rate.png */,
 				E1D0444B17E71BED008CBE90 /* membercenter_top.png */,
 				E1D0444C17E71BED008CBE90 /* membercenter_top_click.png */,
+				E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */,
+				E19AE7CC17E80326007B9F07 /* profile_background.png */,
 				E1D0444D17E71BED008CBE90 /* navi_bg.png */,
 				E1D0444E17E71BED008CBE90 /* second.png */,
 				E1D0444F17E71BED008CBE90 /* second@2x.png */,
@@ -1545,6 +1567,10 @@
 				E1D044C817E71BED008CBE90 /* xiugaimima_quxiao.png in Resources */,
 				E1D044C917E71BED008CBE90 /* xiugaimima_quxiao_press.png in Resources */,
 				E1D044CE17E73445008CBE90 /* ChangePasswordController.xib in Resources */,
+				E1D044D317E741A9008CBE90 /* CSMyConsumeRecordViewController.xib in Resources */,
+				E1D044D817E74559008CBE90 /* CSMyConsumeRecordCell.xib in Resources */,
+				E19AE7CD17E80326007B9F07 /* my_consume_record_header.png in Resources */,
+				E19AE7CE17E80326007B9F07 /* profile_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1633,6 +1659,8 @@
 				E1D043D117E6DF4F008CBE90 /* MemberCenterViewController.m in Sources */,
 				E1D043E417E6F0F7008CBE90 /* CSMoreViewController.m in Sources */,
 				E1D044CD17E73445008CBE90 /* ChangePasswordController.m in Sources */,
+				E1D044D217E741A9008CBE90 /* CSMyConsumeRecordViewController.m in Sources */,
+				E1D044D717E74559008CBE90 /* CSMyConsumeRecordCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

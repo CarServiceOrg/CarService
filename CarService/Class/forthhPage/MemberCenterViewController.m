@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "CSForthViewController.h"
 #import "ChangePasswordController.h"
+#import "CSMyConsumeRecordViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -238,6 +239,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    UIViewController *controller;
     if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
     {
         switch (indexPath.row)
@@ -246,7 +248,7 @@
                 CustomLog(@"我的资料");
             case 1:
                 CustomLog(@"修改密码");
-                ChangePasswordController *controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];
+                controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];
                 [self.parentController.navigationController pushViewController:controller animated:YES];
                 [controller release];
                 break;
@@ -255,6 +257,9 @@
                 break;
             case 3:
                 CustomLog(@"我的消费纪录");
+                controller = [[CSMyConsumeRecordViewController alloc] initWithNibName:@"CSMyConsumeRecordViewController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
                 break;
             case 4:
                 CustomLog(@"车辆跟踪");
