@@ -40,6 +40,9 @@
 		E19AE80717E87C4D007B9F07 /* comment_highlight_star.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE80317E87C4B007B9F07 /* comment_highlight_star.png */; };
 		E19AE80B17E87C94007B9F07 /* CSCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE80917E87C93007B9F07 /* CSCommentViewController.m */; };
 		E19AE80C17E87C94007B9F07 /* CSCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE80A17E87C94007B9F07 /* CSCommentViewController.xib */; };
+		E19AE81017E887A1007B9F07 /* setting_clear_cache_back.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE80E17E8879F007B9F07 /* setting_clear_cache_back.png */; };
+		E19AE81417E88855007B9F07 /* CSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE81217E88855007B9F07 /* CSSettingsViewController.m */; };
+		E19AE81517E88855007B9F07 /* CSSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE81317E88855007B9F07 /* CSSettingsViewController.xib */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -345,6 +348,10 @@
 		E19AE80817E87C93007B9F07 /* CSCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCommentViewController.h; sourceTree = "<group>"; };
 		E19AE80917E87C93007B9F07 /* CSCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCommentViewController.m; sourceTree = "<group>"; };
 		E19AE80A17E87C94007B9F07 /* CSCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSCommentViewController.xib; sourceTree = "<group>"; };
+		E19AE80E17E8879F007B9F07 /* setting_clear_cache_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_clear_cache_back.png; sourceTree = "<group>"; };
+		E19AE81117E88855007B9F07 /* CSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSettingsViewController.h; sourceTree = "<group>"; };
+		E19AE81217E88855007B9F07 /* CSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSettingsViewController.m; sourceTree = "<group>"; };
+		E19AE81317E88855007B9F07 /* CSSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSSettingsViewController.xib; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -921,6 +928,9 @@
 				E1D043E117E6F0F7008CBE90 /* CSMoreViewController.h */,
 				E1D043E217E6F0F7008CBE90 /* CSMoreViewController.m */,
 				E1D043E317E6F0F7008CBE90 /* CSMoreViewController.xib */,
+				E19AE81117E88855007B9F07 /* CSSettingsViewController.h */,
+				E19AE81217E88855007B9F07 /* CSSettingsViewController.m */,
+				E19AE81317E88855007B9F07 /* CSSettingsViewController.xib */,
 			);
 			path = fifthPage;
 			sourceTree = "<group>";
@@ -1065,6 +1075,7 @@
 				E19AE7F817E87BD5007B9F07 /* feedback_confirm.png */,
 				E19AE7F917E87BD5007B9F07 /* feedback_confirm_press.png */,
 				E19AE7FA17E87BD7007B9F07 /* feedback_back.png */,
+				E19AE80E17E8879F007B9F07 /* setting_clear_cache_back.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1662,6 +1673,8 @@
 				E19AE80617E87C4D007B9F07 /* comment_normal_star.png in Resources */,
 				E19AE80717E87C4D007B9F07 /* comment_highlight_star.png in Resources */,
 				E19AE80C17E87C94007B9F07 /* CSCommentViewController.xib in Resources */,
+				E19AE81017E887A1007B9F07 /* setting_clear_cache_back.png in Resources */,
+				E19AE81517E88855007B9F07 /* CSSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1759,6 +1772,7 @@
 				E19AE7F217E86F5D007B9F07 /* LBSDataUtil.m in Sources */,
 				E19AE7F517E870CE007B9F07 /* NSArray+CheckRange.m in Sources */,
 				E19AE80B17E87C94007B9F07 /* CSCommentViewController.m in Sources */,
+				E19AE81417E88855007B9F07 /* CSSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
