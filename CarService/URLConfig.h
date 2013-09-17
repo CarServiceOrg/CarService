@@ -1,5 +1,12 @@
 #import <Foundation/Foundation.h>
 
+//************************************************************电话号码************************************************************
+
+#define TELEPHONE_BaoFeiYuSuan @"100086"  //电话：服务中心--车辆保险--保费预算
+#define TELEPHONE_BaoXianZiXun @"100086"  //电话：服务中心--车辆保险--保险咨询
+
+//*******************************************************************************************************************************
+
 #define ORIGIN_URL @"124.207.24.90:2012"
 #define DEFAULT_URL_Login @"https://61.50.159.196:2543" //登录前无密钥协商，登录接口采用HTTPS调用，保证数据安全,其他功能接口使用HTTP
 #define DEFAULT_URL @"http://61.50.159.196:2501"
@@ -17,6 +24,7 @@
 #define URL_feedback [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_checknewversion [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_rateurl @"pinglun"
+
 //1.1.0 获取用户角色
 #define URL_login_roles [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL]
 

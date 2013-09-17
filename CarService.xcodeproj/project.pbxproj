@@ -902,16 +902,16 @@
 		E19AE7CF17E82082007B9F07 /* thirdPage */ = {
 			isa = PBXGroup;
 			children = (
+				E19AE7D417E82082007B9F07 /* CSInsuranceViewController.h */,
+				E19AE7D517E82082007B9F07 /* CSInsuranceViewController.m */,
 				E19AE7D017E82082007B9F07 /* CSCarCareViewController.h */,
 				E19AE7D117E82082007B9F07 /* CSCarCareViewController.m */,
 				E19AE7D217E82082007B9F07 /* CSDelegateServiceViewController.h */,
 				E19AE7D317E82082007B9F07 /* CSDelegateServiceViewController.m */,
-				E19AE7D417E82082007B9F07 /* CSInsuranceViewController.h */,
-				E19AE7D517E82082007B9F07 /* CSInsuranceViewController.m */,
-				E19AE7D617E82082007B9F07 /* CSInsureAcknowledgeViewController.h */,
-				E19AE7D717E82082007B9F07 /* CSInsureAcknowledgeViewController.m */,
 				E19AE7D817E82082007B9F07 /* CSReportCaseViewController.h */,
 				E19AE7D917E82082007B9F07 /* CSReportCaseViewController.m */,
+				E19AE7D617E82082007B9F07 /* CSInsureAcknowledgeViewController.h */,
+				E19AE7D717E82082007B9F07 /* CSInsureAcknowledgeViewController.m */,
 				E19AE7DA17E82082007B9F07 /* CSShopRecommendViewController.h */,
 				E19AE7DB17E82082007B9F07 /* CSShopRecommendViewController.m */,
 			);
