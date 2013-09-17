@@ -15,6 +15,8 @@
 #define URL_changeprofile [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_comment [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_feedback [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
+#define URL_checknewversion [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
+#define URL_rateurl @"pinglun"
 //1.1.0 获取用户角色
 #define URL_login_roles [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL]
 

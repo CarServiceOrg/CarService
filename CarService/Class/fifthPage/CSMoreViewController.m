@@ -10,16 +10,23 @@
 #import "CSFifthViewController.h"
 #import "CSSettingsViewController.h"
 #import "CSFeedBackViewController.h"
+#import "ASIHTTPRequest.h"
+
+#define AlertTag_NewVersion 1000
 
 @interface CSMoreViewController ()
 
 @property (nonatomic,retain) IBOutlet UITableView *contentTableView;
+@property (nonatomic,retain) ASIHTTPRequest *checkVersionRequest;
+
+- (void)checkNewVersion;
 
 @end
 
 @implementation CSMoreViewController
 @synthesize contentTableView;
 @synthesize parentController;
+@synthesize checkVersionRequest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +40,8 @@
 - (void)dealloc
 {
     [contentTableView release];
+    [checkVersionRequest clearDelegatesAndCancel];
+    [checkVersionRequest release];
     [super dealloc];
 }
 
@@ -227,6 +236,7 @@
                 break;
             case 2:
                 CustomLog(@"检查更新");
+                [self checkNewVersion];
                 break;
             case 3:
                 CustomLog(@"分享软件");
@@ -250,6 +260,90 @@
 - (IBAction)backButtonPressed:(id)sender
 {
     [self.parentController.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)checkNewVersion
+{
+    [self.checkVersionRequest clearDelegatesAndCancel];
+    self.checkVersionRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_checknewversion]];
+    self.checkVersionRequest.delegate = self;
+    [self.checkVersionRequest setDidFinishSelector:@selector(requestDidFinished:)];
+    [self.checkVersionRequest setDidFailSelector:@selector(requestDidFailed:)];
+    [self.checkVersionRequest startAsynchronous];
+    [self showFullActView:UIActivityIndicatorViewStyleWhite];
+}
+
+#pragma mark - ASIHttpRequest Delegate Methods
+
+- (void)requestDidFinished:(ASIHTTPRequest *)request
+{
+    [self hideFullActView];
+    NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSString *responseString = [[[NSString alloc] initWithData:[request responseData] encoding:encoding]autorelease];
+    
+    NSDictionary *requestDic = [responseString JSONValue];
+    CustomLog(@"login request request dic:%@",requestDic);
+    if (nil == [requestDic objectForKey:@"code"])
+    {
+        CustomLog(@"parse error");
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"服务器出错，请稍后重试"];
+
+        return;
+    }
+    else
+    {
+        if ([[requestDic objectForKey:@"code"] isEqualToString:@"0"])
+        {
+            NSString *content = [[requestDic objectForKey:@"data"] objectForKey:@"content"];
+            NSString *newVersion = [[requestDic objectForKey:@"data"] objectForKey:@"version"];
+            
+            if ([newVersion floatValue] > [[[Util sharedUtil] get_appVersion]floatValue])
+            {
+                CustomLog(@"new version exist");
+                if ([content length] == 0)
+                {
+                    content = @"有新版本了,是否现在更新?";
+                }
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:content delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+                alert.tag = AlertTag_NewVersion;
+                [alert show];
+                [alert release];
+            }
+        }
+        else
+        {
+            CustomLog(@"parse error");
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"服务器出错，请稍后重试"];
+
+        }
+    }
+}
+
+- (void)requestDidFailed:(ASIHTTPRequest *)request
+{
+    [self hideFullActView];
+    [[Util sharedUtil] showAlertWithTitle:@"" message:@"请求失败，请检查网络连接"];
+}
+
+#pragma mark - UIAlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == AlertTag_NewVersion)
+    {
+        CustomLog(@"index:%d",buttonIndex);
+        switch (buttonIndex)
+        {
+            case 0:
+                CustomLog(@"cancel");
+                break;
+            case 1:
+                CustomLog(@"update now");
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_rateurl]];
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 @end

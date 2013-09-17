@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonViewController.h"
+
 @class CSFifthViewController;
 
-@interface CSMoreViewController : UIViewController
+@interface CSMoreViewController : CommonViewController
 
 @property (nonatomic,assign) CSFifthViewController *parentController;
 
