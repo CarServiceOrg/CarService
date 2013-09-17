@@ -352,7 +352,7 @@
 								<reference key="NSSuperview" ref="793530273"/>
 								<reference key="NSNextKeyView" ref="1063707092"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor" id="998909999">
+								<object class="NSColor" key="IBUIBackgroundColor" id="199136225">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
 								</object>
@@ -363,7 +363,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="1032818826"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="998909999"/>
+						<reference key="IBUIBackgroundColor" ref="199136225"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -462,7 +462,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="753090652"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<reference key="IBUIBackgroundColor" ref="998909999"/>
+				<reference key="IBUIBackgroundColor" ref="199136225"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
@@ -790,8 +790,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bg_iphone5.png">{640, 1136}</string>
-			<string key="profile_background.png">{597, 301}</string>
+			<string key="bg_iphone5.png">{16, 16}</string>
+			<string key="profile_background.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -8,6 +8,7 @@
 
 #import "CSMoreViewController.h"
 #import "CSFifthViewController.h"
+#import "CSSettingsViewController.h"
 
 @interface CSMoreViewController ()
 
@@ -207,10 +208,15 @@
     
     if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
     {
+        UIViewController *controller;
+        
         switch (indexPath.row)
         {
             case 0:
                 CustomLog(@"设置");
+                controller = [[CSSettingsViewController alloc] initWithNibName:@"CSSettingsViewController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
                 break;
             case 1:
                 CustomLog(@"意见反馈");
