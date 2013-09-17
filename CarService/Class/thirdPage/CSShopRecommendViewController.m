@@ -9,6 +9,7 @@
 #import "CSShopRecommendViewController.h"
 #import "UIImage_Extensions.h"
 #import "ActionSheetStringPicker.h"
+#import "UIImageView+WebCache.h"
 
 @interface CSShopRecommendViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -21,6 +22,12 @@
 
 @implementation CSShopRecommendViewController
 @synthesize dataArray;
+
+#define CSShopRecommendViewController_imgae_width 100.0
+#define CSShopRecommendViewController_imgae_height 750.0
+#define CSShopRecommendViewController_title_font 16.0
+#define CSShopRecommendViewController_text_font 12.0
+#define CSShopRecommendViewController_cell_default 95.0
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -166,15 +173,22 @@
     self.dataArray=[NSMutableArray arrayWithCapacity:3];
     {
         self.dataArray=[NSMutableArray arrayWithObjects:
-                        @"单保车损险的话，保险公司有一定比例的免赔范围",
-                        @"车主必须自己掏出一部分的钱为事故买单",
-                        @"买了不计免赔险的话，就可以让保险公司全额赔付了",
-                        @"所以建议消费者再为爱车购买车险时",
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120509154705", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西106号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/810/508/44805018:jpeg_preview_small.jpg?20120508125339", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西107号海淀区清河小营桥西107号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/282/467/44764282:jpeg_preview_small.jpg?20120507130637", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西108号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/833/347/44743338:jpeg_preview_small.jpg?20120509183004", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西109号海淀区清河小", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/142/746/44647241:jpeg_preview_small.jpg?20120504104451", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西110号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120507015022", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西111号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120507185251", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西112号海淀区清河小营桥西112号海淀区清河小营桥西112号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120505174152", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西113号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120507185251", @"imageUrl", @"清河小营奥迪4S店清河小营奥清河小营奥", @"name", @"地址：海淀区清河小营桥西114号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120503132132", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西115号海淀区清河小营桥西115号", @"address", @"电话：010-6025366", @"phone", nil],
+                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120501165940", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西116号", @"address", @"电话：010-6025366", @"phone", nil],
                         nil];
     }
     
     [self init_selfView];
-    [self initSetUpTableView:CGRectMake(0, 0, 320, self.view.bounds.size.width)];
+    [self initSetUpTableView:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -192,36 +206,102 @@
 #pragma mark -UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [self.dataArray count];
 }
 
 //创建详细信息的Label
 -(void)createViewForcell:(UITableViewCell*)cell atRow:(NSIndexPath *)indexPath{
     
-    float x, y, width, height;
+    //图片
+    UIImageView* aImageView=[[UIImageView alloc] initWithFrame:CGRectZero];
+    [aImageView setTag:1001];
+    [cell.contentView addSubview:aImageView];
+    [aImageView release];
     
-    x=10; y=(40-14)/2.0; width=7; height=14;
-    UIImageView* triangleImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    triangleImageView.image=[UIImage imageNamed:@"baoxianzhishiku_sanjiao.png"];
-    [cell.contentView addSubview:triangleImageView];
-    [triangleImageView release];
+    //名称
+    UILabel* titleLabel=[[UILabel alloc] initWithFrame:CGRectZero];
+    [titleLabel setTag:1002];
+    [titleLabel setBackgroundColor:[UIColor greenColor]];
+    [titleLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+    [titleLabel setTextAlignment:UITextAlignmentLeft];
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:CSShopRecommendViewController_title_font]];
+    [titleLabel setTextColor:[UIColor blackColor]];
+    [cell.contentView addSubview:titleLabel];
+    [titleLabel release];
     
-    x=x+width+5; y=0; width=(320-x-10); height=40;
-    UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [textLabel setTag:1001];
-    [textLabel setBackgroundColor:[UIColor clearColor]];
-    [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [textLabel setTextAlignment:UITextAlignmentLeft];
-    [textLabel setFont:[UIFont boldSystemFontOfSize:12.0]];
-    [textLabel setTextColor:[UIColor darkGrayColor]];
-    [cell.contentView addSubview:textLabel];
-    [textLabel release];
+    //地址
+    UILabel* addressLabel=[[UILabel alloc] initWithFrame:CGRectZero];
+    [addressLabel setTag:1003];
+    [addressLabel setBackgroundColor:[UIColor redColor]];
+    [addressLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+    [addressLabel setTextAlignment:UITextAlignmentLeft];
+    [addressLabel setFont:[UIFont systemFontOfSize:CSShopRecommendViewController_text_font]];
+    [addressLabel setTextColor:[UIColor blackColor]];
+    [cell.contentView addSubview:addressLabel];
+    [addressLabel release];
+
+    //电话
+    UILabel* phoneLabel=[[UILabel alloc] initWithFrame:CGRectZero];
+    [phoneLabel setTag:1004];
+    [phoneLabel setBackgroundColor:[UIColor blueColor]];
+    [phoneLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+    [phoneLabel setTextAlignment:UITextAlignmentLeft];
+    [phoneLabel setFont:[UIFont systemFontOfSize:CSShopRecommendViewController_text_font]];
+    [phoneLabel setTextColor:[UIColor blackColor]];
+    [cell.contentView addSubview:phoneLabel];
+    [phoneLabel release];
+
+    //咨询
+    UIButton* queryBtn=[[UIButton alloc] initWithFrame:CGRectZero];
+    [queryBtn setTag:1005];
+    [queryBtn setTitle:@"咨 询" forState:UIControlStateNormal];
+    [queryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [queryBtn setBackgroundImage:[UIImage imageNamed:@"dianpuzixun_zixun_80.png"] forState:UIControlStateNormal];
+    [queryBtn setBackgroundImage:[UIImage imageNamed:@"dianpuzixun_zixun_press_80.png"] forState:UIControlStateHighlighted];
+    [queryBtn addTarget:self action:@selector(phoneBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:queryBtn];
+    [queryBtn release];
     
-    width=540/2.0; height=7/2.0; x=(CGRectGetWidth(cell.bounds)-width)/2.0; y=20+89/2.0+5-height;
-    UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectMake((CGRectGetWidth(cell.bounds)-540/2.0)/2.0, 0, 540/2.0, 7/2.0)];
+    [lineImageView setTag:1006];
     lineImageView.image=[UIImage imageNamed:@"dianputuijian_line.png"];
     [cell.contentView addSubview:lineImageView];
     [lineImageView release];
+}
+
+-(void)phoneBtnClick:(UIButton*)sender
+{
+    
+}
+
+-(float)heigtForString:(NSString*)string  withSize:(float)size
+{
+    float height=(CSShopRecommendViewController_cell_default-10*2)/3.0;
+    CGSize fontSize;
+    if (size==CSShopRecommendViewController_title_font) {
+        fontSize=[string sizeWithFont:[UIFont boldSystemFontOfSize:size]];
+        int remainder = (int)fontSize.width%(int)(320-10-CSShopRecommendViewController_imgae_width-10-10);
+        int line=(int)fontSize.width/(int)(320-10-CSShopRecommendViewController_imgae_width-10-10);
+        if (remainder!=0) {
+            line=line+1;
+        }
+        float temp=(CSShopRecommendViewController_title_font+4)*line;
+        if (temp>height) {
+            height=temp;
+        }
+    }else{
+        fontSize=[string sizeWithFont:[UIFont systemFontOfSize:size]];
+        int remainder = (int)fontSize.width%(int)(320-10-CSShopRecommendViewController_imgae_width-10-10);
+        int line=(int)fontSize.width/(int)(320-10-CSShopRecommendViewController_imgae_width-10-10);
+        if (remainder!=0) {
+            line=line+1;
+        }
+        float temp=(CSShopRecommendViewController_title_font+4)*line;
+        if (temp>height) {
+            height=temp;
+        }
+    }
+    return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -233,21 +313,89 @@
         //添加视图
         [self createViewForcell:cell atRow:indexPath];
     }
-    
+
     if (self.dataArray && [self.dataArray count]>indexPath.row) {
-        UILabel* textLabel=(UILabel*)[cell.contentView viewWithTag:1001];
-        if (textLabel) {
-            textLabel.text=[self.dataArray objectAtIndex:indexPath.row];
+        NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
+        NSString* url=[dict objectForKey:@"imageUrl"];
+        NSString* name=[dict objectForKey:@"name"];
+        NSString* address=[dict objectForKey:@"address"];
+        NSString* phone=[dict objectForKey:@"phone"];
+
+        float x, y, width, height;
+        //图片
+        UIImageView* aImageView=(UIImageView*)[cell.contentView viewWithTag:1001];
+        if (aImageView) {
+            [aImageView setImageWithURL:[NSURL URLWithString:url]
+                           placeholderImage:[UIImage imageNamed:@"tianjiacheliang_pic.png"] options:SDWebImageRefreshCached];
+            width=100; height=80; x=10; y=([self heightForCell:indexPath]-height)/2.0;
+            aImageView.frame=CGRectMake(x, y, width, height);
+        }
+
+        //名称
+        UILabel* titleLabel=(UILabel*)[cell.contentView viewWithTag:1002];
+        if (titleLabel) {
+            titleLabel.text=name;
+            x=x+width; y=y; width=(320-10-width-10-10); height=[self heigtForString:name withSize:CSShopRecommendViewController_title_font];
+            titleLabel.frame=CGRectMake(x, y, width, height);
+        }
+
+        //地址
+        UILabel* addressLabel=(UILabel*)[cell.contentView viewWithTag:1003];
+        if (addressLabel) {
+            addressLabel.text=address;
+            y=y+height; height=[self heigtForString:name withSize:CSShopRecommendViewController_text_font];
+            addressLabel.frame=CGRectMake(x, y, width, height);
+        }
+        
+        //电话
+        UILabel* phoneLabel=(UILabel*)[cell.contentView viewWithTag:1004];
+        if (phoneLabel) {
+            phoneLabel.text=phone;
+            y=y+height; height=[self heigtForString:name withSize:CSShopRecommendViewController_text_font];
+            phoneLabel.frame=CGRectMake(x, y, width, height);
+        }
+        
+        //咨询
+        UIButton* queryBtn=(UIButton*)[cell.contentView viewWithTag:1005];
+        if (queryBtn) {
+            width=80; height=60; x=320-10-width; y=[self heightForCell:indexPath]-10-height;
+            queryBtn.frame=CGRectMake(x, y, width, height);
+        }
+                
+        UIImageView* lineImageView=(UIImageView*)[cell.contentView viewWithTag:1006];
+        if (lineImageView) {
+            width=lineImageView.frame.size.width; height=lineImageView.frame.size.height;
+            x=lineImageView.frame.origin.x; y=[self heightForCell:indexPath]-lineImageView.frame.size.height;
+            lineImageView.frame=CGRectMake(x, y, width, height);
         }
     }
     
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    cell.selectionStyle=UITableViewCellSelectionStyleGray;
     return cell;
+}
+
+-(CGFloat)heightForCell:(NSIndexPath*)indexPath
+{
+    if (self.dataArray && [self.dataArray count]>indexPath.row) {
+        NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
+        NSString* name=[dict objectForKey:@"name"];
+        NSString* address=[dict objectForKey:@"address"];
+        NSString* phone=[dict objectForKey:@"phone"];
+        float temp = 10 + [self heigtForString:name withSize:CSShopRecommendViewController_title_font]+
+        [self heigtForString:address withSize:CSShopRecommendViewController_text_font]+
+        [self heigtForString:phone withSize:CSShopRecommendViewController_text_font] +10;
+        if (temp>95) {
+            return temp;
+        }else{
+            return 95;
+        }
+    }
+    return 95;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return [self heightForCell:indexPath];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
