@@ -1,69 +1,42 @@
 //
-//  CSCommentViewController.m
+//  CSFeedBackViewController.m
 //  CarService
 //
 //  Created by baidu on 13-9-17.
 //  Copyright (c) 2013年 Chao. All rights reserved.
 //
 
-#import "CSCommentViewController.h"
+#import "CSFeedBackViewController.h"
 #import "ASIHTTPRequest.h"
 
-@interface CSCommentViewController ()
+@interface CSFeedBackViewController ()
 
 @property (nonatomic,retain) IBOutlet UILabel *textPlaceHolderLabel;
 @property (nonatomic,retain) IBOutlet UITextView *textView;
-@property (nonatomic,retain) IBOutlet UIButton *firstStarView;
-@property (nonatomic,retain) IBOutlet UIButton *secondStarView;
-@property (nonatomic,retain) IBOutlet UIButton *thirdStarView;
-@property (nonatomic,retain) IBOutlet UIButton *forthStarView;
-@property (nonatomic,retain) IBOutlet UIButton *fifthStarView;
-@property (nonatomic,assign) int currentRateStar;
-@property (nonatomic,retain) NSArray *rateButtonArray;
 @property (nonatomic,retain) ASIHTTPRequest *commentRequest;
 @property (nonatomic,retain) IBOutlet UIScrollView *contentScrollView;
+@property (nonatomic,retain) IBOutlet UIButton *confirmButton;
+@property (nonatomic,retain) IBOutlet UIButton *cancelButton;
 
 - (void)hideKeyBoard;
 
 @end
 
-@implementation CSCommentViewController
+@implementation CSFeedBackViewController
 @synthesize textPlaceHolderLabel;
 @synthesize textView;
-@synthesize firstStarView;
-@synthesize secondStarView;
-@synthesize thirdStarView;
-@synthesize forthStarView;
-@synthesize fifthStarView;
-@synthesize currentRateStar;
-@synthesize rateButtonArray;
 @synthesize commentRequest;
 @synthesize contentScrollView;
+@synthesize confirmButton;
+@synthesize cancelButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.currentRateStar = 4;
     }
     return self;
-}
-
-- (void)dealloc
-{
-    [contentScrollView release];
-    [textPlaceHolderLabel release];
-    [textView release];
-    [firstStarView release];
-    [secondStarView release];
-    [thirdStarView release];
-    [forthStarView release];
-    [fifthStarView release];
-    [rateButtonArray release];
-    [commentRequest clearDelegatesAndCancel];
-    [commentRequest release];
-    [super dealloc];
 }
 
 - (void)hideKeyBoard
@@ -71,27 +44,14 @@
     [self.textView resignFirstResponder];
 }
 
-- (void)viewDidLoad
+- (void)dealloc
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.navigationItem.leftBarButtonItem = [self getBackItem];
-    self.navigationItem.title = @"我要点评";
-    
-    self.rateButtonArray = [NSArray arrayWithObjects:self.firstStarView,self.secondStarView,self.thirdStarView,self.forthStarView,self.fifthStarView, nil];
-    
-    UITapGestureRecognizer* tapReconginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
-    tapReconginzer.delegate = self;
-    tapReconginzer.numberOfTapsRequired = 1;
-    tapReconginzer.numberOfTouchesRequired = 1;
-    [self.contentScrollView addGestureRecognizer:tapReconginzer];
-    [tapReconginzer release];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [textPlaceHolderLabel release];
+    [textView release];
+    [commentRequest clearDelegatesAndCancel];
+    [commentRequest release];
+    [contentScrollView release];
+    [super dealloc];
 }
 
 - (IBAction)backButtonPressed:(id)sender
@@ -99,11 +59,47 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (Is_iPhone5)
+    {
+        
+        self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 16, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
+        self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 16, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+    }
+    else
+    {
+        self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
+        self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+    }
+    
+}
 
-- (IBAction)commentButtonPressed:(id)sender
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.navigationItem.leftBarButtonItem = [self getBackItem];
+    self.navigationItem.title = @"意见反馈";
+    
+    UITapGestureRecognizer* tapReconginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
+    tapReconginzer.delegate = self;
+    tapReconginzer.numberOfTapsRequired = 1;
+    tapReconginzer.numberOfTouchesRequired = 1;
+    [self.contentScrollView addGestureRecognizer:tapReconginzer];
+    [tapReconginzer release];
+
+}
+
+- (IBAction)cancelButtonPressed:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)confirmButtonPressed:(id)sender
 {
     [self.commentRequest clearDelegatesAndCancel];
-    self.commentRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_comment]];
+    self.commentRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_feedback]];
     [commentRequest setShouldAttemptPersistentConnection:NO];
     [commentRequest setValidatesSecureCertificate:NO];
     
@@ -141,22 +137,10 @@
     CustomLog(@"%@",[request responseString]);
 }
 
-- (IBAction)starButtonPressed:(id)sender
+- (void)didReceiveMemoryWarning
 {
-    UIButton *button = (UIButton *)sender;
-    self.currentRateStar = button.tag + 1;
-    for (int i = 0; i < 5; i ++)
-    {
-        UIButton *tempButton = (UIButton *)[self.rateButtonArray objectAtIndexWithCheck:i];
-        if (i <= button.tag)
-        {
-            [tempButton setBackgroundImage:[UIImage imageNamed:@"comment_highlight_star.png"] forState:UIControlStateNormal];
-        }
-        else
-        {
-            [tempButton setBackgroundImage:[UIImage imageNamed:@"comment_normal_star.png"] forState:UIControlStateNormal];
-        }
-    }
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UITextViewDelegate Methods
@@ -194,4 +178,5 @@
     }
     return YES;
 }
+
 @end

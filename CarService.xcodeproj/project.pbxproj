@@ -43,6 +43,8 @@
 		E19AE81017E887A1007B9F07 /* setting_clear_cache_back.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE80E17E8879F007B9F07 /* setting_clear_cache_back.png */; };
 		E19AE81417E88855007B9F07 /* CSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE81217E88855007B9F07 /* CSSettingsViewController.m */; };
 		E19AE81517E88855007B9F07 /* CSSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE81317E88855007B9F07 /* CSSettingsViewController.xib */; };
+		E19AE81917E88FFC007B9F07 /* CSFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE81717E88FFC007B9F07 /* CSFeedBackViewController.m */; };
+		E19AE81A17E88FFC007B9F07 /* CSFeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE81817E88FFC007B9F07 /* CSFeedBackViewController.xib */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -352,6 +354,9 @@
 		E19AE81117E88855007B9F07 /* CSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSettingsViewController.h; sourceTree = "<group>"; };
 		E19AE81217E88855007B9F07 /* CSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSettingsViewController.m; sourceTree = "<group>"; };
 		E19AE81317E88855007B9F07 /* CSSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSSettingsViewController.xib; sourceTree = "<group>"; };
+		E19AE81617E88FFC007B9F07 /* CSFeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSFeedBackViewController.h; sourceTree = "<group>"; };
+		E19AE81717E88FFC007B9F07 /* CSFeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSFeedBackViewController.m; sourceTree = "<group>"; };
+		E19AE81817E88FFC007B9F07 /* CSFeedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSFeedBackViewController.xib; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -931,6 +936,9 @@
 				E19AE81117E88855007B9F07 /* CSSettingsViewController.h */,
 				E19AE81217E88855007B9F07 /* CSSettingsViewController.m */,
 				E19AE81317E88855007B9F07 /* CSSettingsViewController.xib */,
+				E19AE81617E88FFC007B9F07 /* CSFeedBackViewController.h */,
+				E19AE81717E88FFC007B9F07 /* CSFeedBackViewController.m */,
+				E19AE81817E88FFC007B9F07 /* CSFeedBackViewController.xib */,
 			);
 			path = fifthPage;
 			sourceTree = "<group>";
@@ -1675,6 +1683,7 @@
 				E19AE80C17E87C94007B9F07 /* CSCommentViewController.xib in Resources */,
 				E19AE81017E887A1007B9F07 /* setting_clear_cache_back.png in Resources */,
 				E19AE81517E88855007B9F07 /* CSSettingsViewController.xib in Resources */,
+				E19AE81A17E88FFC007B9F07 /* CSFeedBackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1773,6 +1782,7 @@
 				E19AE7F517E870CE007B9F07 /* NSArray+CheckRange.m in Sources */,
 				E19AE80B17E87C94007B9F07 /* CSCommentViewController.m in Sources */,
 				E19AE81417E88855007B9F07 /* CSSettingsViewController.m in Sources */,
+				E19AE81917E88FFC007B9F07 /* CSFeedBackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

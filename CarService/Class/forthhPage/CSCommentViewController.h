@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CommonViewController.h"
 
-@interface CSCommentViewController : CommonViewController
+@interface CSCommentViewController : CommonViewController<UIGestureRecognizerDelegate>
 
 - (IBAction)commentButtonPressed:(id)sender;
 - (IBAction)starButtonPressed:(id)sender;

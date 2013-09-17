@@ -9,6 +9,7 @@
 #import "CSMoreViewController.h"
 #import "CSFifthViewController.h"
 #import "CSSettingsViewController.h"
+#import "CSFeedBackViewController.h"
 
 @interface CSMoreViewController ()
 
@@ -220,6 +221,9 @@
                 break;
             case 1:
                 CustomLog(@"意见反馈");
+                controller = [[CSFeedBackViewController alloc] initWithNibName:@"CSFeedBackViewController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
                 break;
             case 2:
                 CustomLog(@"检查更新");
