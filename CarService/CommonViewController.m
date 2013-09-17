@@ -38,6 +38,12 @@
 
 - (IBAction)backButtonPressed:(id)sender
 {
+    
+}
+
+- (IBAction)rightButtonItemPressed:(id)sender
+{
+    
 }
 
 - (UIBarButtonItem *)getBackItem
@@ -55,6 +61,23 @@
     [button release];
     return item;
 }
+
+- (UIBarButtonItem *)getRithtItem:(NSString *)title
+{
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 41, 21)];
+    [button setBackgroundImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"btn_back_press.png"] forState:UIControlStateSelected];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitle:title forState:UIControlStateHighlighted];
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(rightButtonItemPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithCustomView:button]autorelease];
+    [button release];
+    return item;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

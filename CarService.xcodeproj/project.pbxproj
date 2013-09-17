@@ -21,6 +21,8 @@
 		E19AE7DF17E82082007B9F07 /* CSInsureAcknowledgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7D717E82082007B9F07 /* CSInsureAcknowledgeViewController.m */; };
 		E19AE7E017E82082007B9F07 /* CSReportCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7D917E82082007B9F07 /* CSReportCaseViewController.m */; };
 		E19AE7E117E82082007B9F07 /* CSShopRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7DB17E82082007B9F07 /* CSShopRecommendViewController.m */; };
+		E19AE7E517E820F1007B9F07 /* CSMyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7E317E820F1007B9F07 /* CSMyProfileViewController.m */; };
+		E19AE7E617E820F1007B9F07 /* CSMyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7E417E820F1007B9F07 /* CSMyProfileViewController.xib */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -302,6 +304,9 @@
 		E19AE7D917E82082007B9F07 /* CSReportCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSReportCaseViewController.m; sourceTree = "<group>"; };
 		E19AE7DA17E82082007B9F07 /* CSShopRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSShopRecommendViewController.h; sourceTree = "<group>"; };
 		E19AE7DB17E82082007B9F07 /* CSShopRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSShopRecommendViewController.m; sourceTree = "<group>"; };
+		E19AE7E217E820F1007B9F07 /* CSMyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMyProfileViewController.h; sourceTree = "<group>"; };
+		E19AE7E317E820F1007B9F07 /* CSMyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMyProfileViewController.m; sourceTree = "<group>"; };
+		E19AE7E417E820F1007B9F07 /* CSMyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMyProfileViewController.xib; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -899,6 +904,9 @@
 				E1D044D417E74558008CBE90 /* CSMyConsumeRecordCell.h */,
 				E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */,
 				E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */,
+				E19AE7E217E820F1007B9F07 /* CSMyProfileViewController.h */,
+				E19AE7E317E820F1007B9F07 /* CSMyProfileViewController.m */,
+				E19AE7E417E820F1007B9F07 /* CSMyProfileViewController.xib */,
 			);
 			path = forthhPage;
 			sourceTree = "<group>";
@@ -1581,6 +1589,7 @@
 				E1D044D817E74559008CBE90 /* CSMyConsumeRecordCell.xib in Resources */,
 				E19AE7CD17E80326007B9F07 /* my_consume_record_header.png in Resources */,
 				E19AE7CE17E80326007B9F07 /* profile_background.png in Resources */,
+				E19AE7E617E820F1007B9F07 /* CSMyProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1673,6 +1682,7 @@
 				E19AE7DF17E82082007B9F07 /* CSInsureAcknowledgeViewController.m in Sources */,
 				E19AE7E017E82082007B9F07 /* CSReportCaseViewController.m in Sources */,
 				E19AE7E117E82082007B9F07 /* CSShopRecommendViewController.m in Sources */,
+				E19AE7E517E820F1007B9F07 /* CSMyProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 #import "CSForthViewController.h"
 #import "ChangePasswordController.h"
 #import "CSMyConsumeRecordViewController.h"
+#import "CSMyProfileViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -246,6 +247,10 @@
         {
             case 0:
                 CustomLog(@"我的资料");
+                controller = [[CSMyProfileViewController alloc] initWithNibName:@"CSMyProfileViewController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
+                break;
             case 1:
                 CustomLog(@"修改密码");
                 controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];

@@ -21,5 +21,6 @@
 - (void)showFullActView:(UIActivityIndicatorViewStyle)style;
 - (void)hideFullActView;
 - (UIBarButtonItem *)getBackItem;
+- (UIBarButtonItem *)getRithtItem:(NSString *)title;
 
 @end

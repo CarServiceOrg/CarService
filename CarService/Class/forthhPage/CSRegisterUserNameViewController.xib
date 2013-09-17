@@ -726,11 +726,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bg_iphone5.png">{16, 16}</string>
-			<string key="btn_back.png">{16, 16}</string>
-			<string key="btn_back_press.png">{16, 16}</string>
-			<string key="loginpage_input_back.png">{16, 16}</string>
-			<string key="navi_bg.png">{16, 16}</string>
+			<string key="bg_iphone5.png">{640, 1136}</string>
+			<string key="btn_back.png">{82, 41}</string>
+			<string key="btn_back_press.png">{82, 41}</string>
+			<string key="loginpage_input_back.png">{607, 71}</string>
+			<string key="navi_bg.png">{640, 80}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
