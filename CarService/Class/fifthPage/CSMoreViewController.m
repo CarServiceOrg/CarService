@@ -11,6 +11,7 @@
 #import "CSSettingsViewController.h"
 #import "CSFeedBackViewController.h"
 #import "ASIHTTPRequest.h"
+#import "AboutViewController.h"
 
 #define AlertTag_NewVersion 1000
 
@@ -243,9 +244,13 @@
                 break;
             case 4:
                 CustomLog(@"客服电话");
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://10086"]];
                 break;
             case 5:
                 CustomLog(@"关于");
+                controller = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
                 break;
             default:
                 break;
