@@ -390,8 +390,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bg_iphone5.png">{640, 1136}</string>
-			<string key="my_consume_record_header.png">{587, 54}</string>
+			<string key="bg_iphone5.png">{16, 16}</string>
+			<string key="my_consume_record_header.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
