@@ -23,6 +23,12 @@
 		E19AE7E117E82082007B9F07 /* CSShopRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7DB17E82082007B9F07 /* CSShopRecommendViewController.m */; };
 		E19AE7E517E820F1007B9F07 /* CSMyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7E317E820F1007B9F07 /* CSMyProfileViewController.m */; };
 		E19AE7E617E820F1007B9F07 /* CSMyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7E417E820F1007B9F07 /* CSMyProfileViewController.xib */; };
+		E19AE7EA17E860F4007B9F07 /* CSCarTracViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7E817E860F3007B9F07 /* CSCarTracViewController.m */; };
+		E19AE7EB17E860F4007B9F07 /* CSCarTracViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7E917E860F4007B9F07 /* CSCarTracViewController.xib */; };
+		E19AE7EE17E867D9007B9F07 /* cartrac_location.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7EC17E867D9007B9F07 /* cartrac_location.png */; };
+		E19AE7EF17E867D9007B9F07 /* cartrac_title_back.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7ED17E867D9007B9F07 /* cartrac_title_back.png */; };
+		E19AE7F217E86F5D007B9F07 /* LBSDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7F117E86F5D007B9F07 /* LBSDataUtil.m */; };
+		E19AE7F517E870CE007B9F07 /* NSArray+CheckRange.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7F417E870CE007B9F07 /* NSArray+CheckRange.m */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -307,6 +313,15 @@
 		E19AE7E217E820F1007B9F07 /* CSMyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMyProfileViewController.h; sourceTree = "<group>"; };
 		E19AE7E317E820F1007B9F07 /* CSMyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMyProfileViewController.m; sourceTree = "<group>"; };
 		E19AE7E417E820F1007B9F07 /* CSMyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMyProfileViewController.xib; sourceTree = "<group>"; };
+		E19AE7E717E860F3007B9F07 /* CSCarTracViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCarTracViewController.h; sourceTree = "<group>"; };
+		E19AE7E817E860F3007B9F07 /* CSCarTracViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCarTracViewController.m; sourceTree = "<group>"; };
+		E19AE7E917E860F4007B9F07 /* CSCarTracViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSCarTracViewController.xib; sourceTree = "<group>"; };
+		E19AE7EC17E867D9007B9F07 /* cartrac_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartrac_location.png; sourceTree = "<group>"; };
+		E19AE7ED17E867D9007B9F07 /* cartrac_title_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartrac_title_back.png; sourceTree = "<group>"; };
+		E19AE7F017E86F5D007B9F07 /* LBSDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSDataUtil.h; sourceTree = "<group>"; };
+		E19AE7F117E86F5D007B9F07 /* LBSDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSDataUtil.m; sourceTree = "<group>"; };
+		E19AE7F317E870CE007B9F07 /* NSArray+CheckRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CheckRange.h"; sourceTree = "<group>"; };
+		E19AE7F417E870CE007B9F07 /* NSArray+CheckRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CheckRange.m"; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -729,6 +744,10 @@
 		E174C2AE17E5B97200C1CE71 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				E19AE7F317E870CE007B9F07 /* NSArray+CheckRange.h */,
+				E19AE7F417E870CE007B9F07 /* NSArray+CheckRange.m */,
+				E19AE7F017E86F5D007B9F07 /* LBSDataUtil.h */,
+				E19AE7F117E86F5D007B9F07 /* LBSDataUtil.m */,
 				E174C2AF17E5B97200C1CE71 /* Util.h */,
 				E174C2B017E5B97200C1CE71 /* Util.m */,
 			);
@@ -907,6 +926,9 @@
 				E19AE7E217E820F1007B9F07 /* CSMyProfileViewController.h */,
 				E19AE7E317E820F1007B9F07 /* CSMyProfileViewController.m */,
 				E19AE7E417E820F1007B9F07 /* CSMyProfileViewController.xib */,
+				E19AE7E717E860F3007B9F07 /* CSCarTracViewController.h */,
+				E19AE7E817E860F3007B9F07 /* CSCarTracViewController.m */,
+				E19AE7E917E860F4007B9F07 /* CSCarTracViewController.xib */,
 			);
 			path = forthhPage;
 			sourceTree = "<group>";
@@ -971,6 +993,8 @@
 				E1D0444C17E71BED008CBE90 /* membercenter_top_click.png */,
 				E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */,
 				E19AE7CC17E80326007B9F07 /* profile_background.png */,
+				E19AE7EC17E867D9007B9F07 /* cartrac_location.png */,
+				E19AE7ED17E867D9007B9F07 /* cartrac_title_back.png */,
 				E1D0444D17E71BED008CBE90 /* navi_bg.png */,
 				E1D0444E17E71BED008CBE90 /* second.png */,
 				E1D0444F17E71BED008CBE90 /* second@2x.png */,
@@ -1590,6 +1614,9 @@
 				E19AE7CD17E80326007B9F07 /* my_consume_record_header.png in Resources */,
 				E19AE7CE17E80326007B9F07 /* profile_background.png in Resources */,
 				E19AE7E617E820F1007B9F07 /* CSMyProfileViewController.xib in Resources */,
+				E19AE7EB17E860F4007B9F07 /* CSCarTracViewController.xib in Resources */,
+				E19AE7EE17E867D9007B9F07 /* cartrac_location.png in Resources */,
+				E19AE7EF17E867D9007B9F07 /* cartrac_title_back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1683,6 +1710,9 @@
 				E19AE7E017E82082007B9F07 /* CSReportCaseViewController.m in Sources */,
 				E19AE7E117E82082007B9F07 /* CSShopRecommendViewController.m in Sources */,
 				E19AE7E517E820F1007B9F07 /* CSMyProfileViewController.m in Sources */,
+				E19AE7EA17E860F4007B9F07 /* CSCarTracViewController.m in Sources */,
+				E19AE7F217E86F5D007B9F07 /* LBSDataUtil.m in Sources */,
+				E19AE7F517E870CE007B9F07 /* NSArray+CheckRange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,4 +14,12 @@
 
 #define DeviceDiffHeight 88 //(568 - 480)
 
+
+typedef enum
+{
+    LocationErrorCode_UserDenied = 0,
+    LocationErrorCode_OtherReason,
+    LocationErrorCode_NoError
+}LocationErrorCode;
+
 #endif

@@ -12,6 +12,7 @@
 #import "ChangePasswordController.h"
 #import "CSMyConsumeRecordViewController.h"
 #import "CSMyProfileViewController.h"
+#import "CSCarTracViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -268,6 +269,9 @@
                 break;
             case 4:
                 CustomLog(@"车辆跟踪");
+                controller = [[CSCarTracViewController alloc] initWithNibName:@"CSCarTracViewController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
                 break;
             case 5:
                 CustomLog(@"我要评分");

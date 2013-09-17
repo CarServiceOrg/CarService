@@ -13,6 +13,7 @@
 #import "CSThirdViewController.h"
 #import "CSForthViewController.h"
 #import "CSFifthViewController.h"
+#import "LBSDataUtil.h"
 
 @interface CSAppDelegate ()<BMKGeneralDelegate, UITabBarControllerDelegate>{
     BMKMapManager* _mapManager;
@@ -28,6 +29,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
     // 要使用百度地图，请先启动BaiduMapManager
+    [LBSDataUtil shareUtil]; //开启定位
     _mapManager = [[BMKMapManager alloc] init];
     // 如果要关注网络及授权验证事件，请设定 generalDelegate参数
     BOOL ret = [_mapManager start:baidu_AccessKey  generalDelegate:self];
