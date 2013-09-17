@@ -108,4 +108,34 @@
   else 
     NSLog(@"Message failed")  
 }
+
+四、自定义picker使用：
+//选择日期
+-(void)youXiaoQi_BtnClick:(id)sender{
+    [ActionSheetDatePicker showPickerWithTitle:@"选择日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:sender];
+}
+
+选择区域：
+    ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        NSLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->selectedIndex:%d",selectedIndex);
+        NSLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->selectedValue:%@",(NSString*)selectedValue);
+        if (sender) {
+            UIView* superView=sender.superview;
+            if (superView) {
+                UILabel* aLabel=(UILabel*)[superView viewWithTag:1001];
+                if (aLabel) {
+                    [aLabel setText:[NSString stringWithFormat:@"北京市%@",(NSString*)selectedValue]];
+                }
+            }
+        }
+    };
+    ActionStringCancelBlock cancel = ^(ActionSheetStringPicker *picker) {
+        NSLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->Block Picker Canceled");
+    };
+    NSArray *dataAry = [NSArray arrayWithObjects:@"朝阳", @"丰台", @"石景山", @"海淀", @"门头沟", @"房山", @"通州",@"顺义",@"昌平",@"大兴",@"怀柔",@"平谷",@"密云",@"延庆", nil];
+    NSInteger selectedIndex=1;
+    [ActionSheetStringPicker showPickerWithTitle:@"选择地区" rows:dataAry initialSelection:selectedIndex
+                                       doneBlock:done cancelBlock:cancel origin:sender];
+
+
  

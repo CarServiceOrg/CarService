@@ -8,6 +8,7 @@
 
 #import "CSInsuranceViewController.h"
 #import "BlockAlertView.h"
+#import "CSInsureAcknowledgeViewController.h"
 
 @interface CSInsuranceViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -251,7 +252,9 @@
             break;
         case 1:
         {
- 
+            CSInsureAcknowledgeViewController* ctrler=[[CSInsureAcknowledgeViewController alloc] init];
+            [self.navigationController pushViewController:ctrler animated:YES];
+            [ctrler release];
         }
             break;
         case 2:
