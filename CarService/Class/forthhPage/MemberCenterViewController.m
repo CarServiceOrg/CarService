@@ -13,6 +13,7 @@
 #import "CSMyConsumeRecordViewController.h"
 #import "CSMyProfileViewController.h"
 #import "CSCarTracViewController.h"
+#import "CSCommentViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -205,7 +206,7 @@
         {
             normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_bottom.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
             selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_bottom_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"我要评分";
+            title.text = @"我要点评";
             
             UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
             if (nil != icon)
@@ -274,7 +275,10 @@
                 [controller release];
                 break;
             case 5:
-                CustomLog(@"我要评分");
+                CustomLog(@"我要点评");
+                controller = [[CSCommentViewController alloc] initWithNibName:@"CSCommentViewController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
                 break;
             default:
                 break;
