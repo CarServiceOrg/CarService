@@ -15,7 +15,7 @@
     #import "URLConfig.h"
     #import "SBJSON.h"
     #import "ApplicationPublic.h"
-
+    #import "NSArray+CheckRange.h"
 #define LOG_ON
 
 static inline void CustomLog(NSString *format, ...)

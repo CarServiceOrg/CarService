@@ -13,7 +13,6 @@
 
 
 - (id)initWithInfo:(NSMutableDictionary *)info;
-- (IBAction)showDetailButtonPressed:(id)sender;
 - (IBAction)comfirmActionPressed:(id)sender;
 - (IBAction)cancelActionPressed:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
