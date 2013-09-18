@@ -29,16 +29,7 @@
 #define baidu_AccessKey @"394bd9ecb346c4564c08d3ec4375041d"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
-    // 要使用百度地图，请先启动BaiduMapManager
-    [LBSDataUtil shareUtil]; //开启定位
-    _mapManager = [[BMKMapManager alloc] init];
-    // 如果要关注网络及授权验证事件，请设定 generalDelegate参数
-    BOOL ret = [_mapManager start:baidu_AccessKey  generalDelegate:self];
-    if (!ret) {
-        NSLog(@"<<Chao-->CSAppDelegate-->didFinishLaunchingWithOptions-->manager start failed!");
-    }
-    
+{        
     //此为storyboard的局限，在Interface Builder时代，在MainWindow.xib中可以链接view controllers到App Delegate的outlets，但是现在不可以，只能写代码设置第一个controller是什么，或者谁知道有什么办法请告知，谢谢。
     _tabBarController = (UITabBarController *)self.window.rootViewController;
     _tabBarController.delegate=self;
@@ -48,7 +39,17 @@
     //默认先选中首页
     [self updateSelectIndex:0];
     
-    // Override point for customization after application launch.
+    //在无网情况下启动 会耽误应用启动时间
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 要使用百度地图，请先启动BaiduMapManager
+        [LBSDataUtil shareUtil]; //开启定位
+        _mapManager = [[BMKMapManager alloc] init];
+        // 如果要关注网络及授权验证事件，请设定 generalDelegate参数
+        BOOL ret = [_mapManager start:baidu_AccessKey  generalDelegate:nil];
+        if (!ret) {
+            NSLog(@"<<Chao-->CSAppDelegate-->didFinishLaunchingWithOptions-->manager start failed!");
+        }
+    });
     
     //新浪微博
     [WeiboSDK registerApp:@"3912808798"];

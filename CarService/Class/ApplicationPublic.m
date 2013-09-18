@@ -68,5 +68,22 @@
     [aTextField release];
 }
 
++(void)setUp_BackBtn:(UINavigationItem*)navigationItem withTarget:(id)target with_action:(SEL)action
+{
+    float x, y, width, height;
+    //隐藏返回键
+    navigationItem.hidesBackButton=YES;
+    //返回按钮
+    x=10; y=8; width=82/2.0+4; height=26;
+    UIButton* backBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [backBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+    [backBtn setTitleColor:[UIColor colorWithRed:13/255.0 green:43/255.0 blue:83/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back_press.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
+    [backBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    navigationItem.leftBarButtonItem=[[[UIBarButtonItem alloc] initWithCustomView:backBtn] autorelease];
+    [backBtn release];
+}
 
 @end

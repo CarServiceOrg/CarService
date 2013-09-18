@@ -15,6 +15,14 @@
 		E11D05CE17E985B8005A976D /* CSCareKnowledgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D05CD17E985B8005A976D /* CSCareKnowledgeViewController.m */; };
 		E12A9AC217E9FA2F00A5F451 /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E12A9AC517E9FC6800A5F451 /* CSDelegateBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC417E9FC6800A5F451 /* CSDelegateBookViewController.m */; };
+		E12A9AC817EA19A900A5F451 /* shigubaoan_placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9AC717EA19A900A5F451 /* shigubaoan_placeHolder.png */; };
+		E12A9ADA17EA275400A5F451 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AD117EA275400A5F451 /* UIImage+Alpha.m */; };
+		E12A9ADB17EA275400A5F451 /* UIImage+NSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AD317EA275400A5F451 /* UIImage+NSCopying.m */; };
+		E12A9ADC17EA275400A5F451 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AD517EA275400A5F451 /* UIImage+Resize.m */; };
+		E12A9ADD17EA275400A5F451 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AD717EA275400A5F451 /* UIImage+RoundedCorner.m */; };
+		E12A9ADE17EA275400A5F451 /* UIImagePLCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AD917EA275400A5F451 /* UIImagePLCategory.m */; };
+		E12A9AE117EA3F6800A5F451 /* yonghumoshi_icon_5_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9ADF17EA3F6800A5F451 /* yonghumoshi_icon_5_2.png */; };
+		E12A9AE217EA3F6800A5F451 /* yonghumoshi_icon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9AE017EA3F6800A5F451 /* yonghumoshi_icon_5.png */; };
 		E152A9CA17E8AF0A00E73902 /* name.txt in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AC17E8AF0A00E73902 /* name.txt */; };
 		E152A9CB17E8AF0A00E73902 /* weatherList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AD17E8AF0A00E73902 /* weatherList.plist */; };
 		E152A9CC17E8AF0A00E73902 /* 中雨.png in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AE17E8AF0A00E73902 /* 中雨.png */; };
@@ -384,6 +392,19 @@
 		E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
 		E12A9AC317E9FC6800A5F451 /* CSDelegateBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDelegateBookViewController.h; sourceTree = "<group>"; };
 		E12A9AC417E9FC6800A5F451 /* CSDelegateBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDelegateBookViewController.m; sourceTree = "<group>"; };
+		E12A9AC717EA19A900A5F451 /* shigubaoan_placeHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shigubaoan_placeHolder.png; sourceTree = "<group>"; };
+		E12A9AD017EA275400A5F451 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		E12A9AD117EA275400A5F451 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		E12A9AD217EA275400A5F451 /* UIImage+NSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NSCopying.h"; sourceTree = "<group>"; };
+		E12A9AD317EA275400A5F451 /* UIImage+NSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NSCopying.m"; sourceTree = "<group>"; };
+		E12A9AD417EA275400A5F451 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		E12A9AD517EA275400A5F451 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		E12A9AD617EA275400A5F451 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		E12A9AD717EA275400A5F451 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		E12A9AD817EA275400A5F451 /* UIImagePLCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImagePLCategory.h; sourceTree = "<group>"; };
+		E12A9AD917EA275400A5F451 /* UIImagePLCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePLCategory.m; sourceTree = "<group>"; };
+		E12A9ADF17EA3F6800A5F451 /* yonghumoshi_icon_5_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yonghumoshi_icon_5_2.png; sourceTree = "<group>"; };
+		E12A9AE017EA3F6800A5F451 /* yonghumoshi_icon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yonghumoshi_icon_5.png; sourceTree = "<group>"; };
 		E152A9AC17E8AF0A00E73902 /* name.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		E152A9AD17E8AF0A00E73902 /* weatherList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = weatherList.plist; sourceTree = "<group>"; };
 		E152A9AE17E8AF0A00E73902 /* 中雨.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "中雨.png"; sourceTree = "<group>"; };
@@ -933,9 +954,37 @@
 			path = GCPlaceholderTextView;
 			sourceTree = "<group>";
 		};
+		E12A9AC617EA19A900A5F451 /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				E12A9ADF17EA3F6800A5F451 /* yonghumoshi_icon_5_2.png */,
+				E12A9AE017EA3F6800A5F451 /* yonghumoshi_icon_5.png */,
+				E12A9AC717EA19A900A5F451 /* shigubaoan_placeHolder.png */,
+			);
+			path = temp;
+			sourceTree = "<group>";
+		};
+		E12A9ACF17EA275400A5F451 /* UIImageCategory */ = {
+			isa = PBXGroup;
+			children = (
+				E12A9AD017EA275400A5F451 /* UIImage+Alpha.h */,
+				E12A9AD117EA275400A5F451 /* UIImage+Alpha.m */,
+				E12A9AD217EA275400A5F451 /* UIImage+NSCopying.h */,
+				E12A9AD317EA275400A5F451 /* UIImage+NSCopying.m */,
+				E12A9AD417EA275400A5F451 /* UIImage+Resize.h */,
+				E12A9AD517EA275400A5F451 /* UIImage+Resize.m */,
+				E12A9AD617EA275400A5F451 /* UIImage+RoundedCorner.h */,
+				E12A9AD717EA275400A5F451 /* UIImage+RoundedCorner.m */,
+				E12A9AD817EA275400A5F451 /* UIImagePLCategory.h */,
+				E12A9AD917EA275400A5F451 /* UIImagePLCategory.m */,
+			);
+			path = UIImageCategory;
+			sourceTree = "<group>";
+		};
 		E152A9AA17E8AF0A00E73902 /* image_temp */ = {
 			isa = PBXGroup;
 			children = (
+				E12A9AC617EA19A900A5F451 /* temp */,
 				E152A9AB17E8AF0A00E73902 /* weather */,
 			);
 			path = image_temp;
@@ -1434,6 +1483,7 @@
 		E53ABA7617E0E0E10096754D /* util */ = {
 			isa = PBXGroup;
 			children = (
+				E12A9ACF17EA275400A5F451 /* UIImageCategory */,
 				E12A9ABF17E9FA2F00A5F451 /* GCPlaceholderTextView */,
 				E174C2AE17E5B97200C1CE71 /* common */,
 				E174C2AA17E5B71C00C1CE71 /* KeyChainUtil */,
@@ -2001,6 +2051,9 @@
 				E152AA2617E8DBE400E73902 /* tianjiacheliang_tianjia_80.png in Resources */,
 				E152AA2717E8DBE400E73902 /* tianjiacheliang_tianjia_press_80.png in Resources */,
 				E11D05C817E983DB005A976D /* WeiboSDK.bundle in Resources */,
+				E12A9AC817EA19A900A5F451 /* shigubaoan_placeHolder.png in Resources */,
+				E12A9AE117EA3F6800A5F451 /* yonghumoshi_icon_5_2.png in Resources */,
+				E12A9AE217EA3F6800A5F451 /* yonghumoshi_icon_5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2107,6 +2160,11 @@
 				E11D05CE17E985B8005A976D /* CSCareKnowledgeViewController.m in Sources */,
 				E12A9AC217E9FA2F00A5F451 /* GCPlaceholderTextView.m in Sources */,
 				E12A9AC517E9FC6800A5F451 /* CSDelegateBookViewController.m in Sources */,
+				E12A9ADA17EA275400A5F451 /* UIImage+Alpha.m in Sources */,
+				E12A9ADB17EA275400A5F451 /* UIImage+NSCopying.m in Sources */,
+				E12A9ADC17EA275400A5F451 /* UIImage+Resize.m in Sources */,
+				E12A9ADD17EA275400A5F451 /* UIImage+RoundedCorner.m in Sources */,
+				E12A9ADE17EA275400A5F451 /* UIImagePLCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
