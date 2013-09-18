@@ -139,96 +139,91 @@
     UIImage *normalImage = nil;
     UIImage *selectImage = nil;
     
-    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    
+    
+    if (indexPath.row == 0)
     {
-        
-        if (indexPath.row == 0)
+        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_top.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_top_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        title.text = @"设置";
+        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
+        if (nil != icon)
         {
-            normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_top.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_top_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"设置";
-            UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-            if (nil != icon)
-            {
-                icon.image = [UIImage imageNamed:@"gengduo_setting.png"];
-                icon.frame = CGRectMake(10, 13, 18, 17);
-            }
-            
-        }
-        else if (indexPath.row == 1)
-        {
-            normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"意见反馈";
-            UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-            if (nil != icon)
-            {
-                icon.image = [UIImage imageNamed:@"gengduo_feedback.png"];
-                icon.frame = CGRectMake(10, 13, 18, 17);
-            }
-            
-        }
-        else if (indexPath.row == 2)
-        {
-            normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"检查更新";
-            UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-            if (nil != icon)
-            {
-                icon.image = [UIImage imageNamed:@"gengduo_update.png"];
-                icon.frame = CGRectMake(10, 13, 18, 17);
-            }
-            
-        }
-        else if (indexPath.row == 3)
-        {
-            normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"分享软件";
-            
-            UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-            if (nil != icon)
-            {
-                icon.image = [UIImage imageNamed:@"gengduo_share.png"];
-                icon.frame = CGRectMake(10, 13, 18, 17);
-            }
-            
-        }
-        else if (indexPath.row == 4)
-        {
-            normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"客服电话";
-            
-            UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-            if (nil != icon)
-            {
-                icon.image = [UIImage imageNamed:@"gengduo_phone.png"];
-                icon.frame = CGRectMake(10, 13, 18, 17);
-            }
-            
-        }
-        else if (indexPath.row == 5)
-        {
-            normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_bottom.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_bottom_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-            title.text = @"关于";
-            
-            UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-            if (nil != icon)
-            {
-                icon.image = [UIImage imageNamed:@"gengduo_about.png"];
-                icon.frame = CGRectMake(10, 13, 18, 17);
-            }
-            
+            icon.image = [UIImage imageNamed:@"gengduo_setting.png"];
+            icon.frame = CGRectMake(10, 13, 18, 17);
         }
         
     }
-    else
+    else if (indexPath.row == 1)
     {
-        CustomLog(@"error here");
+        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        title.text = @"意见反馈";
+        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
+        if (nil != icon)
+        {
+            icon.image = [UIImage imageNamed:@"gengduo_feedback.png"];
+            icon.frame = CGRectMake(10, 13, 18, 17);
+        }
+        
     }
+    else if (indexPath.row == 2)
+    {
+        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        title.text = @"检查更新";
+        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
+        if (nil != icon)
+        {
+            icon.image = [UIImage imageNamed:@"gengduo_update.png"];
+            icon.frame = CGRectMake(10, 13, 18, 17);
+        }
+        
+    }
+    else if (indexPath.row == 3)
+    {
+        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        title.text = @"分享软件";
+        
+        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
+        if (nil != icon)
+        {
+            icon.image = [UIImage imageNamed:@"gengduo_share.png"];
+            icon.frame = CGRectMake(10, 13, 18, 17);
+        }
+        
+    }
+    else if (indexPath.row == 4)
+    {
+        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_center_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        title.text = @"客服电话";
+        
+        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
+        if (nil != icon)
+        {
+            icon.image = [UIImage imageNamed:@"gengduo_phone.png"];
+            icon.frame = CGRectMake(10, 13, 18, 17);
+        }
+        
+    }
+    else if (indexPath.row == 5)
+    {
+        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_bottom.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"membercenter_bottom_click.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        title.text = @"关于";
+        
+        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
+        if (nil != icon)
+        {
+            icon.image = [UIImage imageNamed:@"gengduo_about.png"];
+            icon.frame = CGRectMake(10, 13, 18, 17);
+        }
+        
+    }
+    
+    
     
     if (nil != normalImage && nil != selectImage)
     {

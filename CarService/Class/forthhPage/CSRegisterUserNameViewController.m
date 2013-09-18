@@ -18,10 +18,6 @@
 
 @property (nonatomic,retain) IBOutlet UITextField *phoneNumberField;
 @property (nonatomic,retain) IBOutlet UIImageView *phoneNumberBackView;
-@property (nonatomic,retain) IBOutlet UITextField *idField;
-@property (nonatomic,retain) IBOutlet UIImageView *idBackView;
-@property (nonatomic,retain) IBOutlet UITextField *driverLicenceField;
-@property (nonatomic,retain) IBOutlet UIImageView *driverLicenseBackView;
 @property (nonatomic,retain) IBOutlet UITextField *secretCodeField;
 @property (nonatomic,retain) IBOutlet UIImageView *secretCodeBackView;
 @property (nonatomic,retain) IBOutlet UITextField *checkSecretCodeField;
@@ -44,11 +40,7 @@
 @synthesize inputBackView;
 @synthesize registerRequest;
 @synthesize phoneNumberField;
-@synthesize idField;
-@synthesize driverLicenceField;
 @synthesize phoneNumberBackView;
-@synthesize idBackView;
-@synthesize driverLicenseBackView;
 @synthesize secretCodeBackView;
 @synthesize checkSecretCodeBackView;
 @synthesize registerButton;
@@ -92,8 +84,6 @@
 - (void)hideKeyBoard
 {
     [self.phoneNumberField resignFirstResponder];
-    [self.idField resignFirstResponder];
-    [self.driverLicenceField resignFirstResponder];
     [self.secretCodeField resignFirstResponder];
     [self.checkSecretCodeField resignFirstResponder];
 }
@@ -109,15 +99,11 @@
         {
             self.phoneNumberBackView.frame = CGRectMake(self.phoneNumberBackView.frame.origin.x, startY, self.phoneNumberBackView.frame.size.width, self.phoneNumberBackView.frame.size.height);
             self.phoneNumberField.frame = CGRectMake(self.phoneNumberField.frame.origin.x, startY + 1, self.phoneNumberField.frame.size.width, self.phoneNumberField.frame.size.height);
-            self.idBackView.frame = CGRectMake(self.idBackView.frame.origin.x, startY + 40, self.idBackView.frame.size.width, self.idBackView.frame.size.height);
-            self.idField.frame = CGRectMake(self.idField.frame.origin.x, startY + 40, self.idField.frame.size.width, self.idField.frame.size.height);
-            self.driverLicenseBackView.frame = CGRectMake(self.driverLicenseBackView.frame.origin.x, startY + 80, self.driverLicenseBackView.frame.size.width, self.driverLicenseBackView.frame.size.height);
-            self.driverLicenceField.frame = CGRectMake(self.driverLicenceField.frame.origin.x, startY + 80, self.driverLicenceField.frame.size.width, self.driverLicenceField.frame.size.height);
-            self.secretCodeBackView.frame = CGRectMake(self.secretCodeBackView.frame.origin.x, startY + 120, self.secretCodeBackView.frame.size.width, self.secretCodeBackView.frame.size.height);
-            self.secretCodeField.frame = CGRectMake(self.secretCodeField.frame.origin.x, startY + 120, self.secretCodeField.frame.size.width, self.secretCodeField.frame.size.height);
-            self.checkSecretCodeBackView.frame = CGRectMake(self.checkSecretCodeBackView.frame.origin.x, startY + 160, self.checkSecretCodeBackView.frame.size.width, self.checkSecretCodeBackView.frame.size.height);
-            self.checkSecretCodeField.frame = CGRectMake(self.checkSecretCodeField.frame.origin.x, startY + 160, self.checkSecretCodeField.frame.size.width, self.checkSecretCodeField.frame.size.height);
-            self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, startY + 220, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
+            self.secretCodeBackView.frame = CGRectMake(self.secretCodeBackView.frame.origin.x, startY + 40,self.secretCodeBackView.frame.size.width, self.secretCodeBackView.frame.size.height);
+            self.secretCodeField.frame = CGRectMake(self.secretCodeField.frame.origin.x, startY + 40, self.secretCodeField.frame.size.width, self.secretCodeField.frame.size.height);
+            self.checkSecretCodeBackView.frame = CGRectMake(self.checkSecretCodeBackView.frame.origin.x, startY + 80, self.checkSecretCodeBackView.frame.size.width, self.checkSecretCodeBackView.frame.size.height);
+            self.checkSecretCodeField.frame = CGRectMake(self.checkSecretCodeField.frame.origin.x, startY + 80, self.checkSecretCodeField.frame.size.width, self.checkSecretCodeField.frame.size.height);
+            self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, startY + 140, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
         
 
         }
@@ -141,21 +127,13 @@
         }
         else
         {
-            if ([self.phoneNumberField isFirstResponder] || [self.idField isFirstResponder])
+            if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder])
             {
                 CustomLog(@"Do Nothing");
             }
-            else if ([self.driverLicenceField isFirstResponder])
+            else if ([self.checkSecretCodeBackView isFirstResponder])
             {
                 [self adjustSubView:-40];
-            }
-            else if ([self.secretCodeField isFirstResponder])
-            {
-                [self adjustSubView:-60];
-            }
-            else if([self.checkSecretCodeField isFirstResponder])
-            {
-                [self adjustSubView:-80];
             }
         }
     }];
@@ -214,11 +192,7 @@
     [registerRequest clearDelegatesAndCancel];
     [registerRequest release];
     [phoneNumberField release];
-    [idField release];
-    [driverLicenceField release];
     [phoneNumberBackView release];
-    [idBackView release];
-    [driverLicenseBackView release];
     [secretCodeBackView release];
     [checkSecretCodeBackView release];
     [registerButton release];
@@ -240,16 +214,6 @@
     if ([self.phoneNumberField.text length] == 0)
     {
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"手机号不能为空!"];
-        return;
-    }
-    if ([self.idField.text length] == 0)
-    {
-        [[Util sharedUtil] showAlertWithTitle:@"" message:@"身份证号不能为空!"];
-        return;
-    }
-    if ([self.driverLicenceField.text length] == 0)
-    {
-        [[Util sharedUtil] showAlertWithTitle:@"" message:@"驾驶证号不能为空!"];
         return;
     }
     
@@ -357,26 +321,18 @@
         }
         else
         {
-            if ([self.phoneNumberField isFirstResponder] || [self.idField isFirstResponder])
+            if ([self.phoneNumberField isFirstResponder])
             {
                 CustomLog(@"Do Nothing");
                 [self adjustSubView:0];
             }
-            else if ([self.idField isFirstResponder])
+            else if ([self.secretCodeField isFirstResponder])
             {
                 [self adjustSubView:0];
             }
-            else if ([self.driverLicenceField isFirstResponder])
+            else if ([self.checkSecretCodeBackView isFirstResponder])
             {
                 [self adjustSubView:-40];
-            }
-            else if ([self.secretCodeField isFirstResponder])
-            {
-                [self adjustSubView:-60];
-            }
-            else if([self.checkSecretCodeField isFirstResponder])
-            {
-                [self adjustSubView:-80];
             }
         }
     }];
