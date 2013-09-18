@@ -12,6 +12,7 @@
 		E11D05C717E983DB005A976D /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E11D05C417E983DB005A976D /* libWeiboSDK.a */; };
 		E11D05C817E983DB005A976D /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E11D05C517E983DB005A976D /* WeiboSDK.bundle */; };
 		E11D05CB17E98428005A976D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D05CA17E98428005A976D /* NSString+MD5.m */; };
+		E11D05CE17E985B8005A976D /* CSCareKnowledgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D05CD17E985B8005A976D /* CSCareKnowledgeViewController.m */; };
 		E152A9CA17E8AF0A00E73902 /* name.txt in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AC17E8AF0A00E73902 /* name.txt */; };
 		E152A9CB17E8AF0A00E73902 /* weatherList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AD17E8AF0A00E73902 /* weatherList.plist */; };
 		E152A9CC17E8AF0A00E73902 /* 中雨.png in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AE17E8AF0A00E73902 /* 中雨.png */; };
@@ -375,6 +376,8 @@
 		E11D05C617E983DB005A976D /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		E11D05C917E98428005A976D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		E11D05CA17E98428005A976D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		E11D05CC17E985B8005A976D /* CSCareKnowledgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCareKnowledgeViewController.h; sourceTree = "<group>"; };
+		E11D05CD17E985B8005A976D /* CSCareKnowledgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCareKnowledgeViewController.m; sourceTree = "<group>"; };
 		E152A9AC17E8AF0A00E73902 /* name.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		E152A9AD17E8AF0A00E73902 /* weatherList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = weatherList.plist; sourceTree = "<group>"; };
 		E152A9AE17E8AF0A00E73902 /* 中雨.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "中雨.png"; sourceTree = "<group>"; };
@@ -999,6 +1002,8 @@
 				E19AE7DB17E82082007B9F07 /* CSShopRecommendViewController.m */,
 				E152A9E817E8BFAB00E73902 /* CSCareRecordViewController.h */,
 				E152A9E917E8BFAB00E73902 /* CSCareRecordViewController.m */,
+				E11D05CC17E985B8005A976D /* CSCareKnowledgeViewController.h */,
+				E11D05CD17E985B8005A976D /* CSCareKnowledgeViewController.m */,
 				E152A9EB17E8D98100E73902 /* CSCareReferViewController.h */,
 				E152A9EC17E8D98100E73902 /* CSCareReferViewController.m */,
 			);
@@ -2081,6 +2086,7 @@
 				E152A9EA17E8BFAB00E73902 /* CSCareRecordViewController.m in Sources */,
 				E152A9ED17E8D98100E73902 /* CSCareReferViewController.m in Sources */,
 				E11D05CB17E98428005A976D /* NSString+MD5.m in Sources */,
+				E11D05CE17E985B8005A976D /* CSCareKnowledgeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

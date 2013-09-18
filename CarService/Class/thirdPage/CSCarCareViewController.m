@@ -10,6 +10,7 @@
 #import "CSShopRecommendViewController.h"
 #import "CSCareRecordViewController.h"
 #import "CSCareReferViewController.h"
+#import "CSCareKnowledgeViewController.h"
 
 @interface CSCarCareViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -237,14 +238,16 @@
             break;
         case 2:
         {
-            CSCareReferViewController* ctrler=[[CSCareReferViewController alloc] init];
+            CSCareKnowledgeViewController* ctrler=[[CSCareKnowledgeViewController alloc] init];
             [self.navigationController pushViewController:ctrler animated:YES];
             [ctrler release];
         }
             break;
         case 3:
         {
-            
+            CSCareReferViewController* ctrler=[[CSCareReferViewController alloc] init];
+            [self.navigationController pushViewController:ctrler animated:YES];
+            [ctrler release];
         }
             break;
         default:
