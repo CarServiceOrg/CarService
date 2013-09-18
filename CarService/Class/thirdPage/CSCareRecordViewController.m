@@ -108,7 +108,7 @@
     [categoryBtn setTitle:text forState:UIControlStateNormal];
     [categoryBtn setBackgroundImage:[UIImage imageNamed:@"black_bg.png"] forState:UIControlStateNormal];
     [categoryBtn setTitleColor:[UIColor colorWithRed:0xf3/255.0 green:0xe9/255.0 blue:0xe2/255.0 alpha:1] forState:UIControlStateNormal];
-    [categoryBtn setTitleColor:[UIColor colorWithRed:0xc2/255.0f green:0xca/255.0f blue:0xd0/255.0f alpha:1] forState:UIControlStateSelected];
+    [categoryBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateSelected];
     [categoryBtn addTarget:self action:@selector(categoryBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     categoryBtn.layer.borderColor=[UIColor lightGrayColor].CGColor;
     categoryBtn.layer.borderWidth=0.5;
