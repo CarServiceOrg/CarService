@@ -16,5 +16,6 @@
 - (IBAction)comfirmActionPressed:(id)sender;
 - (IBAction)cancelActionPressed:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
+- (IBAction)showSexSelectionView:(id)sender;
 
 @end

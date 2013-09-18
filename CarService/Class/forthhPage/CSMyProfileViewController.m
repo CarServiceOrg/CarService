@@ -20,7 +20,7 @@
 @property (nonatomic,retain) NSMutableDictionary *userInfo;
 @property (nonatomic,retain) IBOutlet UIPickerView *pickerView;
 @property (nonatomic,retain) IBOutlet UIView *dataPickerView;
-@property (nonatomic,retain) ASIFormDataRequest *changeInfoRequest;
+@property (nonatomic,retain) ASIHTTPRequest *changeInfoRequest;
 @property (nonatomic,retain) IBOutlet UIView *backView;
 
 @end
@@ -59,33 +59,106 @@
 }
 
 
-- (void)reloadContent
-{
-    //based on userinfo
-}
-
 - (IBAction)backButtonPressed:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)rightButtonItemPressed:(id)sender
+- (void)reloadContent
 {
+    self.backView.hidden = NO;
+    self.nameLabel.text = [self.userInfo objectForKey:@"username"];
+    self.ageField.text = [self.userInfo objectForKey:@"age"];
+    self.sexLabel.text = [self.userInfo objectForKey:@"sex"];
+    self.phoneField.text = [self.userInfo objectForKey:@"phone"];
+    self.driverLecenseField.text = [self.userInfo objectForKey:@"drivecard"];
+}
+
+- (void)loadProfileInfo
+{
+    self.backView.hidden = YES;
     [self.changeInfoRequest clearDelegatesAndCancel];
-    self.changeInfoRequest = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL_changeprofile]];
-    [changeInfoRequest setRequestMethod:@"POST"];
+    NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
+    NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"user_info",@"action",uid,@"user_id",sessionId,@"session_id", nil];
+    SBJSON *jasonParser = [[SBJSON alloc] init];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [jasonParser release];
+    
+    self.changeInfoRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
+    
     [changeInfoRequest setShouldAttemptPersistentConnection:NO];
     [changeInfoRequest setValidatesSecureCertificate:NO];
     
-    [changeInfoRequest setPostValue:@"edit" forKey:@"op"];
-    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-    [changeInfoRequest setStringEncoding:enc];
+    [changeInfoRequest setDelegate:self];
+    [changeInfoRequest setDidFinishSelector:@selector(profileRequestDidFinished:)];
+    [changeInfoRequest setDidFailSelector:@selector(profileRequestDidFailed:)];
+    
+    [changeInfoRequest startAsynchronous];
+    [self showFullActView:UIActivityIndicatorViewStyleWhite];
+}
+
+- (void)profileRequestDidFinished:(ASIFormDataRequest *)request
+{
+    CustomLog(@"%@",[request responseString]);
+    [self hideFullActView];
+    NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSString *responseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding]autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    NSDictionary *requestDic = [responseString JSONValue];
+    CustomLog(@"login request request dic:%@",requestDic);
+    int statusCode = [[requestDic objectForKey:@"status"] intValue];
+    switch (statusCode)
+    {
+        case 0:
+            self.userInfo = [NSMutableDictionary dictionaryWithDictionary:[requestDic objectForKey:@"list"]];
+            [self reloadContent];
+            break;
+        case 2:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"session_id不正确，请稍后重试!"];
+            break;
+        case 3:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"用户id不正确，请稍后重试!"];
+            break;
+        case 4:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"消费类型不正确，请稍后重试!"];
+            break;
+        case 1:
+        default:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请稍后重试!"];
+            break;
+    }
+    
+}
+
+- (void)profileRequestDidFailed:(ASIFormDataRequest *)request
+{
+    [self hideFullActView];
+    [[Util sharedUtil] showAlertWithTitle:@"" message:@"请求失败，请检查网络连接!"];
+    return;
+    CustomLog(@"%@",[request responseString]);
+}
+
+- (IBAction)rightButtonItemPressed:(id)sender
+{
+    if (self.backView.hidden == YES)
+    {
+        return;
+    }
+    
+    [self.changeInfoRequest clearDelegatesAndCancel];
+    NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
+    NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"edit_user_info",@"action",uid,@"user_id",sessionId,@"session_id",self.nameLabel.text,@"username",self.ageField.text,@"age",self.sexLabel.text,@"sex",self.phoneField.text,@"phone",self.driverLecenseField.text,@"drivecard", nil];
+    SBJSON *jasonParser = [[SBJSON alloc] init];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [jasonParser release];
+    
+    self.changeInfoRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];    [changeInfoRequest setShouldAttemptPersistentConnection:NO];
+    [changeInfoRequest setValidatesSecureCertificate:NO];
     
     [changeInfoRequest setDelegate:self];
     [changeInfoRequest setDidFinishSelector:@selector(editingRequestDidFinished:)];
     [changeInfoRequest setDidFailSelector:@selector(editingRequestDidFailed:)];
-    [changeInfoRequest setPostValue:@"7" forKey:@"type"];
-    [changeInfoRequest setPostValue:[NSString stringWithFormat:@"%d",[self.pickerView selectedRowInComponent:0] + 1]  forKey:@"content"];
     
     [changeInfoRequest startAsynchronous];
     [self showActView:UIActivityIndicatorViewStyleWhite];
@@ -99,20 +172,41 @@
     NSString *responseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding]autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     NSDictionary *requestDic = [responseString JSONValue];
     CustomLog(@"login request request dic:%@",requestDic);
-    if (nil == [requestDic objectForKey:@"status"] || ![[requestDic objectForKey:@"status"] isEqualToString:@"0"])
+    if (nil == requestDic || nil == [requestDic objectForKey:@"status"])
     {
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请稍后重试!"];
         return;
     }
-    else
+    int statusCode = [[requestDic objectForKey:@"status"] intValue];
+    switch (statusCode)
     {
-        
+        case 0:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改成功!"];
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        case 2:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"session_id不正确，请稍后重试!"];
+            break;
+        case 3:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"用户id不正确，请稍后重试!"];
+            break;
+        case 4:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"手机号已存在，请更换后重试!"];
+            break;
+        case 5:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"驾驶证号已存在，请更换后重试!"];
+            break;
+        case 1:
+        default:
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请稍后重试!"];
+            break;
     }
     
 }
 
 - (void)editingRequestDidFailed:(ASIFormDataRequest *)request
 {
+    [self hideActView];
     [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请检查网络连接!"];
     return;
     CustomLog(@"%@",[request responseString]);
@@ -121,8 +215,15 @@
 
 - (IBAction)comfirmActionPressed:(id)sender
 {
-    [self.userInfo setObject:[NSString stringWithFormat:@"%d",[self.pickerView selectedRowInComponent:0] + 1] forKey:@"sex"];
-    [self reloadContent];
+    if ([self.pickerView selectedRowInComponent:0] == 0)
+    {
+        [self.userInfo setObject:@"男" forKey:@"sex"];
+    }
+    else
+    {
+        [self.userInfo setObject:@"女" forKey:@"sex"];
+    }
+    self.sexLabel.text = [self.userInfo objectForKey:@"sex"];
     
     CSAppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
@@ -142,6 +243,20 @@
     } completion:^(BOOL finish){
         [self.dataPickerView removeFromSuperview];
     }];
+}
+
+- (IBAction)showSexSelectionView:(id)sender
+{
+    [self hideKeyBoard];
+    CSAppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    self.dataPickerView.frame = CGRectMake(0, delegate.window.frame.size.height, 320, delegate.window.frame.size.height);
+    [delegate.window addSubview:self.dataPickerView];
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.dataPickerView.frame = CGRectMake(0, 0, 320, delegate.window.frame.size.height);
+    }];
+    [self.pickerView reloadAllComponents];
 }
 
 - (void)dealloc
@@ -173,6 +288,8 @@
     tapReconginzer.numberOfTouchesRequired = 1;
     [self.backView addGestureRecognizer:tapReconginzer];
     [tapReconginzer release];
+    
+    [self loadProfileInfo];
 }
 
 - (void)hideKeyBoard
@@ -233,6 +350,40 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self hideKeyBoard];
+}
+
+#pragma mark -
+#pragma mark UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (row == 0)
+    {
+        return @"男";
+    }
+    else if (row == 1)
+    {
+        return @"女";
+    }
+    return  nil;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+	return 35;
+}
+
+#pragma mark -
+#pragma mark UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return 2;
 }
 
 @end
