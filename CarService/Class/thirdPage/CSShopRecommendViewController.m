@@ -10,6 +10,7 @@
 #import "UIImage_Extensions.h"
 #import "ActionSheetStringPicker.h"
 #import "UIImageView+WebCache.h"
+#import "BlockAlertView.h"
 
 @interface CSShopRecommendViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -24,7 +25,7 @@
 @synthesize dataArray;
 
 #define CSShopRecommendViewController_imgae_width 100.0
-#define CSShopRecommendViewController_imgae_height 750.0
+#define CSShopRecommendViewController_imgae_height 75.0
 #define CSShopRecommendViewController_title_font 16.0
 #define CSShopRecommendViewController_text_font 12.0
 #define CSShopRecommendViewController_cell_default 95.0
@@ -55,33 +56,8 @@
     [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem=[[[UIBarButtonItem alloc] initWithCustomView:backBtn] autorelease];
     [backBtn release];
-}
-
--(void)backBtnClick:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-//创建详情列表
--(void)initSetUpTableView:(CGRect)frame
-{
-	UITableView *aTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-    [aTableView setTag:101];
-    [aTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-	[aTableView setSeparatorColor:[UIColor clearColor]];
-	[aTableView setBackgroundColor:[UIColor clearColor]];
-	[aTableView setShowsVerticalScrollIndicator:YES];
-	[aTableView setDelegate:self];
-	[aTableView setDataSource:self];
-	[self.view addSubview:aTableView];
-    [aTableView release];
-    
-    UIView *foot = [[UIView alloc] initWithFrame:CGRectZero];
-	aTableView.tableFooterView = foot;
-	[foot release];
     
     UIView* headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    [headerView setTag:102];
     [headerView setBackgroundColor:[UIColor clearColor]];
     {
         UIImageView* bgImgView=[[UIImageView alloc] initWithFrame:headerView.bounds];
@@ -117,9 +93,33 @@
         [queryBtn addTarget:self action:@selector(queryBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [headerView addSubview:queryBtn];
         [queryBtn release];
-    }    
-    aTableView.tableHeaderView=headerView;
+    }
+    [self.view addSubview:headerView];
     [headerView release];
+}
+
+-(void)backBtnClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//创建详情列表
+-(void)initSetUpTableView:(CGRect)frame
+{
+	UITableView *aTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+    [aTableView setTag:101];
+    [aTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+	[aTableView setSeparatorColor:[UIColor clearColor]];
+	[aTableView setBackgroundColor:[UIColor clearColor]];
+	[aTableView setShowsVerticalScrollIndicator:YES];
+	[aTableView setDelegate:self];
+	[aTableView setDataSource:self];
+	[self.view addSubview:aTableView];
+    [aTableView release];
+    
+    UIView *foot = [[UIView alloc] initWithFrame:CGRectZero];
+	aTableView.tableFooterView = foot;
+	[foot release];
 }
 
 -(void)queryBtnClick:(UIButton*)sender
@@ -188,7 +188,7 @@
     }
     
     [self init_selfView];
-    [self initSetUpTableView:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+    [self initSetUpTableView:CGRectMake(0, 40+3, 320, self.view.bounds.size.height-40-40-3-55)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -221,41 +221,48 @@
     //名称
     UILabel* titleLabel=[[UILabel alloc] initWithFrame:CGRectZero];
     [titleLabel setTag:1002];
-    [titleLabel setBackgroundColor:[UIColor greenColor]];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     [titleLabel setTextAlignment:UITextAlignmentLeft];
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:CSShopRecommendViewController_title_font]];
+    [titleLabel setFont:[UIFont systemFontOfSize:CSShopRecommendViewController_title_font]];
     [titleLabel setTextColor:[UIColor blackColor]];
+    titleLabel.numberOfLines=0;
+    titleLabel.lineBreakMode=UILineBreakModeWordWrap;
     [cell.contentView addSubview:titleLabel];
     [titleLabel release];
     
     //地址
     UILabel* addressLabel=[[UILabel alloc] initWithFrame:CGRectZero];
     [addressLabel setTag:1003];
-    [addressLabel setBackgroundColor:[UIColor redColor]];
+    [addressLabel setBackgroundColor:[UIColor clearColor]];
     [addressLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     [addressLabel setTextAlignment:UITextAlignmentLeft];
     [addressLabel setFont:[UIFont systemFontOfSize:CSShopRecommendViewController_text_font]];
     [addressLabel setTextColor:[UIColor blackColor]];
+    addressLabel.numberOfLines=0;
+    addressLabel.lineBreakMode=UILineBreakModeWordWrap;
     [cell.contentView addSubview:addressLabel];
     [addressLabel release];
 
     //电话
     UILabel* phoneLabel=[[UILabel alloc] initWithFrame:CGRectZero];
     [phoneLabel setTag:1004];
-    [phoneLabel setBackgroundColor:[UIColor blueColor]];
+    [phoneLabel setBackgroundColor:[UIColor clearColor]];
     [phoneLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     [phoneLabel setTextAlignment:UITextAlignmentLeft];
     [phoneLabel setFont:[UIFont systemFontOfSize:CSShopRecommendViewController_text_font]];
     [phoneLabel setTextColor:[UIColor blackColor]];
+    phoneLabel.numberOfLines=0;
+    phoneLabel.lineBreakMode=UILineBreakModeWordWrap;
     [cell.contentView addSubview:phoneLabel];
     [phoneLabel release];
 
     //咨询
     UIButton* queryBtn=[[UIButton alloc] initWithFrame:CGRectZero];
     [queryBtn setTag:1005];
+    [queryBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
     [queryBtn setTitle:@"咨 询" forState:UIControlStateNormal];
-    [queryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [queryBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [queryBtn setBackgroundImage:[UIImage imageNamed:@"dianpuzixun_zixun_80.png"] forState:UIControlStateNormal];
     [queryBtn setBackgroundImage:[UIImage imageNamed:@"dianpuzixun_zixun_press_80.png"] forState:UIControlStateHighlighted];
     [queryBtn addTarget:self action:@selector(phoneBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -271,17 +278,33 @@
 
 -(void)phoneBtnClick:(UIButton*)sender
 {
-    
+    BlockAlertView *alert = [BlockAlertView alertWithTitle:@"店铺咨询" message:@"是否电话呼叫咨询？"];
+    [alert setCancelButtonWithTitle:@"取消" block:nil];
+    [alert addButtonWithTitle:@"呼叫" block:^{
+        UIView* superView=sender.superview;
+        if (superView) {
+            UILabel* phoneLabel=(UILabel*)[superView viewWithTag:1004];
+            if (phoneLabel) {
+                if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneLabel.text]]]) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneLabel.text]]];
+                }else{
+                    
+                }
+            }
+        }
+    }];
+    [alert show];
 }
 
 -(float)heigtForString:(NSString*)string  withSize:(float)size
 {
     float height=(CSShopRecommendViewController_cell_default-10*2)/3.0;
+    int labelWidth=self.view.bounds.size.width-CSShopRecommendViewController_imgae_width-10-10*2;
     CGSize fontSize;
     if (size==CSShopRecommendViewController_title_font) {
-        fontSize=[string sizeWithFont:[UIFont boldSystemFontOfSize:size]];
-        int remainder = (int)fontSize.width%(int)(320-10-CSShopRecommendViewController_imgae_width-10-10);
-        int line=(int)fontSize.width/(int)(320-10-CSShopRecommendViewController_imgae_width-10-10);
+        fontSize=[string sizeWithFont:[UIFont systemFontOfSize:size]];
+        int remainder = (int)fontSize.width%labelWidth;
+        int line=(int)fontSize.width/(int)labelWidth;
         if (remainder!=0) {
             line=line+1;
         }
@@ -291,8 +314,8 @@
         }
     }else{
         fontSize=[string sizeWithFont:[UIFont systemFontOfSize:size]];
-        int remainder = (int)fontSize.width%(int)(320-10-CSShopRecommendViewController_imgae_width-10-10);
-        int line=(int)fontSize.width/(int)(320-10-CSShopRecommendViewController_imgae_width-10-10);
+        int remainder = (int)fontSize.width%labelWidth;
+        int line=(int)fontSize.width/(int)labelWidth;
         if (remainder!=0) {
             line=line+1;
         }
@@ -327,7 +350,7 @@
         if (aImageView) {
             [aImageView setImageWithURL:[NSURL URLWithString:url]
                            placeholderImage:[UIImage imageNamed:@"tianjiacheliang_pic.png"] options:SDWebImageRefreshCached];
-            width=100; height=80; x=10; y=([self heightForCell:indexPath]-height)/2.0;
+            width=CSShopRecommendViewController_imgae_width; height=CSShopRecommendViewController_imgae_height; x=10; y=([self heightForCell:indexPath]-height)/2.0;
             aImageView.frame=CGRectMake(x, y, width, height);
         }
 
@@ -335,7 +358,7 @@
         UILabel* titleLabel=(UILabel*)[cell.contentView viewWithTag:1002];
         if (titleLabel) {
             titleLabel.text=name;
-            x=x+width; y=y; width=(320-10-width-10-10); height=[self heigtForString:name withSize:CSShopRecommendViewController_title_font];
+            x=x+width+10; y=10; width=(320-10-width-10-10); height=[self heigtForString:name withSize:CSShopRecommendViewController_title_font];
             titleLabel.frame=CGRectMake(x, y, width, height);
         }
 
@@ -343,7 +366,7 @@
         UILabel* addressLabel=(UILabel*)[cell.contentView viewWithTag:1003];
         if (addressLabel) {
             addressLabel.text=address;
-            y=y+height; height=[self heigtForString:name withSize:CSShopRecommendViewController_text_font];
+            y=y+height; height=[self heigtForString:address withSize:CSShopRecommendViewController_text_font];
             addressLabel.frame=CGRectMake(x, y, width, height);
         }
         
@@ -351,14 +374,14 @@
         UILabel* phoneLabel=(UILabel*)[cell.contentView viewWithTag:1004];
         if (phoneLabel) {
             phoneLabel.text=phone;
-            y=y+height; height=[self heigtForString:name withSize:CSShopRecommendViewController_text_font];
+            y=y+height; height=[self heigtForString:phone withSize:CSShopRecommendViewController_text_font];
             phoneLabel.frame=CGRectMake(x, y, width, height);
         }
         
         //咨询
         UIButton* queryBtn=(UIButton*)[cell.contentView viewWithTag:1005];
         if (queryBtn) {
-            width=60; height=40; x=320-10-width; y=[self heightForCell:indexPath]-10-height;
+            width=50; height=45; x=320-10-width; y=[self heightForCell:indexPath]-height;
             queryBtn.frame=CGRectMake(x, y, width, height);
         }
                 
@@ -370,7 +393,7 @@
         }
     }
     
-    cell.selectionStyle=UITableViewCellSelectionStyleGray;
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
 

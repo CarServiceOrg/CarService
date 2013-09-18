@@ -8,6 +8,7 @@
 
 #import "CSCarCareViewController.h"
 #import "CSShopRecommendViewController.h"
+#import "CSCareRecordViewController.h"
 
 @interface CSCarCareViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -199,8 +200,9 @@
     }
     
     cell.accessoryType=UITableViewCellAccessoryNone;
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    
+    cell.selectionStyle=UITableViewCellSelectionStyleGray;
+    cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"tianjiacheliang_cell_bg.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]]autorelease];
+
     return cell;
 }
 
@@ -211,6 +213,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self actionStart:indexPath.row];
 }
 
@@ -226,7 +229,9 @@
             break;
         case 1:
         {
-            
+            CSCareRecordViewController* ctrler=[[CSCareRecordViewController alloc] init];
+            [self.navigationController pushViewController:ctrler animated:YES];
+            [ctrler release];
         }
             break;
         case 2:

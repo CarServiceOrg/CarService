@@ -113,15 +113,6 @@
     
     float x, y, width, height;
     
-    x=10; y=5; width=320-10*2; height=CGRectGetHeight(cell.bounds)-y*2;
-    UIButton* bgBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [bgBtn setTag:100+indexPath.row];
-    [bgBtn setBackgroundColor:[UIColor clearColor]];
-    [bgBtn setShowsTouchWhenHighlighted:YES];
-    [bgBtn addTarget:self action:@selector(bgBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.contentView addSubview:bgBtn];
-    [bgBtn release];
-    
     width=44/2.0; height=35/2.0; x=10; y=(45-height)/2.0;
     UIImageView* imageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [imageView setTag:1001];
@@ -217,19 +208,16 @@
         }
     }
     
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    
+    cell.accessoryType=UITableViewCellAccessoryNone;
+    cell.selectionStyle=UITableViewCellSelectionStyleGray;
+    cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"tianjiacheliang_cell_bg.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]]autorelease];
+
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 45;
-}
-
--(void)bgBtnClicked:(UIButton*)sender
-{
-    [self actionStart:sender.tag-100];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -245,7 +233,7 @@
             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"保费预算" message:@"是否电话呼叫咨询？"];
             [alert setCancelButtonWithTitle:@"取消" block:nil];
             [alert addButtonWithTitle:@"呼叫" block:^{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://100086"]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",TELEPHONE_BaoFeiYuSuan]]];
             }];
             [alert show];
         }
@@ -262,7 +250,7 @@
             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"保险咨询" message:@"是否电话呼叫咨询？"];
             [alert setCancelButtonWithTitle:@"取消" block:nil];
             [alert addButtonWithTitle:@"呼叫" block:^{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://100010"]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",TELEPHONE_BaoXianZiXun]]];
             }];
             [alert show];
         }
