@@ -115,6 +115,21 @@
     [ActionSheetDatePicker showPickerWithTitle:@"选择日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:sender];
 }
 
+// 选择查询日期
+-(void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
+    if (selectedDate!=nil && element!=nil) {
+        Picker_UIButton* aBtn = (Picker_UIButton*)element;
+        if (aBtn) {
+            NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"YYYY-MM-dd"];
+            NSString* formatStr=[formatter stringFromDate:selectedDate];
+            [formatter release];
+            [aBtn.titleLabelView.titleLabel setText:formatStr];
+            [aBtn.titleLabelView.titleLabel setTextColor:[UIColor blackColor]];
+        }
+    }
+}
+
 选择区域：
     ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         NSLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->selectedIndex:%d",selectedIndex);

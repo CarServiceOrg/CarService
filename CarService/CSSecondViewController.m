@@ -45,7 +45,7 @@
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"发动机号：" with_delegate:self];
 
     //查询
-    width=133/2.0+20; height=48/2.0+10; x=(320-width)/2.0; y=y+height+30;
+    width=133/2.0+20; x=(320-width)/2.0; y=y+height+30; height=48/2.0+10;
     UIButton* queryBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [queryBtn setTitle:@"查 询" forState:UIControlStateNormal];
     [queryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

@@ -59,6 +59,11 @@
         aTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter; //设置输入方式
         aTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;  //自适应宽度
     }
+    {
+        aTextField.leftViewMode=UITextFieldViewModeAlways;
+        aTextField.leftView=[[[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, frame.size.height)] autorelease];
+    }
+    
     [superView addSubview:aTextField];
     [aTextField release];
 }

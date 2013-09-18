@@ -7,6 +7,7 @@
 //
 
 #import "CSDelegateServiceViewController.h"
+#import "CSDelegateBookViewController.h"
 
 @interface CSDelegateServiceViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -198,29 +199,42 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self actionStart:indexPath.row];
 }
 
 -(void)actionStart:(int)index
 {
+    CSDelegateServiceType type;
     switch (index) {
         case 0:
         {
+            type=CSDelegateServiceType_wash;
         }
             break;
         case 1:
         {
-            
+            type=CSDelegateServiceType_check;
         }
             break;
         case 2:
         {
+            type=CSDelegateServiceType_fix;
         }
             break;
-            
+        case 3:
+        {
+            type=CSDelegateServiceType_sale;
+        }
+            break;
         default:
+            type=-1;
             break;
     }
+    
+    CSDelegateBookViewController* ctrler=[[CSDelegateBookViewController alloc] initWithBookType:type];
+    [self.navigationController pushViewController:ctrler animated:YES];
+    [ctrler release];
 }
 
 @end

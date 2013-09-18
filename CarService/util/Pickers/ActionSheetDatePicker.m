@@ -66,12 +66,18 @@
     float x,y,width,height;
     //left
     x=0; y=0; width=77/2.0; height=432/2.0;
+    if (self.datePickerMode==UIDatePickerModeDateAndTime) {
+        width=15;
+    }
     UIImageView* left_imgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [left_imgView setImage:[UIImage imageNamed:@"datePicker_left"]];
     [superView addSubview:left_imgView];
     [left_imgView release];
     //top
     x=x+width; y=0; width=243; height=18/2.0;
+    if (self.datePickerMode==UIDatePickerModeDateAndTime) {
+        width=320-15*2;
+    }
     UIImageView* top_imgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height+1)];
     [top_imgView setImage:[UIImage imageNamed:@"datePicker_top"]];
     [superView addSubview:top_imgView];
@@ -84,6 +90,9 @@
     [down_imgView release];
     //right
     x=superView.frame.size.width-x; y=0; width=77/2.0; height=432/2.0;
+    if (self.datePickerMode==UIDatePickerModeDateAndTime) {
+        width=15;
+    }
     UIImageView* right_imgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [right_imgView setImage:[UIImage imageNamed:@"datePicker_right"]];
     [superView addSubview:right_imgView];
