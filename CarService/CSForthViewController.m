@@ -29,11 +29,24 @@
     return self;
 }
 
+- (void)receiviLoginNotification:(NSNotification *)notify
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self resetContentView];
+}
+
+- (void)receiviLogoutNotification:(NSNotification *)notify
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self resetContentView];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLoginNotification:) name:LoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLogoutNotification:) name:LogoutSuccessNotification object:nil];
     self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     self.navigationItem.title=@"个人中心";

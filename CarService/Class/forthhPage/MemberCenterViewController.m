@@ -48,6 +48,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.contentTableView.tableFooterView = [self getFooterView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,13 +63,14 @@
     footerView.backgroundColor = [UIColor clearColor];
     
     UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    logoutButton.frame = CGRectMake(0,0 , 123, 30);
-    [logoutButton setBackgroundImage:[UIImage imageNamed:@"personpage_logout_button.png"] forState:UIControlStateNormal];
-    [logoutButton setBackgroundImage:[UIImage imageNamed:@"personpage_logout_button_click.png"] forState:UIControlStateHighlighted];
+    logoutButton.frame = CGRectMake(0,15 , 78, 29);
+    [logoutButton setBackgroundImage:[UIImage imageNamed:@"chaoxun_btn.png"] forState:UIControlStateNormal];
+    [logoutButton setBackgroundImage:[UIImage imageNamed:@"chanxun_btn_press.png"] forState:UIControlStateHighlighted];
     [logoutButton setTitle:@"退出" forState:UIControlStateNormal];
     [logoutButton setTitle:@"退出" forState:UIControlStateHighlighted];
     [logoutButton setTitleColor:[UIColor colorWithRed:(118/255.0) green:(40/255.0) blue:(24.0/255) alpha:1.0] forState:UIControlStateNormal];
     [logoutButton setTitleColor:[UIColor colorWithRed:(118/255.0) green:(40/255.0) blue:(24.0/255) alpha:1.0] forState:UIControlStateHighlighted];
+    logoutButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [logoutButton addTarget:self action:@selector(logoutButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     logoutButton.center = CGPointMake(footerView.frame.size.width/2, footerView.frame.size.height/2);
     [footerView addSubview:logoutButton];
@@ -300,14 +302,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserDefaultUserInfo];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    /*AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate cleanPushTag];
-    
-    [[Util sharedUtil] clearCookieInfo];
-    */
-    [self.contentTableView reloadData];
-    self.contentTableView.tableFooterView = nil;
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:LogoutSuccessNotification object:nil];
     //向服务器发logout请求
     self.logoutRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_logout]];
     self.logoutRequest.delegate = nil;

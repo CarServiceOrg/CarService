@@ -11,6 +11,8 @@
 
 #define UserDefaultUserInfo @"UserDefaultUserInfo"
 #define LoginSuccessNotification @"LoginSuccessNotification"
+#define LogoutSuccessNotification @"LogoutSuccessNotification"
+
 #define SinaWeiboShareResultNotification  @"SinaWeiboShareResultNotification"
 
 #define DeviceDiffHeight 88 //(568 - 480)

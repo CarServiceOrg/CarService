@@ -125,12 +125,13 @@
     [self hideKeyBoard];
     
     [self.loginRequest clearDelegatesAndCancel];
-    self.loginRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_login]];
-    [loginRequest addRequestHeader:@"Referer" value:@"http://www.bjjtgl.gov.cn/portals/0/weifachaxun/new001_wfchaxun.htm"];
-    /*[self.loginRequest setRequestMethod:@"POST"];
-    [self.loginRequest setPostValue:@"1" forKey:@"status"];
-    [self.loginRequest setPostValue:self.userNameField.text forKey:@"username"];
-    [self.loginRequest setPostValue:self.passwordField.text forKey:@"password"];*/
+    
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"login",@"action",self.userNameField.text,@"phone",[self.passwordField.text md5String],@"password", nil];
+    SBJSON *jasonParser = [[SBJSON alloc] init];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [jasonParser release];
+    self.loginRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
+    
     self.loginRequest.delegate = self;
     [self.loginRequest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.loginRequest setDidFailSelector:@selector(requestDidFailed:)];
@@ -215,29 +216,12 @@
     {
         int code = [[requestDic objectForKey:@"status"] intValue];
         switch (code) {
-            case 0:
+            case 1:
                 CustomLog(@"登陆成功");
-                [[NSUserDefaults standardUserDefaults] setObject:[requestDic objectForKey:@"data"] forKey:UserDefaultUserInfo];
+                [[NSUserDefaults standardUserDefaults] setObject:requestDic forKey:UserDefaultUserInfo];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
-                //CSAppDelegate *del = [UIApplication sharedApplication].delegate;
-                //[del updatePushTag];
-                
-                //授权第三方登陆
-                if ([[[requestDic objectForKey:@"data"] objectForKey:@"sina"]  isKindOfClass:[NSDictionary class]] && nil != [[[requestDic objectForKey:@"data"] objectForKey:@"sina"] objectForKey:@"token"])
-                {
-                    /*NSString *tokenStr = [[[requestDic objectForKey:@"data"] objectForKey:@"sina"] objectForKey:@"token"];
-                    id <ISSCredential> credential = [ShareSDK credentialWithData:[tokenStr dataUsingEncoding:NSUTF8StringEncoding] type:ShareTypeSinaWeibo];
-                    [ShareSDK setCredential:credential type:ShareTypeSinaWeibo];
-                    if ([ShareSDK hasAuthorizedWithType:ShareTypeSinaWeibo])
-                    {
-                        CustomLog(@"success");
-                    }
-                    else
-                    {
-                        CustomLog(@"fail");
-                    }*/
-                }
+                [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];
                 
                 //save user data in keychain
                 if (rememberPassword)
@@ -251,22 +235,18 @@
                     }
                 }
                 
-                [[Util sharedUtil] showCookieInfo];
-
                 break;
-            case -1:
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"账户名不合法,请重新输入!"];
+            case 0:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"登陆失败,请重新输入!"];
                 break;
-            case -2:
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"密码不合法,请重新输入!"];
+            case 2:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"手机号码为空,请重新输入!"];
                 break;
-            case -3:
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"账户名不存在或密码不正确,请重新输入!"];
-                break;
-            case -4:
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"您的错误次数已超过5次，请15分钟后再尝试!"];
+            case 3:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"密码为空,请重新输入!"];
                 break;
             default:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"登陆失败,请重新输入!"];
                 break;
         }
     }

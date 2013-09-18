@@ -266,20 +266,10 @@
     }
     
     [self.registerRequest clearDelegatesAndCancel];
-    //{“action”:”register”, “phone”:” $phone”, “ , “password”:” $password”}
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"register",@"action",self.phoneNumberField.text,@"phone",[self.secretCodeField.text md5String],@"password", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
-    NSString *jsonArg = [jasonParser stringWithObject:argDic error:nil];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
-    jsonArg = [jsonArg stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    if (nil == jsonArg)
-    {
-        CustomLog(@"error parser");
-    }
-    else
-    {
-        //jsonArg = [jsonArg stringbyappending
-    }
     self.registerRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
     self.registerRequest.delegate = self;
     [self.registerRequest setDidFinishSelector:@selector(requestDidFinished:)];
@@ -307,15 +297,10 @@
         int code = [[requestDic objectForKey:@"status"] intValue];
         switch (code) {
             case 0:
-                /*[[NSUserDefaults standardUserDefaults] setObject:[requestDic objectForKey:@"data"] forKey:UserDefaultUserInfo];
-                [[NSUserDefaults standardUserDefaults] synchronize];*/
                 [[Util sharedUtil] showAlertWithTitle:@"提示" message:@"恭喜您，注册成功!"];
                 
                 [[NSUserDefaults standardUserDefaults] setObject:requestDic forKey:UserDefaultUserInfo];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                //CSAppDelegate *del = [UIApplication sharedApplication].delegate;
-                //[del updatePushTag];
                 
                 [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];
 
