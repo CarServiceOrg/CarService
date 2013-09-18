@@ -169,6 +169,7 @@
 		E19AE94417E95A5E007B9F07 /* woyaodianping_text_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE8BF17E95A5E007B9F07 /* woyaodianping_text_bg.png */; };
 		E19AE94517E95A5E007B9F07 /* xiugaimima_quxiao.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE8C017E95A5E007B9F07 /* xiugaimima_quxiao.png */; };
 		E19AE94617E95A5E007B9F07 /* xiugaimima_quxiao_press.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE8C117E95A5E007B9F07 /* xiugaimima_quxiao_press.png */; };
+		E19AE94817E95B0D007B9F07 /* cartrac_location_tip.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE94717E95B0D007B9F07 /* cartrac_location_tip.png */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -518,6 +519,7 @@
 		E19AE8BF17E95A5E007B9F07 /* woyaodianping_text_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woyaodianping_text_bg.png; sourceTree = "<group>"; };
 		E19AE8C017E95A5E007B9F07 /* xiugaimima_quxiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiugaimima_quxiao.png; sourceTree = "<group>"; };
 		E19AE8C117E95A5E007B9F07 /* xiugaimima_quxiao_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiugaimima_quxiao_press.png; sourceTree = "<group>"; };
+		E19AE94717E95B0D007B9F07 /* cartrac_location_tip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartrac_location_tip.png; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -911,6 +913,7 @@
 				E19AE84A17E95A5E007B9F07 /* btn_back_press.png */,
 				E19AE84B17E95A5E007B9F07 /* cartrac_location.png */,
 				E19AE84C17E95A5E007B9F07 /* cartrac_title_back.png */,
+				E19AE94717E95B0D007B9F07 /* cartrac_location_tip.png */,
 				E19AE84D17E95A5E007B9F07 /* cell_bg_01.png */,
 				E19AE84E17E95A5E007B9F07 /* cell_bg_02.png */,
 				E19AE84F17E95A5E007B9F07 /* chanxun_btn_press.png */,
@@ -1832,6 +1835,7 @@
 				E19AE94417E95A5E007B9F07 /* woyaodianping_text_bg.png in Resources */,
 				E19AE94517E95A5E007B9F07 /* xiugaimima_quxiao.png in Resources */,
 				E19AE94617E95A5E007B9F07 /* xiugaimima_quxiao_press.png in Resources */,
+				E19AE94817E95B0D007B9F07 /* cartrac_location_tip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
