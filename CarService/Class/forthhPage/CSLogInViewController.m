@@ -23,7 +23,7 @@
 @property (nonatomic,retain) IBOutlet UITextField *userNameField;
 @property (nonatomic,retain) IBOutlet UITextField *passwordField;
 @property (nonatomic,retain) IBOutlet UIView *backView;
-@property (nonatomic,retain) ASIFormDataRequest *loginRequest;
+@property (nonatomic,retain) ASIHTTPRequest *loginRequest;
 @property (nonatomic,retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic,assign) BOOL rememberPassword;
 @property (nonatomic,retain) IBOutlet UIButton *rememberPasswordButton;

@@ -20,7 +20,7 @@
 @property (nonatomic,retain) IBOutlet UITextField *oldPassField;
 @property (nonatomic,retain) IBOutlet UITextField *changePassField;
 @property (nonatomic,retain) IBOutlet UITextField *confirmField;
-@property (nonatomic,retain) ASIFormDataRequest *changeRequest;
+@property (nonatomic,retain) ASIHTTPRequest *changeRequest;
 
 @end
 
@@ -214,12 +214,17 @@
     }
     
     [self.changeRequest clearDelegatesAndCancel];
-    self.changeRequest = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:URL_changepassword]];
+    
+    NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
+    NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"change_password",@"action",uid,@"user_id",[self.oldPassField.text md5String],@"password",sessionId,@"session_id", nil];
+    SBJSON *jasonParser = [[SBJSON alloc] init];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [jasonParser release];
+    
+    self.changeRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
+    
     [self.changeRequest setRequestMethod:@"POST"];
-    [self.changeRequest setPostValue:@"edit" forKey:@"op"];
-    [self.changeRequest setPostValue:@"1" forKey:@"type"];
-    [self.changeRequest setPostValue:self.oldPassField.text forKey:@"oldPass"];
-    [self.changeRequest setPostValue:self.changePassField.text forKey:@"content"];
     self.changeRequest.delegate = self;
     [self.changeRequest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.changeRequest setDidFailSelector:@selector(requestDidFailed:)];
@@ -247,23 +252,19 @@
                 [[Util sharedUtil] showAlertWithTitle:@"提示" message:@"恭喜您，修改成功!"];
                 [self.navigationController popToRootViewControllerAnimated:NO];
                 break;
-            case -4:
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"旧密码不正确,请重新输入!"];
+            case 2:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"session过期,请重新登陆后再进行操作"];
                 break;
-            case -100:
-                /*[[(AppDelegate *)[UIApplication sharedApplication].delegate viewController] logout];
-                [[Util sharedUtil] showAlertWithTitle:@"" message:[requestDic objectForKey:@"errorMsg"]];*/
-
+            case 3:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"用户id不正确，请重新登陆后再进行操作"];
                 break;
+            case 4:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"密码不存在，请重新输入"];
+                break;
+            case 5:
+            case 1:
             default:
-                if (nil != [requestDic objectForKey:@"errorMsg"])
-                {
-                    [[Util sharedUtil] showAlertWithTitle:@"" message:[requestDic objectForKey:@"errorMsg"]];
-                }
-                else
-                {
-                    [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败,请稍后重试!"];
-                }
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败,请稍后重试!"];
                 break;
         }
     }

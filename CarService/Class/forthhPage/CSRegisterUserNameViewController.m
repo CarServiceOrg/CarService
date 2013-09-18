@@ -297,12 +297,12 @@
         int code = [[requestDic objectForKey:@"status"] intValue];
         switch (code) {
             case 0:
-                [[Util sharedUtil] showAlertWithTitle:@"提示" message:@"恭喜您，注册成功!"];
-                
-                [[NSUserDefaults standardUserDefaults] setObject:requestDic forKey:UserDefaultUserInfo];
+                [[Util sharedUtil] showAlertWithTitle:@"提示" message:@"恭喜您，注册成功,请登陆!"];
+                [self.navigationController popViewControllerAnimated:YES];
+                /*[[NSUserDefaults standardUserDefaults] setObject:requestDic forKey:UserDefaultUserInfo];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
-                [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];
+                [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];*/
 
                 break;
             case 1:
