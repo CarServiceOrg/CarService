@@ -12,6 +12,7 @@
 #import "CSFeedBackViewController.h"
 #import "ASIHTTPRequest.h"
 #import "AboutViewController.h"
+#import "WeiboSDK.h"
 
 #define AlertTag_NewVersion 1000
 
@@ -46,10 +47,41 @@
     [super dealloc];
 }
 
+- (void)receiveShareResultNotification:(NSNotification *)notify
+{
+    NSDictionary *dic = notify.userInfo;
+    int status = [[dic objectForKey:@"statusCode"]intValue];
+    if (status == WeiboSDKResponseStatusCodeSuccess)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享成功"];
+    }
+    else if (status == WeiboSDKResponseStatusCodeUserCancel)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"用户取消发送"];
+    }
+    else if (status == WeiboSDKResponseStatusCodeSentFail)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享失败"];
+    }
+    else if (status == WeiboSDKResponseStatusCodeAuthDeny)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"授权失败，请稍后重试"];
+    }
+    else if (status == WeiboSDKResponseStatusCodeUserCancelInstall)
+    {
+        //[[Util sharedUtil] showAlertWithTitle:@"" message:@"用户取消安装客户端"];
+    }
+    else
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享失败"];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveShareResultNotification:) name:SinaWeiboShareResultNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -241,6 +273,25 @@
                 break;
             case 3:
                 CustomLog(@"分享软件");
+                //分享
+                
+                WBImageObject *imageObject = [WBImageObject object];
+                imageObject.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"test" ofType:@"png" ]];
+                WBMessageObject *message1 = [ [ WBMessageObject alloc] init];
+                message1.text = @"This is a test";
+                //message1.imageObject = imageObject;
+                WBSendMessageToWeiboRequest *req = [[[WBSendMessageToWeiboRequest alloc] init] autorelease];
+                req.message = message1;
+                BOOL ret = [ WeiboSDK sendRequest:req ];
+                if (!ret)
+                {
+                    CustomLog(@"arg wrong");
+                    [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享失败，请稍后重试"];
+                }
+                else
+                {
+                    CustomLog(@"share by sina weibo app");
+                }
                 break;
             case 4:
                 CustomLog(@"客服电话");
