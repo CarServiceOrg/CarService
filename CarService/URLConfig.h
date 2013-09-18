@@ -11,11 +11,10 @@
 #define DEFAULT_URL_Login @"https://61.50.159.196:2543" //登录前无密钥协商，登录接口采用HTTPS调用，保证数据安全,其他功能接口使用HTTP
 #define DEFAULT_URL @"http://61.50.159.196:2501"
 #define PICTURE_URL [NSString stringWithFormat:@"%@/Data/Images/IPhone/User/",DEFAULT_URL]
-
+#define ServerAddress @"http://ceshi.idcdns.cn/car/interface/interface.php"
 //************************************************************1.用户功能接口************************************************************
 //1.1	用户登录  
 #define URL_login [NSString stringWithFormat:@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/wzcx_preview.jsp"]
-#define URL_register [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_logout [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_changepassword [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]
 #define URL_myconsumerecord [NSString stringWithFormat:@"%@/service/Authenticate.json?",DEFAULT_URL_Login]

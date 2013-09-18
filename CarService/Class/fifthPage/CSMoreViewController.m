@@ -339,7 +339,7 @@
     
     NSDictionary *requestDic = [responseString JSONValue];
     CustomLog(@"login request request dic:%@",requestDic);
-    if (nil == [requestDic objectForKey:@"code"])
+    if (nil == [requestDic objectForKey:@"status"])
     {
         CustomLog(@"parse error");
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"服务器出错，请稍后重试"];
@@ -348,7 +348,7 @@
     }
     else
     {
-        if ([[requestDic objectForKey:@"code"] isEqualToString:@"0"])
+        if ([[requestDic objectForKey:@"status"] isEqualToString:@"0"])
         {
             NSString *content = [[requestDic objectForKey:@"data"] objectForKey:@"content"];
             NSString *newVersion = [[requestDic objectForKey:@"data"] objectForKey:@"version"];

@@ -118,7 +118,7 @@
     NSString *responseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding]autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     NSDictionary *requestDic = [responseString JSONValue];
     CustomLog(@"login request request dic:%@",requestDic);
-    if (nil == [requestDic objectForKey:@"code"] || ![[requestDic objectForKey:@"code"] isEqualToString:@"0"])
+    if (nil == [requestDic objectForKey:@"status"] || ![[requestDic objectForKey:@"status"] isEqualToString:@"0"])
     {
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请稍后重试!"];
         return;

@@ -232,7 +232,7 @@
     [self hideActView];
     NSDictionary *requestDic = [[request responseString] JSONValue];
     CustomLog(@"login request request dic:%@",requestDic);
-    if (nil == [requestDic objectForKey:@"code"])
+    if (nil == [requestDic objectForKey:@"status"])
     {
         CustomLog(@"parse error");
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请稍后重试"];
@@ -240,7 +240,7 @@
     }
     else
     {
-        int code = [[requestDic objectForKey:@"code"] intValue];
+        int code = [[requestDic objectForKey:@"status"] intValue];
         switch (code) {
             case 0:
                 CustomLog(@"修改成功");
