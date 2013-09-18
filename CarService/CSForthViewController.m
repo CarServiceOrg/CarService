@@ -54,12 +54,16 @@
         MemberCenterViewController *controller = [[MemberCenterViewController alloc] initWithNibName:@"MemberCenterViewController" bundle:nil];
         controller.parentController = self;
         [self.view addSubview:controller.view];
+        
+        self.navigationItem.title = @"会员中心";
     }
     else
     {
         CSLogInViewController *controller = [[CSLogInViewController alloc] initWithNibName:@"CSLogInViewController" bundle:nil];
         controller.parentController = self;
         [self.view addSubview:controller.view];
+        self.navigationItem.title = @"登陆";
+
     }
 }
 - (void)didReceiveMemoryWarning

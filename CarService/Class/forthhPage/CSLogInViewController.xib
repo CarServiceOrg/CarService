@@ -229,13 +229,13 @@
 									<object class="IBUIButton" id="699263461">
 										<reference key="NSNextResponder" ref="742344308"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{106, 161}, {109, 31}}</string>
+										<string key="NSFrame">{{106, 161}, {66, 24}}</string>
 										<reference key="NSSuperview" ref="742344308"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
-										<int key="IBUIButtonType">1</int>
+										<string key="IBUIHighlightedTitle">登陆</string>
 										<string key="IBUINormalTitle">登陆</string>
 										<reference key="IBUIHighlightedTitleColor" ref="336732180"/>
 										<object class="NSColor" key="IBUINormalTitleColor">
@@ -243,6 +243,14 @@
 											<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="430734530"/>
+										<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">chanxun_btn_press.png</string>
+										</object>
+										<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">chaoxun_btn.png</string>
+										</object>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
 											<int key="type">2</int>
 											<int key="size">2</int>
@@ -276,7 +284,6 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -510,6 +517,7 @@
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<boolean value="NO" key="8.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="1" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -523,9 +531,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bg_iphone5.png">{16, 16}</string>
-			<string key="denglu_check_yes.png">{16, 16}</string>
-			<string key="loginpage_input_back.png">{16, 16}</string>
+			<string key="bg_iphone5.png">{640, 1136}</string>
+			<string key="chanxun_btn_press.png">{133, 48}</string>
+			<string key="chaoxun_btn.png">{133, 48}</string>
+			<string key="denglu_check_yes.png">{27, 27}</string>
+			<string key="loginpage_input_back.png">{607, 71}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

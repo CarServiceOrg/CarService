@@ -72,7 +72,7 @@
     
     NSDictionary *requestDic = [responseString JSONValue];
     CustomLog(@"login request request dic:%@",requestDic);
-    if (nil == [requestDic objectForKey:@"code"])
+    if (nil == [requestDic objectForKey:@"status"])
     {
         CustomLog(@"parse error");
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"服务器出错，请稍后重试!"];

@@ -205,7 +205,7 @@
     CustomLog(@"response string:%@",testResponseString);
     NSDictionary *requestDic = [[request responseString] JSONValue];
     CustomLog(@"login request request dic:%@",requestDic);
-    if (nil == [requestDic objectForKey:@"code"]) 
+    if (nil == [requestDic objectForKey:@"status"]) 
     {
         CustomLog(@"parse error");
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"登陆失败，请重新登陆"];
@@ -213,7 +213,7 @@
     }
     else
     {
-        int code = [[requestDic objectForKey:@"code"] intValue];
+        int code = [[requestDic objectForKey:@"status"] intValue];
         switch (code) {
             case 0:
                 CustomLog(@"登陆成功");

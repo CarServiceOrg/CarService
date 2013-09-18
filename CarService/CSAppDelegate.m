@@ -50,10 +50,6 @@
     
     // Override point for customization after application launch.
     
-    //测试登陆
-    [[NSUserDefaults standardUserDefaults] setObject:@"test"forKey:UserDefaultUserInfo];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
     //新浪微博
     [WeiboSDK registerApp:@"3912808798"];
     [WeiboSDK enableDebugMode:YES];
