@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		E112190D17E22ABB00926B05 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E112190B17E22ABB00926B05 /* JSONKit.m */; };
 		E112190E17E22ABB00926B05 /* README_JSONKit.md in Resources */ = {isa = PBXBuildFile; fileRef = E112190C17E22ABB00926B05 /* README_JSONKit.md */; };
+		E11D05C717E983DB005A976D /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E11D05C417E983DB005A976D /* libWeiboSDK.a */; };
+		E11D05C817E983DB005A976D /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E11D05C517E983DB005A976D /* WeiboSDK.bundle */; };
+		E11D05CB17E98428005A976D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D05CA17E98428005A976D /* NSString+MD5.m */; };
 		E152A9CA17E8AF0A00E73902 /* name.txt in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AC17E8AF0A00E73902 /* name.txt */; };
 		E152A9CB17E8AF0A00E73902 /* weatherList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AD17E8AF0A00E73902 /* weatherList.plist */; };
 		E152A9CC17E8AF0A00E73902 /* 中雨.png in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AE17E8AF0A00E73902 /* 中雨.png */; };
@@ -367,6 +370,11 @@
 		E112190B17E22ABB00926B05 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		E112190C17E22ABB00926B05 /* README_JSONKit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README_JSONKit.md; sourceTree = "<group>"; };
 		E112190F17E23CB600926B05 /* URLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConfig.h; sourceTree = "<group>"; };
+		E11D05C417E983DB005A976D /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		E11D05C517E983DB005A976D /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		E11D05C617E983DB005A976D /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		E11D05C917E98428005A976D /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		E11D05CA17E98428005A976D /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		E152A9AC17E8AF0A00E73902 /* name.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		E152A9AD17E8AF0A00E73902 /* weatherList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = weatherList.plist; sourceTree = "<group>"; };
 		E152A9AE17E8AF0A00E73902 /* 中雨.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "中雨.png"; sourceTree = "<group>"; };
@@ -880,6 +888,7 @@
 				E53ABA3717E0DD020096754D /* Foundation.framework in Frameworks */,
 				E53ABA3917E0DD020096754D /* CoreGraphics.framework in Frameworks */,
 				E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */,
+				E11D05C717E983DB005A976D /* libWeiboSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,6 +903,16 @@
 				E112190C17E22ABB00926B05 /* README_JSONKit.md */,
 			);
 			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		E11D05C317E983DB005A976D /* libWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E11D05C417E983DB005A976D /* libWeiboSDK.a */,
+				E11D05C517E983DB005A976D /* WeiboSDK.bundle */,
+				E11D05C617E983DB005A976D /* WeiboSDK.h */,
+			);
+			path = libWeiboSDK;
 			sourceTree = "<group>";
 		};
 		E152A9AA17E8AF0A00E73902 /* image_temp */ = {
@@ -1318,6 +1337,7 @@
 		E53ABA3317E0DD020096754D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E11D05C317E983DB005A976D /* libWeiboSDK */,
 				E53ABA9E17E0E1280096754D /* libz.dylib */,
 				E53ABAA017E0E14B0096754D /* libxml2.dylib */,
 				E53ABBCD17E0F7010096754D /* libicucore.dylib */,
@@ -1607,6 +1627,8 @@
 		E53ABB6817E0F1FD0096754D /* Univesial */ = {
 			isa = PBXGroup;
 			children = (
+				E11D05C917E98428005A976D /* NSString+MD5.h */,
+				E11D05CA17E98428005A976D /* NSString+MD5.m */,
 				E53ABB6B17E0F1FD0096754D /* Encryption.h */,
 				E53ABB6C17E0F1FD0096754D /* Encryption.m */,
 				E53ABB6D17E0F1FD0096754D /* MBProgressHUD.h */,
@@ -1955,6 +1977,7 @@
 				E152AA2517E8DBE400E73902 /* tianjiacheliang_pic.png in Resources */,
 				E152AA2617E8DBE400E73902 /* tianjiacheliang_tianjia_80.png in Resources */,
 				E152AA2717E8DBE400E73902 /* tianjiacheliang_tianjia_press_80.png in Resources */,
+				E11D05C817E983DB005A976D /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2057,6 +2080,7 @@
 				E19AE81E17E89CBD007B9F07 /* AboutViewController.m in Sources */,
 				E152A9EA17E8BFAB00E73902 /* CSCareRecordViewController.m in Sources */,
 				E152A9ED17E8D98100E73902 /* CSCareReferViewController.m in Sources */,
+				E11D05CB17E98428005A976D /* NSString+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2151,7 +2175,10 @@
 				);
 				INFOPLIST_FILE = "CarService/CarService-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/CarService/util/BaiduMap/libs";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/CarService/util/BaiduMap/libs",
+					"\"$(SRCROOT)/libWeiboSDK\"",
+				);
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -2171,7 +2198,10 @@
 				);
 				INFOPLIST_FILE = "CarService/CarService-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/CarService/util/BaiduMap/libs";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/CarService/util/BaiduMap/libs",
+					"\"$(SRCROOT)/libWeiboSDK\"",
+				);
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
