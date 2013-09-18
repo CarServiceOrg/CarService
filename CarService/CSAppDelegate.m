@@ -14,8 +14,10 @@
 #import "CSForthViewController.h"
 #import "CSFifthViewController.h"
 #import "LBSDataUtil.h"
+#import "WeiboSDK.h"
+#import "Util.h"
 
-@interface CSAppDelegate ()<BMKGeneralDelegate, UITabBarControllerDelegate>{
+@interface CSAppDelegate ()<BMKGeneralDelegate, UITabBarControllerDelegate,WeiboSDKDelegate>{
     BMKMapManager* _mapManager;
     UITabBarController *_tabBarController;
     NSMutableArray* _imgViewArray;
@@ -52,6 +54,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:@"test"forKey:UserDefaultUserInfo];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    //新浪微博
+    [WeiboSDK registerApp:@"3912808798"];
+    [WeiboSDK enableDebugMode:YES];
     return YES;
 }
 
@@ -75,6 +80,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [WeiboSDK cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -275,5 +281,32 @@ __attribute__((constructor)) static void PSPDFKitImproveRecursiveDescription(voi
     }
 }
 #endif
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+#pragma mark -WeiboSdkDelegate
+
+- (void)didReceiveWeiboRequest:(WBBaseRequest *)request
+{
+    
+}
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response
+{
+    if ( [response isKindOfClass: [ WBSendMessageToWeiboResponse class ] ] )
+    {
+        NSString *strMsg = [ NSString stringWithFormat:@"发送结果代码:%d", response.statusCode];
+        CustomLog(@"message:%@",strMsg);
+        [[NSNotificationCenter defaultCenter] postNotificationName:SinaWeiboShareResultNotification object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:response.statusCode],@"statusCode", nil]];
+    }
+}
 
 @end

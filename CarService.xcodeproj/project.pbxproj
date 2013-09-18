@@ -47,6 +47,8 @@
 		E19AE81A17E88FFC007B9F07 /* CSFeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE81817E88FFC007B9F07 /* CSFeedBackViewController.xib */; };
 		E19AE81E17E89CBD007B9F07 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE81C17E89CBD007B9F07 /* AboutViewController.m */; };
 		E19AE81F17E89CBD007B9F07 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE81D17E89CBD007B9F07 /* AboutViewController.xib */; };
+		E19AE82417E89F86007B9F07 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E19AE82117E89F86007B9F07 /* libWeiboSDK.a */; };
+		E19AE82517E89F86007B9F07 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E19AE82217E89F86007B9F07 /* WeiboSDK.bundle */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -362,6 +364,9 @@
 		E19AE81B17E89CBC007B9F07 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		E19AE81C17E89CBD007B9F07 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		E19AE81D17E89CBD007B9F07 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		E19AE82117E89F86007B9F07 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		E19AE82217E89F86007B9F07 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		E19AE82317E89F86007B9F07 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -756,6 +761,7 @@
 				E53ABA3717E0DD020096754D /* Foundation.framework in Frameworks */,
 				E53ABA3917E0DD020096754D /* CoreGraphics.framework in Frameworks */,
 				E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */,
+				E19AE82417E89F86007B9F07 /* libWeiboSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +817,16 @@
 				E19AE7DB17E82082007B9F07 /* CSShopRecommendViewController.m */,
 			);
 			path = thirdPage;
+			sourceTree = "<group>";
+		};
+		E19AE82017E89F86007B9F07 /* libWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E19AE82117E89F86007B9F07 /* libWeiboSDK.a */,
+				E19AE82217E89F86007B9F07 /* WeiboSDK.bundle */,
+				E19AE82317E89F86007B9F07 /* WeiboSDK.h */,
+			);
+			path = libWeiboSDK;
 			sourceTree = "<group>";
 		};
 		E1BCA28B17E38A620086BA51 /* BaiduMap */ = {
@@ -1116,6 +1132,7 @@
 		E53ABA3317E0DD020096754D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E19AE82017E89F86007B9F07 /* libWeiboSDK */,
 				E53ABA9E17E0E1280096754D /* libz.dylib */,
 				E53ABAA017E0E14B0096754D /* libxml2.dylib */,
 				E53ABBCD17E0F7010096754D /* libicucore.dylib */,
@@ -1693,6 +1710,7 @@
 				E19AE81517E88855007B9F07 /* CSSettingsViewController.xib in Resources */,
 				E19AE81A17E88FFC007B9F07 /* CSFeedBackViewController.xib in Resources */,
 				E19AE81F17E89CBD007B9F07 /* AboutViewController.xib in Resources */,
+				E19AE82517E89F86007B9F07 /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1887,8 +1905,11 @@
 				);
 				INFOPLIST_FILE = "CarService/CarService-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/CarService/util/BaiduMap/libs";
-				OTHER_LDFLAGS = "-fobj-arc";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/CarService/util/BaiduMap/libs",
+					"\"$(SRCROOT)/libWeiboSDK\"",
+				);
+				OTHER_LDFLAGS = "-fobj-arc-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1907,8 +1928,11 @@
 				);
 				INFOPLIST_FILE = "CarService/CarService-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/CarService/util/BaiduMap/libs";
-				OTHER_LDFLAGS = "-fobj-arc";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/CarService/util/BaiduMap/libs",
+					"\"$(SRCROOT)/libWeiboSDK\"",
+				);
+				OTHER_LDFLAGS = "-fobj-arc-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

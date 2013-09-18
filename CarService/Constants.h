@@ -11,9 +11,11 @@
 
 #define UserDefaultUserInfo @"UserDefaultUserInfo"
 #define LoginSuccessNotification @"LoginSuccessNotification"
+#define SinaWeiboShareResultNotification  @"SinaWeiboShareResultNotification"
 
 #define DeviceDiffHeight 88 //(568 - 480)
-
+#define kRedirectURI @"http://www.sina.com.cn"
+#define kAppKey @"3912808798"
 
 typedef enum
 {
