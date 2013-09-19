@@ -8,6 +8,8 @@
 
 #import "CSFirstViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "BlockActionSheet.h"
+#import "CSCarManageViewController.h"
 
 @interface CSFirstViewController ()
 
@@ -21,28 +23,39 @@
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     self.navigationItem.title=@"首页";
     
+    //按钮
+    UIButton* mangerBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60/2.0+4, 46/2.0)];
+    [mangerBtn setImage:[UIImage imageNamed:@"shouye_btn1.png"] forState:UIControlStateNormal];
+    [mangerBtn setImage:[UIImage imageNamed:@"shouye_btn1_press.png"] forState:UIControlStateHighlighted];
+    [mangerBtn addTarget:self action:@selector(mangerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem=[[[UIBarButtonItem alloc] initWithCustomView:mangerBtn] autorelease];
+    [mangerBtn release];
+    
     //信息按钮
-    UIButton* msgBtn=[[UIButton alloc] initWithFrame:CGRectMake(320-30-10, (40-46/2.0)/2.0, 60/2.0, 46/2.0)];
+    UIButton* msgBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60/2.0+8, 46/2.0+5)];
     [msgBtn setImage:[UIImage imageNamed:@"shouye_msg.png"] forState:UIControlStateNormal];
     [msgBtn setImage:[UIImage imageNamed:@"shouye_msg_press.png"] forState:UIControlStateHighlighted];
     [msgBtn addTarget:self action:@selector(msgBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.navigationBar addSubview:msgBtn];
+    {
+        //消息数
+        UILabel* numLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 13, 13)];
+        [numLabel setTag:1001];
+        [numLabel setCenter:CGPointMake(CGRectGetMaxX(msgBtn.frame)-6.5, CGRectGetMinY(msgBtn.frame)+6)];
+        [numLabel setBackgroundColor:[UIColor clearColor]];
+        [numLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+        [numLabel setTextAlignment:NSTextAlignmentCenter];
+        [numLabel setFont:[UIFont systemFontOfSize:8]];
+        [numLabel setTextColor:[UIColor whiteColor]];
+        [numLabel setText:@"3"];
+        numLabel.layer.cornerRadius=CGRectGetWidth(numLabel.frame)/2.0;
+        numLabel.layer.borderWidth=1.0;
+        numLabel.layer.borderColor=[UIColor clearColor].CGColor;
+        [msgBtn addSubview:numLabel];
+        [numLabel release];
+    }
+    self.navigationItem.rightBarButtonItem=[[[UIBarButtonItem alloc] initWithCustomView:msgBtn] autorelease];
     [msgBtn release];
     
-    //消息数
-    UILabel* numLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 13, 13)];
-    [numLabel setCenter:CGPointMake(CGRectGetMaxX(msgBtn.frame)-5, CGRectGetMinY(msgBtn.frame)+5)];
-    [numLabel setBackgroundColor:[UIColor clearColor]];
-    [numLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [numLabel setTextAlignment:NSTextAlignmentCenter];
-    [numLabel setFont:[UIFont systemFontOfSize:8]];
-    [numLabel setTextColor:[UIColor whiteColor]];
-    [numLabel setText:@"3"];
-    numLabel.layer.cornerRadius=CGRectGetWidth(numLabel.frame)/2.0;
-    numLabel.layer.borderWidth=1.0;
-    numLabel.layer.borderColor=[UIColor clearColor].CGColor;
-    [self.navigationController.navigationBar addSubview:numLabel];
-    [numLabel release];
 }
 
 -(void)setUpLabel:(UIView*)superView with_tag:(int)tag with_frame:(CGRect)frame with_text:(NSString*)text with_Alignment:(NSTextAlignment)alignment
@@ -275,5 +288,20 @@
     
 }
 
+-(void)mangerBtnClick:(id)sender
+{
+    BlockActionSheet *sheet = [BlockActionSheet sheetWithTitle:@""];
+    [sheet setCancelButtonWithTitle:@"取消" block:nil];
+    [sheet setDestructiveButtonWithTitle:@"车辆管理" block:^{
+        CSCarManageViewController* ctrler=[[CSCarManageViewController alloc] init];
+        [self.navigationController pushViewController:ctrler animated:YES];
+        [ctrler release];
+    }];
+    //[sheet addButtonWithTitle:@"" block:^{
+    //
+    //}];
+    [sheet showInView:self.view];
+
+}
 
 @end
