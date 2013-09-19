@@ -19,6 +19,11 @@
 #define kRedirectURI @"http://www.sina.com.cn"
 #define kAppKey @"3912808798"
 
+//车辆管理相关
+#define CSAddCarViewController_carList  @"Carservice_CarList"  //存储文件中 存储车辆列表对应的键
+#define CSAddCarViewController_carSign  @"carSign"  //存储文件中 车牌号对应的键
+#define CSAddCarViewController_carStand @"carStand"  //存储文件中 车架号对应的键
+
 typedef enum
 {
     LocationErrorCode_UserDenied = 0,

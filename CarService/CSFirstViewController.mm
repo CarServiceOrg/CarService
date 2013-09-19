@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BlockActionSheet.h"
 #import "CSCarManageViewController.h"
+#import "CSAddCarViewController.h"
 
 @interface CSFirstViewController ()
 
@@ -69,10 +70,12 @@
     [aLabel setTextAlignment:alignment];
     [aLabel setFont:[UIFont boldSystemFontOfSize:13]];
     [aLabel setTextColor:[UIColor whiteColor]];
+    aLabel.numberOfLines=0;
+    aLabel.lineBreakMode=NSLineBreakByWordWrapping;
     [aLabel setText:text];
     [superView addSubview:aLabel];
     [aLabel release];
-}
+ }
 
 -(void)init_scrollView
 {
@@ -106,6 +109,7 @@
     //添加内容视图
     x=0; y=40; height=278/2.0+15;
     UIView* weatherView=[[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [weatherView setTag:201];
     weatherView.backgroundColor=[UIColor clearColor];
     [scrollView addSubview:weatherView];
     [weatherView release];
@@ -233,6 +237,7 @@
     //添加车辆
     y=y+height+20; height=243/2.0;
     UIView* addCarView=[[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [addCarView setTag:202];
     addCarView.backgroundColor=[UIColor clearColor];
     [scrollView addSubview:addCarView];
     [addCarView release];
@@ -245,15 +250,58 @@
         [addCarView addSubview:bgImageView];
         [bgImageView release];
         
-        //添加车辆按钮
-        x=0; y=0; width=339/2.0; height=50/2.0;
-        UIButton* addCarBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
-        [addCarBtn setCenter:CGPointMake(CGRectGetMidX(addCarView.bounds), CGRectGetMidY(addCarView.bounds))];
-        [addCarBtn setShowsTouchWhenHighlighted:YES];
-        [addCarBtn setImage:[UIImage imageNamed:@"shouye_tianjiacheliang_btn.png"] forState:UIControlStateNormal];
-        [addCarBtn addTarget:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [addCarView addSubview:addCarBtn];
-        [addCarBtn release];
+        //如果无添加记录 则显示添加按钮
+        {
+            UIView* containView=[[UIView alloc] initWithFrame:bgImageView.bounds];
+            [containView setTag:1001];
+            [addCarView addSubview:containView];
+            [containView release];
+            
+            //添加车辆按钮
+            x=0; y=0; width=339/2.0; height=50/2.0;
+            UIButton* addCarBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            [addCarBtn setTag:10001];
+            [addCarBtn setCenter:CGPointMake(CGRectGetMidX(addCarView.bounds), CGRectGetMidY(addCarView.bounds))];
+            [addCarBtn setShowsTouchWhenHighlighted:YES];
+            [addCarBtn setImage:[UIImage imageNamed:@"shouye_tianjiacheliang_btn.png"] forState:UIControlStateNormal];
+            [addCarBtn addTarget:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [containView addSubview:addCarBtn];
+            [addCarBtn release];
+        }
+        //如果添加过记录 则显示最后一个添加记录
+        {
+            UIView* containView=[[UIView alloc] initWithFrame:bgImageView.bounds];
+            [containView setTag:1002];
+            [addCarView addSubview:containView];
+            [containView release];
+            
+            //图片
+            x=10; y=15; width=115; height=addCarView.bounds.size.height-y*2;
+            UIImageView* aImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            [aImageView setImage:[UIImage imageNamed:@"tianjiacheliang_pic.png"]];
+            [containView addSubview:aImageView];
+            [aImageView release];
+            
+            //车牌
+            x=x+width+10; width=addCarView.bounds.size.width-x-10; height=(addCarView.bounds.size.height-y*2)/2.0;
+            [self setUpLabel:containView with_tag:10001 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
+            //车架号
+            y=y+height; y=y+1;
+            [self setUpLabel:containView with_tag:10002 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
+        }
+
+        NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
+        if (alreadyAry) {
+            UIView* containView=[addCarView viewWithTag:1001];
+            if (containView) {
+                containView.alpha=0;
+            }
+        }else{
+            UIView* containView=[addCarView viewWithTag:1002];
+            if (containView) {
+                containView.alpha=0;
+            }
+        }
     }
 }
 
@@ -264,6 +312,56 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self init_NaviView];
     [self init_scrollView];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    UIScrollView* scrollView=(UIScrollView*)[self.view viewWithTag:101];
+    if (scrollView) {
+        UIView* addCarView=[scrollView viewWithTag:202];
+        if (addCarView) {
+            NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
+            if (alreadyAry) {
+                UIView* containView=[addCarView viewWithTag:1001];
+                if (containView) {
+                    containView.alpha=0;
+                }
+                containView=[addCarView viewWithTag:1002];
+                if (containView) {
+                    containView.alpha=1;
+                }
+                
+                //更新数据 为最后一个
+                {
+                    NSString* signStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carSign];
+                    NSString* standStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carStand];
+                    UIView* containView=[addCarView viewWithTag:1002];
+                    if (containView) {
+                        UILabel* aLabel=(UILabel*)[containView viewWithTag:10001];
+                        if (aLabel) {
+                            [aLabel setText:[NSString stringWithFormat:@"车牌号：%@",signStr]];
+                        }
+                        
+                        aLabel=(UILabel*)[containView viewWithTag:10002];
+                        if (aLabel) {
+                            [aLabel setText:[NSString stringWithFormat:@"车架号：%@",standStr]];
+                        }
+                    }
+                }
+            }else{
+                UIView* containView=[addCarView viewWithTag:1002];
+                if (containView) {
+                    containView.alpha=0;
+                }
+                containView=[addCarView viewWithTag:1001];
+                if (containView) {
+                    containView.alpha=1;
+                }
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -285,7 +383,9 @@
 
 -(void)addBtnClick:(id)sender
 {
-    
+    CSAddCarViewController* ctrler=[[CSAddCarViewController alloc] init];
+    [self.navigationController pushViewController:ctrler animated:YES];
+    [ctrler release];
 }
 
 -(void)mangerBtnClick:(id)sender

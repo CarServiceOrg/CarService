@@ -8,6 +8,7 @@
 
 #import "CSCarManageViewController.h"
 #import "BlockAlertView.h"
+#import "CSAddCarViewController.h"
 
 @interface CSCarManageViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -22,6 +23,8 @@
 @synthesize dataArray;
 
 #define CSCarManageViewController_cell_hegight 80
+#define CSCarManageViewController_CarSign   @"车牌号："
+#define CSCarManageViewController_CarStand  @"车架号："
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,7 +79,9 @@
 
 -(void)addCarBtnClicked:(id)sender
 {
-    
+    CSAddCarViewController* ctrler=[[CSAddCarViewController alloc] init];
+    [self.navigationController pushViewController:ctrler animated:YES];
+    [ctrler release];
 }
 
 //创建详情列表
@@ -120,32 +125,22 @@
 	// Do any additional setup after loading the view.
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     self.navigationItem.title=@"车辆管理";
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
-    self.dataArray=[NSMutableArray arrayWithCapacity:3];
-    {
-        self.dataArray=[NSMutableArray arrayWithObjects:
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111111", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111112", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111113", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111114", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111115", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111116", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111117", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111118", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111119", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111110", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111121", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111122", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111123", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111124", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111125", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111126", @"carSign", @"236985478", @"carStand", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"京：11111127", @"carSign", @"236985478", @"carStand", nil],
-                        nil];
-    }
-    
+    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];    
     [self init_selfView];
     [self initSetUpTableView:CGRectMake(0, 10, 320, self.view.bounds.size.height-40-55 -10*2)];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
+    if (alreadyAry) {
+        self.dataArray=[NSMutableArray arrayWithArray:alreadyAry];
+    }
+    UITableView* tableView=(UITableView*)[self.view viewWithTag:101];
+    if (tableView) {
+        [tableView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,23 +209,29 @@
             //车牌号
             UILabel* carSignLabel=(UILabel*)[superView viewWithTag:1002];
             if (carSignLabel) {
-                carSign=[carSignLabel.text substringFromIndex:4];
+                carSign=[carSignLabel.text substringFromIndex:[[NSString stringWithFormat:@"%@",CSCarManageViewController_CarSign] length]];
             }
             //车架号
             UILabel* carStandLabel=(UILabel*)[superView viewWithTag:1003];
             if (carStandLabel) {
-                carStand=[carStandLabel.text substringFromIndex:4];
+                carStand=[carStandLabel.text substringFromIndex:[[NSString stringWithFormat:@"%@",CSCarManageViewController_CarStand] length]];
             }
             
             int index=0;
             for (NSDictionary* dict in self.dataArray) {
-                NSString* carSign_dict=[dict objectForKey:@"carSign"];
-                NSString* carStand_dict=[dict objectForKey:@"carStand"];
+                NSString* carSign_dict=[dict objectForKey:CSAddCarViewController_carSign];
+                NSString* carStand_dict=[dict objectForKey:CSAddCarViewController_carStand];
                 if ([carSign_dict isEqualToString:carSign] && [carStand_dict isEqualToString:carStand]) {
                     UITableView* tableView=(UITableView*)[self.view viewWithTag:101];
                     if (tableView) {
                         //更新数据
                         [self.dataArray removeObjectAtIndex:index];
+                        //更新记录
+                        if ([self.dataArray count]) {
+                            [[NSUserDefaults standardUserDefaults] setObject:self.dataArray forKey:CSAddCarViewController_carList];
+                        }else{
+                            [[NSUserDefaults standardUserDefaults] removeObjectForKey:CSAddCarViewController_carList];
+                        }
                         //动画更新列表
                         NSMutableArray* indexPaths = [[[NSMutableArray alloc] init] autorelease];
                         [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
@@ -258,8 +259,8 @@
 
     if (self.dataArray && [self.dataArray count]>indexPath.row) {
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
-        NSString* carSign=[dict objectForKey:@"carSign"];
-        NSString* carStand=[dict objectForKey:@"carStand"];
+        NSString* carSign=[dict objectForKey:CSAddCarViewController_carSign];
+        NSString* carStand=[dict objectForKey:CSAddCarViewController_carStand];
         
         //图片
         UIImageView* aImageView=(UIImageView*)[cell.contentView viewWithTag:1001];
@@ -270,13 +271,13 @@
         //车牌号
         UILabel* carSignLabel=(UILabel*)[cell.contentView viewWithTag:1002];
         if (carSignLabel) {
-            carSignLabel.text=[NSString stringWithFormat:@"车牌号：%@",carSign];
+            carSignLabel.text=[NSString stringWithFormat:@"%@%@", CSCarManageViewController_CarSign, carSign];
         }
         
         //车架号
         UILabel* carStandLabel=(UILabel*)[cell.contentView viewWithTag:1003];
         if (carStandLabel) {
-            carStandLabel.text=[NSString stringWithFormat:@"车驾号：%@",carStand];
+            carStandLabel.text=[NSString stringWithFormat:@"%@%@",CSCarManageViewController_CarStand, carStand];
         }
      }
     
