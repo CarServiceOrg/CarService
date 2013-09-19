@@ -316,7 +316,16 @@
 - (void)checkNewVersion
 {
     [self.checkVersionRequest clearDelegatesAndCancel];
-    self.checkVersionRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_checknewversion]];
+    
+    //NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
+    //NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"versiongoup",@"action", nil];
+    SBJSON *jasonParser = [[SBJSON alloc] init];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [jasonParser release];
+    
+    self.checkVersionRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
+    
     self.checkVersionRequest.delegate = self;
     [self.checkVersionRequest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.checkVersionRequest setDidFailSelector:@selector(requestDidFailed:)];
@@ -345,7 +354,7 @@
     {
         if ([[requestDic objectForKey:@"status"] isEqualToString:@"0"])
         {
-            NSString *content = [[requestDic objectForKey:@"data"] objectForKey:@"content"];
+            /*NSString *content = [[requestDic objectForKey:@"data"] objectForKey:@"content"];
             NSString *newVersion = [[requestDic objectForKey:@"data"] objectForKey:@"version"];
             
             if ([newVersion floatValue] > [[[Util sharedUtil] get_appVersion]floatValue])
@@ -359,7 +368,7 @@
                 alert.tag = AlertTag_NewVersion;
                 [alert show];
                 [alert release];
-            }
+            }*/
         }
         else
         {
