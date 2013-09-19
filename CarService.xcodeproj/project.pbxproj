@@ -249,6 +249,7 @@
 		E1D044D317E741A9008CBE90 /* CSMyConsumeRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D044D117E741A9008CBE90 /* CSMyConsumeRecordViewController.xib */; };
 		E1D044D717E74559008CBE90 /* CSMyConsumeRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */; };
 		E1D044D817E74559008CBE90 /* CSMyConsumeRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */; };
+		E1EBEC8617EACEBC0026682A /* CSExampleReferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBEC8517EACEBC0026682A /* CSExampleReferViewController.m */; };
 		E53ABA3517E0DD020096754D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3417E0DD020096754D /* UIKit.framework */; };
 		E53ABA3717E0DD020096754D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3617E0DD020096754D /* Foundation.framework */; };
 		E53ABA3917E0DD020096754D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3817E0DD020096754D /* CoreGraphics.framework */; };
@@ -706,6 +707,8 @@
 		E1D044D417E74558008CBE90 /* CSMyConsumeRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMyConsumeRecordCell.h; sourceTree = "<group>"; };
 		E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMyConsumeRecordCell.m; sourceTree = "<group>"; };
 		E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMyConsumeRecordCell.xib; sourceTree = "<group>"; };
+		E1EBEC8417EACEBC0026682A /* CSExampleReferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSExampleReferViewController.h; sourceTree = "<group>"; };
+		E1EBEC8517EACEBC0026682A /* CSExampleReferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSExampleReferViewController.m; sourceTree = "<group>"; };
 		E53ABA3117E0DD020096754D /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53ABA3417E0DD020096754D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E53ABA3617E0DD020096754D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1072,6 +1075,8 @@
 				E152A9EC17E8D98100E73902 /* CSCareReferViewController.m */,
 				E12A9AC317E9FC6800A5F451 /* CSDelegateBookViewController.h */,
 				E12A9AC417E9FC6800A5F451 /* CSDelegateBookViewController.m */,
+				E1EBEC8417EACEBC0026682A /* CSExampleReferViewController.h */,
+				E1EBEC8517EACEBC0026682A /* CSExampleReferViewController.m */,
 			);
 			path = thirdPage;
 			sourceTree = "<group>";
@@ -2165,6 +2170,7 @@
 				E12A9ADC17EA275400A5F451 /* UIImage+Resize.m in Sources */,
 				E12A9ADD17EA275400A5F451 /* UIImage+RoundedCorner.m in Sources */,
 				E12A9ADE17EA275400A5F451 /* UIImagePLCategory.m in Sources */,
+				E1EBEC8617EACEBC0026682A /* CSExampleReferViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

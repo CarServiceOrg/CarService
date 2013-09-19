@@ -13,6 +13,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "UIImagePLCategory.h"
 #import "StyledPageControl.h"
+#import "CSExampleReferViewController.h"
 
 @interface CSReportCaseViewController ()<UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIScrollViewDelegate>{
     UIView* _placeHolderView;
@@ -125,7 +126,7 @@
     UIButton* referBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [referBtn.titleLabel setFont:[UIFont systemFontOfSize:14.0]];
     [referBtn setTitle:@"【查看参考格式】" forState:UIControlStateNormal];
-    [referBtn setTitleColor:[UIColor colorWithRed:0xf3/255.0 green:0xe9/255.0 blue:0xe2/255.0 alpha:1] forState:UIControlStateNormal];
+    [referBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateNormal];
     [referBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateSelected];
     [referBtn addTarget:self action:@selector(referBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:referBtn];
@@ -356,7 +357,9 @@
 
 -(void)referBtnClick:(id)sender
 {
-    
+    CSExampleReferViewController* ctrler=[[CSExampleReferViewController alloc] init];
+    [self.navigationController pushViewController:ctrler animated:YES];
+    [ctrler release];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
