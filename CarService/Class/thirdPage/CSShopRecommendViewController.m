@@ -11,6 +11,10 @@
 #import "ActionSheetStringPicker.h"
 #import "UIImageView+WebCache.h"
 #import "BlockAlertView.h"
+#import "ASIHTTPRequest.h"
+#import "NSString+SBJSON.h"
+#import "NSObject+SBJSON.h"
+#import "TSMessage.h"
 
 @interface CSShopRecommendViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -29,6 +33,11 @@
 #define CSShopRecommendViewController_title_font 16.0
 #define CSShopRecommendViewController_text_font 12.0
 #define CSShopRecommendViewController_cell_default 95.0
+
+#define CSShopRecommendViewController_key_imageUrl  @"imageUrl"
+#define CSShopRecommendViewController_key_shopname  @"shopname"
+#define CSShopRecommendViewController_key_address   @"address"
+#define CSShopRecommendViewController_key_tel       @"tel"
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,7 +70,7 @@
         [locationImgView release];
         //定位城市
         x=x+width+3; y=10; width=220; height=22;
-        [self setUpLabel:headerView with_tag:1001 with_frame:CGRectMake(x, y, width, height) with_text:@"北京市海淀区" with_Alignment:NSTextAlignmentLeft];
+        [self setUpLabel:headerView with_tag:1001 with_frame:CGRectMake(x, y, width, height) with_text:@"北京市" with_Alignment:NSTextAlignmentLeft];
         
         //更多区域选择
         width=110; height=CGRectGetHeight(headerView.bounds); x=320-width; y=0;
@@ -156,26 +165,10 @@
 	// Do any additional setup after loading the view.
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     self.navigationItem.title=@"店铺推荐";
-    self.view.backgroundColor=[UIColor colorWithRed:236/255.0 green:236/255.0 blue:238/255.0 alpha:1.0];
-    self.dataArray=[NSMutableArray arrayWithCapacity:3];
-    {
-        self.dataArray=[NSMutableArray arrayWithObjects:
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120509154705", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西106号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/810/508/44805018:jpeg_preview_small.jpg?20120508125339", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西107号海淀区清河小营桥西107号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/282/467/44764282:jpeg_preview_small.jpg?20120507130637", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西108号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/833/347/44743338:jpeg_preview_small.jpg?20120509183004", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西109号海淀区清河小", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/142/746/44647241:jpeg_preview_small.jpg?20120504104451", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西110号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120507015022", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西111号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120507185251", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西112号海淀区清河小营桥西112号海淀区清河小营桥西112号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120505174152", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西113号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120507185251", @"imageUrl", @"清河小营奥迪4S店清河小营奥清河小营奥", @"name", @"地址：海淀区清河小营桥西114号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120503132132", @"imageUrl", @"清河小营奥迪4S店", @"name", @"地址：海淀区清河小营桥西115号海淀区清河小营桥西115号", @"address", @"电话：010-6025366", @"phone", nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120501165940", @"imageUrl", @"清河小营奥迪4S店清河小营奥", @"name", @"地址：海淀区清河小营桥西116号", @"address", @"电话：010-6025366", @"phone", nil],
-                        nil];
-    }
-    
+    self.view.backgroundColor=[UIColor colorWithRed:236/255.0 green:236/255.0 blue:238/255.0 alpha:1.0];    
     [self init_selfView];
     [self initSetUpTableView:CGRectMake(0, 40+3, 320, self.view.bounds.size.height-40-40-3-55)];
+    [self startHttpRequest];
 }
 
 - (void)didReceiveMemoryWarning
@@ -188,6 +181,56 @@
 {
     self.dataArray=nil;
     [super dealloc];
+}
+
+#pragma mark 网络相关
+
+-(void)startHttpRequest{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self request_recommend];
+    });
+}
+
+//保险知识库
+-(void)request_recommend
+{    
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"recommend_shop", @"action", nil];
+    NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
+    CustomLog(@"<<Chao-->CSShopRecommendViewController-->request_InsuranceKnowledge-->urlStr:%@",urlStr);
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"POST"];
+    [request setCompletionBlock:^{
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        CustomLog(@"<<Chao-->CSShopRecommendViewController-->request_InsuranceKnowledge-->testResponseString:%@",testResponseString);
+        
+        NSDictionary *requestDic =[[request responseString] JSONValue];
+        CustomLog(@"<<Chao-->CSShopRecommendViewController-->request_InsuranceKnowledge-->requestDic:%@",requestDic);
+        if ([requestDic objectForKey:@"status"]) {
+            if ([[requestDic objectForKey:@"status"] intValue]==1) {
+                [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载数据失败！", nil) with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                return;
+            }else if ([[requestDic objectForKey:@"status"] intValue]==0){
+                if ([requestDic objectForKey:@"list"]) {
+                    self.dataArray=[requestDic objectForKey:@"list"];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UITableView* tableView=(UITableView*)[self.view viewWithTag:101];
+                        if (tableView) {
+                            [tableView reloadData];
+                        }
+                    });
+                }
+            }
+        }
+    }];
+    [request setFailedBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载数据失败，请检验网络！", nil) with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+        });
+    }];
+    [request startAsynchronous];
 }
 
 #pragma mark -UITableViewDataSource
@@ -326,10 +369,10 @@
 
     if (self.dataArray && [self.dataArray count]>indexPath.row) {
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
-        NSString* url=[dict objectForKey:@"imageUrl"];
-        NSString* name=[dict objectForKey:@"name"];
-        NSString* address=[dict objectForKey:@"address"];
-        NSString* phone=[dict objectForKey:@"phone"];
+        NSString* url=[dict objectForKey:CSShopRecommendViewController_key_imageUrl];
+        NSString* name=[dict objectForKey:CSShopRecommendViewController_key_shopname];
+        NSString* address=[dict objectForKey:CSShopRecommendViewController_key_address];
+        NSString* phone=[dict objectForKey:CSShopRecommendViewController_key_tel];
 
         float x, y, width, height;
         //图片
@@ -388,9 +431,10 @@
 {
     if (self.dataArray && [self.dataArray count]>indexPath.row) {
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
-        NSString* name=[dict objectForKey:@"name"];
-        NSString* address=[dict objectForKey:@"address"];
-        NSString* phone=[dict objectForKey:@"phone"];
+        NSString* name=[dict objectForKey:CSShopRecommendViewController_key_shopname];
+        NSString* address=[dict objectForKey:CSShopRecommendViewController_key_address];
+        NSString* phone=[dict objectForKey:CSShopRecommendViewController_key_tel];
+        
         float temp = 10 + [self heigtForString:name withSize:CSShopRecommendViewController_title_font]+
         [self heigtForString:address withSize:CSShopRecommendViewController_text_font]+
         [self heigtForString:phone withSize:CSShopRecommendViewController_text_font] +10;
