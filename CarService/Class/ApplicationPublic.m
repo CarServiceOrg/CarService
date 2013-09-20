@@ -86,4 +86,21 @@
     [backBtn release];
 }
 
+//提示信息
++(void)showMessage:(UIViewController *)viewController with_title:(NSString*)titleStr with_detail:(NSString*)detailStr with_type:(TSMessageNotificationType)type with_Duration:(float)sec
+{
+    [TSMessage showNotificationInViewController:viewController
+                                          title:titleStr
+                                       subtitle:detailStr
+                                          image:nil
+                                           type:type
+                                       duration:sec 
+                                       callback:nil
+                                    buttonTitle:nil
+                                 buttonCallback:nil
+                                     atPosition:TSMessageNotificationPositionTop
+                            canBeDismisedByUser:YES];
+}
+
+
 @end

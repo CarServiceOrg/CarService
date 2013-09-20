@@ -37,3 +37,6 @@
 //#define URL_Message [NSString stringWithFormat:@"%@/service/Messages.json?",DEFAULT_URL]
 
 
+//************************************************************2.接口************************************************************
+//今日限行
+#define URL_TrafficControls [NSString stringWithFormat:@"%@?json={\"action\":\"raffic\"}",ServerAddress]

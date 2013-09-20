@@ -112,8 +112,8 @@
 -(void)queryBtnClick:(UIButton*)sender
 {
     ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        NSLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->selectedIndex:%d",selectedIndex);
-        NSLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->selectedValue:%@",(NSString*)selectedValue);
+        CustomLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->selectedIndex:%d",selectedIndex);
+        CustomLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->selectedValue:%@",(NSString*)selectedValue);
         if (sender) {
             UIView* superView=sender.superview;
             if (superView) {
@@ -125,7 +125,7 @@
         }
     };
     ActionStringCancelBlock cancel = ^(ActionSheetStringPicker *picker) {
-        NSLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->Block Picker Canceled");
+        CustomLog(@"<<Chao-->CSShopRecommendViewController-->queryBtnClick-->Block Picker Canceled");
     };
     NSArray *dataAry = [NSArray arrayWithObjects:@"朝阳", @"丰台", @"石景山", @"海淀", @"门头沟", @"房山", @"通州",@"顺义",@"昌平",@"大兴",@"怀柔",@"平谷",@"密云",@"延庆", nil];
     NSInteger selectedIndex=1;

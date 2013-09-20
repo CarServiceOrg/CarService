@@ -7,8 +7,13 @@
 //
 
 #import "CSInsureAcknowledgeViewController.h"
+#import "ASIHTTPRequest.h"
+#import "NSString+SBJSON.h"
+#import "NSObject+SBJSON.h"
+#import "TSMessage.h"
+#import "CSInsuranceDetailViewController.h"
 
-@interface CSInsureAcknowledgeViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface CSInsureAcknowledgeViewController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
     
 }
@@ -19,6 +24,16 @@
 
 @implementation CSInsureAcknowledgeViewController
 @synthesize dataArray;
+
+#define CSInsureAcknowledgeViewController_text_font 12
+
+#define CSInsureAcknowledgeViewController_title_width (320-10*2-10-10)
+#define CSInsureAcknowledgeViewController_content_width (320-10*2)
+
+#define CSInsureAcknowledgeViewController_text_height 20
+
+#define CSInsureAcknowledgeViewController_key_title     @"title"
+#define CSInsureAcknowledgeViewController_key_content   @"content"
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,12 +87,23 @@
 
 -(void)queryBtnClick:(id)sender
 {
+    UITextField* textField=(UITextField*)[self.view viewWithTag:101];
+    if (textField) {
+        [textField resignFirstResponder];
+    }
     
+    [self.dataArray removeAllObjects];
+    UITableView* tableView=(UITableView*)[self.view viewWithTag:102];
+    if (tableView) {
+        [tableView reloadData];
+    }
+    [self startHttpRequest];
 }
 
 //创建详情列表
 -(void)initSetUpTableView:(CGRect)frame{
 	UITableView *aTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+    [aTableView setTag:102];
     [aTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 	[aTableView setSeparatorColor:[UIColor clearColor]];
 	[aTableView setBackgroundColor:[UIColor clearColor]];
@@ -99,18 +125,8 @@
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     self.navigationItem.title=@"保险知识库";
     self.view.backgroundColor=[UIColor colorWithRed:236/255.0 green:236/255.0 blue:238/255.0 alpha:1.0];
-    self.dataArray=[NSMutableArray arrayWithCapacity:3];
-    {
-        self.dataArray=[NSMutableArray arrayWithObjects:
-                        @"单保车损险的话，保险公司有一定比例的免赔范围",
-                        @"车主必须自己掏出一部分的钱为事故买单",
-                        @"买了不计免赔险的话，就可以让保险公司全额赔付了",
-                        @"所以建议消费者再为爱车购买车险时",
-                        nil];
-    }
-    
     [self init_selfView];
-    [self initSetUpTableView:CGRectMake(0, 25+40+10, 320, self.view.bounds.size.height-40-55-(25+40+10))];
+    [self initSetUpTableView:CGRectMake(0, 25+40+10, 320, self.view.bounds.size.height-40-55-(25+40+10)-10)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,6 +141,72 @@
     [super dealloc];
 }
 
+#pragma mark 网络相关
+
+-(void)startHttpRequest{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self request_InsuranceKnowledge];
+    });
+}
+
+//保险知识库
+-(void)request_InsuranceKnowledge
+{
+    NSString* searchStr=@"";
+    UITextField* textField=(UITextField*)[self.view viewWithTag:101];
+    if (textField) {
+        searchStr=textField.text;
+    }
+    
+    if (searchStr.length==0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ApplicationPublic showMessage:self with_title:@"提示" with_detail:@"请输入搜索关键字！" with_type:TSMessageNotificationTypeWarning with_Duration:1.5];
+        });
+        return;
+    }
+    
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"safeknow", @"action", searchStr, @"search", nil];
+    NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
+    CustomLog(@"<<Chao-->CSInsureAcknowledgeViewController-->request_InsuranceKnowledge-->urlStr:%@",urlStr);
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"POST"];
+    [request setCompletionBlock:^{
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        CustomLog(@"<<Chao-->CSInsureAcknowledgeViewController-->request_InsuranceKnowledge-->testResponseString:%@",testResponseString);
+        
+        NSString* backStr=@"\{\"status\":0,\"list\":[{\"id\":\"1\",\"title\":\"\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\",\"content\":\"\u6309\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u65f6\u6253\u626b\u6253\u626b\u6253\u626b\u7684\u662f\u7684\u963f\u8fbe\u6492\u7684\u554a\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"}]}";
+        NSDictionary *requestDic =[backStr JSONValue];
+
+        //NSDictionary *requestDic =[[request responseString] JSONValue];
+        CustomLog(@"<<Chao-->CSInsureAcknowledgeViewController-->request_InsuranceKnowledge-->requestDic:%@",requestDic);
+        if ([requestDic objectForKey:@"status"]) {
+            if ([[requestDic objectForKey:@"status"] intValue]==1) {
+                [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载数据失败！", nil) with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                return;
+            }else if ([[requestDic objectForKey:@"status"] intValue]==0){
+                if ([requestDic objectForKey:@"list"]) {
+                    self.dataArray=[requestDic objectForKey:@"list"];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UITableView* tableView=(UITableView*)[self.view viewWithTag:102];
+                        if (tableView) {
+                            [tableView reloadData];
+                        }
+                    });
+                }
+            }
+        }
+    }];
+    [request setFailedBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载数据失败，请检验网络！", nil) with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+        });
+    }];
+    [request startAsynchronous];
+}
+
 #pragma mark -UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -134,30 +216,58 @@
 //创建详细信息的Label
 -(void)createViewForcell:(UITableViewCell*)cell atRow:(NSIndexPath *)indexPath{
     
-    float x, y, width, height;
+    UIImageView* questionImageView=[[UIImageView alloc] initWithFrame:CGRectZero];
+    [questionImageView setTag:1001];
+    questionImageView.image=[UIImage imageNamed:@"baoxianzhishiku_sanjiao.png"];
+    [cell.contentView addSubview:questionImageView];
+    [questionImageView release];
     
-    x=10; y=(40-14)/2.0; width=7; height=14;
-    UIImageView* triangleImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    triangleImageView.image=[UIImage imageNamed:@"baoxianzhishiku_sanjiao.png"];
-    [cell.contentView addSubview:triangleImageView];
-    [triangleImageView release];
-
-    x=x+width+5; y=0; width=(320-x-10); height=40;
-    UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [textLabel setTag:1001];
-    [textLabel setBackgroundColor:[UIColor clearColor]];
-    [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [textLabel setTextAlignment:UITextAlignmentLeft];
-    [textLabel setFont:[UIFont boldSystemFontOfSize:12.0]];
-    [textLabel setTextColor:[UIColor darkGrayColor]];
-    [cell.contentView addSubview:textLabel];
-    [textLabel release];
+    //问题
+    [self setUpLabel:cell.contentView with_tag:1002 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentLeft];
         
-    x=10; y=40-2; width=320-10*2; height=2;
-    UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    //答案
+    [self setUpLabel:cell.contentView with_tag:1003 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentLeft];
+
+    UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectZero];
+    [lineImageView setTag:1004];
     lineImageView.image=[UIImage imageNamed:@"baoxianzhishiku_line.png"];
     [cell.contentView addSubview:lineImageView];
     [lineImageView release];
+}
+
+-(void)setUpLabel:(UIView*)superView with_tag:(int)tag with_frame:(CGRect)frame with_text:(NSString*)text with_Alignment:(NSTextAlignment)alignment
+{
+    UILabel* aLabel=[[UILabel alloc] initWithFrame:frame];
+    if (tag>=0) {
+        [aLabel setTag:tag];
+    }
+    [aLabel setBackgroundColor:[UIColor clearColor]];
+    [aLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+    [aLabel setTextAlignment:alignment];
+    [aLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
+    [aLabel setTextColor:[UIColor grayColor]];
+    [aLabel setText:text];
+    aLabel.numberOfLines=0;
+    aLabel.lineBreakMode=UILineBreakModeWordWrap;
+    [superView addSubview:aLabel];
+    [aLabel release];
+}
+
+-(float)heigtForString:(NSString*)string with_labelwidth:(float)labelWidth
+{
+    float height=CSInsureAcknowledgeViewController_text_height;
+    CGSize fontSize;
+    fontSize=[string sizeWithFont:[UIFont systemFontOfSize:CSInsureAcknowledgeViewController_text_font]];
+    int remainder = (int)fontSize.width%(int)labelWidth;
+    int line=(int)fontSize.width/(int)labelWidth;
+    if (remainder!=0) {
+        line=line+1;
+    }
+    float temp=(CSInsureAcknowledgeViewController_text_font+4)*line;
+    if (temp>height) {
+        height=temp;
+    }
+    return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -169,11 +279,45 @@
         //添加视图
         [self createViewForcell:cell atRow:indexPath];
     }
-    
-    if (self.dataArray && [self.dataArray count]>indexPath.row) {
-        UILabel* textLabel=(UILabel*)[cell.contentView viewWithTag:1001];
-        if (textLabel) {
-            textLabel.text=[self.dataArray objectAtIndex:indexPath.row];
+
+    if (self.dataArray && [self.dataArray count]>indexPath.row)
+    {
+        NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
+        NSString* title=[dict objectForKey:@"title"];
+        NSString* content=[dict objectForKey:@"content"];
+        
+        float x, y, width, height;
+
+        //三角
+        UIImageView* questionImgView=(UIImageView*)[cell.contentView viewWithTag:1001];
+        if (questionImgView) {
+            x=10; y=10; width=7; height=14;
+            questionImgView.frame=CGRectMake(x, y, width, height);
+        }
+        
+        //标题
+        UILabel* titleLabel=(UILabel*)[cell.contentView viewWithTag:1002];
+        if (titleLabel) {
+            titleLabel.text=title;
+            x=x+width+10; width=CSInsureAcknowledgeViewController_title_width;
+            height=[self heigtForString:title with_labelwidth:width];
+            titleLabel.frame=CGRectMake(x, y, width, height);
+        }
+        
+        //内容
+        UILabel* contenLabel=(UILabel*)[cell.contentView viewWithTag:1003];
+        if (contenLabel) {
+            contenLabel.text=content;
+            x=10; y=y+height; width=CSInsureAcknowledgeViewController_content_width;
+            height=[self heigtForString:content with_labelwidth:width];
+            contenLabel.frame=CGRectMake(x, y, width, height);
+        }
+        
+        //line
+        UIImageView* lineImgView=(UIImageView*)[cell.contentView viewWithTag:1004];
+        if (lineImgView) {
+            x=10; height=2;; width=320-10*2; y=[self heightForCell:indexPath]-height;
+            lineImgView.frame=CGRectMake(x, y, width, height);
         }
     }
     
@@ -181,15 +325,47 @@
     return cell;
 }
 
+-(CGFloat)heightForCell:(NSIndexPath*)indexPath
+{
+    if (self.dataArray && [self.dataArray count]>indexPath.row) {
+        NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
+        NSString* title=[dict objectForKey:@"title"];
+        NSString* content=[dict objectForKey:@"content"];
+        
+        float temp =10+[self heigtForString:title with_labelwidth:CSInsureAcknowledgeViewController_title_width]
+                    +[self heigtForString:content with_labelwidth:CSInsureAcknowledgeViewController_content_width]
+                    +10;
+        if (temp>CSInsureAcknowledgeViewController_text_height*2) {
+            return temp;
+        }else{
+            return CSInsureAcknowledgeViewController_text_height*2;
+        }
+    }
+    return CSInsureAcknowledgeViewController_text_height*2;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return [self heightForCell:indexPath];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
+    if (dict && [dict objectForKey:@"id"]) {
+        CSInsuranceDetailViewController* ctrler=[[CSInsuranceDetailViewController alloc] initwithID:[dict objectForKey:@"id"]];
+        [self.navigationController pushViewController:ctrler animated:YES];
+        [ctrler release];
+    }
 }
 
+#pragma mark - UITextFieldDelegate
+//按Done键键盘消失
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

@@ -47,7 +47,7 @@
         // 如果要关注网络及授权验证事件，请设定 generalDelegate参数
         BOOL ret = [_mapManager start:baidu_AccessKey  generalDelegate:nil];
         if (!ret) {
-            NSLog(@"<<Chao-->CSAppDelegate-->didFinishLaunchingWithOptions-->manager start failed!");
+            CustomLog(@"<<Chao-->CSAppDelegate-->didFinishLaunchingWithOptions-->manager start failed!");
         }
     });
     
@@ -165,7 +165,7 @@
 // called when a new view is selected by the user (but not programatically)
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    //NSLog(@"<<Chao-->CSAppDelegate-->BMKGeneralDelegate-->item %@",viewController);
+    //CustomLog(@"<<Chao-->CSAppDelegate-->BMKGeneralDelegate-->item %@",viewController);
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         UIViewController* curCtrler=[[(UINavigationController*)viewController viewControllers] objectAtIndex:0];
         if ([curCtrler isKindOfClass:[CSFirstViewController class]]) {
@@ -185,12 +185,12 @@
 #pragma mark BMKGeneralDelegate
 - (void)onGetNetworkState:(int)iError
 {
-    NSLog(@"<<Chao-->CSAppDelegate-->BMKGeneralDelegate-->onGetNetworkState %d",iError);
+    CustomLog(@"<<Chao-->CSAppDelegate-->BMKGeneralDelegate-->onGetNetworkState %d",iError);
 }
 
 - (void)onGetPermissionState:(int)iError
 {
-    NSLog(@"<<Chao-->CSAppDelegate-->BMKGeneralDelegate-->onGetPermissionState %d",iError);
+    CustomLog(@"<<Chao-->CSAppDelegate-->BMKGeneralDelegate-->onGetPermissionState %d",iError);
 }
 
 - (void)dealloc

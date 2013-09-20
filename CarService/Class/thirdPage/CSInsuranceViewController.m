@@ -221,7 +221,7 @@
         {
             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"保费预算" message:@"是否电话呼叫咨询？"];
             [alert setCancelButtonWithTitle:@"取消" block:nil];
-            [alert addButtonWithTitle:@"呼叫" block:^{
+            [alert setDestructiveButtonWithTitle:@"呼叫" block:^{
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",TELEPHONE_BaoFeiYuSuan]]];
             }];
             [alert show];
@@ -238,7 +238,7 @@
         {
             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"保险咨询" message:@"是否电话呼叫咨询？"];
             [alert setCancelButtonWithTitle:@"取消" block:nil];
-            [alert addButtonWithTitle:@"呼叫" block:^{
+            [alert setDestructiveButtonWithTitle:@"呼叫" block:^{
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",TELEPHONE_BaoXianZiXun]]];
             }];
             [alert show];

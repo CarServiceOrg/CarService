@@ -11,6 +11,9 @@
 #import "BlockActionSheet.h"
 #import "CSCarManageViewController.h"
 #import "CSAddCarViewController.h"
+#import "ASIHTTPRequest.h"
+#import "NSString+SBJSON.h"
+#import "TSMessage.h"
 
 @interface CSFirstViewController ()
 
@@ -161,7 +164,7 @@
         [self setUpLabel:weatherView with_tag:1005 with_frame:CGRectMake(x, y, width, height) with_text:week_day with_Alignment:NSTextAlignmentLeft];
         //明日限行
         y=y+height+10; width=13*5;
-        [self setUpLabel:weatherView with_tag:-1 with_frame:CGRectMake(x, y, width, height) with_text:@"明日限行:" with_Alignment:NSTextAlignmentLeft];
+        [self setUpLabel:weatherView with_tag:-1 with_frame:CGRectMake(x, y, width, height) with_text:@"今日限行:" with_Alignment:NSTextAlignmentLeft];
         //限行尾数1
         x=x+width-3; y=y+2; width=15; height=16;
         {
@@ -312,6 +315,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self init_NaviView];
     [self init_scrollView];
+    
+    //网络获取数据
+    [self startHttpRequest];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -373,6 +379,78 @@
 -(void)dealloc
 {
     [super dealloc];
+}
+
+#pragma mark 网络相关
+
+-(void)startHttpRequest{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self request_TrafficControls];
+    });
+}
+
+//今日限行
+-(void)request_TrafficControls
+{
+    NSString *urlStr = [URL_TrafficControls stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"POST"];
+    [request setCompletionBlock:^{
+        //NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        //NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        //CustomLog(@"<<Chao-->CSFirstViewController-->request_TrafficControls-->testResponseString:%@",testResponseString);
+        NSDictionary *requestDic =[[request responseString] JSONValue];
+        CustomLog(@"<<Chao-->CSFirstViewController-->request_TrafficControls-->requestDic:%@",requestDic);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([requestDic objectForKey:@"str"]) {
+                NSString* backStr=[requestDic objectForKey:@"str"];
+                if ([backStr isEqualToString:@"-1"]) {
+                    
+                }else{
+                    if (backStr.length>0) {
+                        [self updateTextForLabel:[backStr substringWithRange:NSMakeRange(0, 1)] with_superViewTag:201 with_LabelTag:1006];
+                    }
+                    if (backStr.length>1) {
+                        [self updateTextForLabel:[backStr substringWithRange:NSMakeRange(1, 1)] with_superViewTag:201 with_LabelTag:1007];
+                    }
+                }
+            }
+        });
+    }];
+    [request setFailedBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载今日限行数据失败，请检验网络！", nil) with_type:TSMessageNotificationTypeError];
+        });
+    }];
+    [request startAsynchronous];
+}
+
+-(void)updateTextForLabel:(NSString*)text with_superViewTag:(int)superTag  with_LabelTag:(int)labelTag
+{
+    UIScrollView* scrollView=(UIScrollView*)[self.view viewWithTag:101];
+    if (scrollView) {
+        UIView* superView=[scrollView viewWithTag:superTag];
+        if (superView) {
+            UILabel* aLabel=(UILabel*)[superView viewWithTag:labelTag];
+            aLabel.text=[NSString stringWithFormat:@"%@",text];
+        }
+    }
+}
+
+-(void)showMessage:(NSString*)titleStr with_detail:(NSString*)detailStr with_type:(TSMessageNotificationType)type
+{
+    [TSMessage showNotificationInViewController:self
+                                          title:titleStr
+                                       subtitle:detailStr
+                                          image:nil
+                                           type:type
+                                       duration:4.0
+                                       callback:nil
+                                    buttonTitle:nil
+                                 buttonCallback:nil
+                                     atPosition:TSMessageNotificationPositionTop
+                            canBeDismisedByUser:YES];
 }
 
 #pragma mark - 点击事件

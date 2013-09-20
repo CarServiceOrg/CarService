@@ -88,6 +88,7 @@
 		E174C2B117E5B97200C1CE71 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B017E5B97200C1CE71 /* Util.m */; };
 		E174C2B417E5BAE300C1CE71 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B317E5BAE100C1CE71 /* CommonViewController.m */; };
 		E174C2B717E5BC9200C1CE71 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E174C2B617E5BC9100C1CE71 /* Security.framework */; };
+		E17C2FC517EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E17C2FC417EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m */; };
 		E19AE7CD17E80326007B9F07 /* my_consume_record_header.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */; };
 		E19AE7CE17E80326007B9F07 /* profile_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7CC17E80326007B9F07 /* profile_background.png */; };
 		E19AE7DC17E82082007B9F07 /* CSCarCareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7D117E82082007B9F07 /* CSCarCareViewController.m */; };
@@ -503,6 +504,8 @@
 		E174C2B317E5BAE100C1CE71 /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
 		E174C2B517E5BBDE00C1CE71 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E174C2B617E5BC9100C1CE71 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E17C2FC317EC3B7D00D29BD4 /* CSInsuranceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSInsuranceDetailViewController.h; sourceTree = "<group>"; };
+		E17C2FC417EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSInsuranceDetailViewController.m; sourceTree = "<group>"; };
 		E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_consume_record_header.png; sourceTree = "<group>"; };
 		E19AE7CC17E80326007B9F07 /* profile_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_background.png; sourceTree = "<group>"; };
 		E19AE7D017E82082007B9F07 /* CSCarCareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCarCareViewController.h; sourceTree = "<group>"; };
@@ -1123,6 +1126,8 @@
 				E19AE7D917E82082007B9F07 /* CSReportCaseViewController.m */,
 				E19AE7D617E82082007B9F07 /* CSInsureAcknowledgeViewController.h */,
 				E19AE7D717E82082007B9F07 /* CSInsureAcknowledgeViewController.m */,
+				E17C2FC317EC3B7D00D29BD4 /* CSInsuranceDetailViewController.h */,
+				E17C2FC417EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m */,
 				E19AE7DA17E82082007B9F07 /* CSShopRecommendViewController.h */,
 				E19AE7DB17E82082007B9F07 /* CSShopRecommendViewController.m */,
 				E152A9E817E8BFAB00E73902 /* CSCareRecordViewController.h */,
@@ -1466,9 +1471,9 @@
 		E1EBEC8E17EB6CC30026682A /* TSMessages */ = {
 			isa = PBXGroup;
 			children = (
+				E1EBEC9817EB6CC30026682A /* README_TSMessages.md */,
 				E1EBEC8F17EB6CC30026682A /* Classes */,
 				E1EBEC9217EB6CC30026682A /* HexColors */,
-				E1EBEC9817EB6CC30026682A /* README_TSMessages.md */,
 				E1EBEC9917EB6CC30026682A /* Resources */,
 				E1EBECAC17EB6CC30026682A /* Views */,
 			);
@@ -2351,6 +2356,7 @@
 				E1EBECB217EB6CC30026682A /* HexColor.m in Sources */,
 				E1EBECC717EB6CC30026682A /* TSBlurView.m in Sources */,
 				E1EBECC817EB6CC30026682A /* TSMessageView.m in Sources */,
+				E17C2FC517EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
