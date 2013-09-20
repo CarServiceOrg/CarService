@@ -78,8 +78,10 @@
 {
     self.backView.hidden = YES;
     [self.changeInfoRequest clearDelegatesAndCancel];
-    NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
-    NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
+    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+
+    NSString *uid = [dic objectForKey:@"id"];
+    NSString *sessionId = [dic objectForKey:@"session_id"];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"user_info",@"action",uid,@"user_id",sessionId,@"session_id", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -146,8 +148,10 @@
     }
     
     [self.changeInfoRequest clearDelegatesAndCancel];
-    NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
-    NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
+    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+
+    NSString *uid = [dic objectForKey:@"id"];
+    NSString *sessionId = [dic objectForKey:@"session_id"];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"edit_user_info",@"action",uid,@"user_id",sessionId,@"session_id",self.nameLabel.text,@"username",self.ageField.text,@"age",self.sexLabel.text,@"sex",self.phoneField.text,@"phone",self.driverLecenseField.text,@"drivecard", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

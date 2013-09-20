@@ -244,7 +244,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    if ([[Util sharedUtil] hasLogin])
     {
         UIViewController *controller;
         

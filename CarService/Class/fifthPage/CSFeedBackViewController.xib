@@ -161,7 +161,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{173, 497}, {73, 40}}</string>
 								<reference key="NSSuperview" ref="502516170"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -272,6 +271,14 @@
 						<reference key="destination" ref="356284990"/>
 					</object>
 					<int key="connectionID">22</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">textViewBackView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="253347651"/>
+					</object>
+					<int key="connectionID">23</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -393,7 +400,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">23</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -401,11 +408,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="feedback_back.png">{16, 16}</string>
-			<string key="feedback_cancel.png">{16, 16}</string>
-			<string key="feedback_cancel_press.png">{16, 16}</string>
-			<string key="feedback_confirm.png">{16, 16}</string>
-			<string key="feedback_confirm_press.png">{16, 16}</string>
+			<string key="feedback_back.png">{587, 681}</string>
+			<string key="feedback_cancel.png">{135, 80}</string>
+			<string key="feedback_cancel_press.png">{135, 80}</string>
+			<string key="feedback_confirm.png">{135, 80}</string>
+			<string key="feedback_confirm_press.png">{135, 80}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

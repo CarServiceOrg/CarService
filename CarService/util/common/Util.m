@@ -9,7 +9,14 @@
 #import "Util.h"
 #import "URLConfig.h"
 
+@interface Util ()
+
+@property (nonatomic,retain) NSDictionary *userInfo;
+
+@end
+
 @implementation Util
+@synthesize userInfo;
 
 + (Util *)sharedUtil
 {
@@ -17,6 +24,7 @@
     if (nil == util) 
     {
         util = [[Util alloc] init];
+        util.userInfo = nil;
     }
     return util;
 }
@@ -35,6 +43,12 @@
         return NSOrderedAscending;
     }
     return NSOrderedDescending;
+}
+
+- (void)dealloc
+{
+    self.userInfo = nil;
+    [super dealloc];
 }
 
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message
@@ -112,5 +126,26 @@
 {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 }
+
+- (BOOL)hasLogin
+{
+    return (nil != self.userInfo);
+}
+
+- (void)logout
+{
+    self.userInfo = nil;
+}
+
+- (NSDictionary *)getUserInfo
+{
+    return self.userInfo;
+}
+
+- (void)setLoginUserInfo:(NSDictionary *)userDic
+{
+    self.userInfo = userDic;
+}
+
 
 @end

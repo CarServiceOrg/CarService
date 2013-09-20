@@ -12,6 +12,7 @@
 @interface CSFeedBackViewController ()
 
 @property (nonatomic,retain) IBOutlet UILabel *textPlaceHolderLabel;
+@property (nonatomic,retain) IBOutlet UIImageView *textViewBackView;
 @property (nonatomic,retain) IBOutlet UITextView *textView;
 @property (nonatomic,retain) ASIHTTPRequest *commentRequest;
 @property (nonatomic,retain) IBOutlet UIScrollView *contentScrollView;
@@ -29,6 +30,7 @@
 @synthesize contentScrollView;
 @synthesize confirmButton;
 @synthesize cancelButton;
+@synthesize textViewBackView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,6 +53,7 @@
     [commentRequest clearDelegatesAndCancel];
     [commentRequest release];
     [contentScrollView release];
+    [textViewBackView release];
     [super dealloc];
 }
 
@@ -59,9 +62,50 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)adjustLayout:(BOOL)showKeyBoard
+{
+    if (showKeyBoard)
+    {
+        if (Is_iPhone5)
+        {
+            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,180);
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,180);
+            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
+            self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+        }
+        else
+        {
+            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,100);
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,100);
+            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
+            self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+        }
+
+    }
+    else
+    {
+        if (Is_iPhone5)
+        {
+            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,375);
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,375);
+            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
+            self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+        }
+        else
+        {
+            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,285);
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,285);
+            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
+            self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+        }
+
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (Is_iPhone5)
+    [self adjustLayout:self.textView.isFirstResponder];
+    /*if (Is_iPhone5)
     {
         
         self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 16, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
@@ -71,7 +115,7 @@
     {
         self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
         self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
-    }
+    }*/
     
 }
 
@@ -88,6 +132,9 @@
     tapReconginzer.numberOfTouchesRequired = 1;
     [self.contentScrollView addGestureRecognizer:tapReconginzer];
     [tapReconginzer release];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
 }
 
@@ -177,6 +224,32 @@
         return NO;
     }
     return YES;
+}
+
+
+#pragma mark KeyBoradNotification
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    CustomLog(@"frame:%f,%f,%f,%f",keyboardRect.origin.x,keyboardRect.origin.y,keyboardRect.size.width,keyboardRect.size.height);
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        [self adjustLayout:YES];
+    }];
+    
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        [self adjustLayout:NO];
+
+    }];
+    
 }
 
 @end

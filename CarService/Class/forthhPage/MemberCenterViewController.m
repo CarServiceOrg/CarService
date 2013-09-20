@@ -81,7 +81,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    if ([[Util sharedUtil] hasLogin])
     {
         return 6;
     }
@@ -134,7 +134,7 @@
     UIImage *normalImage = nil;
     UIImage *selectImage = nil;
     
-    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    if ([[Util sharedUtil] hasLogin])
     {
         
         if (indexPath.row == 0)
@@ -245,7 +245,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UIViewController *controller;
-    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    if ([[Util sharedUtil] hasLogin])
     {
         switch (indexPath.row)
         {
@@ -299,9 +299,7 @@
 
 - (void)logoutUser
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserDefaultUserInfo];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
+    [[Util sharedUtil] logout];
     [[NSNotificationCenter defaultCenter] postNotificationName:LogoutSuccessNotification object:nil];
     //向服务器发logout请求
     self.logoutRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_logout]];

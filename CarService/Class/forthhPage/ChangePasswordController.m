@@ -215,8 +215,9 @@
     
     [self.changeRequest clearDelegatesAndCancel];
     
-    NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
-    NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
+    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+    NSString *uid = [dic objectForKey:@"id"];
+    NSString *sessionId = [dic objectForKey:@"session_id"];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"change_password",@"action",uid,@"user_id",[self.oldPassField.text md5String],@"password",sessionId,@"session_id", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

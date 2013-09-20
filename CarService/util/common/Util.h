@@ -20,4 +20,9 @@
 - (void)clearCookieInfo;
 -(NSString *)get_appVersion;
 
+- (BOOL)hasLogin;
+- (void)logout;
+- (NSDictionary *)getUserInfo;
+- (void)setLoginUserInfo:(NSDictionary *)userDic;
+
 @end

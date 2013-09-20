@@ -218,8 +218,7 @@
         switch (code) {
             case 1:
                 CustomLog(@"登陆成功");
-                [[NSUserDefaults standardUserDefaults] setObject:requestDic forKey:UserDefaultUserInfo];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+                [[Util sharedUtil] setLoginUserInfo:requestDic];
                 
                 [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];
                 

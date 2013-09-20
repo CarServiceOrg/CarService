@@ -62,7 +62,7 @@
         [tempView removeFromSuperview];
     }
     
-    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    if ([[Util sharedUtil] hasLogin])
     {
         MemberCenterViewController *controller = [[MemberCenterViewController alloc] initWithNibName:@"MemberCenterViewController" bundle:nil];
         controller.parentController = self;
@@ -73,6 +73,10 @@
     else
     {
         CSLogInViewController *controller = [[CSLogInViewController alloc] initWithNibName:@"CSLogInViewController" bundle:nil];
+        //if (Is_iPhone5)
+        {
+            controller.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+        }
         controller.parentController = self;
         [self.view addSubview:controller.view];
         self.navigationItem.title = @"登陆";
