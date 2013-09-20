@@ -177,10 +177,7 @@
         NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         CustomLog(@"<<Chao-->CSInsureAcknowledgeViewController-->request_InsuranceKnowledge-->testResponseString:%@",testResponseString);
         
-        NSString* backStr=@"\{\"status\":0,\"list\":[{\"id\":\"1\",\"title\":\"\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\",\"content\":\"\u6309\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u8d54\u507f\u6700\u5927\u5316\\u65f6\u6253\u626b\u6253\u626b\u6253\u626b\u7684\u662f\u7684\u963f\u8fbe\u6492\u7684\u554a\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"},{\"id\":\"2\",\"title\":\"\u4fdd\u9669\u6700\u57fa\u672c\u7684\u77e5\u8bc6\",\"content\":\"\u4f60\u8bf4\u6492\u7684\u6492\u5355\u4f4d\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u6253\u626b\u7684\"}]}";
-        NSDictionary *requestDic =[backStr JSONValue];
-
-        //NSDictionary *requestDic =[[request responseString] JSONValue];
+        NSDictionary *requestDic =[[request responseString] JSONValue];
         CustomLog(@"<<Chao-->CSInsureAcknowledgeViewController-->request_InsuranceKnowledge-->requestDic:%@",requestDic);
         if ([requestDic objectForKey:@"status"]) {
             if ([[requestDic objectForKey:@"status"] intValue]==1) {
@@ -355,7 +352,7 @@
     
     NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
     if (dict && [dict objectForKey:@"id"]) {
-        CSInsuranceDetailViewController* ctrler=[[CSInsuranceDetailViewController alloc] initwithID:[dict objectForKey:@"id"]];
+        CSInsuranceDetailViewController* ctrler=[[CSInsuranceDetailViewController alloc] initController:self.navigationItem.title with_id:[dict objectForKey:@"id"]];
         [self.navigationController pushViewController:ctrler animated:YES];
         [ctrler release];
     }

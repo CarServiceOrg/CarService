@@ -12,6 +12,6 @@
     
 }
 
--(id)initwithID:(NSString*)idStr;
+-(id)initController:(NSString*)superTitle  with_id:(NSString*)idStr;
 
 @end

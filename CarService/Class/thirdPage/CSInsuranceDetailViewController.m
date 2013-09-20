@@ -18,6 +18,7 @@
     
 }
 
+@property(nonatomic,retain) NSString* m_superTitle;
 @property(nonatomic,retain) NSString* m_idStr;
 
 @end
@@ -28,11 +29,12 @@
 #define CSInsuranceDetailViewController_font_title 14.0
 #define CSInsuranceDetailViewController_font_text 13.0
 
--(id)initwithID:(NSString*)idStr
+-(id)initController:(NSString*)superTitle  with_id:(NSString*)idStr
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
+        self.m_superTitle=superTitle;
         self.m_idStr=idStr;
     }
     return self;
@@ -110,6 +112,7 @@
 
 -(void)dealloc
 {
+    self.m_superTitle=nil;
     self.m_idStr=nil;
     [super dealloc];
 }
@@ -118,14 +121,25 @@
 
 -(void)startHttpRequest{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self request_InsuranceDetail];
+        [self request_Detail];
     });
 }
 
 //保险知识库
--(void)request_InsuranceDetail
+-(void)request_Detail
 {
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"show_safeknow", @"action", self.m_idStr, @"id", nil];
+    NSDictionary *argDic=nil;
+    if ([self.m_superTitle isEqualToString:@"保险知识库"]) {
+        argDic= [NSDictionary dictionaryWithObjectsAndKeys:@"show_safeknow", @"action", self.m_idStr, @"id", nil];
+    }else if ([self.m_superTitle isEqualToString:@"保养常识"]){
+        argDic= [NSDictionary dictionaryWithObjectsAndKeys:@"maintenance", @"action", self.m_idStr, @"id", nil];
+    }else if ([self.m_superTitle isEqualToString:@"保养咨询"]){
+        argDic= [NSDictionary dictionaryWithObjectsAndKeys:@"maintenance", @"action", self.m_idStr, @"id", nil];
+    }
+    if (argDic==nil) {
+        return;
+    }
+    
     NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
     CustomLog(@"<<Chao-->CSInsureAcknowledgeViewController-->request_InsuranceKnowledge-->urlStr:%@",urlStr);

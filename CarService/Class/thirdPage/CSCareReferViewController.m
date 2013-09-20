@@ -7,6 +7,11 @@
 //
 
 #import "CSCareReferViewController.h"
+#import "ASIHTTPRequest.h"
+#import "NSString+SBJSON.h"
+#import "NSObject+SBJSON.h"
+#import "TSMessage.h"
+#import "CSInsuranceDetailViewController.h"
 
 @interface CSCareReferViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -23,6 +28,9 @@
 #define CSCareReferViewController_text_font 12
 #define CSCareReferViewController_text_width (320-10-20-10-10)
 #define CSCareReferViewController_text_height 20 
+
+#define CSCareKnowledgeViewController_key_title     @"title"
+#define CSCareKnowledgeViewController_key_content   @"content"
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -82,7 +90,17 @@
 
 -(void)queryBtnClick:(id)sender
 {
+    UITextField* textField=(UITextField*)[self.view viewWithTag:101];
+    if (textField) {
+        [textField resignFirstResponder];
+    }
     
+    [self.dataArray removeAllObjects];
+    UITableView* tableView=(UITableView*)[self.view viewWithTag:102];
+    if (tableView) {
+        [tableView reloadData];
+    }
+    [self startHttpRequest];
 }
 
 //创建详情列表
@@ -108,25 +126,7 @@
 	// Do any additional setup after loading the view.
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     self.navigationItem.title=@"保养咨询";
-    self.view.backgroundColor=[UIColor colorWithRed:236/255.0 green:236/255.0 blue:238/255.0 alpha:1.0];
-    self.dataArray=[NSMutableArray arrayWithCapacity:3];
-    {
-        self.dataArray=[NSMutableArray arrayWithObjects:
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"1单保车损险的话，保险公司有一定比例的免赔范围?", @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"2单保车损险的话，保险公司有一定比例的免赔范围单保车损险的话，保险公司有一定比例的免赔范围单保车损险的话，保险公司有一定比例的免赔范围单保车损险的话，保险公司有一定比例的免赔范围单保车损险的话，保险公司有一定比例的免赔范围?",  @"question", @"车主必须自单车主必须自己掏出 分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"3单保车损险的话?" , @"question", @"一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"4单保车损险的话，保险公司有一定比例的免赔范围?" , @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"5单保车损险的话，保险公司有一定比例的免赔范围?" , @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"6单保车损险的话，保险公司有一定比例的免赔范围?",  @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"7单保车损险的话，保险公司有一定比例的免赔范围险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免?",@"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"8单保车损险的话，保险公司有一定比例的免赔范围?",  @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"9单保车损险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免免赔范围?" , @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免险的话，保险公司有一定比例的免部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"10单保车损险的话，保险公司有一定比例的免赔范围?" , @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"11单保车损险的话，保险公司有一定比例的免赔范围?" , @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        [NSDictionary dictionaryWithObjectsAndKeys:@"12单保车损险的话，保险公司有一定比例的免赔范围?" , @"question", @"车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单车主必须自己掏出一部分的钱为事故买单", @"answer" , nil],
-                        nil];
-    }
-    
+    self.view.backgroundColor=[UIColor colorWithRed:236/255.0 green:236/255.0 blue:238/255.0 alpha:1.0];    
     [self init_selfView];
     [self initSetUpTableView:CGRectMake(10, 25+40+10, 300, self.view.bounds.size.height-40-55-(25+40+10))];
 }
@@ -141,6 +141,69 @@
 {
     self.dataArray=nil;
     [super dealloc];
+}
+
+#pragma mark 网络相关
+
+-(void)startHttpRequest{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self request_InsuranceKnowledge];
+    });
+}
+
+//保养咨询
+-(void)request_InsuranceKnowledge
+{
+    NSString* searchStr=@"";
+    UITextField* textField=(UITextField*)[self.view viewWithTag:101];
+    if (textField) {
+        searchStr=textField.text;
+    }
+    
+    if (searchStr.length==0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ApplicationPublic showMessage:self with_title:@"提示" with_detail:@"请输入搜索关键字！" with_type:TSMessageNotificationTypeWarning with_Duration:1.5];
+        });
+        return;
+    }
+    //type 1 为保养知识  2 为保养咨询
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"maintenance", @"action", @"2", @"type", searchStr, @"search", nil];
+    NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
+    CustomLog(@"<<Chao-->CSCareReferViewController-->urlStr:%@",urlStr);
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"POST"];
+    [request setCompletionBlock:^{
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        CustomLog(@"<<Chao-->CSCareReferViewController-->testResponseString:%@",testResponseString);
+        
+        NSDictionary *requestDic =[[request responseString] JSONValue];
+        CustomLog(@"<<Chao-->CSCareReferViewController-->requestDic:%@",requestDic);
+        if ([requestDic objectForKey:@"status"]) {
+            if ([[requestDic objectForKey:@"status"] intValue]==1) {
+                [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载数据失败！", nil) with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                return;
+            }else if ([[requestDic objectForKey:@"status"] intValue]==0){
+                if ([requestDic objectForKey:@"list"]) {
+                    self.dataArray=[requestDic objectForKey:@"list"];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UITableView* tableView=(UITableView*)[self.view viewWithTag:102];
+                        if (tableView) {
+                            [tableView reloadData];
+                        }
+                    });
+                }
+            }
+        }
+    }];
+    [request setFailedBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载数据失败，请检验网络！", nil) with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+        });
+    }];
+    [request startAsynchronous];
 }
 
 #pragma mark -UITableViewDataSource
@@ -226,8 +289,8 @@
     if (self.dataArray && [self.dataArray count]>indexPath.row)
     {
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
-        NSString* question=[dict objectForKey:@"question"];
-        NSString* answer=[dict objectForKey:@"answer"];
+        NSString* title=[dict objectForKey:CSCareKnowledgeViewController_key_title];
+        NSString* content=[dict objectForKey:CSCareKnowledgeViewController_key_content];
         
         float x, y, width, height;
        
@@ -241,8 +304,8 @@
         //问题
         UILabel* questionLabel=(UILabel*)[cell.contentView viewWithTag:1002];
         if (questionLabel) {
-            questionLabel.text=question;
-            x=x+width+10; width=CSCareReferViewController_text_width; height=[self heigtForString:question];
+            questionLabel.text=title;
+            x=x+width+10; width=CSCareReferViewController_text_width; height=[self heigtForString:title];
             questionLabel.frame=CGRectMake(x, y, width, height);
         }
         
@@ -256,8 +319,8 @@
         //答案
         UILabel* answerLabel=(UILabel*)[cell.contentView viewWithTag:1004];
         if (answerLabel) {
-            answerLabel.text=answer;
-            x=x+width+10; width=CSCareReferViewController_text_width; height=[self heigtForString:answer];
+            answerLabel.text=content;
+            x=x+width+10; width=CSCareReferViewController_text_width; height=[self heigtForString:content];
             answerLabel.frame=CGRectMake(x, y, width, height);
         }
         
@@ -269,7 +332,7 @@
         }
     }
     
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    cell.selectionStyle=UITableViewCellSelectionStyleGray;
     return cell;
 }
 
@@ -277,10 +340,10 @@
 {
     if (self.dataArray && [self.dataArray count]>indexPath.row) {
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
-        NSString* question=[dict objectForKey:@"question"];
-        NSString* answer=[dict objectForKey:@"answer"];
+        NSString* title=[dict objectForKey:CSCareKnowledgeViewController_key_title];
+        NSString* content=[dict objectForKey:CSCareKnowledgeViewController_key_content];
         
-        float temp =10+[self heigtForString:question]+10+[self heigtForString:answer]+10;
+        float temp =10+[self heigtForString:title]+10+[self heigtForString:content]+10;
         if (temp>CSCareReferViewController_text_height) {
             return temp;
         }else{
