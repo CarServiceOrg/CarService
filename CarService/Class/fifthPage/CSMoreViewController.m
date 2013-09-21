@@ -352,7 +352,7 @@
     }
     else
     {
-        if ([[requestDic objectForKey:@"status"] isEqualToString:@"0"])
+        if ([[requestDic objectForKey:@"status"] integerValue]==0)
         {
             /*NSString *content = [[requestDic objectForKey:@"data"] objectForKey:@"content"];
             NSString *newVersion = [[requestDic objectForKey:@"data"] objectForKey:@"version"];

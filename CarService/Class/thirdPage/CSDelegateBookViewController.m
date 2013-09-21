@@ -9,12 +9,23 @@
 #import "CSDelegateBookViewController.h"
 #import "GCPlaceholderTextView.h"
 #import "ActionSheetDatePicker.h"
+#import "MBProgressHUD.h"
+#import "ActionSheetStringPicker.h"
+#import "TSMessage.h"
 
-@interface CSDelegateBookViewController ()<UITextFieldDelegate, UITextViewDelegate>
+@interface CSDelegateBookViewController ()<UITextFieldDelegate, UITextViewDelegate, MBProgressHUDDelegate>
+{
+    
+}
+
+@property (nonatomic,retain) NSMutableArray* dataArray;
+@property (readonly,assign) MBProgressHUD *alertView;
 
 @end
 
 @implementation CSDelegateBookViewController
+@synthesize dataArray;
+@synthesize alertView;
 
 -(id)initWithBookType:(CSDelegateServiceType) type
 {
@@ -153,6 +164,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc
+{
+    if (alertView&&alertView.superview) {
+        alertView.delegate = nil;
+        [alertView removeFromSuperview];
+        [alertView release],alertView = nil;
+    }
+    self.dataArray=nil;
+    
+    [super dealloc];
+}
+
 #pragma mark - 点击事件
 -(void)backBtnClick:(id)sender
 {
@@ -201,7 +224,60 @@
             default:
                 break;
         }
+    }else if (textField.tag==102){
+        switch (_type) {
+            case CSDelegateServiceType_wash:
+            case CSDelegateServiceType_check:
+            case CSDelegateServiceType_fix:
+            case CSDelegateServiceType_sale:
+            {
+                {
+                    self.alertView.mode = MBProgressHUDModeText;
+                    self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
+                    [self.alertView show:YES];
+                }
+                
+                //获取代维服务地点列表
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    self.dataArray=[NSMutableArray arrayWithCapacity:3];
+                    [ApplicationRequest startHttpRequest_delegateAddress:self.dataArray];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.alertView hide:YES];
+                        if ([self.dataArray count]==0) {
+                            [ApplicationPublic showMessage:self with_title:@"错误" with_detail:@"加载数据失败，请检验您的网络！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                        }else{
+                            //可选列表
+                            ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                if (textField) {
+                                    textField.text=[NSString stringWithFormat:@"%@",(NSString*)selectedValue];
+                                }
+                            };
+                            ActionStringCancelBlock cancel = ^(ActionSheetStringPicker *picker) {
+                                
+                            };
+                            NSInteger selectedIndex=1;
+                            NSMutableArray* strArray=[NSMutableArray arrayWithCapacity:3];
+                            for (NSDictionary* dict in self.dataArray) {
+                                if ([dict objectForKey:@"address"]) {
+                                    [strArray addObject:[dict objectForKey:@"address"]];
+                                }
+                            }                            
+                            [ActionSheetStringPicker showPickerWithTitle:@"选择地区" rows:strArray initialSelection:selectedIndex
+                                                               doneBlock:done cancelBlock:cancel origin:textField];
+                        }
+                    });
+                    
+                });
+                
+                return NO;
+
+            }
+                break;
+            default:
+                break;
+        }
     }
+    
     
     return YES;
 }
@@ -234,6 +310,31 @@
             self.view.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         }];
     }
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    if (alertView&&alertView.superview) {
+        alertView.delegate = nil;
+        [alertView removeFromSuperview];
+        [alertView release],alertView = nil;
+    }
+}
+- (MBProgressHUD*) alertView
+{
+    if (alertView==nil) {
+        id delegate = [UIApplication sharedApplication].delegate;
+        UIWindow *window = [delegate window];
+        alertView = [[MBProgressHUD alloc] initWithView:window];
+        [window addSubview:alertView];
+        alertView.dimBackground = YES;
+        alertView.labelText = NSLocalizedString(@"加载中", @"");
+        alertView.delegate = self;
+    }
+    return alertView;
 }
 
 @end

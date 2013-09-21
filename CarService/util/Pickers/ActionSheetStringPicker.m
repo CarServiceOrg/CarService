@@ -146,8 +146,10 @@
     [textLabel setBackgroundColor:[UIColor clearColor]];
     [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     [textLabel setTextAlignment:UITextAlignmentCenter];
-    [textLabel setFont:[UIFont boldSystemFontOfSize:22.0]];
+    [textLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
     [textLabel setText:[self.data objectAtIndex:row]];
+    [textLabel setNumberOfLines:0];
+    [textLabel setLineBreakMode:NSLineBreakByWordWrapping];
     
     if (row==0) {
         UIImageView* front_imgView=[[UIImageView alloc] initWithFrame:CGRectMake((textLabel.frame.size.width-354)/2, 0, 354, 2)];

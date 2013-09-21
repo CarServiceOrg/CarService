@@ -218,7 +218,10 @@
         switch (code) {
             case 1:
                 CustomLog(@"登陆成功");
-                [[Util sharedUtil] setLoginUserInfo:requestDic];
+                
+                NSMutableDictionary* dataDict=[NSMutableDictionary dictionaryWithDictionary:requestDic];
+                [dataDict setObject:[self.userInfo objectForKey:@"username"] forKey:@"username"];
+                [[Util sharedUtil] setLoginUserInfo:dataDict];
                 
                 [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];
                 

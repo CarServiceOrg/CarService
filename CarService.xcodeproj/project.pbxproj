@@ -89,6 +89,7 @@
 		E174C2B417E5BAE300C1CE71 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B317E5BAE100C1CE71 /* CommonViewController.m */; };
 		E174C2B717E5BC9200C1CE71 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E174C2B617E5BC9100C1CE71 /* Security.framework */; };
 		E17C2FC517EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E17C2FC417EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m */; };
+		E17C2FC817ECCB1600D29BD4 /* ApplicationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E17C2FC717ECCB1500D29BD4 /* ApplicationRequest.m */; };
 		E19AE7CD17E80326007B9F07 /* my_consume_record_header.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */; };
 		E19AE7CE17E80326007B9F07 /* profile_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE7CC17E80326007B9F07 /* profile_background.png */; };
 		E19AE7DC17E82082007B9F07 /* CSCarCareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE7D117E82082007B9F07 /* CSCarCareViewController.m */; };
@@ -506,6 +507,8 @@
 		E174C2B617E5BC9100C1CE71 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E17C2FC317EC3B7D00D29BD4 /* CSInsuranceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSInsuranceDetailViewController.h; sourceTree = "<group>"; };
 		E17C2FC417EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSInsuranceDetailViewController.m; sourceTree = "<group>"; };
+		E17C2FC617ECCB1300D29BD4 /* ApplicationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationRequest.h; sourceTree = "<group>"; };
+		E17C2FC717ECCB1500D29BD4 /* ApplicationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationRequest.m; sourceTree = "<group>"; };
 		E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_consume_record_header.png; sourceTree = "<group>"; };
 		E19AE7CC17E80326007B9F07 /* profile_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_background.png; sourceTree = "<group>"; };
 		E19AE7D017E82082007B9F07 /* CSCarCareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCarCareViewController.h; sourceTree = "<group>"; };
@@ -1256,6 +1259,8 @@
 			children = (
 				E1D043B217E6DCC2008CBE90 /* ApplicationPublic.h */,
 				E1D043B317E6DCC2008CBE90 /* ApplicationPublic.m */,
+				E17C2FC617ECCB1300D29BD4 /* ApplicationRequest.h */,
+				E17C2FC717ECCB1500D29BD4 /* ApplicationRequest.m */,
 				E1EBEC8717EADA1C0026682A /* first */,
 				E1D043B417E6DCC2008CBE90 /* fifthPage */,
 				E1D043B517E6DCC2008CBE90 /* forthhPage */,
@@ -2357,6 +2362,7 @@
 				E1EBECC717EB6CC30026682A /* TSBlurView.m in Sources */,
 				E1EBECC817EB6CC30026682A /* TSMessageView.m in Sources */,
 				E17C2FC517EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m in Sources */,
+				E17C2FC817ECCB1600D29BD4 /* ApplicationRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

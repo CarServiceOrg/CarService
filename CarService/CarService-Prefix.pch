@@ -15,6 +15,7 @@
     #import "URLConfig.h"
     #import "SBJSON.h"
     #import "ApplicationPublic.h"
+    #import "ApplicationRequest.h"
     #import "NSArray+CheckRange.h"
     #import "NSString+MD5.h"
 #define LOG_ON
