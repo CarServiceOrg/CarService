@@ -36,7 +36,7 @@
     self.navigationItem.title=@"首页";
     
     //按钮
-    UIButton* mangerBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60/2.0+4, 46/2.0)];
+    UIButton* mangerBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60/2.0+6, 46/2.0+3)];
     [mangerBtn setImage:[UIImage imageNamed:@"shouye_btn1.png"] forState:UIControlStateNormal];
     [mangerBtn setImage:[UIImage imageNamed:@"shouye_btn1_press.png"] forState:UIControlStateHighlighted];
     [mangerBtn addTarget:self action:@selector(mangerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
