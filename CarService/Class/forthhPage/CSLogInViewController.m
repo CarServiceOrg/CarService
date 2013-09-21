@@ -58,6 +58,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     self.navigationController.navigationBar.hidden = YES;
     self.scrollView.contentSize = CGSizeMake(320, self.view.frame.size.height - 40 - 49);
     rememberPassword = YES;
