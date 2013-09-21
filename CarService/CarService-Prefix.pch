@@ -18,6 +18,9 @@
     #import "ApplicationRequest.h"
     #import "NSArray+CheckRange.h"
     #import "NSString+MD5.h"
+    #import "Util.h"
+    #import "BlockAlertView.h"
+    #import "BlockActionSheet.h"
 #define LOG_ON
 
 static inline void CustomLog(NSString *format, ...)

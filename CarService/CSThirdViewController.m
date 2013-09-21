@@ -11,6 +11,7 @@
 #import "CSCarCareViewController.h"
 #import "CSDelegateServiceViewController.h"
 #import "CSReportCaseViewController.h"
+#import "CSAppDelegate.h"
 
 @interface CSThirdViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -220,16 +221,39 @@
             break;
         case 2:
         {
-            CSDelegateServiceViewController* ctrler=[[CSDelegateServiceViewController alloc] init];
-            [self.navigationController pushViewController:ctrler animated:YES];
-            [ctrler release];
+            
+            if ([[Util sharedUtil] getUserInfo]) {
+                CSDelegateServiceViewController* ctrler=[[CSDelegateServiceViewController alloc] init];
+                [self.navigationController pushViewController:ctrler animated:YES];
+                [ctrler release];
+            }else{
+                //提示登录
+                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"请先登录！"];
+                [alert setCancelButtonWithTitle:@"取消" block:nil];
+                [alert setDestructiveButtonWithTitle:@"登录" block:^{
+                    [self.tabBarController setSelectedIndex:3];
+                    [(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+                }];
+                [alert show];        
+            }
         }
             break;
         case 3:
         {
-            CSReportCaseViewController* ctrler=[[CSReportCaseViewController alloc] init];
-            [self.navigationController pushViewController:ctrler animated:YES];
-            [ctrler release];
+            if ([[Util sharedUtil] getUserInfo]) {
+                CSReportCaseViewController* ctrler=[[CSReportCaseViewController alloc] init];
+                [self.navigationController pushViewController:ctrler animated:YES];
+                [ctrler release];
+            }else{
+                //提示登录
+                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"请先登录！"];
+                [alert setCancelButtonWithTitle:@"取消" block:nil];
+                [alert setDestructiveButtonWithTitle:@"登录" block:^{
+                    [self.tabBarController setSelectedIndex:3];
+                    [(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+                }];
+                [alert show];        
+            }
         }
             break;
             

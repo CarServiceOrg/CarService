@@ -12,6 +12,9 @@
 #import "MBProgressHUD.h"
 #import "ActionSheetStringPicker.h"
 #import "TSMessage.h"
+#import "ASIHTTPRequest.h"
+#import "NSString+SBJSON.h"
+#import "NSObject+SBJSON.h"
 
 @interface CSDelegateBookViewController ()<UITextFieldDelegate, UITextViewDelegate, MBProgressHUDDelegate>
 {
@@ -110,11 +113,11 @@
             break;
     }
     
-    //车牌号
+    //时间
     x=10; y=20; width=320-10*2; height=40;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:firstHolderStr with_delegate:self];
     
-    //发动机号
+    //地点
     y=y+height+15;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:secondtHolderStr with_delegate:self];
 
@@ -176,6 +179,103 @@
     [super dealloc];
 }
 
+#pragma mark 网络相关
+
+-(void)startHttpRequest{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL backB=[self request_order];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (backB) {
+                [self backBtnClick:nil];
+            }else{
+                
+            }
+        });
+    });
+}
+
+//客户预约
+//?json={“action”:”order”,“user_id”:”$user_id”,”session_id”:”$session_id”“order_time”:”$order_time”,“order_address”:”$order_address”,“serve_type”:”$serve_type”,“about”:”$about”,“order_sn”:”$ order_sn” ,”phone”:”$phone”}
+//serve_type 服务类型 1为洗车服务 2为修车服务 3为卖车服务 4为验车
+-(BOOL)request_order
+{
+    NSString* order_time=[(UITextField*)[self.view viewWithTag:101] text];
+    NSString* order_address=[(UITextField*)[self.view viewWithTag:102] text];
+    NSString* serve_type;
+    switch (_type) {
+        case CSDelegateServiceType_wash:
+        {
+            serve_type=@"1";
+        }
+            break;
+        case CSDelegateServiceType_check:
+        {
+            serve_type=@"4";
+        }
+            break;
+        case CSDelegateServiceType_fix:
+        {
+            serve_type=@"2";
+        }
+            break;
+        case CSDelegateServiceType_sale:
+        {
+            serve_type=@"3";
+        }
+            break;
+        default:
+            break;
+    }
+    NSString* about=[(GCPlaceholderTextView*)[self.view viewWithTag:103] text];
+    NSString* order_sn=@"";
+    NSString* phone=[[[Util sharedUtil] getUserInfo] objectForKey:@"username"];
+    
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"order", @"action",
+                            [[[Util sharedUtil] getUserInfo] objectForKey:@"id"], @"user_id",
+                            [[[Util sharedUtil] getUserInfo] objectForKey:@"session_id"], @"session_id",
+                            order_time, @"order_time",
+                            order_address, @"order_address",
+                            serve_type, @"serve_type",
+                            about, @"about",
+                            order_sn, @"order_sn",
+                            phone, @"phone",
+                            nil];
+    NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
+    CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_UserMessage-->urlStr:%@",urlStr);
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"POST"];
+    [request startSynchronous];
+    
+    NSError* error=[request error];
+    if (error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"提交订单失败，请检验网络！", nil) with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+        });
+        return NO;
+    }else{
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_UserMessage-->testResponseString:%@",testResponseString);
+        
+        NSDictionary *requestDic =[[request responseString] JSONValue];
+        CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_UserMessage-->requestDic:%@",requestDic);
+        if ([requestDic objectForKey:@"status"]) {
+            if ([[requestDic objectForKey:@"status"] intValue]!=0) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [ApplicationPublic showMessage:self with_title:@"错误" with_detail:@"提交订单失败！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                });
+                return NO;
+            }else{
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
 #pragma mark - 点击事件
 -(void)backBtnClick:(id)sender
 {
@@ -184,7 +284,7 @@
 
 -(void)queryBtnClick:(id)sender
 {
-    
+    [self startHttpRequest];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -233,6 +333,7 @@
             {
                 {
                     self.alertView.mode = MBProgressHUDModeText;
+                    self.alertView.color=[UIColor darkGrayColor];
                     self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
                     [self.alertView show:YES];
                 }

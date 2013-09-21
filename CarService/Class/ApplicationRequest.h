@@ -15,5 +15,6 @@
 
 //获取代维服务地址列表
 +(void)startHttpRequest_delegateAddress:(NSMutableArray*)dataAry;
++(NSMutableArray*)startHttpRequest_UserMessage;
 
 @end

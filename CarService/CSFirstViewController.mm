@@ -14,12 +14,20 @@
 #import "ASIHTTPRequest.h"
 #import "NSString+SBJSON.h"
 #import "TSMessage.h"
+#import "BlockAlertView.h"
+#import "CSAppDelegate.h"
 
 @interface CSFirstViewController ()
+{
+    
+}
+
+@property(nonatomic,retain)NSMutableArray* m_msgArray;
 
 @end
 
 @implementation CSFirstViewController
+@synthesize m_msgArray;
 
 #pragma mark - view lifecycle
 -(void)init_NaviView
@@ -50,7 +58,7 @@
         [numLabel setTextAlignment:NSTextAlignmentCenter];
         [numLabel setFont:[UIFont systemFontOfSize:8]];
         [numLabel setTextColor:[UIColor whiteColor]];
-        [numLabel setText:@"3"];
+        [numLabel setText:@""];
         numLabel.layer.cornerRadius=CGRectGetWidth(numLabel.frame)/2.0;
         numLabel.layer.borderWidth=1.0;
         numLabel.layer.borderColor=[UIColor clearColor].CGColor;
@@ -316,6 +324,11 @@
     [self init_NaviView];
     [self init_scrollView];
     
+    //登录、登出通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLoginNotification:) name:LoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLogoutNotification:) name:LogoutSuccessNotification object:nil];
+
+    
     //网络获取数据
     [self startHttpRequest];
 }
@@ -378,7 +391,48 @@
 
 -(void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.m_msgArray=nil;
     [super dealloc];
+}
+
+#pragma mark 通知
+-(void)startHttp_message
+{
+    //获取代维服务地点列表
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.m_msgArray=[ApplicationRequest startHttpRequest_UserMessage];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.m_msgArray==nil) {
+                
+            }else{
+                UIButton* msgBtn=(UIButton*)self.navigationItem.rightBarButtonItem.customView;
+                if (msgBtn && [msgBtn isKindOfClass:[UIButton class]]) {
+                    UILabel* numLabel=(UILabel*)[msgBtn viewWithTag:1001];
+                    if (numLabel) {
+                        numLabel.text=[NSString stringWithFormat:@"%d",[self.m_msgArray count]];
+                    }
+                }
+            }
+        });
+    });
+}
+
+- (void)receiviLoginNotification:(NSNotification *)notify
+{
+    //获取用户消息
+    [self startHttp_message];
+}
+
+- (void)receiviLogoutNotification:(NSNotification *)notify
+{
+    UIButton* msgBtn=(UIButton*)self.navigationItem.rightBarButtonItem.customView;
+    if (msgBtn && [msgBtn isKindOfClass:[UIButton class]]) {
+        UILabel* numLabel=(UILabel*)[msgBtn viewWithTag:1001];
+        if (numLabel) {
+            numLabel.text=@"";
+        }
+    }
 }
 
 #pragma mark 网络相关
@@ -454,9 +508,26 @@
 }
 
 #pragma mark - 点击事件
+
 -(void)msgBtnClick:(id)sender
 {
-    
+    if ([[Util sharedUtil] getUserInfo]) {
+        //点击跳转
+        if (self.m_msgArray) {
+            
+        }else{
+            
+        }
+    }else{
+        //提示登录
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        [alert setCancelButtonWithTitle:@"取消" block:nil];
+        [alert setDestructiveButtonWithTitle:@"登录" block:^{
+            [self.tabBarController setSelectedIndex:3];
+            [(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+        }];
+        [alert show];        
+    }
 }
 
 -(void)addBtnClick:(id)sender
@@ -475,11 +546,7 @@
         [self.navigationController pushViewController:ctrler animated:YES];
         [ctrler release];
     }];
-    //[sheet addButtonWithTitle:@"" block:^{
-    //
-    //}];
     [sheet showInView:self.view];
-
 }
 
 @end

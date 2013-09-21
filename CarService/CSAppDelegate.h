@@ -14,4 +14,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+//更新底部bar选择状态
+-(void)updateSelectIndex:(int)index;
+
 @end
