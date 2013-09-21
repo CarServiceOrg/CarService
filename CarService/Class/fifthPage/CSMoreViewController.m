@@ -244,68 +244,64 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if ([[Util sharedUtil] hasLogin])
+    //if ([[Util sharedUtil] hasLogin])
+    
+    UIViewController *controller;
+    
+    switch (indexPath.row)
     {
-        UIViewController *controller;
-        
-        switch (indexPath.row)
-        {
-            case 0:
-                CustomLog(@"设置");
-                controller = [[CSSettingsViewController alloc] initWithNibName:@"CSSettingsViewController" bundle:nil];
-                [self.parentController.navigationController pushViewController:controller animated:YES];
-                [controller release];
-                break;
-            case 1:
-                CustomLog(@"意见反馈");
-                controller = [[CSFeedBackViewController alloc] initWithNibName:@"CSFeedBackViewController" bundle:nil];
-                [self.parentController.navigationController pushViewController:controller animated:YES];
-                [controller release];
-                break;
-            case 2:
-                CustomLog(@"检查更新");
-                [self checkNewVersion];
-                break;
-            case 3:
-                CustomLog(@"分享软件");
-                //分享
-                
-                WBImageObject *imageObject = [WBImageObject object];
-                imageObject.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"test" ofType:@"png" ]];
-                WBMessageObject *message1 = [ [ WBMessageObject alloc] init];
-                message1.text = @"This is a test";
-                //message1.imageObject = imageObject;
-                WBSendMessageToWeiboRequest *req = [[[WBSendMessageToWeiboRequest alloc] init] autorelease];
-                req.message = message1;
-                BOOL ret = [ WeiboSDK sendRequest:req ];
-                if (!ret)
-                {
-                    CustomLog(@"arg wrong");
-                    [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享失败，请稍后重试"];
-                }
-                else
-                {
-                    CustomLog(@"share by sina weibo app");
-                }
-                break;
-            case 4:
-                CustomLog(@"客服电话");
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://10086"]];
-                break;
-            case 5:
-                CustomLog(@"关于");
-                controller = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
-                [self.parentController.navigationController pushViewController:controller animated:YES];
-                [controller release];
-                break;
-            default:
-                break;
-        }
+        case 0:
+            CustomLog(@"设置");
+            controller = [[CSSettingsViewController alloc] initWithNibName:@"CSSettingsViewController" bundle:nil];
+            [self.parentController.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            break;
+        case 1:
+            CustomLog(@"意见反馈");
+            controller = [[CSFeedBackViewController alloc] initWithNibName:@"CSFeedBackViewController" bundle:nil];
+            [self.parentController.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            break;
+        case 2:
+            CustomLog(@"检查更新");
+            [self checkNewVersion];
+            break;
+        case 3:
+            CustomLog(@"分享软件");
+            //分享
+            
+            WBImageObject *imageObject = [WBImageObject object];
+            imageObject.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"test" ofType:@"png" ]];
+            WBMessageObject *message1 = [ [ WBMessageObject alloc] init];
+            message1.text = @"This is a test";
+            //message1.imageObject = imageObject;
+            WBSendMessageToWeiboRequest *req = [[[WBSendMessageToWeiboRequest alloc] init] autorelease];
+            req.message = message1;
+            BOOL ret = [ WeiboSDK sendRequest:req ];
+            if (!ret)
+            {
+                CustomLog(@"arg wrong");
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享失败，请稍后重试"];
+            }
+            else
+            {
+                CustomLog(@"share by sina weibo app");
+            }
+            break;
+        case 4:
+            CustomLog(@"客服电话");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://10086"]];
+            break;
+        case 5:
+            CustomLog(@"关于");
+            controller = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+            [self.parentController.navigationController pushViewController:controller animated:YES];
+            [controller release];
+            break;
+        default:
+            break;
     }
-    else
-    {
-        CustomLog(@"Do Nothing");
-    }
+    
 }
 
 - (IBAction)backButtonPressed:(id)sender
