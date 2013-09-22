@@ -47,7 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.leftBarButtonItem = [self getBackItem];
-    self.navigationItem.title = @"修改密码";
+    self.navigationItem.title = @"消费记录";
     
 }
 
