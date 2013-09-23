@@ -9,6 +9,7 @@
 #import "CSMessageViewController.h"
 #import "CSMessageTableViewCell.h"
 #import "CSMessageDetailViewController.h"
+#import "NSString+SBJSON.h"
 
 @interface CSMessageViewController ()
 
@@ -47,12 +48,21 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.leftBarButtonItem = [self getBackItem];
     self.navigationItem.title = @"我的消息";
+    
+    [self loadContent];
 }
 
 - (void)loadContent
 {
     [self.messageRequest clearDelegatesAndCancel];
-    self.messageRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_myconsumerecord]];
+    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+    NSString *uid = [dic objectForKey:@"id"];
+    NSString *sessionId = [dic objectForKey:@"session_id"];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"station_news",@"action",uid,@"user_id",sessionId,@"session_id", nil];
+    NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
+    CustomLog(@"<<Chao-->CSMessageViewController-->urlStr:%@",urlStr);
+    self.messageRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
     self.messageRequest.delegate = self;
     [self.messageRequest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.messageRequest setDidFailSelector:@selector(requestDidFailed:)];
@@ -78,6 +88,8 @@
     }
     else
     {
+        self.dataArray = [requestDic objectForKey:@"list"];
+        [self.contentTableView reloadData];
     }
 }
 
