@@ -14,6 +14,7 @@
 #import "CSMyProfileViewController.h"
 #import "CSCarTracViewController.h"
 #import "CSCommentViewController.h"
+#import "CSMessageViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -263,6 +264,9 @@
                 break;
             case 2:
                 CustomLog(@"我的消息");
+                controller = [[CSMessageViewController alloc] initWithNibName:@"CSMessageViewController" bundle:nil];
+                [self.parentController.navigationController pushViewController:controller animated:YES];
+                [controller release];
                 break;
             case 3:
                 CustomLog(@"我的消费纪录");

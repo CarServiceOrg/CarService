@@ -1,27 +1,26 @@
 //
-//  CSMyConsumeRecordViewController.m
+//  CSMessageViewController.m
 //  CarService
 //
-//  Created by baidu on 13-9-16.
+//  Created by baidu on 13-9-23.
 //  Copyright (c) 2013年 Chao. All rights reserved.
 //
 
-#import "CSMyConsumeRecordViewController.h"
-#import "CSMyConsumeRecordCell.h"
+#import "CSMessageViewController.h"
+#import "CSMessageTableViewCell.h"
+#import "CSMessageDetailViewController.h"
 
-@interface CSMyConsumeRecordViewController ()
+@interface CSMessageViewController ()
 
-@property (nonatomic,retain) IBOutlet UIView *headerView;
 @property (nonatomic,retain) IBOutlet UITableView *contentTableView;
-@property (nonatomic,retain) ASIHTTPRequest *recordRuest;
+@property (nonatomic,retain) ASIHTTPRequest *messageRequest;
 @property (nonatomic,retain) NSMutableArray *dataArray;
 
 @end
 
-@implementation CSMyConsumeRecordViewController
-@synthesize headerView;
+@implementation CSMessageViewController
 @synthesize contentTableView;
-@synthesize recordRuest;
+@synthesize messageRequest;
 @synthesize dataArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,10 +34,9 @@
 
 - (void)dealloc
 {
-    [headerView release];
     [contentTableView release];
-    [recordRuest clearDelegatesAndCancel];
-    [recordRuest release];
+    [messageRequest clearDelegatesAndCancel];
+    [messageRequest release];
     [dataArray release];
     [super dealloc];
 }
@@ -48,18 +46,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.leftBarButtonItem = [self getBackItem];
-    self.navigationItem.title = @"消费记录";
-    
+    self.navigationItem.title = @"我的消息";
 }
 
 - (void)loadContent
 {
-    [self.recordRuest clearDelegatesAndCancel];
-    self.recordRuest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_myconsumerecord]];
-    self.recordRuest.delegate = self;
-    [self.recordRuest setDidFinishSelector:@selector(requestDidFinished:)];
-    [self.recordRuest setDidFailSelector:@selector(requestDidFailed:)];
-    [self.recordRuest startAsynchronous];
+    [self.messageRequest clearDelegatesAndCancel];
+    self.messageRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_myconsumerecord]];
+    self.messageRequest.delegate = self;
+    [self.messageRequest setDidFinishSelector:@selector(requestDidFinished:)];
+    [self.messageRequest setDidFailSelector:@selector(requestDidFailed:)];
+    [self.messageRequest startAsynchronous];
     [self showActView:UIActivityIndicatorViewStyleWhite];
 }
 
@@ -106,31 +103,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    CSMyConsumeRecordCell *cell;
+    CSMessageTableViewCell *cell;
     
-    cell = [tableView dequeueReusableCellWithIdentifier:@"ConsumeRecordCell"];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"CSMessageTableViewCell"];
     
     if(cell == nil)
     {
-        cell = [CSMyConsumeRecordCell createCell];
+        cell = [CSMessageTableViewCell createCell];
     }
     
     [cell reloadConetent:nil];
-    if (indexPath.row % 2 == 0)
-    {
-        [cell setBackgroundImage:[UIImage imageNamed:@"cell_bg_01.png"]];
-    }
-    else
-    {
-        [cell setBackgroundImage:[UIImage imageNamed:@"cell_bg_02.png"]]; 
-    }
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"宏状元是北京很出名的一家连锁粥店，它把各种口味的粥做的滋味十足，虽然每种粥顶多算差强人意，不过想喝什么粥基本上都可以在粥店找到。宏状元粥店的小吃也是种类丰富，制作考究的，点几样小吃再来上一碗粥，不仅美味还十分健康。宏状元的菜也做得可以，凉菜主食分量十足",@"content",@"2013-09-01",@"time", nil];
     
+    CSMessageDetailViewController *controller = [[CSMessageDetailViewController alloc] initWithContent:dic];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (IBAction)backButtonPressed:(id)sender

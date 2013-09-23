@@ -129,6 +129,13 @@
 		E19AE9E217F042AE007B9F07 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9DD17F042AC007B9F07 /* Default.png */; };
 		E19AE9E317F042AE007B9F07 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9DE17F042AC007B9F07 /* Default@2x.png */; };
 		E19AE9E417F042AE007B9F07 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9DF17F042AD007B9F07 /* Default-568h@2x.png */; };
+		E19AE9E817F04483007B9F07 /* CSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE9E617F04481007B9F07 /* CSMessageViewController.m */; };
+		E19AE9E917F04483007B9F07 /* CSMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9E717F04482007B9F07 /* CSMessageViewController.xib */; };
+		E19AE9ED17F04597007B9F07 /* CSMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE9EB17F0458D007B9F07 /* CSMessageTableViewCell.m */; };
+		E19AE9EE17F04597007B9F07 /* CSMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9EC17F04592007B9F07 /* CSMessageTableViewCell.xib */; };
+		E19AE9F017F050A1007B9F07 /* message_line.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9EF17F050A0007B9F07 /* message_line.png */; };
+		E19AE9F417F05981007B9F07 /* CSMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE9F217F05977007B9F07 /* CSMessageDetailViewController.m */; };
+		E19AE9F517F05981007B9F07 /* CSMessageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9F317F0597C007B9F07 /* CSMessageDetailViewController.xib */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -569,6 +576,16 @@
 		E19AE9DD17F042AC007B9F07 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E19AE9DE17F042AC007B9F07 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E19AE9DF17F042AD007B9F07 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E19AE9E517F04480007B9F07 /* CSMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMessageViewController.h; sourceTree = "<group>"; };
+		E19AE9E617F04481007B9F07 /* CSMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMessageViewController.m; sourceTree = "<group>"; };
+		E19AE9E717F04482007B9F07 /* CSMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMessageViewController.xib; sourceTree = "<group>"; };
+		E19AE9EA17F0458B007B9F07 /* CSMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMessageTableViewCell.h; sourceTree = "<group>"; };
+		E19AE9EB17F0458D007B9F07 /* CSMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMessageTableViewCell.m; sourceTree = "<group>"; };
+		E19AE9EC17F04592007B9F07 /* CSMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E19AE9EF17F050A0007B9F07 /* message_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message_line.png; sourceTree = "<group>"; };
+		E19AE9F117F0596F007B9F07 /* CSMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMessageDetailViewController.h; sourceTree = "<group>"; };
+		E19AE9F217F05977007B9F07 /* CSMessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMessageDetailViewController.m; sourceTree = "<group>"; };
+		E19AE9F317F0597C007B9F07 /* CSMessageDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMessageDetailViewController.xib; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -1330,6 +1347,15 @@
 				E19AE80817E87C93007B9F07 /* CSCommentViewController.h */,
 				E19AE80917E87C93007B9F07 /* CSCommentViewController.m */,
 				E19AE80A17E87C94007B9F07 /* CSCommentViewController.xib */,
+				E19AE9E517F04480007B9F07 /* CSMessageViewController.h */,
+				E19AE9E617F04481007B9F07 /* CSMessageViewController.m */,
+				E19AE9E717F04482007B9F07 /* CSMessageViewController.xib */,
+				E19AE9F117F0596F007B9F07 /* CSMessageDetailViewController.h */,
+				E19AE9F217F05977007B9F07 /* CSMessageDetailViewController.m */,
+				E19AE9F317F0597C007B9F07 /* CSMessageDetailViewController.xib */,
+				E19AE9EA17F0458B007B9F07 /* CSMessageTableViewCell.h */,
+				E19AE9EB17F0458D007B9F07 /* CSMessageTableViewCell.m */,
+				E19AE9EC17F04592007B9F07 /* CSMessageTableViewCell.xib */,
 			);
 			path = forthhPage;
 			sourceTree = "<group>";
@@ -1425,6 +1451,7 @@
 				E19AE7CC17E80326007B9F07 /* profile_background.png */,
 				E19AE7EC17E867D9007B9F07 /* cartrac_location.png */,
 				E19AE7ED17E867D9007B9F07 /* cartrac_title_back.png */,
+				E19AE9EF17F050A0007B9F07 /* message_line.png */,
 				E19AE80017E87C48007B9F07 /* comment_star_back.png */,
 				E19AE80117E87C49007B9F07 /* comment_content_back.png */,
 				E19AE80217E87C4A007B9F07 /* comment_normal_star.png */,
@@ -2266,6 +2293,10 @@
 				E19AE9E217F042AE007B9F07 /* Default.png in Resources */,
 				E19AE9E317F042AE007B9F07 /* Default@2x.png in Resources */,
 				E19AE9E417F042AE007B9F07 /* Default-568h@2x.png in Resources */,
+				E19AE9E917F04483007B9F07 /* CSMessageViewController.xib in Resources */,
+				E19AE9EE17F04597007B9F07 /* CSMessageTableViewCell.xib in Resources */,
+				E19AE9F017F050A1007B9F07 /* message_line.png in Resources */,
+				E19AE9F517F05981007B9F07 /* CSMessageDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2386,6 +2417,9 @@
 				E1EBECC817EB6CC30026682A /* TSMessageView.m in Sources */,
 				E17C2FC517EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m in Sources */,
 				E17C2FC817ECCB1600D29BD4 /* ApplicationRequest.m in Sources */,
+				E19AE9E817F04483007B9F07 /* CSMessageViewController.m in Sources */,
+				E19AE9ED17F04597007B9F07 /* CSMessageTableViewCell.m in Sources */,
+				E19AE9F417F05981007B9F07 /* CSMessageDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

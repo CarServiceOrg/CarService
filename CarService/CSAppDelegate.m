@@ -41,7 +41,7 @@
     
     //在无网情况下启动 会耽误应用启动时间
     [LBSDataUtil shareUtil]; //开启定位
-   // dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 要使用百度地图，请先启动BaiduMapManager
         _mapManager = [[BMKMapManager alloc] init];
         // 如果要关注网络及授权验证事件，请设定 generalDelegate参数
@@ -49,7 +49,7 @@
         if (!ret) {
             CustomLog(@"<<Chao-->CSAppDelegate-->didFinishLaunchingWithOptions-->manager start failed!");
         }
-  //  });
+    });
     
     //新浪微博
     [WeiboSDK registerApp:@"3912808798"];
