@@ -13,8 +13,9 @@
 #import "Util.h"
 #import "URLConfig.h"
 #import "CSRegisterUserNameViewController.h"
-#import "CSForthViewController.h"
 #import "NSString+SBJSON.h"
+#import "CSForthViewController.h"
+#import "CSThirdViewController.h"
 
 #define AnimationChangeHeight 105
 
@@ -29,7 +30,8 @@
 @property (nonatomic,retain) IBOutlet UIButton *rememberPasswordButton;
 @property (nonatomic,retain) NSDictionary *userInfo;
 @property (nonatomic,assign) BOOL keyboardShowed;
-
+//chao add
+@property (nonatomic,retain) NSString* m_flagString;
 @end
 
 @implementation CSLogInViewController
@@ -45,6 +47,19 @@
 @synthesize keyboardShowed;
 @synthesize parentController;
 
+@synthesize delegate;
+@synthesize m_flagString;
+
+- (id)initWithParentCtrler:(UIViewController*)viewCtrler witjFlagStr:(NSString*)aStr with_NibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.parentController=viewCtrler;
+        self.m_flagString=aStr;
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,12 +69,21 @@
     return self;
 }
 
+-(void)backClicked
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    self.navigationController.navigationBar.hidden = YES;
+    if (self.parentController && [self.parentController isKindOfClass:[CSThirdViewController class]]) {
+        self.navigationItem.title=@"登录";
+        [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backClicked)];
+    }else{
+        self.navigationController.navigationBar.hidden = YES;
+    }
     self.scrollView.contentSize = CGSizeMake(320, self.view.frame.size.height - 40 - 49);
     rememberPassword = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHeightChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -75,11 +99,6 @@
     tapReconginzer.numberOfTouchesRequired = 1;
     [self.backView addGestureRecognizer:tapReconginzer];
     [tapReconginzer release];
-    
-    if (Is_iPhone5) 
-    {
-       // self.loginBackView.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-    }
 }
 
 - (void)hideKeyBoard
@@ -144,16 +163,25 @@
 
 - (IBAction)backButtonPressed:(id)sender
 {
-    [self.parentController.navigationController popViewControllerAnimated:YES];
+    if ([self.parentController isKindOfClass:[CSForthViewController class]]) {
+        [self.parentController.navigationController popViewControllerAnimated:YES];
+    }else if ([self.parentController isKindOfClass:[CSThirdViewController class]]){
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)registerButtonPressed:(id)sender
 {
     CustomLog(@"enter register view controller");
-    
-    CSRegisterUserNameViewController *controller = [[CSRegisterUserNameViewController alloc] initWithNibName:@"CSRegisterUserNameViewController" bundle:nil];
-    [self.parentController.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    if ([self.parentController isKindOfClass:[CSForthViewController class]]) {
+        CSRegisterUserNameViewController *controller = [[CSRegisterUserNameViewController alloc] initWithNibName:@"CSRegisterUserNameViewController" bundle:nil];
+        [self.parentController.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }else if ([self.parentController isKindOfClass:[CSThirdViewController class]]){
+        CSRegisterUserNameViewController *controller = [[CSRegisterUserNameViewController alloc] initWithNibName:@"CSRegisterUserNameViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
 }
 
 - (IBAction)remeberPasswordButtonPressed:(id)sender
@@ -218,13 +246,12 @@
         int code = [[requestDic objectForKey:@"status"] intValue];
         switch (code) {
             case 1:
+            {
                 CustomLog(@"登陆成功");
                 
                 NSMutableDictionary* dataDict=[NSMutableDictionary dictionaryWithDictionary:requestDic];
                 [dataDict setObject:[self.userInfo objectForKey:@"username"] forKey:@"username"];
                 [[Util sharedUtil] setLoginUserInfo:dataDict];
-                
-                [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];
                 
                 //save user data in keychain
                 if (rememberPassword)
@@ -238,6 +265,17 @@
                     }
                 }
                 
+                [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];
+
+                if ([self.parentController isKindOfClass:[CSForthViewController class]]) {
+                    
+                }else if ([self.parentController isKindOfClass:[CSThirdViewController class]]){
+                    [self backClicked];
+                    if (self.delegate && [(NSObject*)self.delegate respondsToSelector:@selector(loginFinishCallBack:)]) {
+                        [self.delegate loginFinishCallBack:self.m_flagString];
+                    }
+                }
+            }
                 break;
             case 0:
                 [[Util sharedUtil] showAlertWithTitle:@"" message:@"登陆失败,请重新输入!"];
@@ -323,6 +361,7 @@
 
 - (void)dealloc
 {
+    self.m_flagString=nil;
     [self hideKeyBoard];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [userNameField release];

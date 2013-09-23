@@ -10,6 +10,7 @@
 #import "CSMessageTableViewCell.h"
 #import "CSMessageDetailViewController.h"
 #import "NSString+SBJSON.h"
+#import "NSObject+SBJSON.h"
 
 @interface CSMessageViewController ()
 
@@ -59,7 +60,7 @@
     NSString *uid = [dic objectForKey:@"id"];
     NSString *sessionId = [dic objectForKey:@"session_id"];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"station_news",@"action",uid,@"user_id",sessionId,@"session_id", nil];
-    NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *jsonArg = [(NSString*)[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
     CustomLog(@"<<Chao-->CSMessageViewController-->urlStr:%@",urlStr);
     self.messageRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];

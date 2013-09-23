@@ -12,8 +12,9 @@
 #import "CSDelegateServiceViewController.h"
 #import "CSReportCaseViewController.h"
 #import "CSAppDelegate.h"
+#import "CSLogInViewController.h"
 
-@interface CSThirdViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface CSThirdViewController ()<UITableViewDataSource, UITableViewDelegate, CSLogInViewController_Delegate>
 {
     
 }
@@ -222,7 +223,7 @@
         case 2:
         {
             
-            if ([[Util sharedUtil] getUserInfo]) {
+            if ([[Util sharedUtil] hasLogin]) {
                 CSDelegateServiceViewController* ctrler=[[CSDelegateServiceViewController alloc] init];
                 [self.navigationController pushViewController:ctrler animated:YES];
                 [ctrler release];
@@ -231,8 +232,18 @@
                 BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"请先登录！"];
                 [alert setCancelButtonWithTitle:@"取消" block:nil];
                 [alert setDestructiveButtonWithTitle:@"登录" block:^{
-                    [self.tabBarController setSelectedIndex:3];
-                    [(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+                    //[self.tabBarController setSelectedIndex:3];
+                    //[(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+                    
+                    CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSDelegateServiceViewController" with_NibName:@"CSLogInViewController" bundle:nil];
+                    ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+                    ctrler.delegate=self;
+                    UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
+                    [ApplicationPublic selfDefineNaviBar:navi.navigationBar];
+                    [self presentModalViewController:navi animated:YES];
+                    [ctrler release];
+                    [navi release];
+                    
                 }];
                 [alert show];        
             }
@@ -240,7 +251,7 @@
             break;
         case 3:
         {
-            if ([[Util sharedUtil] getUserInfo]) {
+            if ([[Util sharedUtil] hasLogin]) {
                 CSReportCaseViewController* ctrler=[[CSReportCaseViewController alloc] init];
                 [self.navigationController pushViewController:ctrler animated:YES];
                 [ctrler release];
@@ -249,8 +260,17 @@
                 BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"请先登录！"];
                 [alert setCancelButtonWithTitle:@"取消" block:nil];
                 [alert setDestructiveButtonWithTitle:@"登录" block:^{
-                    [self.tabBarController setSelectedIndex:3];
-                    [(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+                    //[self.tabBarController setSelectedIndex:3];
+                    //[(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+                    
+                    CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSReportCaseViewController" with_NibName:@"CSLogInViewController" bundle:nil];
+                    ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+                    ctrler.delegate=self;
+                    UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
+                    [ApplicationPublic selfDefineNaviBar:navi.navigationBar];
+                    [self presentModalViewController:navi animated:YES];
+                    [ctrler release];
+                    [navi release];
                 }];
                 [alert show];        
             }
@@ -262,4 +282,23 @@
     }
 }
 
+#pragma mark - CSLogInViewController_Delegate
+-(void)loginFinishCallBack:(NSString*)flagStr
+{
+    [self performSelector:@selector(delayCall:) withObject:flagStr afterDelay:0.5];
+}
+
+-(void)delayCall:(NSString*)flagStr
+{
+    if ([flagStr isEqualToString:@"CSDelegateServiceViewController"]) {
+        CSDelegateServiceViewController* ctrler=[[CSDelegateServiceViewController alloc] init];
+        [self.navigationController pushViewController:ctrler animated:YES];
+        [ctrler release];
+    }else if ([flagStr isEqualToString:@"CSReportCaseViewController"]){
+        CSReportCaseViewController* ctrler=[[CSReportCaseViewController alloc] init];
+        [self.navigationController pushViewController:ctrler animated:YES];
+        [ctrler release];
+    }
+
+}
 @end
