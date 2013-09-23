@@ -322,7 +322,7 @@
     
     //NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
     //NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"versiongoup",@"action", nil];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS",@"sys",@"versiongoup",@"action", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];

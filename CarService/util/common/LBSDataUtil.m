@@ -94,10 +94,15 @@ static LBSDataUtil *shareLbsUtil = nil;
 
 - (void)geoCodeLocation:(CLLocation *)location
 {
+    CustomLog(@"location:%@",location);
     self.bmkSearch = [[[BMKSearch alloc]init]autorelease];
     self.bmkSearch.delegate = self;
     //发起反地理编码
-    [self.bmkSearch reverseGeocode:location.coordinate];
+    BOOL result = [self.bmkSearch reverseGeocode:location.coordinate];
+    if (!result)
+    {
+        CustomLog(@"reverse code error");
+    }
 }
 
 
@@ -140,6 +145,8 @@ static LBSDataUtil *shareLbsUtil = nil;
                                                                    userInfo:nil
                                                                     repeats:NO];
     }
+    
+    [self geoCodeLocation:self.currentLocation];
 }
 
 - (void) refreshLocation
@@ -161,8 +168,6 @@ static LBSDataUtil *shareLbsUtil = nil;
     CLLocation *tempLocation = [[CLLocation alloc] initWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
     self.currentLocation = tempLocation;
     [tempLocation release];
-    
-    [self geoCodeLocation:self.currentLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
