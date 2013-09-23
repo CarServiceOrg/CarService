@@ -53,24 +53,10 @@
 
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
-    [alert release]; 
-}
 
-- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message delegate:(id<UIAlertViewDelegate>)theDel
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:theDel cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    BlockAlertView *alert = [BlockAlertView alertWithTitle:title message:message];
+    [alert setCancelButtonWithTitle:@"确定" block:nil];
     [alert show];
-    [alert release];
-}
-
-- (void)showConfirmAlertWithTitle:(NSString *)title message:(NSString *) message tag:(NSUInteger)alertTag delegate:(id<UIAlertViewDelegate>)theDel
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:theDel cancelButtonTitle:@"确定" otherButtonTitles:@"取消",nil, nil];
-    alert.tag = alertTag;
-    [alert show];
-    [alert release];
 }
 
 - (int)countStarNum:(NSString *)rateStr base:(int)baseNum

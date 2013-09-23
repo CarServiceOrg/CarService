@@ -307,20 +307,14 @@
     [self.logoutRequest startAsynchronous];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex == 1)
-    {
-        
-        [self logoutUser];
-    }
-}
-
 - (IBAction)logoutButtonPressed:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"确定要退出帐户?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    BlockAlertView *alert = [BlockAlertView alertWithTitle:nil message:@"确定要退出帐户?"];
+    [alert setCancelButtonWithTitle:@"取消" block:nil];
+    [alert setDestructiveButtonWithTitle:@"确认" block:^{
+        [self logoutUser];
+    }];
     [alert show];
-    [alert release];
 }
 
 @end

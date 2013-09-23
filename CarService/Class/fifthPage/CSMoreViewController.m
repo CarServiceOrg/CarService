@@ -14,8 +14,6 @@
 #import "AboutViewController.h"
 #import "WeiboSDK.h"
 
-#define AlertTag_NewVersion 1000
-
 @interface CSMoreViewController ()
 
 @property (nonatomic,retain) IBOutlet UITableView *contentTableView;
@@ -269,25 +267,34 @@
         case 3:
             CustomLog(@"分享软件");
             //分享
+            BlockActionSheet *sheet = [BlockActionSheet sheetWithTitle:@""];
+            [sheet setCancelButtonWithTitle:@"取消" block:nil];
+            [sheet setDestructiveButtonWithTitle:@"新浪微博" block:^{
+                WBImageObject *imageObject = [WBImageObject object];
+                imageObject.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"test" ofType:@"png" ]];
+                WBMessageObject *message1 = [ [ WBMessageObject alloc] init];
+                message1.text = @"This is a test";
+                //message1.imageObject = imageObject;
+                WBSendMessageToWeiboRequest *req = [[[WBSendMessageToWeiboRequest alloc] init] autorelease];
+                req.message = message1;
+                BOOL ret = [ WeiboSDK sendRequest:req ];
+                if (!ret)
+                {
+                    CustomLog(@"arg wrong");
+                    [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享失败，请稍后重试"];
+                }
+                else
+                {
+                    CustomLog(@"share by sina weibo app");
+                }
+
+            }];
+            [sheet setDestructiveButtonWithTitle:@"短信" block:^{
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms://10086"]];
+            }];
+            [sheet showInView:self.view];
             
-            WBImageObject *imageObject = [WBImageObject object];
-            imageObject.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"test" ofType:@"png" ]];
-            WBMessageObject *message1 = [ [ WBMessageObject alloc] init];
-            message1.text = @"This is a test";
-            //message1.imageObject = imageObject;
-            WBSendMessageToWeiboRequest *req = [[[WBSendMessageToWeiboRequest alloc] init] autorelease];
-            req.message = message1;
-            BOOL ret = [ WeiboSDK sendRequest:req ];
-            if (!ret)
-            {
-                CustomLog(@"arg wrong");
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享失败，请稍后重试"];
-            }
-            else
-            {
-                CustomLog(@"share by sina weibo app");
-            }
-            break;
+                        break;
         case 4:
             CustomLog(@"客服电话");
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://10086"]];
@@ -350,7 +357,7 @@
     {
         if ([[requestDic objectForKey:@"status"] integerValue]==0)
         {
-            /*NSString *content = [[requestDic objectForKey:@"data"] objectForKey:@"content"];
+            NSString *content = [[requestDic objectForKey:@"data"] objectForKey:@"content"];
             NSString *newVersion = [[requestDic objectForKey:@"data"] objectForKey:@"version"];
             
             if ([newVersion floatValue] > [[[Util sharedUtil] get_appVersion]floatValue])
@@ -360,11 +367,15 @@
                 {
                     content = @"有新版本了,是否现在更新?";
                 }
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:content delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
-                alert.tag = AlertTag_NewVersion;
-                [alert show];
-                [alert release];
-            }*/
+                
+             BlockAlertView *alert = [BlockAlertView alertWithTitle:nil message:content];
+             [alert setCancelButtonWithTitle:@"取消" block:nil];
+             [alert setDestructiveButtonWithTitle:@"确定" block:^{
+                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_rateurl]];
+
+             }];
+             [alert show];
+            }
         }
         else
         {
@@ -379,27 +390,6 @@
 {
     [self hideFullActView];
     [[Util sharedUtil] showAlertWithTitle:@"" message:@"请求失败，请检查网络连接"];
-}
-
-#pragma mark - UIAlertView Delegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (alertView.tag == AlertTag_NewVersion)
-    {
-        CustomLog(@"index:%d",buttonIndex);
-        switch (buttonIndex)
-        {
-            case 0:
-                CustomLog(@"cancel");
-                break;
-            case 1:
-                CustomLog(@"update now");
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_rateurl]];
-                break;
-            default:
-                break;
-        }
-    }
 }
 
 @end

@@ -13,8 +13,6 @@
 + (Util *)sharedUtil;
 +(NSComparisonResult) compareOSVersion:(CGFloat) osVersion;
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message;
-- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message delegate:(id<UIAlertViewDelegate>)theDel;
-- (void)showConfirmAlertWithTitle:(NSString *)title message:(NSString *) message tag:(NSUInteger)alertTag delegate:(id<UIAlertViewDelegate>)theDel;
 - (int)countStarNum:(NSString *)rateStr base:(int)baseNum;
 - (void)showCookieInfo;
 - (void)clearCookieInfo;

@@ -557,6 +557,8 @@
 		E19AE81B17E89CBC007B9F07 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		E19AE81C17E89CBD007B9F07 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		E19AE81D17E89CBD007B9F07 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		E19AE9D817F00513007B9F07 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E19AE9DA17F005C7007B9F07 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -1966,6 +1968,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = E53ABA2817E0DD020096754D;
 			productRefGroup = E53ABA3217E0DD020096754D /* Products */;
@@ -2373,6 +2376,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E53ABA3E17E0DD020096754D /* en */,
+				E19AE9D817F00513007B9F07 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2381,6 +2385,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E53ABA4D17E0DD020096754D /* en */,
+				E19AE9DA17F005C7007B9F07 /* zh-Hans */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
@@ -2447,6 +2452,8 @@
 		E53ABA6017E0DD020096754D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: tuo zhang (7UTHN8A576)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2463,6 +2470,7 @@
 				);
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D4CDC2F-E7FF-402D-B845-F965305FFC41";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2470,6 +2478,8 @@
 		E53ABA6117E0DD020096754D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: tuo zhang (L6J7N4623F)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2486,6 +2496,7 @@
 				);
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4DF4D93C-91E6-4428-B937-D46AD491CB20";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
