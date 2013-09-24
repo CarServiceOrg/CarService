@@ -39,6 +39,7 @@
 @synthesize rateButtonArray;
 @synthesize commentRequest;
 @synthesize contentScrollView;
+@synthesize orderInfoDic;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +64,7 @@
     [rateButtonArray release];
     [commentRequest clearDelegatesAndCancel];
     [commentRequest release];
+    [orderInfoDic release];
     [super dealloc];
 }
 
@@ -102,8 +104,22 @@
 
 - (IBAction)commentButtonPressed:(id)sender
 {
+    if ([self.textView.text length] == 0)
+    {
+        [[Util sharedUtil] showAlertWithTitle:nil message:@"评论内容不能为空"];
+        return;
+    }
     [self.commentRequest clearDelegatesAndCancel];
-    self.commentRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_comment]];
+    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+    NSString *uid = [dic objectForKey:@"id"];
+    NSString *sessionId = [dic objectForKey:@"session_id"];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"evaluate",@"action",sessionId,@"session_id",uid,@"user_id",[self.orderInfoDic objectForKey:@"order_sn"],@"order_id",self.textView.text,@"content",[NSString stringWithFormat:@"%d",self.currentRateStar],@"star",[self.orderInfoDic objectForKey:@"serve_type"],@"serve_type",[self.orderInfoDic objectForKey:@"server_id"],@"server_id", nil];
+    SBJSON *jasonParser = [[SBJSON alloc] init];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [jasonParser release];
+    
+    self.commentRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
+    
     [commentRequest setShouldAttemptPersistentConnection:NO];
     [commentRequest setValidatesSecureCertificate:NO];
     
@@ -124,19 +140,20 @@
     CustomLog(@"login request request dic:%@",requestDic);
     if (nil == [requestDic objectForKey:@"status"] || ![[requestDic objectForKey:@"status"] isEqualToString:@"0"])
     {
-        [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请稍后重试!"];
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论失败，请稍后重试!"];
         return;
     }
     else
     {
-        
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论成功"];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
 
 - (void)editingRequestDidFailed:(ASIHTTPRequest *)request
 {
-    [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请检查网络连接!"];
+    [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论失败，请检查网络连接!"];
     return;
     CustomLog(@"%@",[request responseString]);
 }

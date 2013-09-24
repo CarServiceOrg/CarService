@@ -14,6 +14,7 @@
 #define LogoutSuccessNotification @"LogoutSuccessNotification"
 
 #define SinaWeiboShareResultNotification  @"SinaWeiboShareResultNotification"
+#define RateOrderNotification @"RateOrderNotification"
 
 #define DeviceDiffHeight 88 //(568 - 480)
 #define kRedirectURI @"http://www.sina.com.cn"

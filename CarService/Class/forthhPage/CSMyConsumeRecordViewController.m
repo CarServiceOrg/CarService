@@ -202,10 +202,10 @@
                 [self.contentTableView reloadData];
                 break;
             case 2:
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"session id不正确，请登陆后重试!"];
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"session id不正确，请重新登陆!"];
                 break;
             case 3:
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"用户id不正确，请登陆后重试!"];
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"用户id不正确，请重新登陆!"];
                 break;
             case 4:
                 [[Util sharedUtil] showAlertWithTitle:@"" message:@"消费类型不正确，请稍后重试!"];

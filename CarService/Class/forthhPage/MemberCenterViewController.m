@@ -13,8 +13,8 @@
 #import "CSMyConsumeRecordViewController.h"
 #import "CSMyProfileViewController.h"
 #import "CSCarTracViewController.h"
-#import "CSCommentViewController.h"
 #import "CSMessageViewController.h"
+#import "CSOrderListViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -282,7 +282,7 @@
                 break;
             case 5:
                 CustomLog(@"我要点评");
-                controller = [[CSCommentViewController alloc] initWithNibName:@"CSCommentViewController" bundle:nil];
+                controller = [[CSOrderListViewController alloc] initWithNibName:@"CSOrderListViewController" bundle:nil];
                 [self.parentController.navigationController pushViewController:controller animated:YES];
                 [controller release];
                 break;

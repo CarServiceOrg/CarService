@@ -11,6 +11,8 @@
 
 @interface CSCommentViewController : CommonViewController<UIGestureRecognizerDelegate>
 
+@property (nonatomic,retain) NSDictionary *orderInfoDic;
+
 - (IBAction)commentButtonPressed:(id)sender;
 - (IBAction)starButtonPressed:(id)sender;
 
