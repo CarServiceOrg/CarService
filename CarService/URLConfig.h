@@ -41,3 +41,5 @@
 //************************************************************2.接口************************************************************
 //今日限行
 #define URL_TrafficControls [NSString stringWithFormat:@"%@?json={\"action\":\"raffic\"}",ServerAddress]
+//获取天气
+#define URL_Weather [NSString stringWithFormat:@"%@",@"http://m.weather.com.cn/data/101010100.html"]

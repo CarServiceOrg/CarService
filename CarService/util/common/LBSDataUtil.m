@@ -59,6 +59,7 @@ static LBSDataUtil *shareLbsUtil = nil;
     [locationRefreshTimer release];
     [address release];
     [bmkSearch release];
+    self.m_addrResult=nil;
     [super dealloc];
 }
 
@@ -102,20 +103,29 @@ static LBSDataUtil *shareLbsUtil = nil;
     if (!result)
     {
         CustomLog(@"reverse code error");
+        [[NSNotificationCenter defaultCenter ] postNotificationName:LocationSuccessNotification object:self.address userInfo:nil];
     }
 }
-
-
 
 - (void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error
 {
     // 在此处添加您对反地理编码结果的处理
     CustomLog(@"address:%@,error:%d",result,error);
-    CustomLog(@"address%@",result.strAddr);
-    if (error == 0)
-    {
+    CustomLog(@"address%@",result.strAddr);    
+    CustomLog(@"<<Chao-->LBSDataUtil-->province: %@",result.addressComponent.province);/// 省份名称
+    CustomLog(@"<<Chao-->LBSDataUtil-->city: %@",result.addressComponent.city);/// 城市名称
+    CustomLog(@"<<Chao-->LBSDataUtil-->district: %@",result.addressComponent.district);  /// 区县名称
+    CustomLog(@"<<Chao-->LBSDataUtil-->streetName: %@",result.addressComponent.streetName); /// 街道名称
+    CustomLog(@"<<Chao-->LBSDataUtil-->streetNumber: %@",result.addressComponent.streetNumber); /// 街道号码
+    
+    if (error == 0){
+        self.m_addrResult=result;
         self.address = result.strAddr;
+    }else{
+
     }
+    
+    [[NSNotificationCenter defaultCenter ] postNotificationName:LocationSuccessNotification object:self.address userInfo:nil];
 }
 
 - (void)locationManagerFinished{
@@ -146,7 +156,8 @@ static LBSDataUtil *shareLbsUtil = nil;
                                                                     repeats:NO];
     }
     
-    [self geoCodeLocation:self.currentLocation];
+    //没必要重复获取
+    //[self geoCodeLocation:self.currentLocation];
 }
 
 - (void) refreshLocation

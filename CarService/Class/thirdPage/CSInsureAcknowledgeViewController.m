@@ -158,12 +158,13 @@
         searchStr=textField.text;
     }
     
-    if (searchStr.length==0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [ApplicationPublic showMessage:self with_title:@"提示" with_detail:@"请输入搜索关键字！" with_type:TSMessageNotificationTypeWarning with_Duration:1.5];
-        });
-        return;
-    }
+    //搜索内容无 则表示全部内容
+    //if (searchStr.length==0) {
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    //        [ApplicationPublic showMessage:self with_title:@"提示" with_detail:@"请输入搜索关键字！" with_type:TSMessageNotificationTypeWarning with_Duration:1.5];
+    //    });
+    //    return;
+    //}
     
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"safeknow", @"action", searchStr, @"search", nil];
     NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

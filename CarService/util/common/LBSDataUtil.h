@@ -30,6 +30,7 @@
 @property (nonatomic,retain) BMKSearch *bmkSearch;
 //查询位置信息
 @property (nonatomic,retain) NSString *address;
+@property (nonatomic,retain) BMKAddrInfo* m_addrResult; ///地址信息类，用于地理编码和反地理编码
 
 + (LBSDataUtil *)shareUtil;
 - (void) refreshLocation;

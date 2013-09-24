@@ -75,7 +75,7 @@
         {
             UILabel* aLabel=(UILabel*)[headerView viewWithTag:1001];
             if (aLabel) {
-                [aLabel setText:[NSString stringWithFormat:@"%@",[LBSDataUtil shareUtil].address]];
+                 [aLabel setText:[NSString stringWithFormat:@"%@%@",[LBSDataUtil shareUtil].m_addrResult.addressComponent.city, [LBSDataUtil shareUtil].m_addrResult.addressComponent.district]];
             }
         }
         

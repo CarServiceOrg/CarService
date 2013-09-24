@@ -13,7 +13,7 @@
 #import "TSMessage.h"
 #import "CSInsuranceDetailViewController.h"
 
-@interface CSCareReferViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface CSCareReferViewController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
     
 }
@@ -106,6 +106,7 @@
 //创建详情列表
 -(void)initSetUpTableView:(CGRect)frame{
 	UITableView *aTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+    [aTableView setTag:102];
     [aTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 	[aTableView setSeparatorColor:[UIColor clearColor]];
 	[aTableView setBackgroundColor:[UIColor clearColor]];
@@ -160,12 +161,15 @@
         searchStr=textField.text;
     }
     
-    if (searchStr.length==0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [ApplicationPublic showMessage:self with_title:@"提示" with_detail:@"请输入搜索关键字！" with_type:TSMessageNotificationTypeWarning with_Duration:1.5];
-        });
-        return;
+    {
+//        if (searchStr.length==0) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [ApplicationPublic showMessage:self with_title:@"提示" with_detail:@"请输入搜索关键字！" with_type:TSMessageNotificationTypeWarning with_Duration:1.5];
+//            });
+//            return;
+//        }
     }
+    
     //type 1 为保养知识  2 为保养咨询
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"maintenance", @"action", @"2", @"type", searchStr, @"search", nil];
     NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -188,6 +192,7 @@
             }else if ([[requestDic objectForKey:@"status"] intValue]==0){
                 if ([requestDic objectForKey:@"list"]) {
                     self.dataArray=[requestDic objectForKey:@"list"];
+                    CustomLog(@"<<Chao-->CSCareReferViewController-->self.dataArray:%@",self.dataArray);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         UITableView* tableView=(UITableView*)[self.view viewWithTag:102];
                         if (tableView) {
@@ -356,6 +361,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self heightForCell:indexPath];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
+    if (dict && [dict objectForKey:@"id"]) {
+        CSInsuranceDetailViewController* ctrler=[[CSInsuranceDetailViewController alloc] initController:self.navigationItem.title with_id:[dict objectForKey:@"id"]];
+        [self.navigationController pushViewController:ctrler animated:YES];
+        [ctrler release];
+    }
+}
+
+#pragma mark - UITextFieldDelegate
+//按Done键键盘消失
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

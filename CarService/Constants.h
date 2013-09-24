@@ -12,6 +12,7 @@
 #define UserDefaultUserInfo @"UserDefaultUserInfo"
 #define LoginSuccessNotification @"LoginSuccessNotification"
 #define LogoutSuccessNotification @"LogoutSuccessNotification"
+#define LocationSuccessNotification @"LocationSuccessNotification"
 
 #define SinaWeiboShareResultNotification  @"SinaWeiboShareResultNotification"
 #define RateOrderNotification @"RateOrderNotification"

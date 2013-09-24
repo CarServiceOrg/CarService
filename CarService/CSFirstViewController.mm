@@ -18,6 +18,7 @@
 #import "CSAppDelegate.h"
 #import "CSLogInViewController.h"
 #import "CSMessageViewController.h"
+#import "LBSDataUtil.h"
 
 @interface CSFirstViewController ()<CSLogInViewController_Delegate>
 {
@@ -143,30 +144,30 @@
         [locationImgView release];
         //定位城市
         x=x+width+3; y=10; width=80; height=22;
-        [self setUpLabel:weatherView with_tag:1001 with_frame:CGRectMake(x, y, width, height) with_text:@"北京市" with_Alignment:NSTextAlignmentLeft];
+        [self setUpLabel:weatherView with_tag:1001 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
         //天气
         x=10; y=y+height+10; width=100;
-        [self setUpLabel:weatherView with_tag:1002 with_frame:CGRectMake(x, y, width, height) with_text:@"多云" with_Alignment:NSTextAlignmentLeft];
+        [self setUpLabel:weatherView with_tag:1002 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
         //风力
         y=y+height+10;
-        [self setUpLabel:weatherView with_tag:1003 with_frame:CGRectMake(x, y, width, height) with_text:@"微风" with_Alignment:NSTextAlignmentLeft];
+        [self setUpLabel:weatherView with_tag:1003 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
         
         //日期
         x=CGRectGetWidth(weatherView.frame)-100; y=10;
         NSString *string_time=@"";
         NSString *week_day=@"";
         {
-            NSDate *date = [NSDate date];
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateStyle:NSDateFormatterMediumStyle];
-            [formatter setTimeStyle:NSDateFormatterShortStyle];
-            [formatter setDateFormat:@"YYYY-MM-dd"];
-             string_time = [formatter stringFromDate:date];
-            
-            [formatter setDateFormat:@"EEEE"];
-             week_day = [formatter stringFromDate:date];
-            
-            [formatter release];
+//            NSDate *date = [NSDate date];
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//            [formatter setDateStyle:NSDateFormatterMediumStyle];
+//            [formatter setTimeStyle:NSDateFormatterShortStyle];
+//            [formatter setDateFormat:@"YYYY-MM-dd"];
+//             string_time = [formatter stringFromDate:date];
+//            
+//            [formatter setDateFormat:@"EEEE"];
+//             week_day = [formatter stringFromDate:date];
+//            
+//            [formatter release];
         }
         [self setUpLabel:weatherView with_tag:1004 with_frame:CGRectMake(x, y, width, height) with_text:string_time with_Alignment:NSTextAlignmentLeft];
         //星期几
@@ -174,7 +175,7 @@
         [self setUpLabel:weatherView with_tag:1005 with_frame:CGRectMake(x, y, width, height) with_text:week_day with_Alignment:NSTextAlignmentLeft];
         //明日限行
         y=y+height+10; width=13*5;
-        [self setUpLabel:weatherView with_tag:-1 with_frame:CGRectMake(x, y, width, height) with_text:@"今日限行:" with_Alignment:NSTextAlignmentLeft];
+        [self setUpLabel:weatherView with_tag:-1 with_frame:CGRectMake(x, y, width, height) with_text:@"明日限行:" with_Alignment:NSTextAlignmentLeft];
         //限行尾数1
         x=x+width-3; y=y+2; width=15; height=16;
         {
@@ -210,7 +211,7 @@
         x=0; y=0; width=90; height=90;
         UIImageView* weatherImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         [weatherImgView setTag:1008];
-        [weatherImgView setCenter:CGPointMake(CGRectGetMidX(weatherView.frame), CGRectGetMinY(weatherView.frame)-35)];
+        [weatherImgView setCenter:CGPointMake(CGRectGetMidX(weatherView.frame)-5, CGRectGetMinY(weatherView.frame)-35)];
         {
             UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1002];
             NSString* imgStr=[NSString stringWithFormat:@"%@.png",aLabel.text];
@@ -226,7 +227,7 @@
             [weatherView addSubview:bgImgView];
             [bgImgView release];
         }
-        [self setUpLabel:weatherView with_tag:1009 with_frame:CGRectMake(x, y, width, height) with_text:@"28℃-30℃" with_Alignment:NSTextAlignmentCenter];
+        [self setUpLabel:weatherView with_tag:1009 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentCenter];
         {
             UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1009];
             if (aLabel) {
@@ -236,13 +237,26 @@
         }
         
         //提示信息
-        x=15; y=105; width=CGRectGetWidth(weatherView.frame)-x*2; height=30;
-        [self setUpLabel:weatherView with_tag:1010 with_frame:CGRectMake(x, y, width, height) with_text:@"提示：未来24小时天气变换，不宜洗车" with_Alignment:NSTextAlignmentCenter];
+        x=15; y=100; width=CGRectGetWidth(weatherView.frame)-x*2; height=30;
+        [self setUpLabel:weatherView with_tag:1010 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentCenter];
         {
             UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1010];
             if (aLabel) {
+                [aLabel setBackgroundColor:[UIColor clearColor]];
                 [aLabel setFont:[UIFont systemFontOfSize:14]];
                 [aLabel setTextColor:[UIColor colorWithRed:254/255.0 green:205/255.0 blue:67/255.0 alpha:1.0]];
+            }
+        }
+        
+        //当前地理位置
+        x=15; y=130; width=CGRectGetWidth(weatherView.frame)-x*2; height=20;
+        [self setUpLabel:weatherView with_tag:1011 with_frame:CGRectMake(x, y, width, height) with_text:@"正在获取地理位置..." with_Alignment:NSTextAlignmentCenter];
+        {
+            UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1011];
+            if (aLabel) {
+                [aLabel setBackgroundColor:[UIColor clearColor]];
+                [aLabel setFont:[UIFont systemFontOfSize:10]];
+                [aLabel setTextColor:[UIColor lightGrayColor]];
             }
         }
     }
@@ -329,6 +343,7 @@
     //登录、登出通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLoginNotification:) name:LoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLogoutNotification:) name:LogoutSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationSuccessNotification:) name:LocationSuccessNotification object:nil];
 
     
     //网络获取数据
@@ -437,11 +452,22 @@
     }
 }
 
+- (void)locationSuccessNotification:(NSNotification *)notify
+{
+    NSString* address=(NSString*)notify.object;
+    if (address) {
+        [self updateTextForLabel:address with_superViewTag:201 with_LabelTag:1011];
+    }else{
+        [self updateTextForLabel:@"获取当前位置信息失败..." with_superViewTag:201 with_LabelTag:1011];
+    }
+}
+
 #pragma mark 网络相关
 
 -(void)startHttpRequest{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self request_TrafficControls];
+        [self request_weather];
     });
 }
 
@@ -482,14 +508,97 @@
     [request startAsynchronous];
 }
 
+//今日天气
+-(void)request_weather
+{
+    NSString *urlStr = [URL_Weather stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"Get"];
+    [request setCompletionBlock:^{
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+        NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        CustomLog(@"<<Chao-->CSFirstViewController-->request_weather-->testResponseString:%@",testResponseString);
+        NSDictionary *requestDic =[[request responseString] JSONValue];
+        CustomLog(@"<<Chao-->CSFirstViewController-->request_weather-->requestDic:%@",requestDic);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([requestDic objectForKey:@"weatherinfo"]) {
+                NSDictionary* backDict=[requestDic objectForKey:@"weatherinfo"];
+                
+                //定位城市
+                [self updateTextForLabel:@"北京市天气" with_superViewTag:201 with_LabelTag:1001];
+                //天气
+                if ([backDict objectForKey:@"weather1"]) {
+                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",[backDict objectForKey:@"weather1"]] with_superViewTag:201 with_LabelTag:1002];
+                }
+                //风力
+                if ([backDict objectForKey:@"wind1"]) {
+                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",[backDict objectForKey:@"wind1"]] with_superViewTag:201 with_LabelTag:1003];
+                }
+                
+                //日期
+                if ([backDict objectForKey:@"date_y"]) {
+                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",[backDict objectForKey:@"date_y"]] with_superViewTag:201 with_LabelTag:1004];
+                }
+                
+                //星期几
+                if ([backDict objectForKey:@"week"]) {
+                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",[backDict objectForKey:@"week"]] with_superViewTag:201 with_LabelTag:1005];
+                }
+                
+                //天气图片 1008
+                if ([backDict objectForKey:@"weather1"]) {
+                    NSString* weather1_str=[backDict objectForKey:@"weather1"];
+                    //weather1_str=@"雷阵雨伴有冰雹";
+                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",weather1_str] with_superViewTag:201 with_LabelTag:1008];
+                }
+                
+                //温度 1009
+                if ([backDict objectForKey:@"temp1"]) {
+                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",[backDict objectForKey:@"temp1"]] with_superViewTag:201 with_LabelTag:1009];
+                }
+                
+                //提示信息 1010
+                //这部分是读取 weather2 里面是否包含 雨 、雪、冰雹  这三组词任意一个时，即 上面的文案  即为：未来24小时天气变幻，不宜洗车！
+                //如果都没有，文案则为： 未来24小时天气变幻，适宜洗车！
+                if ([backDict objectForKey:@"weather2"]) {
+                    NSString* textStr=@"未来24小时天气变幻，适宜洗车！";
+                    NSString* weather2_str=[backDict objectForKey:@"weather2"];
+                    //weather2_str=@"雷阵雨伴有冰雹";
+                    if ([weather2_str rangeOfString:@"雨"].length==1 ||
+                        [weather2_str rangeOfString:@"雪"].length==1 ||
+                        [weather2_str rangeOfString:@"冰雹"].length==2) {
+                        textStr=@"未来24小时天气变幻，不宜洗车！";
+                    }                    
+                    [self updateTextForLabel:textStr with_superViewTag:201 with_LabelTag:1010];
+                }
+            }
+        });
+    }];
+    [request setFailedBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载天气数据失败，请检验网络！", nil) with_type:TSMessageNotificationTypeError];
+        });
+    }];
+    [request startAsynchronous];
+}
+
+
 -(void)updateTextForLabel:(NSString*)text with_superViewTag:(int)superTag  with_LabelTag:(int)labelTag
 {
     UIScrollView* scrollView=(UIScrollView*)[self.view viewWithTag:101];
     if (scrollView) {
         UIView* superView=[scrollView viewWithTag:superTag];
         if (superView) {
-            UILabel* aLabel=(UILabel*)[superView viewWithTag:labelTag];
-            aLabel.text=[NSString stringWithFormat:@"%@",text];
+            if ([[superView viewWithTag:labelTag] isKindOfClass:[UILabel class]]) {
+                UILabel* aLabel=(UILabel*)[superView viewWithTag:labelTag];
+                aLabel.text=[NSString stringWithFormat:@"%@",text];
+            }else if ([[superView viewWithTag:labelTag] isKindOfClass:[UIImageView class]]){
+                UIImageView* aImgView=(UIImageView*)[superView viewWithTag:labelTag];
+                if (aImgView) {
+                    [aImgView setImage:[UIImage imageNamed:text]];
+                }
+            }
         }
     }
 }

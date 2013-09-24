@@ -13,7 +13,7 @@
 #import "TSMessage.h"
 #import "CSInsuranceDetailViewController.h"
 
-@interface CSCareKnowledgeViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface CSCareKnowledgeViewController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 {
     
 }
@@ -158,12 +158,15 @@
         searchStr=textField.text;
     }
     
-    if (searchStr.length==0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [ApplicationPublic showMessage:self with_title:@"提示" with_detail:@"请输入搜索关键字！" with_type:TSMessageNotificationTypeWarning with_Duration:1.5];
-        });
-        return;
+    {
+//        if (searchStr.length==0) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [ApplicationPublic showMessage:self with_title:@"提示" with_detail:@"请输入搜索关键字！" with_type:TSMessageNotificationTypeWarning with_Duration:1.5];
+//            });
+//            return;
+//        }
     }
+    
     //type 1 为保养知识  2 为保养咨询
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"maintenance", @"action", @"1", @"type", searchStr, @"search", nil];
     NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -352,7 +355,7 @@
     
     NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
     if (dict && [dict objectForKey:@"id"]) {
-        CSInsuranceDetailViewController* ctrler=[[CSInsuranceDetailViewController alloc] initController:self.title with_id:[dict objectForKey:@"id"]];
+        CSInsuranceDetailViewController* ctrler=[[CSInsuranceDetailViewController alloc] initController:self.navigationItem.title with_id:[dict objectForKey:@"id"]];
         [self.navigationController pushViewController:ctrler animated:YES];
         [ctrler release];
     }
