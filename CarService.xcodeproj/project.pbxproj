@@ -296,9 +296,6 @@
 		E53ABA3F17E0DD020096754D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E53ABA3D17E0DD020096754D /* InfoPlist.strings */; };
 		E53ABA4117E0DD020096754D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E53ABA4017E0DD020096754D /* main.m */; };
 		E53ABA4517E0DD020096754D /* CSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E53ABA4417E0DD020096754D /* CSAppDelegate.m */; };
-		E53ABA4717E0DD020096754D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E53ABA4617E0DD020096754D /* Default.png */; };
-		E53ABA4917E0DD020096754D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E53ABA4817E0DD020096754D /* Default@2x.png */; };
-		E53ABA4B17E0DD020096754D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E53ABA4A17E0DD020096754D /* Default-568h@2x.png */; };
 		E53ABA4E17E0DD020096754D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53ABA4C17E0DD020096754D /* MainStoryboard.storyboard */; };
 		E53ABA5117E0DD020096754D /* CSFirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E53ABA5017E0DD020096754D /* CSFirstViewController.mm */; };
 		E53ABA5817E0DD020096754D /* CSSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53ABA5717E0DD020096754D /* CSSecondViewController.m */; };
@@ -812,9 +809,6 @@
 		E53ABA4217E0DD020096754D /* CarService-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CarService-Prefix.pch"; sourceTree = "<group>"; };
 		E53ABA4317E0DD020096754D /* CSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAppDelegate.h; sourceTree = "<group>"; };
 		E53ABA4417E0DD020096754D /* CSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSAppDelegate.m; sourceTree = "<group>"; };
-		E53ABA4617E0DD020096754D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		E53ABA4817E0DD020096754D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		E53ABA4A17E0DD020096754D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E53ABA4D17E0DD020096754D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		E53ABA4F17E0DD020096754D /* CSFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSFirstViewController.h; sourceTree = "<group>"; };
 		E53ABA5017E0DD020096754D /* CSFirstViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CSFirstViewController.mm; sourceTree = "<group>"; };
@@ -1685,9 +1679,6 @@
 				E53ABA3D17E0DD020096754D /* InfoPlist.strings */,
 				E53ABA4017E0DD020096754D /* main.m */,
 				E53ABA4217E0DD020096754D /* CarService-Prefix.pch */,
-				E53ABA4617E0DD020096754D /* Default.png */,
-				E53ABA4817E0DD020096754D /* Default@2x.png */,
-				E53ABA4A17E0DD020096754D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2028,9 +2019,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E53ABA3F17E0DD020096754D /* InfoPlist.strings in Resources */,
-				E53ABA4717E0DD020096754D /* Default.png in Resources */,
-				E53ABA4917E0DD020096754D /* Default@2x.png in Resources */,
-				E53ABA4B17E0DD020096754D /* Default-568h@2x.png in Resources */,
 				E53ABA4E17E0DD020096754D /* MainStoryboard.storyboard in Resources */,
 				E53ABAF217E0EAC60096754D /* action-black-button-selected.png in Resources */,
 				E53ABAF317E0EAC60096754D /* action-black-button-selected@2x.png in Resources */,

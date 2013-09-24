@@ -10,6 +10,7 @@
 #import "CSMessageTableViewCell.h"
 #import "CSMessageDetailViewController.h"
 #import "NSString+SBJSON.h"
+#import "NSObject+SBJSON.h"
 
 @interface CSMessageViewController ()
 
