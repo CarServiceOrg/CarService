@@ -33,6 +33,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)sinaButtonPressed:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.sina.com.cn"]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

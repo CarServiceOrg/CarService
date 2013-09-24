@@ -136,6 +136,9 @@
 		E19AE9F017F050A1007B9F07 /* message_line.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9EF17F050A0007B9F07 /* message_line.png */; };
 		E19AE9F417F05981007B9F07 /* CSMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE9F217F05977007B9F07 /* CSMessageDetailViewController.m */; };
 		E19AE9F517F05981007B9F07 /* CSMessageDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9F317F0597C007B9F07 /* CSMessageDetailViewController.xib */; };
+		E19D5EB317F177A6007AAE23 /* about_button_click.png in Resources */ = {isa = PBXBuildFile; fileRef = E19D5EB117F177A6007AAE23 /* about_button_click.png */; };
+		E19D5EB417F177A6007AAE23 /* about_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E19D5EB217F177A6007AAE23 /* about_button.png */; };
+		E19D5EB617F177DA007AAE23 /* about_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E19D5EB517F177DA007AAE23 /* about_logo.png */; };
 		E1BCA22417E382F60086BA51 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA22317E382F60086BA51 /* OpenGLES.framework */; };
 		E1BCA2AD17E38A620086BA51 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA2AB17E38A620086BA51 /* libbaidumapapi.a */; };
 		E1BCA2AE17E38A620086BA51 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1BCA2AC17E38A620086BA51 /* mapapi.bundle */; };
@@ -583,6 +586,9 @@
 		E19AE9F117F0596F007B9F07 /* CSMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMessageDetailViewController.h; sourceTree = "<group>"; };
 		E19AE9F217F05977007B9F07 /* CSMessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMessageDetailViewController.m; sourceTree = "<group>"; };
 		E19AE9F317F0597C007B9F07 /* CSMessageDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMessageDetailViewController.xib; sourceTree = "<group>"; };
+		E19D5EB117F177A6007AAE23 /* about_button_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_button_click.png; sourceTree = "<group>"; };
+		E19D5EB217F177A6007AAE23 /* about_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_button.png; sourceTree = "<group>"; };
+		E19D5EB517F177DA007AAE23 /* about_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_logo.png; sourceTree = "<group>"; };
 		E1BCA22317E382F60086BA51 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E1BCA28D17E38A620086BA51 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		E1BCA28E17E38A620086BA51 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -1491,6 +1497,9 @@
 				E19AE7F917E87BD5007B9F07 /* feedback_confirm_press.png */,
 				E19AE7FA17E87BD7007B9F07 /* feedback_back.png */,
 				E19AE80E17E8879F007B9F07 /* setting_clear_cache_back.png */,
+				E19D5EB517F177DA007AAE23 /* about_logo.png */,
+				E19D5EB117F177A6007AAE23 /* about_button_click.png */,
+				E19D5EB217F177A6007AAE23 /* about_button.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -2285,6 +2294,9 @@
 				E19AE9EE17F04597007B9F07 /* CSMessageTableViewCell.xib in Resources */,
 				E19AE9F017F050A1007B9F07 /* message_line.png in Resources */,
 				E19AE9F517F05981007B9F07 /* CSMessageDetailViewController.xib in Resources */,
+				E19D5EB317F177A6007AAE23 /* about_button_click.png in Resources */,
+				E19D5EB417F177A6007AAE23 /* about_button.png in Resources */,
+				E19D5EB617F177DA007AAE23 /* about_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

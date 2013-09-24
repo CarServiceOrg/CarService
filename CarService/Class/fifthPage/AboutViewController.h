@@ -11,5 +11,6 @@
 @interface AboutViewController : CommonViewController
 
 - (IBAction)backButtonPressed:(id)sender;
+- (IBAction)sinaButtonPressed:(id)sender;
 
 @end
