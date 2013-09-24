@@ -98,7 +98,7 @@
 #pragma mark -UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 //创建详细信息的Label
@@ -161,28 +161,28 @@
             case 1:
             {
                 float x, y, width, height;
-                width=33/2.0; height=33/2.0; x=10; y=(45-height)/2.0;
-                imageView.frame=CGRectMake(x, y, width, height);
-                imageView.image=[UIImage imageNamed:@"cheliangbaoyang_record.png"];
-                textLabel.text=@"保养记录";
-            }
-                break;
-            case 2:
-            {
-                float x, y, width, height;
                 width=32/2.0; height=35/2.0; x=10; y=(45-height)/2.0;
                 imageView.frame=CGRectMake(x, y, width, height);
                 imageView.image=[UIImage imageNamed:@"cheliangbaoyang_acknowledge.png"];
                 textLabel.text=@"保养常识";
             }
                 break;
-            case 3:
+            case 2:
             {
                 float x, y, width, height;
                 width=32/2.0; height=33/2.0; x=10; y=(45-height)/2.0;
                 imageView.frame=CGRectMake(x, y, width, height);
                 imageView.image=[UIImage imageNamed:@"cheliangbaoyang_question.png"];
                 textLabel.text=@"保养咨询";
+            }
+                break;
+            case 3:
+            {
+                float x, y, width, height;
+                width=33/2.0; height=33/2.0; x=10; y=(45-height)/2.0;
+                imageView.frame=CGRectMake(x, y, width, height);
+                imageView.image=[UIImage imageNamed:@"cheliangbaoyang_record.png"];
+                textLabel.text=@"保养记录";
             }
                 break;
             default:
@@ -220,21 +220,21 @@
             break;
         case 1:
         {
-            CSCareRecordViewController* ctrler=[[CSCareRecordViewController alloc] init];
+            CSCareKnowledgeViewController* ctrler=[[CSCareKnowledgeViewController alloc] init];
             [self.navigationController pushViewController:ctrler animated:YES];
             [ctrler release];
         }
             break;
         case 2:
         {
-            CSCareKnowledgeViewController* ctrler=[[CSCareKnowledgeViewController alloc] init];
+            CSCareReferViewController* ctrler=[[CSCareReferViewController alloc] init];
             [self.navigationController pushViewController:ctrler animated:YES];
             [ctrler release];
         }
             break;
         case 3:
         {
-            CSCareReferViewController* ctrler=[[CSCareReferViewController alloc] init];
+            CSCareRecordViewController* ctrler=[[CSCareRecordViewController alloc] init];
             [self.navigationController pushViewController:ctrler animated:YES];
             [ctrler release];
         }

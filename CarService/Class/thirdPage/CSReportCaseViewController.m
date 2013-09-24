@@ -17,6 +17,9 @@
 
 @interface CSReportCaseViewController ()<UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIScrollViewDelegate>{
     UIView* _placeHolderView;
+    
+    UIScrollView* view_ScrollView;  //用于iphone4上滚动显示
+    UIScrollView* pic_ScrollView;   //用于所选或所照的图片
 }
 
 @end
@@ -63,39 +66,48 @@
     [self.view sendSubviewToBack:bgImageView];
     [bgImageView release];
     
+    //滚动视图
+    height=self.view.bounds.size.height-(40+55);
+    view_ScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [view_ScrollView setContentSize:CGSizeMake(width, 1136/2.0-20-(40+55))];
+    view_ScrollView.backgroundColor=[UIColor clearColor];
+    view_ScrollView.showsHorizontalScrollIndicator=NO;
+    view_ScrollView.showsVerticalScrollIndicator=NO;
+    [self.view addSubview:view_ScrollView];
+    [view_ScrollView release];
+    
     //车牌号
     x=10; y=20; width=320-10*2; height=40;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"时间" with_delegate:self];
+    [ApplicationPublic setUp_UITextField:view_ScrollView with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"时间" with_delegate:self];
     
     //发动机号
     y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"地点" with_delegate:self];
+    [ApplicationPublic setUp_UITextField:view_ScrollView with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"地点" with_delegate:self];
     
     y=y+height+15; height=180;
     {
         UIImageView* bgImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         [bgImgView setImage:[[UIImage imageNamed:@"black_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
-        [self.view addSubview:bgImgView];
+        [view_ScrollView addSubview:bgImgView];
         [bgImgView release];
     }
     //滚动视图
-    UIScrollView* scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [scrollView setTag:103];
-    [scrollView setDelegate:self];
-    scrollView.backgroundColor=[UIColor clearColor];
-    scrollView.pagingEnabled=YES;
-    scrollView.showsHorizontalScrollIndicator=NO;
-    scrollView.showsVerticalScrollIndicator=NO;
-    [self.view addSubview:scrollView];
-    [scrollView release];
+    pic_ScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [pic_ScrollView setDelegate:self];
+    pic_ScrollView.backgroundColor=[UIColor clearColor];
+    pic_ScrollView.pagingEnabled=YES;
+    pic_ScrollView.showsHorizontalScrollIndicator=NO;
+    pic_ScrollView.showsVerticalScrollIndicator=NO;
+    [view_ScrollView addSubview:pic_ScrollView];
+    [pic_ScrollView release];
     {
-        for(UIView* subview in scrollView.subviews){
+        for(UIView* subview in pic_ScrollView.subviews){
             [subview removeFromSuperview];
         }
         
-        _placeHolderView=[[UIView alloc] initWithFrame:scrollView.bounds];
+        _placeHolderView=[[UIView alloc] initWithFrame:pic_ScrollView.bounds];
         [_placeHolderView setBackgroundColor:[UIColor clearColor]];
-        [scrollView addSubview:_placeHolderView];
+        [pic_ScrollView addSubview:_placeHolderView];
         
         UIImageView* imgView=[[UIImageView alloc] initWithFrame:CGRectMake(40, 10, 200, 150)];
         [imgView setImage:[UIImage imageNamed:@"shigubaoan_placeHolder.png"]];
@@ -118,7 +130,7 @@
     //[pageControl setPageControlStyle:PageControlStyleThumb];
     //[pageControl setThumbImage:[UIImage imageNamed:@"yonghumoshi_icon_5.png"]];
     //[pageControl setSelectedThumbImage:[UIImage imageNamed:@"yonghumoshi_icon_5_2.png"]];
-    [self.view addSubview:pageControl];
+    [view_ScrollView addSubview:pageControl];
     [pageControl release];
 
     //查看参考格式
@@ -129,7 +141,7 @@
     [referBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateNormal];
     [referBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateSelected];
     [referBtn addTarget:self action:@selector(referBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:referBtn];
+    [view_ScrollView addSubview:referBtn];
     [referBtn release];
     
     //确定
@@ -140,7 +152,7 @@
     [queryBtn setBackgroundImage:[UIImage imageNamed:@"chaoxun_btn.png"] forState:UIControlStateNormal];
     [queryBtn setBackgroundImage:[UIImage imageNamed:@"chanxun_btn_press.png"] forState:UIControlStateHighlighted];
     [queryBtn addTarget:self action:@selector(queryBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:queryBtn];
+    [view_ScrollView addSubview:queryBtn];
     [queryBtn release];
 }
 
@@ -168,7 +180,7 @@
 
 #pragma mark - 本地函数
 -(void)setUpPageView:(UIImage*)image{
-    UIScrollView* scrollView=(UIScrollView*)[self.view viewWithTag:103];
+    UIScrollView* scrollView=pic_ScrollView;
     if (scrollView) {
         if (scrollView.subviews.count==1) {
             [_placeHolderView removeFromSuperview];
@@ -294,8 +306,7 @@
 
 -(void)deleteBtnClick:(UIButton*)sender
 {
-
-    UIScrollView* scrollView=(UIScrollView*)[self.view viewWithTag:103];
+    UIScrollView* scrollView=pic_ScrollView;
     if (scrollView) {
         if (scrollView.subviews.count==1) {
             [sender.superview removeFromSuperview];

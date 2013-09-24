@@ -28,6 +28,7 @@
 @implementation CSAppDelegate
 //#define baidu_AccessKey @"394bd9ecb346c4564c08d3ec4375041d"
 #define baidu_AccessKey @"2400bd68cfae9cf2577f56760546145c"
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {        
     //此为storyboard的局限，在Interface Builder时代，在MainWindow.xib中可以链接view controllers到App Delegate的outlets，但是现在不可以，只能写代码设置第一个controller是什么，或者谁知道有什么办法请告知，谢谢。

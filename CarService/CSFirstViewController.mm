@@ -465,8 +465,8 @@
                     if (backStr.length>0) {
                         [self updateTextForLabel:[backStr substringWithRange:NSMakeRange(0, 1)] with_superViewTag:201 with_LabelTag:1006];
                     }
-                    if (backStr.length>1) {
-                        [self updateTextForLabel:[backStr substringWithRange:NSMakeRange(1, 1)] with_superViewTag:201 with_LabelTag:1007];
+                    if (backStr.length>2) {
+                        [self updateTextForLabel:[backStr substringWithRange:NSMakeRange(2, 1)] with_superViewTag:201 with_LabelTag:1007];
                     }
                 }
             }
@@ -511,7 +511,7 @@
 
 -(void)msgBtnClick:(id)sender
 {
-    if ([[Util sharedUtil] getUserInfo]) {
+    if ([[Util sharedUtil] hasLogin]) {
         //点击跳转
         if (self.m_msgArray) {
             
