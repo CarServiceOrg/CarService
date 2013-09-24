@@ -16,8 +16,10 @@
 #import "TSMessage.h"
 #import "BlockAlertView.h"
 #import "CSAppDelegate.h"
+#import "CSLogInViewController.h"
+#import "CSMessageViewController.h"
 
-@interface CSFirstViewController ()
+@interface CSFirstViewController ()<CSLogInViewController_Delegate>
 {
     
 }
@@ -523,10 +525,19 @@
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
-            [self.tabBarController setSelectedIndex:3];
-            [(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+            //[self.tabBarController setSelectedIndex:3];
+            //[(CSAppDelegate*)[UIApplication sharedApplication].delegate updateSelectIndex:3];
+            
+            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSMessageViewController" with_NibName:@"CSLogInViewController" bundle:nil];
+            ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+            ctrler.delegate=self;
+            UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
+            [ApplicationPublic selfDefineNaviBar:navi.navigationBar];
+            [self presentModalViewController:navi animated:YES];
+            [ctrler release];
+            [navi release];
         }];
-        [alert show];        
+        [alert show];
     }
 }
 
@@ -547,6 +558,24 @@
         [ctrler release];
     }];
     [sheet showInView:self.view];
+}
+
+#pragma mark - CSLogInViewController_Delegate
+-(void)loginFinishCallBack:(NSString*)flagStr
+{
+    [self performSelector:@selector(delayCall:) withObject:flagStr afterDelay:0.5];
+}
+
+-(void)delayCall:(NSString*)flagStr
+{
+    if ([flagStr isEqualToString:@"CSMessageViewController"]) {
+        CSMessageViewController* controller = [[CSMessageViewController alloc] initWithNibName:@"CSMessageViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }else if ([flagStr isEqualToString:@""]){
+       
+    }
+    
 }
 
 @end

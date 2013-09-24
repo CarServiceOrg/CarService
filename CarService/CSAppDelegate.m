@@ -26,7 +26,6 @@
 @end
 
 @implementation CSAppDelegate
-//#define baidu_AccessKey @"394bd9ecb346c4564c08d3ec4375041d"
 #define baidu_AccessKey @"2400bd68cfae9cf2577f56760546145c"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

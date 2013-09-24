@@ -15,6 +15,7 @@
 #import "NSString+SBJSON.h"
 #import "NSObject+SBJSON.h"
 #import "TSMessage.h"
+#import "LBSDataUtil.h"
 
 @interface CSShopRecommendViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -71,6 +72,12 @@
         //定位城市
         x=x+width+3; y=10; width=220; height=22;
         [self setUpLabel:headerView with_tag:1001 with_frame:CGRectMake(x, y, width, height) with_text:@"北京市" with_Alignment:NSTextAlignmentLeft];
+        {
+            UILabel* aLabel=(UILabel*)[headerView viewWithTag:1001];
+            if (aLabel) {
+                [aLabel setText:[NSString stringWithFormat:@"%@",[LBSDataUtil shareUtil].address]];
+            }
+        }
         
         //更多区域选择
         width=110; height=CGRectGetHeight(headerView.bounds); x=320-width; y=0;

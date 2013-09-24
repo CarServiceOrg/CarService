@@ -16,6 +16,7 @@
 #import "NSString+SBJSON.h"
 #import "CSForthViewController.h"
 #import "CSThirdViewController.h"
+#import "CSFirstViewController.h"
 
 #define AnimationChangeHeight 105
 
@@ -77,8 +78,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    if (self.parentController && [self.parentController isKindOfClass:[CSThirdViewController class]]) {
+    // Do any additional setup after loading the view from its nib. 
+    if (self.parentController && ([self.parentController isKindOfClass:[CSThirdViewController class]] || [self.parentController isKindOfClass:[CSFirstViewController class]])) {
         self.navigationItem.title=@"登录";
         [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backClicked)];
     }else{
@@ -165,7 +166,7 @@
 {
     if ([self.parentController isKindOfClass:[CSForthViewController class]]) {
         [self.parentController.navigationController popViewControllerAnimated:YES];
-    }else if ([self.parentController isKindOfClass:[CSThirdViewController class]]){
+    }else if (([self.parentController isKindOfClass:[CSThirdViewController class]] || [self.parentController isKindOfClass:[CSFirstViewController class]])){
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
@@ -177,7 +178,7 @@
         CSRegisterUserNameViewController *controller = [[CSRegisterUserNameViewController alloc] initWithNibName:@"CSRegisterUserNameViewController" bundle:nil];
         [self.parentController.navigationController pushViewController:controller animated:YES];
         [controller release];
-    }else if ([self.parentController isKindOfClass:[CSThirdViewController class]]){
+    }else if (([self.parentController isKindOfClass:[CSThirdViewController class]] || [self.parentController isKindOfClass:[CSFirstViewController class]])){
         CSRegisterUserNameViewController *controller = [[CSRegisterUserNameViewController alloc] initWithNibName:@"CSRegisterUserNameViewController" bundle:nil];
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
@@ -269,7 +270,7 @@
 
                 if ([self.parentController isKindOfClass:[CSForthViewController class]]) {
                     
-                }else if ([self.parentController isKindOfClass:[CSThirdViewController class]]){
+                }else if (([self.parentController isKindOfClass:[CSThirdViewController class]] || [self.parentController isKindOfClass:[CSFirstViewController class]])){
                     [self backClicked];
                     if (self.delegate && [(NSObject*)self.delegate respondsToSelector:@selector(loginFinishCallBack:)]) {
                         [self.delegate loginFinishCallBack:self.m_flagString];
