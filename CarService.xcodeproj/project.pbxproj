@@ -86,6 +86,10 @@
 		E152AA2717E8DBE400E73902 /* tianjiacheliang_tianjia_press_80.png in Resources */ = {isa = PBXBuildFile; fileRef = E152AA0A17E8DBE400E73902 /* tianjiacheliang_tianjia_press_80.png */; };
 		E16201B717F2EAA6008926D0 /* cartrac_location_tip.png in Resources */ = {isa = PBXBuildFile; fileRef = E16201B517F2EAA6008926D0 /* cartrac_location_tip.png */; };
 		E16201B817F2EAA6008926D0 /* shouye_msg_logout.png in Resources */ = {isa = PBXBuildFile; fileRef = E16201B617F2EAA6008926D0 /* shouye_msg_logout.png */; };
+		E16201C117F34C06008926D0 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = E16201BC17F34C06008926D0 /* TFHpple.m */; };
+		E16201C217F34C06008926D0 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E16201BE17F34C06008926D0 /* TFHppleElement.m */; };
+		E16201C317F34C06008926D0 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E16201C017F34C06008926D0 /* XPathQuery.m */; };
+		E16201C617F34CE4008926D0 /* CSAuthCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E16201C517F34CE4008926D0 /* CSAuthCodeViewController.m */; };
 		E174C2AD17E5B71C00C1CE71 /* KeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2AC17E5B71C00C1CE71 /* KeyChainUtil.m */; };
 		E174C2B117E5B97200C1CE71 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B017E5B97200C1CE71 /* Util.m */; };
 		E174C2B417E5BAE300C1CE71 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B317E5BAE100C1CE71 /* CommonViewController.m */; };
@@ -523,6 +527,14 @@
 		E152AA0A17E8DBE400E73902 /* tianjiacheliang_tianjia_press_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tianjiacheliang_tianjia_press_80.png; sourceTree = "<group>"; };
 		E16201B517F2EAA6008926D0 /* cartrac_location_tip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartrac_location_tip.png; sourceTree = "<group>"; };
 		E16201B617F2EAA6008926D0 /* shouye_msg_logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouye_msg_logout.png; sourceTree = "<group>"; };
+		E16201BB17F34C06008926D0 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		E16201BC17F34C06008926D0 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		E16201BD17F34C06008926D0 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		E16201BE17F34C06008926D0 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		E16201BF17F34C06008926D0 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		E16201C017F34C06008926D0 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		E16201C417F34CE4008926D0 /* CSAuthCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAuthCodeViewController.h; sourceTree = "<group>"; };
+		E16201C517F34CE4008926D0 /* CSAuthCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAuthCodeViewController.m; sourceTree = "<group>"; };
 		E174C2AB17E5B71C00C1CE71 /* KeyChainUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainUtil.h; sourceTree = "<group>"; };
 		E174C2AC17E5B71C00C1CE71 /* KeyChainUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainUtil.m; sourceTree = "<group>"; };
 		E174C2AF17E5B97200C1CE71 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
@@ -1149,6 +1161,28 @@
 			path = weather;
 			sourceTree = "<group>";
 		};
+		E16201B917F2F10D008926D0 /* second */ = {
+			isa = PBXGroup;
+			children = (
+				E16201C417F34CE4008926D0 /* CSAuthCodeViewController.h */,
+				E16201C517F34CE4008926D0 /* CSAuthCodeViewController.m */,
+			);
+			path = second;
+			sourceTree = "<group>";
+		};
+		E16201BA17F34C06008926D0 /* htmlParser */ = {
+			isa = PBXGroup;
+			children = (
+				E16201BB17F34C06008926D0 /* TFHpple.h */,
+				E16201BC17F34C06008926D0 /* TFHpple.m */,
+				E16201BD17F34C06008926D0 /* TFHppleElement.h */,
+				E16201BE17F34C06008926D0 /* TFHppleElement.m */,
+				E16201BF17F34C06008926D0 /* XPathQuery.h */,
+				E16201C017F34C06008926D0 /* XPathQuery.m */,
+			);
+			path = htmlParser;
+			sourceTree = "<group>";
+		};
 		E174C2AA17E5B71C00C1CE71 /* KeyChainUtil */ = {
 			isa = PBXGroup;
 			children = (
@@ -1316,6 +1350,7 @@
 				E1D043B317E6DCC2008CBE90 /* ApplicationPublic.m */,
 				E17C2FC617ECCB1300D29BD4 /* ApplicationRequest.h */,
 				E17C2FC717ECCB1500D29BD4 /* ApplicationRequest.m */,
+				E16201B917F2F10D008926D0 /* second */,
 				E1EBEC8717EADA1C0026682A /* first */,
 				E1D043B417E6DCC2008CBE90 /* fifthPage */,
 				E1D043B517E6DCC2008CBE90 /* forthhPage */,
@@ -1735,6 +1770,7 @@
 		E53ABA7617E0E0E10096754D /* util */ = {
 			isa = PBXGroup;
 			children = (
+				E16201BA17F34C06008926D0 /* htmlParser */,
 				E1EBEC8E17EB6CC30026682A /* TSMessages */,
 				E12A9ACF17EA275400A5F451 /* UIImageCategory */,
 				E12A9ABF17E9FA2F00A5F451 /* GCPlaceholderTextView */,
@@ -2472,6 +2508,10 @@
 				E19AE9F417F05981007B9F07 /* CSMessageDetailViewController.m in Sources */,
 				E19D5EC617F1B5F0007AAE23 /* CSOrderListViewController.m in Sources */,
 				E19D5ECB17F1B88B007AAE23 /* CSOrderListCell.m in Sources */,
+				E16201C117F34C06008926D0 /* TFHpple.m in Sources */,
+				E16201C217F34C06008926D0 /* TFHppleElement.m in Sources */,
+				E16201C317F34C06008926D0 /* XPathQuery.m in Sources */,
+				E16201C617F34CE4008926D0 /* CSAuthCodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

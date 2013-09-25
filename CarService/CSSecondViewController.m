@@ -7,15 +7,27 @@
 //
 
 #import "CSSecondViewController.h"
+#import "ASIFormDataRequest.h"
+#import "NSString+SBJSON.h"
+#import "NSObject+SBJSON.h"
+#import "MBProgressHUD.h"
+#import "CSAuthCodeViewController.h"
 
-@interface CSSecondViewController ()<UITextFieldDelegate>
+@interface CSSecondViewController ()<UITextFieldDelegate, MBProgressHUDDelegate>
 {
     
 }
 
+@property(readonly,assign)MBProgressHUD *alertView;
+@property(nonatomic,retain)NSString* m_responseString;
+@property(nonatomic,retain)NSArray* m_responseCookieAry;
+
 @end
 
 @implementation CSSecondViewController
+@synthesize alertView;
+@synthesize m_responseString;
+@synthesize m_responseCookieAry;
 
 -(void)init_selfView
 {
@@ -72,10 +84,98 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc
+{
+    if (alertView&&alertView.superview) {
+        alertView.delegate = nil;
+        [alertView removeFromSuperview];
+        [alertView release],alertView = nil;
+    }
+    self.m_responseString=nil;
+    self.m_responseCookieAry=nil;
+    
+    [super dealloc];
+}
+
+#pragma mark - 网络请求
+
+-(void)startHttpRequest{
+    {
+        self.alertView.mode = MBProgressHUDModeText;
+        self.alertView.color=[UIColor darkGrayColor];
+        self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
+        [self.alertView show:YES];
+    }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL backBool=[self startHttpRequest_first];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.alertView hide:YES];
+            if (backBool) {
+                //跳转到验证码页面
+                CSAuthCodeViewController* ctrler=[[CSAuthCodeViewController alloc] init];
+                ctrler.m_firstResponseString=self.m_responseString;
+                ctrler.m_firstResponseCookieAry=[NSMutableArray arrayWithArray:self.m_responseCookieAry];
+                [self.navigationController pushViewController:ctrler animated:YES];
+                [ctrler release];
+            }else{
+                [self showErrorMessage];
+            }
+        });
+    });
+}
+/*
+    http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/wzcx_preview.jsp  （post请求）
+    post的参数正文是：carno=phq600&fdjh=80229789&sf=11
+    其中  carno  是车牌号   fdjh 是 发动机号    sf  是省份的代号
+    请求头要带：
+    Referer   http://www.bjjtgl.gov.cn/portals/0/weifachaxun/new001_wfchaxun.htm
+    Content-Type   application/x-www-form-urlencoded
+*/
+-(BOOL)startHttpRequest_first
+{
+    NSString *urlStr =@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/wzcx_preview.jsp";
+    ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"POST"];
+    [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
+    [request addRequestHeader:@"Referer" value:@"http://www.bjjtgl.gov.cn/portals/0/weifachaxun/new001_wfchaxun.htm"];
+    
+    [request setPostValue:@"phq600" forKey:@"carno"];
+    [request setPostValue:@"80229789" forKey:@"fdjh"];
+    [request setPostValue:@"11" forKey:@"sf"];
+    [request startSynchronous];
+    
+    NSError* error=[request error];
+    if (error) {
+        return NO;
+    }else{
+        CustomLog(@"<<Chao-->CSSecondViewController-->startHttpRequest_UserMessage-->[request responseString] : %@",[request responseString]);
+        
+        if ([request responseStatusCode]==200) {
+            if ([request responseString]) {
+                self.m_responseString=[request responseString];
+                self.m_responseCookieAry=[request responseCookies];
+                return YES;
+            }else{
+                
+            }
+        }else{
+            
+        }
+    }
+    
+    return NO;
+}
+
+-(void)showErrorMessage{
+    [ApplicationPublic showMessage:self with_title:@"加载数据失败！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+}
+
 #pragma mark - 点击事件
 -(void)queryBtnClick:(id)sender
 {
-    
+    [self startHttpRequest];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -93,6 +193,31 @@
         [aTextField resignFirstResponder];
         [bTextField resignFirstResponder];
     }
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    if (alertView&&alertView.superview) {
+        alertView.delegate = nil;
+        [alertView removeFromSuperview];
+        [alertView release],alertView = nil;
+    }
+}
+- (MBProgressHUD*) alertView
+{
+    if (alertView==nil) {
+        id delegate = [UIApplication sharedApplication].delegate;
+        UIWindow *window = [delegate window];
+        alertView = [[MBProgressHUD alloc] initWithView:window];
+        [window addSubview:alertView];
+        alertView.dimBackground = YES;
+        alertView.labelText = NSLocalizedString(@"加载中", @"");
+        alertView.delegate = self;
+    }
+    return alertView;
 }
 
 @end
