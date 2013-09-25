@@ -48,8 +48,8 @@
     
     //信息按钮
     UIButton* msgBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60/2.0+8, 46/2.0+5)];
-    [msgBtn setImage:[UIImage imageNamed:@"shouye_msg.png"] forState:UIControlStateNormal];
-    [msgBtn setImage:[UIImage imageNamed:@"shouye_msg_press.png"] forState:UIControlStateHighlighted];
+    [msgBtn setImage:[UIImage imageNamed:@"shouye_msg_logout.png"] forState:UIControlStateNormal];
+    //[msgBtn setImage:[UIImage imageNamed:@"shouye_msg_press.png"] forState:UIControlStateHighlighted];
     [msgBtn addTarget:self action:@selector(msgBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     {
         //消息数
@@ -425,6 +425,7 @@
             }else{
                 UIButton* msgBtn=(UIButton*)self.navigationItem.rightBarButtonItem.customView;
                 if (msgBtn && [msgBtn isKindOfClass:[UIButton class]]) {
+                    [msgBtn setImage:[UIImage imageNamed:@"shouye_msg.png"] forState:UIControlStateNormal];
                     UILabel* numLabel=(UILabel*)[msgBtn viewWithTag:1001];
                     if (numLabel) {
                         numLabel.text=[NSString stringWithFormat:@"%d",[self.m_msgArray count]];
@@ -456,7 +457,11 @@
 {
     NSString* address=(NSString*)notify.object;
     if (address) {
-        [self updateTextForLabel:address with_superViewTag:201 with_LabelTag:1011];
+        if (address.length) {
+            [self updateTextForLabel:address with_superViewTag:201 with_LabelTag:1011];
+        }else{
+            [self updateTextForLabel:@"获取当前位置信息失败..." with_superViewTag:201 with_LabelTag:1011];
+        }
     }else{
         [self updateTextForLabel:@"获取当前位置信息失败..." with_superViewTag:201 with_LabelTag:1011];
     }
@@ -620,15 +625,11 @@
 
 #pragma mark - 点击事件
 
--(void)msgBtnClick:(id)sender
+-(void)msgBtnClick:(UIButton*)sender
 {
     if ([[Util sharedUtil] hasLogin]) {
         //点击跳转
-        if (self.m_msgArray) {
-            
-        }else{
-            
-        }
+        [self push_messageViewCtrler];
     }else{
         //提示登录
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
@@ -675,16 +676,20 @@
     [self performSelector:@selector(delayCall:) withObject:flagStr afterDelay:0.5];
 }
 
+-(void)push_messageViewCtrler
+{
+    CSMessageViewController* controller = [[CSMessageViewController alloc] initWithNibName:@"CSMessageViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 -(void)delayCall:(NSString*)flagStr
 {
     if ([flagStr isEqualToString:@"CSMessageViewController"]) {
-        CSMessageViewController* controller = [[CSMessageViewController alloc] initWithNibName:@"CSMessageViewController" bundle:nil];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
+        [self push_messageViewCtrler];
     }else if ([flagStr isEqualToString:@""]){
        
     }
-    
 }
 
 @end
