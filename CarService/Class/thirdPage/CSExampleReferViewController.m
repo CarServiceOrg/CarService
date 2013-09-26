@@ -53,29 +53,40 @@
     UIScrollView* scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [scrollView setTag:101];
     [scrollView setDelegate:self];
+    scrollView.minimumZoomScale=1.0;
+    scrollView.maximumZoomScale=3.0;
     scrollView.backgroundColor=[UIColor clearColor];
-    scrollView.pagingEnabled=YES;
-    scrollView.showsHorizontalScrollIndicator=NO;
-    scrollView.showsVerticalScrollIndicator=NO;
+    scrollView.showsHorizontalScrollIndicator=YES;
+    scrollView.showsVerticalScrollIndicator=YES;
     [self.view addSubview:scrollView];
     [scrollView release];
     {
-        for(UIView* subview in scrollView.subviews){
-            [subview removeFromSuperview];
-        }
+        UIImage* image=[UIImage imageWithCGImage:[UIImage imageNamed:@"shigubaoan_cankaogeshi.png"].CGImage scale:2.0 orientation:UIImageOrientationUp];
+        UIImageView* imgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, scrollView.bounds.size.width, image.size.height)];
+        [imgView setTag:1001];
+        [imgView setContentMode:UIViewContentModeScaleAspectFit];
+        [imgView setImage:image];
+        [scrollView addSubview:imgView];
+        [imgView release];
         
-        x=0; y=0; width=140; height=140;
-        [self setUpPageView:CGRectMake(x, y, width, height) with_img:[UIImage imageNamed:@"shigubaoan_cankaogeshi_01.png"]
-                  with_text:@"远景要能看清车辆所处的位置、标志线等"];
-     
-        x=x+width+10;
-        [self setUpPageView:CGRectMake(x, y, width, height) with_img:[UIImage imageNamed:@"shigubaoan_cankaogeshi_02.png"]
-                  with_text:@"中景要能看清车辆车型特征等"];
-
-        x=0; y=y+height+15;
-        [self setUpPageView:CGRectMake(x, y, width, height) with_img:[UIImage imageNamed:@"shigubaoan_03.png"]
-                  with_text:@"近景要拍摄清楚碰撞的部位"];
-
+        scrollView.contentSize=CGSizeMake(scrollView.bounds.size.width, image.size.height);
+    }
+    {
+//        for(UIView* subview in scrollView.subviews){
+//            [subview removeFromSuperview];
+//        }
+//        
+//        x=0; y=0; width=140; height=140;
+//        [self setUpPageView:CGRectMake(x, y, width, height) with_img:[UIImage imageNamed:@"shigubaoan_cankaogeshi_01.png"]
+//                  with_text:@"远景要能看清车辆所处的位置、标志线等"];
+//     
+//        x=x+width+10;
+//        [self setUpPageView:CGRectMake(x, y, width, height) with_img:[UIImage imageNamed:@"shigubaoan_cankaogeshi_02.png"]
+//                  with_text:@"中景要能看清车辆车型特征等"];
+//
+//        x=0; y=y+height+15;
+//        [self setUpPageView:CGRectMake(x, y, width, height) with_img:[UIImage imageNamed:@"shigubaoan_03.png"]
+//                  with_text:@"近景要拍摄清楚碰撞的部位"];
     }
 }
 
@@ -131,5 +142,17 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - UIScrollViewDelegate
+// return a view that will be scaled. if delegate returns nil, nothing happens
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    UIImageView* imgView=(UIImageView*)[scrollView viewWithTag:1001];
+    if (imgView) {
+        return imgView;
+    }
+    return nil;
+}
+
 
 @end
