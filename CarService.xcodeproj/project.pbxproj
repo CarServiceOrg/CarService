@@ -177,6 +177,8 @@
 		E1C063E217E48D15003336B2 /* CSThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E117E48D15003336B2 /* CSThirdViewController.m */; };
 		E1C063E517E48D62003336B2 /* CSForthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E417E48D62003336B2 /* CSForthViewController.m */; };
 		E1C063E817E48D94003336B2 /* CSFifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E717E48D94003336B2 /* CSFifthViewController.m */; };
+		E1C957D517F4332B005063AC /* shigubaoan_cankaogeshi.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C957D417F4332B005063AC /* shigubaoan_cankaogeshi.png */; };
+		E1C957D817F4ABBC005063AC /* CSPeccancyRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C957D717F4ABBC005063AC /* CSPeccancyRecordViewController.m */; };
 		E1D043C517E6DCC2008CBE90 /* ApplicationPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043B317E6DCC2008CBE90 /* ApplicationPublic.m */; };
 		E1D043C617E6DCC2008CBE90 /* CSLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043B717E6DCC2008CBE90 /* CSLogInViewController.m */; };
 		E1D043C717E6DCC2008CBE90 /* CSLogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D043B817E6DCC2008CBE90 /* CSLogInViewController.xib */; };
@@ -696,6 +698,9 @@
 		E1C063E417E48D62003336B2 /* CSForthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSForthViewController.m; sourceTree = "<group>"; };
 		E1C063E617E48D94003336B2 /* CSFifthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSFifthViewController.h; sourceTree = "<group>"; };
 		E1C063E717E48D94003336B2 /* CSFifthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSFifthViewController.m; sourceTree = "<group>"; };
+		E1C957D417F4332B005063AC /* shigubaoan_cankaogeshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shigubaoan_cankaogeshi.png; sourceTree = "<group>"; };
+		E1C957D617F4ABBC005063AC /* CSPeccancyRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPeccancyRecordViewController.h; sourceTree = "<group>"; };
+		E1C957D717F4ABBC005063AC /* CSPeccancyRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPeccancyRecordViewController.m; sourceTree = "<group>"; };
 		E1D043B217E6DCC2008CBE90 /* ApplicationPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationPublic.h; sourceTree = "<group>"; };
 		E1D043B317E6DCC2008CBE90 /* ApplicationPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPublic.m; sourceTree = "<group>"; };
 		E1D043B617E6DCC2008CBE90 /* CSLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLogInViewController.h; sourceTree = "<group>"; };
@@ -1166,6 +1171,8 @@
 			children = (
 				E16201C417F34CE4008926D0 /* CSAuthCodeViewController.h */,
 				E16201C517F34CE4008926D0 /* CSAuthCodeViewController.m */,
+				E1C957D617F4ABBC005063AC /* CSPeccancyRecordViewController.h */,
+				E1C957D717F4ABBC005063AC /* CSPeccancyRecordViewController.m */,
 			);
 			path = second;
 			sourceTree = "<group>";
@@ -1430,6 +1437,7 @@
 		E1D0441517E71BEC008CBE90 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E1C957D417F4332B005063AC /* shigubaoan_cankaogeshi.png */,
 				E152A9EE17E8DBE400E73902 /* baoxianzhishiku_line.png */,
 				E152A9EF17E8DBE400E73902 /* baoxianzhishiku_sanjiao.png */,
 				E152A9F017E8DBE400E73902 /* baoxianzhishiku_sousuo_80.png */,
@@ -2383,6 +2391,7 @@
 				E19D5ECC17F1B88B007AAE23 /* CSOrderListCell.xib in Resources */,
 				E16201B717F2EAA6008926D0 /* cartrac_location_tip.png in Resources */,
 				E16201B817F2EAA6008926D0 /* shouye_msg_logout.png in Resources */,
+				E1C957D517F4332B005063AC /* shigubaoan_cankaogeshi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2512,6 +2521,7 @@
 				E16201C217F34C06008926D0 /* TFHppleElement.m in Sources */,
 				E16201C317F34C06008926D0 /* XPathQuery.m in Sources */,
 				E16201C617F34CE4008926D0 /* CSAuthCodeViewController.m in Sources */,
+				E1C957D817F4ABBC005063AC /* CSPeccancyRecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

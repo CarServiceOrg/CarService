@@ -13,6 +13,7 @@
 #import "NSObject+SBJSON.h"
 #import "TFHpple.h"
 #import "MBProgressHUD.h"
+#import "CSPeccancyRecordViewController.h"
 
 @interface CSAuthCodeViewController ()<UITextFieldDelegate, MBProgressHUDDelegate>
 {
@@ -25,7 +26,7 @@
 }
 
 @property(readonly,assign)MBProgressHUD *alertView;
-@property(nonatomic,retain)NSArray* m_dataArray;
+@property(nonatomic,retain)NSMutableArray* m_dataArray;
 
 @end
 
@@ -216,13 +217,30 @@
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BOOL backBool=[self startHttpRequest_second];
+        int back=[self startHttpRequest_second];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.alertView hide:YES];
-            if (backBool) {
-                CustomLog(@"<<Chao-->CSAuthCodeViewController-->startHttpRequest_final-->self.m_dataArray : %@",self.m_dataArray);
-            }else{
+            if (back==0) {
                 [self showErrorMessage];
+            }else if (back==1){
+                [ApplicationPublic showMessage:self with_title:@"验证码输入有误！请重新输入！" with_detail:@"" with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+            }else if (back==2){
+                //跳转进入到下一个界面
+                CSPeccancyRecordViewController* ctrler=[[CSPeccancyRecordViewController alloc] initWithDataArray:self.m_dataArray];
+                [self.navigationController pushViewController:ctrler animated:YES];
+                [ctrler release];
+            }else if (back==3){
+                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"超时，请重新查询！"];
+                [alert setDestructiveButtonWithTitle:@"确定" block:^{
+                    [self backBtnClick:nil];
+                }];
+                [alert show];
+            }else if (back==4){
+                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"输入信息有误！请重新输入！"];
+                [alert setDestructiveButtonWithTitle:@"确定" block:^{
+                    [self backBtnClick:nil];
+                }];
+                [alert show];
             }
         });
     });
@@ -287,7 +305,7 @@
  
  */
 
--(BOOL)startHttpRequest_second
+-(int)startHttpRequest_second
 {
     NSString *urlStr=@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/getWzcxXx.action";
     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
@@ -296,7 +314,14 @@
     [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
     [request addRequestHeader:@"Referer" value:@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/wzcx_preview.jsp"];
     [request setRequestCookies:self.m_firstResponseCookieAry];
-    
+
+    //[request addRequestHeader:@"Accept-Language" value:@"zh-cn"];
+    //[request addRequestHeader:@"User-Agent" value:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/536.30.1 (KHTML, like Gecko) Version/6.0.5 Safari/536.30.1"];
+    //[request addRequestHeader:@"Origin" value:@"http://sslk.bjjtgl.gov.cn"];
+    //[request addRequestHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"];
+    //[request addRequestHeader:@"Accept-Encoding" value:@"gzip, deflate"];
+    //[request addRequestHeader:@"Connection" value:@"keep-alive"];
+
     //解析第一步的html数据 同时设置内容
     NSData* data=[self.m_firstResponseString dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* doc = [[TFHpple alloc] initWithHTMLData:data];
@@ -317,43 +342,123 @@
             }
         }
     }
-    //carnono=phq600&sf=11&fdjhhm=80229789&ip=125.39.34.198&c_flag=0&yzm=%E5%BF%97
-    //carnono=phq600&sf=11&fdjhhm=80229789&ip=125.39.34.198&c_flag=0&yzm=%E7%9A%84
+    //carnono=phq600&sf=11&fdjhhm=80229789&ip=125.39.34.215&c_flag=0&yzm=%E8%B6%85 -->超 -->me
+    //carnono=phq600&sf=11&fdjhhm=80229789&ip=125.39.34.215&c_flag=0&yzm=%E8%B6%85 -->超 -->safari
     //设置验证码文本
     [request setPostValue:m_codeTextField.text forKey:@"yzm"];
     [request startSynchronous];
     
     NSError* error=[request error];
     if (error) {
-        return NO;
+        return 0;
     }else{
         CustomLog(@"<<Chao-->CSAuthCodeViewController-->startHttpRequest_second-->[request responseString] : %@",[request responseString]);
         if ([request responseStatusCode]==200) {
             if ([request responseString]) {
+                //NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+                //NSString *testResponseString = [[NSString alloc] initWithData:[request responseData] encoding:gbkEncoding];
+                //CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_UserMessage-->testResponseString:%@",testResponseString);
                 
                 //解析第一步的html数据 同时设置内容
                 NSData* data=[[request responseString] dataUsingEncoding:NSUTF8StringEncoding];
                 TFHpple* doc = [[TFHpple alloc] initWithHTMLData:data];
-                NSArray* backDataAry=[doc searchWithXPathQuery:@"//table[@class='tab_2']//tbody"];
-                CustomLog(@"<<Chao-->CSAuthCodeViewController-->startHttpRequest_second-->backDataAry : %@",backDataAry);
-                for (TFHppleElement* element in backDataAry) {
-                    if (element) {
-                        if (element.attributes) {
-                            NSDictionary* dict=element.attributes;
-                            NSString* name=[dict objectForKey:@"name"];
-                            NSString* value=[dict objectForKey:@"value"];
-                            if (name && value) {
-                                if ([name isEqualToString:@"carnono"] || [name isEqualToString:@"sf"] || [name isEqualToString:@"fdjhhm"] ||
-                                    [name isEqualToString:@"ip"] || [name isEqualToString:@"c_flag"]) {
-                                    [request setPostValue:value forKey:name];
+                NSArray* backDataAry=[doc searchWithXPathQuery:@"//table[@class='tab_2']//tbody//tr"];
+                //CustomLog(@"<<Chao-->CSAuthCodeViewController-->startHttpRequest_second-->backDataAry : %@",backDataAry);
+                if ([backDataAry count]) {
+                    NSMutableArray* dataArray=[NSMutableArray arrayWithCapacity:3];
+                    for (TFHppleElement* element in backDataAry) {
+                        NSArray* listArray=element.children;    //<td>*****</td>
+                        if ([listArray count]) {
+                            int flag=-1;
+                            NSMutableArray* indexArray=[NSMutableArray arrayWithCapacity:3];
+                            for (int i=0; i<[listArray count]; i++) {
+                                TFHppleElement* element=[listArray objectAtIndex:i];
+                                if ([element.tagName isEqualToString:@"td"]) {
+                                    flag++;
+                                    CustomLog(@"<<Chao-->CSAuthCodeViewController-->startHttpRequest_second-->element:%d ------- element:%@",flag,element);
+
+                                    switch (flag) {
+                                        case 0:
+                                        case 1:
+                                        case 2:
+                                        case 4:
+                                        case 5:
+                                        case 6:
+                                        case 7:
+                                        {
+                                            NSArray* child=element.children;
+                                            if ([child count]) {
+                                                TFHppleElement* data=[child objectAtIndex:0];
+                                                [indexArray addObject:[NSString stringWithFormat:@"%@",data.content]];
+                                            }
+                                        }
+                                            break;
+                                        case 3:
+                                        {
+                                            NSArray* child=element.children;
+                                            if ([child count]) {
+                                                for (TFHppleElement* subTag in child) {
+                                                    if ([subTag.tagName isEqualToString:@"a"]) {
+                                                        TFHppleElement* dataSub=[subTag.children objectAtIndex:0];
+                                                        [indexArray addObject:[NSString stringWithFormat:@"%@",dataSub.content]];
+                                                    }
+                                                }
+                                            }
+                                        }
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                            }
+                    
+                            //添加记录到数组中
+                            [dataArray addObject:indexArray];
+                        }else{
+                            //没有违章记录
+                        }
+                    }
+                    CustomLog(@"<<Chao-->CSAuthCodeViewController-->startHttpRequest_second-->dataArray : %@",dataArray);
+                    self.m_dataArray=dataArray;
+                    return 2;
+                }else{
+                    //验证码错误问题
+                    NSArray* errorAry=[doc searchWithXPathQuery:@"//script[@type='text/javascript']"];
+                    if ([errorAry count]) {
+                        for (TFHppleElement* errorE in errorAry) {
+                            NSArray* subArray=errorE.children;
+                            if ([subArray count]) {
+                                TFHppleElement* subE=[subArray objectAtIndex:0];
+                                if ([subE.content isEqualToString:@"alert('验证码输入有误！请重新输入！');"]) {
+                                    return 1;
+                                }else if ([subE.content isEqualToString:@"alert('输入信息有误！请重新输入！');"]){
+                                    return 4;
                                 }
                             }
                         }
+                    }else{
+                        //超时，请重新查询。
+                        NSArray* errorAry=[doc searchWithXPathQuery:@"//title"];
+                        if (errorAry) {
+                            for (TFHppleElement* element in errorAry) {
+                                if ([[(TFHppleElement*)[element.children objectAtIndex:0] content] isEqualToString:@"记分查询结果"]) {
+                                    NSArray* array1=[doc searchWithXPathQuery:@"//div[@class='div_tab1']//tr//td"];
+                                    if ([array1 count]) {
+                                        for (TFHppleElement* element in array1) {
+                                            if ([[(TFHppleElement*)[element.children objectAtIndex:0] content] rangeOfString:@"超时"].length) {
+                                                return 3;
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    
+                                }
+                            }
+                        }
+
                     }
                 }
-                
-                
-                return YES;
             }else{
                 
             }
@@ -362,7 +467,7 @@
         }
     }
     
-    return NO;
+    return 0;
 }
 
 -(void)showErrorMessage{
@@ -378,16 +483,19 @@
 
 -(void)queryBtnClick:(id)sender
 {
+    [m_codeTextField resignFirstResponder];
     [self startHttpRequest_final];
 }
 
 -(void)getCodeBtnClick:(id)sender
 {
+    [m_codeTextField resignFirstResponder];
     [self startHttpRequest];
 }
 
 -(void)asynImageViewClick:(UIGestureRecognizer*)sender
 {
+    [m_codeTextField resignFirstResponder];
     m_asynImageView.image=nil;
     [self startHttpRequest];
 }

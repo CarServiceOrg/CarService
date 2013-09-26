@@ -140,9 +140,22 @@
     [request setRequestMethod:@"POST"];
     [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
     [request addRequestHeader:@"Referer" value:@"http://www.bjjtgl.gov.cn/portals/0/weifachaxun/new001_wfchaxun.htm"];
+    [request addRequestHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n"];
     
-    [request setPostValue:@"phq600" forKey:@"carno"];
-    [request setPostValue:@"80229789" forKey:@"fdjh"];
+    //车牌号
+    UITextField* aTextField=(UITextField*)[self.view viewWithTag:101];
+    if (aTextField.text) {
+        [request setPostValue:aTextField.text forKey:@"carno"];
+    }
+    //发动机号
+    UITextField* bTextField=(UITextField*)[self.view viewWithTag:102];
+    if (bTextField.text) {
+        [request setPostValue:bTextField.text forKey:@"fdjh"];
+    }
+    //for test
+    //[request setPostValue:@"phq600" forKey:@"carno"];
+    //[request setPostValue:@"80229789" forKey:@"fdjh"];
+
     [request setPostValue:@"11" forKey:@"sf"];
     [request startSynchronous];
     
@@ -175,6 +188,19 @@
 #pragma mark - 点击事件
 -(void)queryBtnClick:(id)sender
 {
+    //车牌号
+    UITextField* aTextField=(UITextField*)[self.view viewWithTag:101];
+    if (aTextField.text.length==0) {
+        [ApplicationPublic showMessage:self with_title:@"请输入车牌号！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+        return;
+    }
+    //发动机号
+    UITextField* bTextField=(UITextField*)[self.view viewWithTag:102];
+    if (bTextField.text.length==0) {
+        [ApplicationPublic showMessage:self with_title:@"请输入发动机号！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+        return;
+    }
+    //开始网络请求
     [self startHttpRequest];
 }
 
