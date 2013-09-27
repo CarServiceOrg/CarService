@@ -227,8 +227,9 @@
             break;
     }
     NSString* about=[(GCPlaceholderTextView*)[self.view viewWithTag:103] text];
-    NSString* order_sn=@"";
-    NSString* phone=[[[Util sharedUtil] getUserInfo] objectForKey:@"username"];
+    if (about.length==0) {
+        about=@"无";
+    }
     
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:
                             @"order", @"action",
@@ -238,8 +239,6 @@
                             order_address, @"order_address",
                             serve_type, @"serve_type",
                             about, @"about",
-                            order_sn, @"order_sn",
-                            phone, @"phone",
                             nil];
     NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];

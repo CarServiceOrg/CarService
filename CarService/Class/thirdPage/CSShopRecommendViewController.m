@@ -75,7 +75,13 @@
         {
             UILabel* aLabel=(UILabel*)[headerView viewWithTag:1001];
             if (aLabel) {
-                 [aLabel setText:[NSString stringWithFormat:@"%@%@",[LBSDataUtil shareUtil].m_addrResult.addressComponent.city, [LBSDataUtil shareUtil].m_addrResult.addressComponent.district]];
+                NSString* city=[LBSDataUtil shareUtil].m_addrResult.addressComponent.city;
+                NSString* district=[LBSDataUtil shareUtil].m_addrResult.addressComponent.district;
+                if (city && district) {
+                    [aLabel setText:[NSString stringWithFormat:@"%@%@",city, district]];
+                }else{
+                    [aLabel setText:[LBSDataUtil shareUtil].address];
+                }
             }
         }
         
@@ -198,10 +204,19 @@
     });
 }
 
-//保险知识库
+//店铺推荐
+//接口：?json={"action":"recommend_shop",”lon”:”$lon”,”lat”:”$lat”}
 -(void)request_recommend
-{    
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"recommend_shop", @"action", nil];
+{
+    double longitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.longitude;
+    double latitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.latitude;
+    
+    NSDictionary *scrDic = [NSDictionary dictionaryWithObjectsAndKeys:@"recommend_shop", @"action", nil];
+    NSMutableDictionary *argDic=[NSMutableDictionary dictionaryWithDictionary:scrDic];
+    if (longitude!=0 && latitude!=0) {
+        [argDic setObject:[NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:longitude]] forKey:@"lon"];
+        [argDic setObject:[NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:latitude]] forKey:@"lat"];
+    }
     NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
     CustomLog(@"<<Chao-->CSShopRecommendViewController-->request_InsuranceKnowledge-->urlStr:%@",urlStr);

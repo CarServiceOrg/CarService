@@ -2615,8 +2615,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarService/CarService-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/include/libxml2",
+					/usr/include/libxml2,
 					"\"$(SRCROOT)\"/CarService/util/SDWebImage/Vendors/libwebp/src",
+					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "CarService/CarService-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -2642,8 +2643,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarService/CarService-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/include/libxml2",
+					/usr/include/libxml2,
 					"\"$(SRCROOT)\"/CarService/util/SDWebImage/Vendors/libwebp/src",
+					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "CarService/CarService-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
