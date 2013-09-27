@@ -12,12 +12,7 @@
 
 +(void)selfDefineNaviBar:(UINavigationBar*)naviBar
 {
-    
-    if ([naviBar respondsToSelector:@selector(setBackgroundImage:forBarPosition:barMetrics:)]) {
-        [naviBar setBackgroundImage:[[UIImage imageNamed:@"navi_bg.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forBarPosition:UIBarPositionTop barMetrics:UIBarMetricsDefault];
-    }else{
-        [naviBar setBackgroundImage:[ApplicationPublic changeImageToCGImage:[UIImage imageNamed:@"navi_bg.png"]] forBarMetrics:UIBarMetricsDefault];
-    }
+    [naviBar setBackgroundImage:[ApplicationPublic changeImageToCGImage:[UIImage imageNamed:@"navi_bg.png"]] forBarMetrics:UIBarMetricsDefault];
 }
 
 +(UIImage*)changeImageToCGImage:(UIImage*)image
