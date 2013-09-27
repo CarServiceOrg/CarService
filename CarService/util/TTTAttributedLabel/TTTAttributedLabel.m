@@ -26,23 +26,23 @@
 
 NSString * const kTTTStrikeOutAttributeName = @"TTTStrikeOutAttribute";
 
-static inline CTTextAlignment CTTextAlignmentFromUITextAlignment(UITextAlignment alignment) {
+static inline CTTextAlignment CTTextAlignmentFromUITextAlignment(NSTextAlignment alignment) {
 	switch (alignment) {
-		case UITextAlignmentLeft: return kCTLeftTextAlignment;
-		case UITextAlignmentCenter: return kCTCenterTextAlignment;
-		case UITextAlignmentRight: return kCTRightTextAlignment;
+		case NSTextAlignmentLeft: return kCTLeftTextAlignment;
+		case NSTextAlignmentCenter: return kCTCenterTextAlignment;
+		case NSTextAlignmentRight: return kCTRightTextAlignment;
 		default: return kCTNaturalTextAlignment;
 	}
 }
 
-static inline CTLineBreakMode CTLineBreakModeFromUILineBreakMode(UILineBreakMode lineBreakMode) {
+static inline CTLineBreakMode CTLineBreakModeFromUILineBreakMode(NSLineBreakMode lineBreakMode) {
 	switch (lineBreakMode) {
-		case UILineBreakModeWordWrap: return kCTLineBreakByWordWrapping;
-		case UILineBreakModeCharacterWrap: return kCTLineBreakByCharWrapping;
-		case UILineBreakModeClip: return kCTLineBreakByClipping;
-		case UILineBreakModeHeadTruncation: return kCTLineBreakByTruncatingHead;
-		case UILineBreakModeTailTruncation: return kCTLineBreakByTruncatingTail;
-		case UILineBreakModeMiddleTruncation: return kCTLineBreakByTruncatingMiddle;
+		case NSLineBreakByWordWrapping: return kCTLineBreakByWordWrapping;
+		case NSLineBreakByCharWrapping: return kCTLineBreakByCharWrapping;
+		case NSLineBreakByClipping: return kCTLineBreakByClipping;
+		case NSLineBreakByTruncatingHead: return kCTLineBreakByTruncatingHead;
+		case NSLineBreakByTruncatingTail: return kCTLineBreakByTruncatingTail;
+		case NSLineBreakByTruncatingMiddle: return kCTLineBreakByTruncatingMiddle;
 		default: return 0;
 	}
 }
@@ -88,7 +88,7 @@ static inline NSDictionary * NSAttributedStringAttributesFromLabel(TTTAttributed
 
     CTLineBreakMode lineBreakMode;
     if (label.numberOfLines != 1) {
-        lineBreakMode = CTLineBreakModeFromUILineBreakMode(UILineBreakModeWordWrap);
+        lineBreakMode = CTLineBreakModeFromUILineBreakMode(NSLineBreakByWordWrapping);
     }
     else {
         lineBreakMode = CTLineBreakModeFromUILineBreakMode(label.lineBreakMode);
@@ -136,6 +136,9 @@ static inline NSAttributedString * NSAttributedStringByScalingFontSize(NSAttribu
 @property (readwrite, nonatomic, retain) NSArray *links;
 @property (readwrite, nonatomic, retain) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property(nonatomic) NSTextAlignment warning_textAlignment;
+
+
 - (void)commonInit;
 - (void)setNeedsFramesetter;
 - (NSArray *)detectedLinksInString:(NSString *)string range:(NSRange)range error:(NSError **)error;
@@ -164,6 +167,8 @@ static inline NSAttributedString * NSAttributedStringByScalingFontSize(NSAttribu
 @synthesize textInsets = _textInsets;
 @synthesize verticalAlignment = _verticalAlignment;
 @synthesize tapGestureRecognizer = _tapGestureRecognizer;
+
+@synthesize warning_textAlignment;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -421,11 +426,11 @@ static inline NSAttributedString * NSAttributedStringByScalingFontSize(NSAttribu
                 // Get correct truncationType and attribute position
                 CTLineTruncationType truncationType;
                 NSUInteger truncationAttributePosition = lastLineRange.location;
-                UILineBreakMode lineBreakMode = self.lineBreakMode;
+                NSLineBreakMode lineBreakMode = self.lineBreakMode;
                 
                 // Multiple lines, only use UILineBreakModeTailTruncation
                 if (numberOfLines != 1) {
-                    lineBreakMode = UILineBreakModeTailTruncation;
+                    lineBreakMode = NSLineBreakByTruncatingTail;
                 }
                 
                 switch (lineBreakMode) {

@@ -260,7 +260,7 @@
     [titleLabel setTag:1002];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [titleLabel setTextAlignment:UITextAlignmentLeft];
+    [titleLabel setTextAlignment:NSTextAlignmentLeft];
     [titleLabel setFont:[UIFont systemFontOfSize:CSShopRecommendViewController_title_font]];
     [titleLabel setTextColor:[UIColor blackColor]];
     titleLabel.numberOfLines=0;
@@ -273,7 +273,7 @@
     [addressLabel setTag:1003];
     [addressLabel setBackgroundColor:[UIColor clearColor]];
     [addressLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [addressLabel setTextAlignment:UITextAlignmentLeft];
+    [addressLabel setTextAlignment:NSTextAlignmentLeft];
     [addressLabel setFont:[UIFont systemFontOfSize:CSShopRecommendViewController_text_font]];
     [addressLabel setTextColor:[UIColor blackColor]];
     addressLabel.numberOfLines=0;
@@ -286,7 +286,7 @@
     [phoneLabel setTag:1004];
     [phoneLabel setBackgroundColor:[UIColor clearColor]];
     [phoneLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [phoneLabel setTextAlignment:UITextAlignmentLeft];
+    [phoneLabel setTextAlignment:NSTextAlignmentLeft];
     [phoneLabel setFont:[UIFont systemFontOfSize:CSShopRecommendViewController_text_font]];
     [phoneLabel setTextColor:[UIColor blackColor]];
     phoneLabel.numberOfLines=0;

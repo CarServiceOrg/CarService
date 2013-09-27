@@ -2626,8 +2626,8 @@
 				);
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BB0C162A-373C-4F7F-994A-B2B08A9D6113";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB0C162A-373C-4F7F-994A-B2B08A9D6113";
+				PROVISIONING_PROFILE = "67DA40E2-91E5-454E-BA52-0A93E1D3DF56";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67DA40E2-91E5-454E-BA52-0A93E1D3DF56";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2635,8 +2635,8 @@
 		E53ABA6117E0DD020096754D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: tuo zhang (L6J7N4623F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yixuan li (43V7V9XCBH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yixuan li (43V7V9XCBH)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2653,7 +2653,8 @@
 				);
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4DF4D93C-91E6-4428-B937-D46AD491CB20";
+				PROVISIONING_PROFILE = "67DA40E2-91E5-454E-BA52-0A93E1D3DF56";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "67DA40E2-91E5-454E-BA52-0A93E1D3DF56";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

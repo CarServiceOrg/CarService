@@ -145,7 +145,7 @@
     UILabel* textLabel=[[[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width-25*2, 44)] autorelease];
     [textLabel setBackgroundColor:[UIColor clearColor]];
     [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [textLabel setTextAlignment:UITextAlignmentCenter];
+    [textLabel setTextAlignment:NSTextAlignmentCenter];
     [textLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
     [textLabel setText:[self.data objectAtIndex:row]];
     [textLabel setNumberOfLines:0];

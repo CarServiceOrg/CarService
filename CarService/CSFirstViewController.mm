@@ -335,6 +335,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (!IsIOS6OrLower) {
+        if ([(NSObject*)self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+            [self performSelector:@selector(setEdgesForExtendedLayout:) withObject:[NSNumber numberWithInteger:UIRectEdgeNone]];
+        }
+    }
     self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
 	// Do any additional setup after loading the view, typically from a nib.
     [self init_NaviView];

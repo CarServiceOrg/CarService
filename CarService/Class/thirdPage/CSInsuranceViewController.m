@@ -113,7 +113,7 @@
     [textLabel setTag:1002];
     [textLabel setBackgroundColor:[UIColor clearColor]];
     [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [textLabel setTextAlignment:UITextAlignmentLeft];
+    [textLabel setTextAlignment:NSTextAlignmentLeft];
     [textLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
     [textLabel setTextColor:[UIColor whiteColor]];
     [cell.contentView addSubview:textLabel];
@@ -124,7 +124,7 @@
     [detailLabel setTag:1003];
     [detailLabel setBackgroundColor:[UIColor clearColor]];
     [detailLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [detailLabel setTextAlignment:UITextAlignmentLeft];
+    [detailLabel setTextAlignment:NSTextAlignmentLeft];
     [detailLabel setFont:[UIFont systemFontOfSize:12.0]];
     [detailLabel setTextColor:[UIColor grayColor]];
     [detailLabel setText:@"（电话咨询）"];

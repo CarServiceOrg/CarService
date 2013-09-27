@@ -112,7 +112,7 @@
     [textLabel setTag:1002];
     [textLabel setBackgroundColor:[UIColor clearColor]];
     [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
-    [textLabel setTextAlignment:UITextAlignmentLeft];
+    [textLabel setTextAlignment:NSTextAlignmentLeft];
     [textLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
     [textLabel setTextColor:[UIColor whiteColor]];
     [cell.contentView addSubview:textLabel];
