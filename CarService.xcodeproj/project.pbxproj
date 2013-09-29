@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E112190D17E22ABB00926B05 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E112190B17E22ABB00926B05 /* JSONKit.m */; };
 		E112190E17E22ABB00926B05 /* README_JSONKit.md in Resources */ = {isa = PBXBuildFile; fileRef = E112190C17E22ABB00926B05 /* README_JSONKit.md */; };
+		E118BB5F17F7C6B300610ED6 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E118BB5E17F7C6B300610ED6 /* icon.png */; };
+		E118BB6117F7C6BB00610ED6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E118BB6017F7C6BB00610ED6 /* icon@2x.png */; };
 		E11D05C717E983DB005A976D /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E11D05C417E983DB005A976D /* libWeiboSDK.a */; };
 		E11D05C817E983DB005A976D /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E11D05C517E983DB005A976D /* WeiboSDK.bundle */; };
 		E11D05CB17E98428005A976D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D05CA17E98428005A976D /* NSString+MD5.m */; };
@@ -130,8 +132,6 @@
 		E19AE81A17E88FFC007B9F07 /* CSFeedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE81817E88FFC007B9F07 /* CSFeedBackViewController.xib */; };
 		E19AE81E17E89CBD007B9F07 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19AE81C17E89CBD007B9F07 /* AboutViewController.m */; };
 		E19AE81F17E89CBD007B9F07 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19AE81D17E89CBD007B9F07 /* AboutViewController.xib */; };
-		E19AE9E017F042AE007B9F07 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9DB17F042AA007B9F07 /* icon.png */; };
-		E19AE9E117F042AE007B9F07 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9DC17F042AB007B9F07 /* icon@2x.png */; };
 		E19AE9E217F042AE007B9F07 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9DD17F042AC007B9F07 /* Default.png */; };
 		E19AE9E317F042AE007B9F07 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9DE17F042AC007B9F07 /* Default@2x.png */; };
 		E19AE9E417F042AE007B9F07 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E19AE9DF17F042AD007B9F07 /* Default-568h@2x.png */; };
@@ -440,6 +440,8 @@
 		E112190B17E22ABB00926B05 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		E112190C17E22ABB00926B05 /* README_JSONKit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README_JSONKit.md; sourceTree = "<group>"; };
 		E112190F17E23CB600926B05 /* URLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConfig.h; sourceTree = "<group>"; };
+		E118BB5E17F7C6B300610ED6 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		E118BB6017F7C6BB00610ED6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		E11D05C417E983DB005A976D /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		E11D05C517E983DB005A976D /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		E11D05C617E983DB005A976D /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
@@ -599,8 +601,6 @@
 		E19AE81D17E89CBD007B9F07 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		E19AE9D817F00513007B9F07 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E19AE9DA17F005C7007B9F07 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
-		E19AE9DB17F042AA007B9F07 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		E19AE9DC17F042AB007B9F07 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		E19AE9DD17F042AC007B9F07 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E19AE9DE17F042AC007B9F07 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E19AE9DF17F042AD007B9F07 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1684,8 +1684,8 @@
 		E53ABA2817E0DD020096754D = {
 			isa = PBXGroup;
 			children = (
-				E19AE9DB17F042AA007B9F07 /* icon.png */,
-				E19AE9DC17F042AB007B9F07 /* icon@2x.png */,
+				E118BB6017F7C6BB00610ED6 /* icon@2x.png */,
+				E118BB5E17F7C6B300610ED6 /* icon.png */,
 				E19AE9DD17F042AC007B9F07 /* Default.png */,
 				E19AE9DE17F042AC007B9F07 /* Default@2x.png */,
 				E19AE9DF17F042AD007B9F07 /* Default-568h@2x.png */,
@@ -2369,8 +2369,6 @@
 				E1EBECC417EB6CC30026682A /* NotificationButtonBackground.png in Resources */,
 				E1EBECC517EB6CC30026682A /* NotificationButtonBackground@2x.png in Resources */,
 				E1EBECC617EB6CC30026682A /* TSMessagesDefaultDesign.json in Resources */,
-				E19AE9E017F042AE007B9F07 /* icon.png in Resources */,
-				E19AE9E117F042AE007B9F07 /* icon@2x.png in Resources */,
 				E19AE9E217F042AE007B9F07 /* Default.png in Resources */,
 				E19AE9E317F042AE007B9F07 /* Default@2x.png in Resources */,
 				E19AE9E417F042AE007B9F07 /* Default-568h@2x.png in Resources */,
@@ -2392,6 +2390,8 @@
 				E16201B717F2EAA6008926D0 /* cartrac_location_tip.png in Resources */,
 				E16201B817F2EAA6008926D0 /* shouye_msg_logout.png in Resources */,
 				E1C957D517F4332B005063AC /* shigubaoan_cankaogeshi.png in Resources */,
+				E118BB5F17F7C6B300610ED6 /* icon.png in Resources */,
+				E118BB6117F7C6BB00610ED6 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2627,8 +2627,8 @@
 				);
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FA0EBC91-4242-4E06-A485-2966D7E8E264";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FA0EBC91-4242-4E06-A485-2966D7E8E264";
+				PROVISIONING_PROFILE = "D55E68F9-1AA3-49B4-A809-5EBF6A71C31E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D55E68F9-1AA3-49B4-A809-5EBF6A71C31E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

@@ -14,6 +14,10 @@
 #import "UIImagePLCategory.h"
 #import "StyledPageControl.h"
 #import "CSExampleReferViewController.h"
+#import "ASIFormDataRequest.h"
+#import "NSString+SBJSON.h"
+#import "NSObject+SBJSON.h"
+#import "MBProgressHUD.h"
 
 @interface CSReportCaseViewController ()<UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIScrollViewDelegate>{
     UIView* _placeHolderView;
@@ -22,9 +26,12 @@
     UIScrollView* pic_ScrollView;   //用于所选或所照的图片
 }
 
+@property(readonly,assign)MBProgressHUD *alertView;
+
 @end
 
 @implementation CSReportCaseViewController
+@synthesize alertView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -174,6 +181,12 @@
 
 -(void)dealloc
 {
+    if (alertView&&alertView.superview) {
+        alertView.delegate = nil;
+        [alertView removeFromSuperview];
+        [alertView release],alertView = nil;
+    }
+
     [_placeHolderView release];
     [super dealloc];
 }
@@ -192,6 +205,7 @@
         [pageView release];
 
         UIImageView* imgView=[[UIImageView alloc] initWithFrame:CGRectMake(40, 10, 200, 150)];
+        [imgView setTag:1001];
         [imgView setBackgroundColor:[UIColor clearColor]];
         [imgView setContentMode:UIViewContentModeScaleAspectFit];
         [imgView setImage:image];
@@ -241,6 +255,88 @@
         CGImageRelease(ref);
         return  newImage;
     }
+}
+
+#pragma mark - 网络请求
+
+-(void)startHttpRequest{
+    {
+        self.alertView.mode = MBProgressHUDModeText;
+        self.alertView.color=[UIColor darkGrayColor];
+        self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
+        [self.alertView show:YES];
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL backBool=[self startHttpRequest_report];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.alertView hide:YES];
+            if (backBool) {
+                [self backBtnClick:nil];
+            }else{
+                [self showErrorMessage];
+            }
+        });
+    });
+}
+/*
+?json={"action":"accident_report",”addtime”:”2013-03-06”,”content”:”$content” ,”user_id”:”$user_id”}
+ 注：请用POST请求，图像name为file ,例如<input name="file" type="file" size="100"  />,
+ PHP接收时$_FILES['file']
+ */
+-(BOOL)startHttpRequest_report
+{
+    UITextField* aTextField=(UITextField*)[view_ScrollView viewWithTag:101];
+    NSString* dateStr=[NSString stringWithFormat:@"%@",aTextField.text];
+    
+    UITextField* bTextField=(UITextField*)[view_ScrollView viewWithTag:102];
+    NSString* contentStr=[NSString stringWithFormat:@"%@",bTextField.text];
+    
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"accident_report", @"action",
+                            dateStr, @"addtime",
+                            contentStr,@"content",
+                            [[[Util sharedUtil] getUserInfo] objectForKey:@"id"], @"user_id",
+                            nil];
+    NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
+    CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_report-->urlStr:%@",urlStr);
+    ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"POST"];
+    for(UIView* subview in pic_ScrollView.subviews){
+        UIImageView* imgView=(UIImageView*)[pic_ScrollView viewWithTag:1001];
+        NSData *jpeg;
+        jpeg = [NSData dataWithData:UIImageJPEGRepresentation(imgView.image, 0.85)];
+        if ([jpeg length] == 0){
+            jpeg = [NSData dataWithData:UIImagePNGRepresentation(imgView.image)];
+        }
+        [request addData:jpeg withFileName:@"file" andContentType:@"image/jpeg" forKey:@"file"];
+    }
+    [request startSynchronous];
+    
+    NSError* error=[request error];
+    if (error) {
+        return NO;
+    }else{
+        CustomLog(@"<<Chao-->CSSecondViewController-->startHttpRequest_report-->[request responseString] : %@",[request responseString]);
+        
+        NSDictionary *requestDic =[[request responseString] JSONValue];
+        CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_report-->requestDic:%@",requestDic);
+        if ([requestDic objectForKey:@"status"]) {
+            if ([[requestDic objectForKey:@"status"] intValue]==1) {
+                [ApplicationPublic showMessage:[UIApplication sharedApplication].keyWindow.rootViewController with_title:@"错误" with_detail:@"加载我的信息数据失败！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+            }else if ([[requestDic objectForKey:@"status"] intValue]==0){
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
+-(void)showErrorMessage{
+    [ApplicationPublic showMessage:self with_title:@"上传数据失败！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
 }
 
 #pragma mark - 点击事件
@@ -301,7 +397,26 @@
 
 -(void)queryBtnClick:(id)sender
 {
+    //时间
+    UITextField* aTextField=(UITextField*)[view_ScrollView viewWithTag:101];
+    if (aTextField.text.length==0) {
+        [ApplicationPublic showMessage:self with_title:@"请选择事故发生时间！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+        return;
+    }
+    //地点
+    UITextField* bTextField=(UITextField*)[view_ScrollView viewWithTag:102];
+    if (bTextField.text.length==0) {
+        [ApplicationPublic showMessage:self with_title:@"请输入事故地点！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+        return;
+    }
     
+    if ([pic_ScrollView.subviews count]==1 && [pic_ScrollView.subviews objectAtIndex:0]==_placeHolderView) {
+        [ApplicationPublic showMessage:self with_title:@"请上传事故图片！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+        return;
+    }
+
+    //开始网络请求
+    [self startHttpRequest];
 }
 
 -(void)deleteBtnClick:(UIButton*)sender
@@ -436,7 +551,7 @@
         UITextField* textField = (UITextField*)element;
         if (textField) {
             NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+            [formatter setDateFormat:@"YYYY-MM-dd"];
             NSString* formatStr=[formatter stringFromDate:selectedDate];
             [formatter release];
             [textField setText:formatStr];
@@ -449,7 +564,7 @@
 {
     if (textField.tag==101)
     {
-        [ActionSheetDatePicker showPickerWithTitle:@"选择日期" datePickerMode:UIDatePickerModeDateAndTime selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
+        [ActionSheetDatePicker showPickerWithTitle:@"选择日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
         return NO;
     }
     
