@@ -14,8 +14,6 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>57.png</string>
-				<string>114.png</string>
 				<string>icon.png</string>
 				<string>icon@2x.png</string>
 			</array>
