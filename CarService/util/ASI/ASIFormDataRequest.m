@@ -285,11 +285,14 @@
 	[self addToDebugBody:@"\r\n==== Building an application/x-www-form-urlencoded body ====\r\n"]; 
 #endif
 	
-	
-	NSString *charset = (NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding([self stringEncoding]));
-
+#if HTTP_CONTENT_TYPE
+    [self addRequestHeader:@"Content-Type" value:[NSString stringWithFormat:@"application/x-www-form-urlencoded;"]];
+    #undef HTTP_CONTENT_TYPE
+    #define HTTP_CONTENT_TYPE 0
+#else
+    NSString *charset = (NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding([self stringEncoding]));
 	[self addRequestHeader:@"Content-Type" value:[NSString stringWithFormat:@"application/x-www-form-urlencoded; charset=%@",charset]];
-
+#endif
 	
 	NSUInteger i=0;
 	NSUInteger count = [[self postData] count]-1;

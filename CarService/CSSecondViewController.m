@@ -140,8 +140,9 @@
     [request setRequestMethod:@"POST"];
     [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
     [request addRequestHeader:@"Referer" value:@"http://www.bjjtgl.gov.cn/portals/0/weifachaxun/new001_wfchaxun.htm"];
-    [request addRequestHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n"];
-    
+    //[request setUseCookiePersistence:YES];
+    //[request setUseSessionPersistence:YES];
+
     //车牌号
     UITextField* aTextField=(UITextField*)[self.view viewWithTag:101];
     if (aTextField.text) {
@@ -168,7 +169,11 @@
         if ([request responseStatusCode]==200) {
             if ([request responseString]) {
                 self.m_responseString=[request responseString];
-                self.m_responseCookieAry=[request responseCookies];
+                if ([request responseCookies] && [[request responseCookies] count]) {
+                    NSHTTPCookie* cookies=[[request responseCookies] objectAtIndex:0];
+                    CustomLog(@"<<Chao-->CSSecondViewController-->startHttpRequest_UserMessage-->cookies.properties : %@",cookies.properties);
+                    self.m_responseCookieAry=[request responseCookies];
+                }
                 return YES;
             }else{
                 
@@ -200,6 +205,7 @@
         [ApplicationPublic showMessage:self with_title:@"请输入发动机号！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
         return;
     }
+    
     //开始网络请求
     [self startHttpRequest];
 }

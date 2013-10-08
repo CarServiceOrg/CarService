@@ -41,3 +41,9 @@
 #ifndef DEBUG_HTTP_AUTHENTICATION
     #define DEBUG_HTTP_AUTHENTICATION 1
 #endif
+
+// 宏定义 是否content-type使用application/x-www-form-urlencoded; charset=uft-8
+// 输入验证码时 专用
+#ifndef HTTP_CONTENT_TYPE
+#define HTTP_CONTENT_TYPE 1
+#endif

@@ -118,8 +118,8 @@ static LBSDataUtil *shareLbsUtil = nil;
     CustomLog(@"<<Chao-->LBSDataUtil-->streetName: %@",result.addressComponent.streetName); /// 街道名称
     CustomLog(@"<<Chao-->LBSDataUtil-->streetNumber: %@",result.addressComponent.streetNumber); /// 街道号码
     
-    CustomLog(@"<<Chao-->LBSDataUtil-->streetNumber: %lf",result.geoPt.latitude); /// 纬度
-    CustomLog(@"<<Chao-->LBSDataUtil-->streetNumber: %lf",result.geoPt.longitude); /// 经度
+    CustomLog(@"<<Chao-->LBSDataUtil-->latitude: %lf",result.geoPt.latitude); /// 纬度
+    CustomLog(@"<<Chao-->LBSDataUtil-->longitude: %lf",result.geoPt.longitude); /// 经度
     
     if (error == 0){
         self.m_addrResult=result;

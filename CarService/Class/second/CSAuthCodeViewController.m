@@ -223,7 +223,12 @@
             if (back==0) {
                 [self showErrorMessage];
             }else if (back==1){
-                [ApplicationPublic showMessage:self with_title:@"验证码输入有误！请重新输入！" with_detail:@"" with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+                //[ApplicationPublic showMessage:self with_title:@"验证码输入有误！请重新输入！" with_detail:@"" with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"验证码输入有误！请重新输入！"];
+                [alert setDestructiveButtonWithTitle:@"确定" block:^{
+                    [self backBtnClick:nil];
+                }];
+                [alert show];
             }else if (back==2){
                 //跳转进入到下一个界面
                 CSPeccancyRecordViewController* ctrler=[[CSPeccancyRecordViewController alloc] initWithDataArray:self.m_dataArray];
@@ -236,7 +241,13 @@
                 }];
                 [alert show];
             }else if (back==4){
-                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"输入信息有误！请重新输入！"];
+                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"输入信息有误，请重新输入！"];
+                [alert setDestructiveButtonWithTitle:@"确定" block:^{
+                    [self backBtnClick:nil];
+                }];
+                [alert show];
+            }else if (back==5){
+                BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"信息查询次数过多！"];
                 [alert setDestructiveButtonWithTitle:@"确定" block:^{
                     [self backBtnClick:nil];
                 }];
@@ -265,7 +276,6 @@
     [request setTimeOutSeconds:60.0];
     [request setRequestMethod:@"GET"];
     [request addRequestHeader:@"Referer" value:@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/wzcx_preview.jsp"];
-    [request setRequestCookies:self.m_firstResponseCookieAry];
     [request startSynchronous];
     
     NSError* error=[request error];
@@ -276,6 +286,9 @@
         
         if ([request responseStatusCode]==200) {
             if ([request responseData]) {
+                if ([request responseCookies] && [[request responseCookies] count]) {
+                    //self.m_firstResponseCookieAry=[NSArray arrayWithArray:[request responseCookies]];
+                }
                 return [UIImage imageWithData:[request responseData]];
             }else{
                 
@@ -305,28 +318,72 @@
  
  */
 
+-(NSDictionary *)dictionaryWithContentsOfData:(NSData *)data {
+     // uses toll-free bridging for data into CFDataRef and CFPropertyList into NSDictionary
+     CFPropertyListRef plist = CFPropertyListCreateFromXMLData(kCFAllocatorDefault, (CFDataRef)data, kCFPropertyListImmutable, NULL);
+     // we check if it is the correct type and only return it if it is
+     if ([(id)plist isKindOfClass:[NSDictionary class]]) {
+         return [(NSDictionary *)plist autorelease];
+     } else {
+         // clean up ref CFRelease(plist);
+         return nil;
+     }
+ }
+
 -(int)startHttpRequest_second
 {
+    {
+//    //Create a cookie
+//    NSHTTPCookie *cookie=[self.m_firstResponseCookieAry objectAtIndex:0];
+//    NSDictionary* dict=cookie.properties;
+//    NSDictionary *properties = [[[NSMutableDictionary alloc] init] autorelease];
+//    [properties setValue:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Domain"]] forKey:NSHTTPCookieDomain];
+//    [properties setValue:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Name"]] forKey:NSHTTPCookieName];
+//    [properties setValue:[dict objectForKey:@"Path"] forKey:NSHTTPCookiePath];
+//    [properties setValue:[dict objectForKey:@"Value"] forKey:NSHTTPCookieValue];
+//    [properties setValue:[NSDate dateWithTimeIntervalSinceNow:60*60*24] forKey:NSHTTPCookieExpires];
+//    NSHTTPCookie *cookie_new = [[[NSHTTPCookie alloc] initWithProperties:properties] autorelease];
+//    [ASIHTTPRequest setSessionCookies:[NSMutableArray arrayWithObject:cookie_new]];
+
+//    [ASIFormDataRequest setSessionCookies:nil];
+
+    }
+    
     NSString *urlStr=@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/getWzcxXx.action";
     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
     [request setTimeOutSeconds:60.0];
     [request setRequestMethod:@"POST"];
     [request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded"];
     [request addRequestHeader:@"Referer" value:@"http://sslk.bjjtgl.gov.cn/jgjwwcx/wzcx/wzcx_preview.jsp"];
-    [request setRequestCookies:self.m_firstResponseCookieAry];
-
-    //[request addRequestHeader:@"Accept-Language" value:@"zh-cn"];
-    //[request addRequestHeader:@"User-Agent" value:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/536.30.1 (KHTML, like Gecko) Version/6.0.5 Safari/536.30.1"];
-    //[request addRequestHeader:@"Origin" value:@"http://sslk.bjjtgl.gov.cn"];
-    //[request addRequestHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"];
-    //[request addRequestHeader:@"Accept-Encoding" value:@"gzip, deflate"];
-    //[request addRequestHeader:@"Connection" value:@"keep-alive"];
+    {
+        //[request addRequestHeader:@"Accept-Language" value:@"zh-cn"];
+        //[request addRequestHeader:@"Origin" value:@"http://sslk.bjjtgl.gov.cn"];
+        //[request addRequestHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"];
+        //[request addRequestHeader:@"Accept-Encoding" value:@"gzip, deflate"];
+        //[request addRequestHeader:@"Connection" value:@"keep-alive"];
+    }
+    {
+        //[request setRequestCookies:self.m_firstResponseCookieAry];
+        
+        //    //Create a cookie
+        //    NSHTTPCookie *cookie=[self.m_firstResponseCookieAry objectAtIndex:0];
+        //    NSDictionary* dict=cookie.properties;
+        //    NSDictionary *properties = [[[NSMutableDictionary alloc] init] autorelease];
+        //    [properties setValue:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Domain"]] forKey:NSHTTPCookieDomain];
+        //    [properties setValue:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Name"]] forKey:NSHTTPCookieName];
+        //    [properties setValue:[dict objectForKey:@"Path"] forKey:NSHTTPCookiePath];
+        //    [properties setValue:[dict objectForKey:@"Value"] forKey:NSHTTPCookieValue];
+        //    [properties setValue:[NSDate dateWithTimeIntervalSinceNow:60*60*24] forKey:NSHTTPCookieExpires];
+        //    NSHTTPCookie *cookie_new = [[[NSHTTPCookie alloc] initWithProperties:properties] autorelease];
+        //    [request setRequestCookies:[NSMutableArray arrayWithObject:cookie_new]];
+    }
 
     //解析第一步的html数据 同时设置内容
     NSData* data=[self.m_firstResponseString dataUsingEncoding:NSUTF8StringEncoding];
     TFHpple* doc = [[TFHpple alloc] initWithHTMLData:data];
     NSArray* dataAry=[doc searchWithXPathQuery:@"//input"];
     //CustomLog(@"<<Chao-->CSAuthCodeViewController-->startHttpRequest_second-->dataAry : %@",dataAry);
+    NSMutableDictionary* dataDict=[NSMutableDictionary dictionaryWithCapacity:5];
     for (TFHppleElement* element in dataAry) {
         if (element) {
             if (element.attributes) {
@@ -337,6 +394,7 @@
                     if ([name isEqualToString:@"carnono"] || [name isEqualToString:@"sf"] || [name isEqualToString:@"fdjhhm"] ||
                         [name isEqualToString:@"ip"] || [name isEqualToString:@"c_flag"]) {
                         [request setPostValue:value forKey:name];
+                        [dataDict setObject:value forKey:name];
                     }
                 }
             }
@@ -345,9 +403,13 @@
     //carnono=phq600&sf=11&fdjhhm=80229789&ip=125.39.34.215&c_flag=0&yzm=%E8%B6%85 -->超 -->me
     //carnono=phq600&sf=11&fdjhhm=80229789&ip=125.39.34.215&c_flag=0&yzm=%E8%B6%85 -->超 -->safari
     //设置验证码文本
+    //NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingMacChineseSimp);
+    //NSData *data_new = [m_codeTextField.text dataUsingEncoding: enc allowLossyConversion:YES];
+    //NSString *retStr = [[NSString alloc] initWithData:data_new encoding:enc];
+    //[request setPostValue:retStr forKey:@"yzm"];    
     [request setPostValue:m_codeTextField.text forKey:@"yzm"];
     [request startSynchronous];
-    
+
     NSError* error=[request error];
     if (error) {
         return 0;
@@ -442,6 +504,7 @@
                         if (errorAry) {
                             for (TFHppleElement* element in errorAry) {
                                 if ([[(TFHppleElement*)[element.children objectAtIndex:0] content] isEqualToString:@"记分查询结果"]) {
+                                    //（1）超时
                                     NSArray* array1=[doc searchWithXPathQuery:@"//div[@class='div_tab1']//tr//td"];
                                     if ([array1 count]) {
                                         for (TFHppleElement* element in array1) {
@@ -450,6 +513,17 @@
                                             }
                                         }
                                     }
+                                    
+                                    //（2）信息查询次数过多，建议使用本网站定制服务栏目!
+                                    NSArray* array2=[doc searchWithXPathQuery:@"//div[@class='div_tab1']//tr//td"];
+                                    if ([array2 count]) {
+                                        for (TFHppleElement* element in array2) {
+                                            if ([[(TFHppleElement*)[element.children objectAtIndex:0] content] rangeOfString:@"查询次数过多"].length) {
+                                                return 5;
+                                            }
+                                        }
+                                    }
+                                    
                                 }
                                 else{
                                     
