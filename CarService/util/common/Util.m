@@ -108,6 +108,30 @@
     }*/
 }
 
+- (NSHTTPCookie *)getCookie:(NSString *)cookieName
+{
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *_tmpArray = [NSArray arrayWithArray:[cookieJar cookies]];
+    for (id obj in _tmpArray)
+    {
+        CustomLog(@"cookie:%@",obj);
+        if ([obj isKindOfClass:[NSHTTPCookie class]])
+        {
+            NSHTTPCookie *tempCookie = (NSHTTPCookie *)obj;
+            if ([[[tempCookie properties] objectForKey:@"name"] isEqualToString:cookieName])
+            {
+                return tempCookie;
+            }
+        }
+    }
+    return nil;
+}
+
+- (void)setCookie:(NSHTTPCookie *)theCookie
+{
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:theCookie];
+}
+
 -(NSString *)get_appVersion
 {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];

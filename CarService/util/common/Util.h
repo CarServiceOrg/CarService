@@ -14,8 +14,12 @@
 +(NSComparisonResult) compareOSVersion:(CGFloat) osVersion;
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message;
 - (int)countStarNum:(NSString *)rateStr base:(int)baseNum;
+
 - (void)showCookieInfo;
 - (void)clearCookieInfo;
+- (NSHTTPCookie *)getCookie:(NSString *)cookieName;
+- (void)setCookie:(NSHTTPCookie *)theCookie;
+
 -(NSString *)get_appVersion;
 
 - (BOOL)hasLogin;
