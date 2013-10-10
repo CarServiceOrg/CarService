@@ -104,8 +104,8 @@
         case CSDelegateServiceType_sale:
         {
             self.navigationItem.title=@"我要卖车";
-            firstHolderStr=@"车型：";
-            secondtHolderStr=@"电话";
+            firstHolderStr=@"预约时间：";
+            secondtHolderStr=@"地点";
             thirdHolderStr=@"备注：";
         }
             break;
@@ -186,7 +186,8 @@
         BOOL backB=[self request_order];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (backB) {
-                [self backBtnClick:nil];
+                [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"提示", nil) with_detail:NSLocalizedString(@"提交订单成功！", nil) with_type:TSMessageNotificationTypeSuccess with_Duration:2.0];
+                [self performSelector:@selector(backBtnClick:) withObject:nil afterDelay:2.0];
             }else{
                 
             }
@@ -197,6 +198,15 @@
 //客户预约
 //?json={“action”:”order”,“user_id”:”$user_id”,”session_id”:”$session_id”“order_time”:”$order_time”,“order_address”:”$order_address”,“serve_type”:”$serve_type”,“about”:”$about”,“order_sn”:”$ order_sn” ,”phone”:”$phone”}
 //serve_type 服务类型 1为洗车服务 2为修车服务 3为卖车服务 4为验车
+//0预约成功
+//1预约失败
+//2用户id不正确
+//3预约序号不正确
+//4预约时间不正确
+//5预约地址不正确
+//6预约服务不正确
+//7简介说明不正确
+//8手机号码不正确
 -(BOOL)request_order
 {
     NSString* order_time=[(UITextField*)[self.view viewWithTag:101] text];
@@ -264,7 +274,37 @@
         if ([requestDic objectForKey:@"status"]) {
             if ([[requestDic objectForKey:@"status"] intValue]!=0) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [ApplicationPublic showMessage:self with_title:@"错误" with_detail:@"提交订单失败！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                    NSString* msgStr=@"提交订单失败！";
+                    switch ([[requestDic objectForKey:@"status"] intValue]) {
+                        case 1:
+                            msgStr=@"预约失败";
+                            break;
+                        case 2:
+                            msgStr=@"用户id不正确";
+                            break;
+                        case 3:
+                            msgStr=@"预约序号不正确";
+                            break;
+                        case 4:
+                            msgStr=@"预约时间不正确";
+                            break;
+                        case 5:
+                            msgStr=@"预约地址不正确";
+                            break;
+                        case 6:
+                            msgStr=@"预约服务不正确";
+                            break;
+                        case 7:
+                            msgStr=@"简介说明不正确";
+                            break;
+                        case 8:
+                            msgStr=@"手机号码不正确";
+                            break;
+                        default:
+                            break;
+                    }
+                    //提示信息
+                    [ApplicationPublic showMessage:self with_title:@"错误" with_detail:msgStr with_type:TSMessageNotificationTypeError with_Duration:2.0];
                 });
                 return NO;
             }else{
@@ -311,13 +351,10 @@
             case CSDelegateServiceType_wash:
             case CSDelegateServiceType_check:
             case CSDelegateServiceType_fix:
+            case CSDelegateServiceType_sale:
             {
                 [ActionSheetDatePicker showPickerWithTitle:@"选择日期" datePickerMode:UIDatePickerModeDateAndTime selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
                 return NO;
-            }
-                break;
-            case CSDelegateServiceType_sale:
-            {
             }
                 break;
             default:
