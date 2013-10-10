@@ -35,7 +35,7 @@
 #define CSShopRecommendViewController_text_font 12.0
 #define CSShopRecommendViewController_cell_default 95.0
 
-#define CSShopRecommendViewController_key_imageUrl  @"imageUrl"
+#define CSShopRecommendViewController_key_imageUrl  @"img"
 #define CSShopRecommendViewController_key_shopname  @"shopname"
 #define CSShopRecommendViewController_key_address   @"address"
 #define CSShopRecommendViewController_key_tel       @"tel"
