@@ -206,6 +206,8 @@
 
 //店铺推荐
 //接口：?json={"action":"recommend_shop",”lon”:”$lon”,”lat”:”$lat”}
+//1 推荐店铺 经纬度 参考 参数
+//?json={"action":"recommend_shop","lon":"3586.1245","lat":"3654.1236545"}
 -(void)request_recommend
 {
     double longitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.longitude;
@@ -214,8 +216,8 @@
     NSDictionary *scrDic = [NSDictionary dictionaryWithObjectsAndKeys:@"recommend_shop", @"action", nil];
     NSMutableDictionary *argDic=[NSMutableDictionary dictionaryWithDictionary:scrDic];
     if (longitude!=0 && latitude!=0) {
-        [argDic setObject:[NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:longitude]] forKey:@"lon"];
-        [argDic setObject:[NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:latitude]] forKey:@"lat"];
+        [argDic setObject:[NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:longitude*100]] forKey:@"lon"];
+        [argDic setObject:[NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:latitude*100]] forKey:@"lat"];
     }
     NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
