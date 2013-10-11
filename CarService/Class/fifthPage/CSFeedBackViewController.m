@@ -145,8 +145,25 @@
 
 - (IBAction)confirmButtonPressed:(id)sender
 {
+    
+    if ([self.textView.text length] == 0)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"内容不能为空!"];
+        return;
+    }
+    
     [self.commentRequest clearDelegatesAndCancel];
-    self.commentRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_feedback]];
+    
+    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+    NSString *uid = [dic objectForKey:@"id"];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"feedback",@"action",uid,@"user_id",self.textView.text,@"content", nil];
+    SBJSON *jasonParser = [[SBJSON alloc] init];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [jasonParser release];
+    
+    self.commentRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
+    
+    //self.commentRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:URL_feedback]];
     [commentRequest setShouldAttemptPersistentConnection:NO];
     [commentRequest setValidatesSecureCertificate:NO];
     
@@ -165,14 +182,15 @@
     NSString *responseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding]autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     NSDictionary *requestDic = [responseString JSONValue];
     CustomLog(@"login request request dic:%@",requestDic);
-    if (nil == [requestDic objectForKey:@"status"] || ![[requestDic objectForKey:@"status"] isEqualToString:@"0"])
+    if (nil == [requestDic objectForKey:@"status"] || [[requestDic objectForKey:@"status"] intValue] != 0)
     {
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请稍后重试!"];
         return;
     }
     else
     {
-        
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改成功!"];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
