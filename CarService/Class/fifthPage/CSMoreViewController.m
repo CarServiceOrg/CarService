@@ -328,7 +328,7 @@
     
     //NSString *uid = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"id"];
     //NSString *sessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo] objectForKey:@"session_id"];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"iOS",@"sys",@"versiongoup",@"action", nil];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"ios",@"sys",@"versiongoup",@"action", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
@@ -361,15 +361,16 @@
     }
     else
     {
-        if ([[requestDic objectForKey:@"status"] integerValue]==0)
+        if ([[requestDic objectForKey:@"status"] integerValue]==1)
         {
-            NSString *content = [[requestDic objectForKey:@"data"] objectForKey:@"content"];
-            NSString *newVersion = [[requestDic objectForKey:@"data"] objectForKey:@"version"];
+            //无新版本
+            NSString *content = [[requestDic objectForKey:@"list"] objectForKey:@"name"];
+            //NSString *newVersion = [[requestDic objectForKey:@"data"] objectForKey:@"version"];
             
-            if ([newVersion floatValue] > [[[Util sharedUtil] get_appVersion]floatValue])
+            //if ([newVersion floatValue] > [[[Util sharedUtil] get_appVersion]floatValue])
             {
                 CustomLog(@"new version exist");
-                if ([content length] == 0)
+                //if ([content length] == 0)
                 {
                     content = @"有新版本了,是否现在更新?";
                 }
@@ -382,6 +383,10 @@
              }];
              [alert show];
             }
+        }
+        else if ([[requestDic objectForKey:@"status"] integerValue]==0)
+        {
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"没有新版本"];
         }
         else
         {
