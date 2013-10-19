@@ -19,7 +19,7 @@
 #import "NSObject+SBJSON.h"
 #import "MBProgressHUD.h"
 
-@interface CSReportCaseViewController ()<UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIScrollViewDelegate>{
+@interface CSReportCaseViewController ()<UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIScrollViewDelegate,MBProgressHUDDelegate>{
     UIView* _placeHolderView;
     
     UIScrollView* view_ScrollView;  //用于iphone4上滚动显示
@@ -311,7 +311,8 @@
         if ([jpeg length] == 0){
             jpeg = [NSData dataWithData:UIImagePNGRepresentation(imgView.image)];
         }
-        [request addData:jpeg withFileName:@"file" andContentType:@"image/jpeg" forKey:@"file"];
+        [request addData:jpeg withFileName:@"file" andContentType:@"file" forKey:@"input"];
+        [request setPostLength:jpeg.length];
     }
     [request startSynchronous];
     
@@ -325,7 +326,7 @@
         CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_report-->requestDic:%@",requestDic);
         if ([requestDic objectForKey:@"status"]) {
             if ([[requestDic objectForKey:@"status"] intValue]==1) {
-                [ApplicationPublic showMessage:[UIApplication sharedApplication].keyWindow.rootViewController with_title:@"错误" with_detail:@"加载我的信息数据失败！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                return NO;
             }else if ([[requestDic objectForKey:@"status"] intValue]==0){
                 return YES;
             }
@@ -575,6 +576,31 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    if (alertView&&alertView.superview) {
+        alertView.delegate = nil;
+        [alertView removeFromSuperview];
+        [alertView release],alertView = nil;
+    }
+}
+- (MBProgressHUD*) alertView
+{
+    if (alertView==nil) {
+        id delegate = [UIApplication sharedApplication].delegate;
+        UIWindow *window = [delegate window];
+        alertView = [[MBProgressHUD alloc] initWithView:window];
+        [window addSubview:alertView];
+        alertView.dimBackground = YES;
+        alertView.labelText = NSLocalizedString(@"加载中", @"");
+        alertView.delegate = self;
+    }
+    return alertView;
 }
 
 @end
