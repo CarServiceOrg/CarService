@@ -110,7 +110,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,7 +125,8 @@
         cell = [CSMessageTableViewCell createCell];
     }
     
-    [cell reloadConetent:nil];
+    NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
+    [cell reloadConetent:dic];
     return cell;
 }
 

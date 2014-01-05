@@ -35,8 +35,8 @@
 - (void)reloadConetent:(NSDictionary *)dic
 {
     //fake data
-    self.contentLabel.text = @"• 单保车损险的话，保险公司有一定比例的";
-    self.timeLabel.text = @"213-08-30";
+    self.contentLabel.text = [dic objectForKey:@"content"];
+    self.timeLabel.text = [dic objectForKey:@"addtime"];
 }
 
 @end

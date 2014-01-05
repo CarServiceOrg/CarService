@@ -15,8 +15,8 @@
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
             (id)kSecClassGenericPassword,(id)kSecClass,
             service, (id)kSecAttrService,
-            service, (id)kSecAttrAccount,
-            (id)kSecAttrAccessibleAfterFirstUnlock,(id)kSecAttrAccessible,
+            @"IsCompleteInviteNewUser", (id)kSecAttrAccount,
+            (id)kSecAttrAccessibleWhenUnlocked,(id)kSecAttrAccessible,
             nil];
 }
 
@@ -54,7 +54,8 @@
 
 + (void)delete:(NSString *)service {
     NSMutableDictionary *keychainQuery = [KeyChainUtil getKeychainQuery:service];
-    SecItemDelete((CFDictionaryRef)keychainQuery);
+    OSStatus status = SecItemDelete((CFDictionaryRef)keychainQuery);
+    NSLog(@"delete status:%d",status);
 }
 
 @end
