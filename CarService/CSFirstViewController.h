@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CSFirstViewController : UIViewController
+@interface CSFirstViewController : IOS7ViewController
 
 @end

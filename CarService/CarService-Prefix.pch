@@ -11,6 +11,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "IOS7ViewController.h"
     #import "Constants.h"
     #import "URLConfig.h"
     #import "SBJSON.h"
@@ -21,8 +22,8 @@
     #import "Util.h"
     #import "BlockAlertView.h"
     #import "BlockActionSheet.h"
-#define LOG_ON
 
+#define LOG_ON
 static inline void CustomLog(NSString *format, ...)
 {
 #ifdef LOG_ON

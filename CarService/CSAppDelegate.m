@@ -30,14 +30,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {        
-    //此为storyboard的局限，在Interface Builder时代，在MainWindow.xib中可以链接view controllers到App Delegate的outlets，但是现在不可以，只能写代码设置第一个controller是什么，或者谁知道有什么办法请告知，谢谢。
-    _tabBarController = (UITabBarController *)self.window.rootViewController;
-    _tabBarController.delegate=self;
-    _tabBarController.tabBar.tintColor=[UIColor colorWithRed:55/255.0 green:55/255.0 blue:55/255.0 alpha:1.0];
+    //此为storyboard的局限，在Interface Builder时，在MainWindow.xib中可以链接view controllers到App Delegate的outlets，但是现在不可以，只能写代码设置第一个controller是什么，或者谁知道有什么办法请告知，谢谢。
+    //_tabBarController = (UITabBarController *)self.window.rootViewController;
+    //_tabBarController.delegate=self;
+    //_tabBarController.tabBar.tintColor=[UIColor colorWithRed:55/255.0 green:55/255.0 blue:55/255.0 alpha:1.0];
     //初始化建立图片点击视图
-    [self init_imgViewArray];
+    //[self init_imgViewArray];
     //默认先选中首页
-    [self updateSelectIndex:0];
+    //[self updateSelectIndex:0];
     
     //在无网情况下启动 会耽误应用启动时间
     [LBSDataUtil shareUtil]; //开启定位
