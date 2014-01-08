@@ -23,6 +23,7 @@
 
 static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 blue:0x41/255.0 alpha:1.0];
 
 @interface CSFirstViewController ()<CSLogInViewController_Delegate>
 {
@@ -535,10 +536,100 @@ static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255
 {
     float centerX, centerY, width, height;
     
+    //添加内容视图
+    width=258/2.0; height=298/2.0;
+    UIView* containView=[[UIView alloc] initWithFrame:CGRectMake(0, 190+DiffHeight/2.0, width, height)];
+    [containView setTag:102];
+    containView.backgroundColor=[UIColor clearColor];
+    [self.view addSubview:containView];
+    [containView release];
+    {
+        //背景
+        UIImageView* bgImgView=[[UIImageView alloc] initWithFrame:containView.bounds];
+        [bgImgView setImage:[UIImage imageNamed:@"new_shouyebanyuan_xinxibeijing.png"]];
+        [containView addSubview:bgImgView];
+        [bgImgView release];
+        
+        float x, y, width, height;
+
+        //车牌号
+        x=15; y=20; width=containView.bounds.size.width-2*x; height=50;
+        UIButton* mangerBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        [mangerBtn setTag:1001];
+        [mangerBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+        [mangerBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
+        [mangerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [mangerBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateHighlighted];
+        [mangerBtn addTarget:self action:@selector(mangerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [containView addSubview:mangerBtn];
+        [mangerBtn release];
+        
+        //信息按钮
+        x=10; y=y+height; width=containView.bounds.size.width-x*2; height=30;
+        UIButton* msgBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        [msgBtn setTag:1002];
+        [msgBtn setBackgroundColor:[UIColor clearColor]];
+        [msgBtn addTarget:self action:@selector(msgBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [containView addSubview:msgBtn];
+        [msgBtn release];
+        {
+            //消息数
+            UILabel* numLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+            [numLabel setTag:10001];
+            [numLabel setBackgroundColor:[UIColor clearColor]];
+            [numLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+            [numLabel setTextAlignment:NSTextAlignmentCenter];
+            [numLabel setFont:[UIFont systemFontOfSize:14]];
+            [numLabel setTextColor:MsgTextColor];
+            [numLabel setText:@""];
+            numLabel.layer.cornerRadius=CGRectGetWidth(numLabel.frame)/2.0;
+            numLabel.layer.borderWidth=1.0;
+            numLabel.layer.borderColor=MsgTextColor.CGColor;
+            [msgBtn addSubview:numLabel];
+            [numLabel release];
+            
+            //文本
+            [self setUpLabel:msgBtn with_tag:10002 with_frame:CGRectMake(height+5, 0, width-height-5, height) with_text:@"" with_Alignment:NSTextAlignmentLeft fontSize:12.0];
+            UILabel* aLabel=(UILabel*)[msgBtn viewWithTag:10002];
+            if (aLabel) {
+                [aLabel setTextColor:MsgTextColor];
+            }
+        }
+        
+        //添加车辆
+        x=0; y=y+height+5; width=containView.bounds.size.width-10*2; height=30;
+        UIButton* addCarBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        [addCarBtn setTag:1003];
+        addCarBtn.backgroundColor=[UIColor clearColor];
+        [addCarBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"new_xiaofeijilu_tianjia_dianjianniu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [addCarBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"new_xiaofeijilu_tianjia_dianjianniu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [addCarBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateNormal];
+        [addCarBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateHighlighted];
+        [addCarBtn.titleLabel setFont:[UIFont systemFontOfSize:14.0]];
+        [addCarBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [addCarBtn setTitle:@"添加车辆" forState:UIControlStateNormal];
+        [addCarBtn addTarget:self action:@selector(addBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [containView addSubview:addCarBtn];
+        [addCarBtn release];
+    }
+    
+    //设置初始化位置
+    {
+        UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
+        if (mangerBtn) {
+            mangerBtn.alpha=0.0;
+        }
+        UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
+        if (msgBtn) {
+            msgBtn.alpha=0.0;
+        }
+        UIButton* addCarBtn=(UIButton*)[containView viewWithTag:1003];
+        if (addCarBtn) {
+            addCarBtn.center=CGPointMake(CGRectGetMidX(containView.bounds), CGRectGetMidY(containView.bounds));
+        }
+    }
+    
     width=75; height=75;
-    
-    //中间圆盘
-    
     //事故报案
     {
         centerX=50; centerY=130+DiffHeight/2.0;
@@ -712,48 +803,32 @@ static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255
 {
     [super viewWillAppear:animated];
     
-    UIScrollView* scrollView=(UIScrollView*)[self.view viewWithTag:101];
-    if (scrollView) {
-        UIView* addCarView=[scrollView viewWithTag:202];
-        if (addCarView) {
-            NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
-            if (alreadyAry) {
-                UIView* containView=[addCarView viewWithTag:1001];
-                if (containView) {
-                    containView.alpha=0;
-                }
-                containView=[addCarView viewWithTag:1002];
-                if (containView) {
-                    containView.alpha=1;
-                }
+    UIView* containView=(UIView*)[self.view viewWithTag:102];
+    if (containView) {
+        NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
+        if (alreadyAry) {
+            //更新数据 为最后一个车牌号
+            UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
+            if (mangerBtn) {
+                mangerBtn.alpha=1.0;
                 
-                //更新数据 为最后一个
-                {
-                    NSString* signStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carSign];
-                    NSString* standStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carStand];
-                    UIView* containView=[addCarView viewWithTag:1002];
-                    if (containView) {
-                        UILabel* aLabel=(UILabel*)[containView viewWithTag:10001];
-                        if (aLabel) {
-                            [aLabel setText:[NSString stringWithFormat:@"车牌号：%@",signStr]];
-                        }
-                        
-                        aLabel=(UILabel*)[containView viewWithTag:10002];
-                        if (aLabel) {
-                            [aLabel setText:[NSString stringWithFormat:@"车架号：%@",standStr]];
-                        }
-                    }
-                }
-            }else{
-                UIView* containView=[addCarView viewWithTag:1002];
-                if (containView) {
-                    containView.alpha=0;
-                }
-                containView=[addCarView viewWithTag:1001];
-                if (containView) {
-                    containView.alpha=1;
-                }
+                NSString* signStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carSign]; //车牌号
+                //NSString* standStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carStand]; //车架号
+                [mangerBtn setTitle:[NSString stringWithFormat:@"%@",signStr] forState:UIControlStateNormal];
             }
+            
+            UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
+            if (msgBtn) {
+                msgBtn.alpha=0.0;
+            }
+            
+            //更新位置
+            UIButton* addCarBtn=(UIButton*)[containView viewWithTag:1003];
+            if (addCarBtn) {
+                addCarBtn.frame=CGRectMake(0, CGRectGetMinY(msgBtn.frame)+5, addCarBtn.bounds.size.width, addCarBtn.bounds.size.height);
+            }
+        }else{
+            
         }
     }
 }
@@ -831,12 +906,27 @@ static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255
             if (self.m_msgArray==nil) {
                 
             }else{
-                UIButton* msgBtn=(UIButton*)self.navigationItem.rightBarButtonItem.customView;
-                if (msgBtn && [msgBtn isKindOfClass:[UIButton class]]) {
-                    [msgBtn setImage:[UIImage imageNamed:@"shouye_msg.png"] forState:UIControlStateNormal];
-                    UILabel* numLabel=(UILabel*)[msgBtn viewWithTag:1001];
-                    if (numLabel) {
-                        numLabel.text=[NSString stringWithFormat:@"%d",[self.m_msgArray count]];
+                UIView* containView=(UIView*)[self.view viewWithTag:102];
+                if (containView) {
+                    UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
+                    if (msgBtn) {
+                        msgBtn.alpha=1.0;
+                        
+                        UILabel* aLabel=(UILabel*)[msgBtn viewWithTag:10001];
+                        if (aLabel) {
+                            [aLabel setText:[NSString stringWithFormat:@"%d",[self.m_msgArray count]]];
+                        }
+                        
+                        UILabel* bLabel=(UILabel*)[msgBtn viewWithTag:10002];
+                        if (bLabel) {
+                            [bLabel setText:[NSString stringWithFormat:@"您有%d条新的信息",[self.m_msgArray count]]];
+                        }
+                    }
+                    
+                    //更新位置
+                    UIButton* addCarBtn=(UIButton*)[containView viewWithTag:1003];
+                    if (addCarBtn) {
+                        addCarBtn.frame=CGRectMake(0, CGRectGetMaxY(msgBtn.frame)+5, addCarBtn.bounds.size.width, addCarBtn.bounds.size.height);
                     }
                 }
             }
