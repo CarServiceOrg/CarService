@@ -20,6 +20,10 @@
 #import "CSMessageViewController.h"
 #import "LBSDataUtil.h"
 
+
+static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
+static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+
 @interface CSFirstViewController ()<CSLogInViewController_Delegate>
 {
     
@@ -89,7 +93,7 @@
     [aLabel setText:text];
     [superView addSubview:aLabel];
     [aLabel release];
- }
+}
 
 -(void)init_scrollView
 {
@@ -332,20 +336,374 @@
     }
 }
 
+-(void)setUpLabel:(UIView*)superView with_tag:(int)tag with_frame:(CGRect)frame with_text:(NSString*)text with_Alignment:(NSTextAlignment)alignment fontSize:(float)fontSize
+{
+    UILabel* aLabel=[[UILabel alloc] initWithFrame:frame];
+    if (tag>=0) {
+        [aLabel setTag:tag];
+    }
+    [aLabel setBackgroundColor:[UIColor clearColor]];
+    [aLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+    [aLabel setTextAlignment:alignment];
+    [aLabel setFont:[UIFont systemFontOfSize:fontSize]];
+    [aLabel setTextColor:[UIColor whiteColor]];
+    [aLabel setText:text];
+    aLabel.numberOfLines=0;
+    aLabel.lineBreakMode=NSLineBreakByWordWrapping;
+    [superView addSubview:aLabel];
+    [aLabel release];
+}
+
+-(void)initSelfView_top
+{
+    //bg
+    float x, y, width, height;
+    
+    x=0; y=20; width=320;
+    if (Is_iPhone5) {
+        height=1136/2.0;
+    }else{
+        height=960/2.0;
+    }
+    //背景
+    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    if (Is_iPhone5) {
+        [bgImageView setImage:[UIImage imageNamed:@"shouye_iphone5.png"]];
+    }else{
+        [bgImageView setImage:[UIImage imageNamed:@"new_shouye_bg.png"]];
+    }
+    [self.view addSubview:bgImageView];
+    [bgImageView release];
+    
+    //logo
+    x=10; y=y+10; width=229/2.0; height=52/2.0;
+    UIImageView* logoImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [logoImageView setImage:[UIImage imageNamed:@"new_logo.png"]];
+    [self.view addSubview:logoImageView];
+    [logoImageView release];
+    
+    //电话图标
+    y=y+height; width=18; height=18;
+    UIImageView* photoImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [photoImageView setImage:[UIImage imageNamed:@"new_dianhua_tubiao.png"]];
+    [self.view addSubview:photoImageView];
+    [photoImageView release];
+    
+    //电话
+    x=x+width; width=229/2.0-width; height=23;
+    {
+        UILabel* aLabel=[[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        [aLabel setBackgroundColor:[UIColor clearColor]];
+        [aLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+        [aLabel setTextAlignment:NSTextAlignmentCenter];
+        [aLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        [aLabel setTextColor:[UIColor blackColor]];
+        [aLabel setText:@"400-009-2885"];
+        [self.view addSubview:aLabel];
+        [aLabel release];
+    }
+    
+    //天气 日期 限号
+    x=self.view.bounds.size.width-10-140; y=20+10; width=140; height=100;
+    UIScrollView* scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [scrollView setTag:101];
+    scrollView.backgroundColor=[UIColor clearColor];
+    scrollView.showsHorizontalScrollIndicator=NO;
+    scrollView.showsVerticalScrollIndicator=NO;
+    [self.view addSubview:scrollView];
+    [scrollView release];
+    
+    //添加内容视图
+    x=0; y=0;
+    UIView* weatherView=[[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [weatherView setTag:201];
+    weatherView.backgroundColor=[UIColor clearColor];
+    [scrollView addSubview:weatherView];
+    [weatherView release];
+    {
+        float x, y, width, height;
+
+        x=0; y=0; width=140; height=70;
+        UIImageView* bgImgView_1=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        [bgImgView_1 setBackgroundColor:[UIColor blackColor]];
+        [bgImgView_1 setAlpha:0.3];
+        [weatherView addSubview:bgImgView_1];
+        [bgImgView_1 release];
+        bgImgView_1.layer.cornerRadius=6.0;
+        
+        y=y+height+2; height=28;
+        UIImageView* bgImgView_2=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        [bgImgView_2 setBackgroundColor:[UIColor blackColor]];
+        [bgImgView_2 setAlpha:0.3];
+        [weatherView addSubview:bgImgView_2];
+        [bgImgView_2 release];
+        bgImgView_2.layer.cornerRadius=6.0;
+        
+        //温度
+        x=5; y=0; width=60; height=45;
+        [self setUpLabel:weatherView with_tag:1009 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentCenter];
+        {
+            UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1009];
+            if (aLabel) {
+                //第一个温度
+                [self setUpLabel:aLabel with_tag:10001 with_frame:CGRectMake(0, 0, width, 25) with_text:@"" with_Alignment:NSTextAlignmentLeft fontSize:16.0];
+                //斜线
+                [self setUpLabel:aLabel with_tag:10003 with_frame:CGRectMake(0, 25, width, 2) with_text:@"" with_Alignment:NSTextAlignmentLeft fontSize:16.0];
+                UILabel* bLabel=(UILabel*)[aLabel viewWithTag:10003];
+                if (bLabel) {
+                    bLabel.backgroundColor=[UIColor grayColor];
+                    bLabel.transform=CGAffineTransformMakeRotation(-M_PI_4);
+                }
+                //第二个温度
+                [self setUpLabel:aLabel with_tag:10002 with_frame:CGRectMake(0, 25+5, width, 15) with_text:@"" with_Alignment:NSTextAlignmentRight fontSize:12.0];
+            }
+        }
+        
+        //天气图片
+        x=5+width+5; y=0; width=55; height=55;
+        UIImageView* weatherImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        weatherImgView.backgroundColor=[UIColor clearColor];
+        [weatherImgView setTag:1008];
+        {
+            //天气文本 如果没有对应图片时显示
+            [self setUpLabel:weatherImgView with_tag:10001 with_frame:weatherImgView.bounds with_text:@"" with_Alignment:NSTextAlignmentLeft fontSize:14.0];
+            if ([weatherImgView viewWithTag:10001]) {
+                [[weatherImgView viewWithTag:10001] setHidden:YES];
+            }
+        }
+        [weatherView addSubview:weatherImgView];
+        [weatherImgView release];
+        
+        //日期
+        x=0; y=50; width=100; height=20;
+        NSString *string_time=@"";
+        NSString *week_day=@"";
+        [self setUpLabel:weatherView with_tag:1004 with_frame:CGRectMake(x, y, width, height) with_text:string_time with_Alignment:NSTextAlignmentCenter fontSize:12];
+        //星期几
+        x=x+width-10; width=40;
+        [self setUpLabel:weatherView with_tag:1005 with_frame:CGRectMake(x, y, width, height) with_text:week_day with_Alignment:NSTextAlignmentCenter fontSize:12];
+        
+        //明日限行
+        x=0; y=70+2; width=90; height=28;
+        [self setUpLabel:weatherView with_tag:-1 with_frame:CGRectMake(x, y, width, height) with_text:@"明日限行:" with_Alignment:NSTextAlignmentCenter];
+        //限行尾数1
+        x=x+width-3; y=y+(28-16)/2.0; width=15; height=16;
+        {
+            UIImageView* bgImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            //[bgImgView setImage:[UIImage imageNamed:@"shouye_shuzi_bg.png"]];
+            [weatherView addSubview:bgImgView];
+            [bgImgView release];
+            
+            [bgImgView setBackgroundColor:[UIColor blackColor]];
+            [bgImgView setAlpha:0.4];
+            bgImgView.layer.cornerRadius=4.0;
+            bgImgView.layer.borderWidth=0.5;
+            bgImgView.layer.borderColor=[UIColor whiteColor].CGColor;
+        }
+        [self setUpLabel:weatherView with_tag:1006 with_frame:CGRectMake(x, y, width, height) with_text:@"X" with_Alignment:NSTextAlignmentCenter];
+        {
+            UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1006];
+            if (aLabel) {
+                [aLabel setTextColor:[UIColor whiteColor]];
+            }
+        }
+        //限行尾数2
+        x=x+width+2;
+        {
+            UIImageView* bgImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            //[bgImgView setImage:[UIImage imageNamed:@"shouye_shuzi_bg.png"]];
+            [weatherView addSubview:bgImgView];
+            [bgImgView release];
+            
+            [bgImgView setBackgroundColor:[UIColor blackColor]];
+            [bgImgView setAlpha:0.4];
+            bgImgView.layer.cornerRadius=4.0;
+            bgImgView.layer.borderWidth=0.5;
+            bgImgView.layer.borderColor=[UIColor whiteColor].CGColor;
+        }
+        [self setUpLabel:weatherView with_tag:1007 with_frame:CGRectMake(x, y, width, height) with_text:@"X" with_Alignment:NSTextAlignmentCenter];
+        {
+            UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1007];
+            if (aLabel) {
+                [aLabel setTextColor:[UIColor whiteColor]];
+            }
+        }
+    }
+}
+
+-(void)initSelfView_middle
+{
+    float centerX, centerY, width, height;
+    
+    width=75; height=75;
+    
+    //中间圆盘
+    
+    //事故报案
+    {
+        centerX=50; centerY=130+DiffHeight/2.0;
+        UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [aBtn setCenter:CGPointMake(centerX, centerY)];
+        aBtn.backgroundColor=[UIColor clearColor];
+        [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_baoanzixun_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_baoanzixun_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateNormal];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateHighlighted];
+        [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateNormal];
+        [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateHighlighted];
+        [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+        [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+        [aBtn setTitle:@"事故报案" forState:UIControlStateNormal];
+        [aBtn addTarget:self action:@selector(shiGuBaoAnBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aBtn];
+        [aBtn release];
+    }
+    
+    //代维服务
+    {
+        centerX=150; centerY=170+DiffHeight/2.0;
+        UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [aBtn setCenter:CGPointMake(centerX, centerY)];
+        aBtn.backgroundColor=[UIColor clearColor];
+        [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_daiweifuwu_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_daiweifuwu_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateNormal];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateHighlighted];
+        [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateNormal];
+        [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateHighlighted];
+        [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+        [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+        [aBtn setTitle:@"代维服务" forState:UIControlStateNormal];
+        [aBtn addTarget:self action:@selector(daiWeiFuWuBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aBtn];
+        [aBtn release];
+    }
+    //消费记录
+    {
+        centerX=190; centerY=260+DiffHeight/2.0;
+        UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [aBtn setCenter:CGPointMake(centerX, centerY)];
+        aBtn.backgroundColor=[UIColor clearColor];
+        [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_xiaofeijilu_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_xiaofeijilu_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateHighlighted];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateNormal];
+        [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateHighlighted];
+        [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateNormal];
+        [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+        [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+        [aBtn setTitle:@"消费记录" forState:UIControlStateNormal];
+        [aBtn addTarget:self action:@selector(xiaoFeiJiLuBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aBtn];
+        [aBtn release];
+    }
+    
+    //我要投保
+    {
+        centerX=150; centerY=350+DiffHeight/2.0;
+        UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [aBtn setCenter:CGPointMake(centerX, centerY)];
+        aBtn.backgroundColor=[UIColor clearColor];
+        [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_woyaotoubao_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_woyaotoubao_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateNormal];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateHighlighted];
+        [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateNormal];
+        [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateHighlighted];
+        [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+        [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+        [aBtn setTitle:@"我要投保" forState:UIControlStateNormal];
+        [aBtn addTarget:self action:@selector(woYaoTouBaoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aBtn];
+        [aBtn release];
+    }
+    
+    //违章查询
+    {
+        centerX=50; centerY=410+DiffHeight/2.0;
+        UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [aBtn setCenter:CGPointMake(centerX, centerY)];
+        aBtn.backgroundColor=[UIColor clearColor];
+        [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_weizhangchaxun_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_weizhangchaxun_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateHighlighted];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateNormal];
+        [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateHighlighted];
+        [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateNormal];
+        [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+        [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+        [aBtn setTitle:@"违章查询" forState:UIControlStateNormal];
+        [aBtn addTarget:self action:@selector(weiZhangChaXunBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aBtn];
+        [aBtn release];
+    }
+    
+    width=40; height=40;
+    //套餐
+    {
+        if (Is_iPhone5) {
+            centerX=80; centerY=525;
+        }else{
+            centerX=120; centerY=440;
+        }
+        UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [aBtn setCenter:CGPointMake(centerX, centerY)];
+        aBtn.backgroundColor=[UIColor clearColor];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_taocan_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_taocan_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_toumingheibeijing.png"] forState:UIControlStateNormal];
+        [aBtn addTarget:self action:@selector(taoCanBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aBtn];
+        [aBtn release];
+    }
+    
+    //个人中心
+    {
+        centerX=centerX+70;
+        UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [aBtn setCenter:CGPointMake(centerX, centerY)];
+        aBtn.backgroundColor=[UIColor clearColor];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_yonghu_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_yonghu_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_toumingheibeijing.png"] forState:UIControlStateNormal];
+        [aBtn addTarget:self action:@selector(geRenZhongXinBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aBtn];
+        [aBtn release];
+    }
+    //更多
+    {
+        centerX=centerX+70;
+        UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        [aBtn setCenter:CGPointMake(centerX, centerY)];
+        aBtn.backgroundColor=[UIColor clearColor];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_gengduo_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+        [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_gengduo_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+        [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_toumingheibeijing.png"] forState:UIControlStateNormal];
+        [aBtn addTarget:self action:@selector(gengDuoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:aBtn];
+        [aBtn release];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
+    self.view.backgroundColor=[UIColor blackColor];
+    self.navigationController.navigationBar.hidden=YES;
 	// Do any additional setup after loading the view, typically from a nib.
-    [self init_NaviView];
-    [self init_scrollView];
+    [self initSelfView_top];
+    [self initSelfView_middle];
     
     //登录、登出通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLoginNotification:) name:LoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLogoutNotification:) name:LogoutSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationSuccessNotification:) name:LocationSuccessNotification object:nil];
 
-    
     //网络获取数据
     [self startHttpRequest];
 }
@@ -411,6 +769,56 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.m_msgArray=nil;
     [super dealloc];
+}
+
+#pragma mark - 首页点击事件
+
+//事故报案
+-(void)shiGuBaoAnBtnClicked:(UIButton*)sender
+{
+    
+}
+
+//代维服务
+-(void)daiWeiFuWuBtnClicked:(UIButton*)sender
+{
+    
+}
+
+//消费记录
+-(void)xiaoFeiJiLuBtnClicked:(UIButton*)sender
+{
+   
+}
+
+//我要投保
+-(void)woYaoTouBaoBtnClicked:(UIButton*)sender
+{
+    
+}
+
+//违章查询
+-(void)weiZhangChaXunBtnClicked:(UIButton*)sender
+{
+    
+}
+
+//套餐
+-(void)taoCanBtnClicked:(UIButton*)sender
+{
+    
+}
+
+//个人中心
+-(void)geRenZhongXinBtnClicked:(UIButton*)sender
+{
+    
+}
+
+//更多
+-(void)gengDuoBtnClicked:(UIButton*)sender
+{
+    
 }
 
 #pragma mark 通知
@@ -560,7 +968,7 @@
                 
                 //温度 1009
                 if ([backDict objectForKey:@"temp1"]) {
-                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",[backDict objectForKey:@"temp1"]] with_superViewTag:201 with_LabelTag:1009];
+                    [self updateTextForLabel_weather:[NSString stringWithFormat:@"%@",[backDict objectForKey:@"temp1"]] with_superViewTag:201 with_LabelTag:1009];
                 }
                 
                 //提示信息 1010
@@ -601,7 +1009,57 @@
             }else if ([[superView viewWithTag:labelTag] isKindOfClass:[UIImageView class]]){
                 UIImageView* aImgView=(UIImageView*)[superView viewWithTag:labelTag];
                 if (aImgView) {
-                    [aImgView setImage:[UIImage imageNamed:text]];
+                    if ([UIImage imageNamed:text]) {
+                        [aImgView setImage:[UIImage imageNamed:text]];
+                    }else{
+                        UILabel* aLabel=(UILabel*)[aImgView viewWithTag:10001];
+                        if (aLabel) {
+                            [aLabel setText:text];
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+-(void)updateTextForLabel_weather:(NSString*)text with_superViewTag:(int)superTag  with_LabelTag:(int)labelTag
+{
+    UIScrollView* scrollView=(UIScrollView*)[self.view viewWithTag:101];
+    if (scrollView) {
+        UIView* superView=[scrollView viewWithTag:superTag];
+        if (superView) {
+            if ([[superView viewWithTag:labelTag] isKindOfClass:[UILabel class]]) {
+                if (labelTag==1009) {
+                    UILabel* aLabel=(UILabel*)[superView viewWithTag:labelTag];
+
+                    NSRange range=[text rangeOfString:@"~"];
+                    if (range.length) {
+                        {
+                            NSString* firstStr=[text substringWithRange:NSMakeRange(0, range.location)];
+                            if ([aLabel viewWithTag:10001]) {
+                                UILabel* bLabel=(UILabel*)[aLabel viewWithTag:10001];
+                                if (bLabel) {
+                                    [bLabel setText:firstStr];
+                                }
+                            }
+                        }
+                        
+                        {
+                            NSString* secondStr=[text substringWithRange:NSMakeRange(range.location+1, text.length-(range.location+1))];
+                            if ([aLabel viewWithTag:10002]) {
+                                UILabel* bLabel=(UILabel*)[aLabel viewWithTag:10002];
+                                if (bLabel) {
+                                    [bLabel setText:secondStr];
+                                }
+                            }
+                        }
+                    }else{
+                        for(UIView* subView in aLabel.subviews){
+                            [subView setHidden:YES];
+                        }
+                        aLabel.text=[NSString stringWithFormat:@"%@",text];
+                    }
                 }
             }
         }

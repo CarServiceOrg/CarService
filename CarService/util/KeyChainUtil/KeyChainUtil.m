@@ -55,7 +55,7 @@
 + (void)delete:(NSString *)service {
     NSMutableDictionary *keychainQuery = [KeyChainUtil getKeychainQuery:service];
     OSStatus status = SecItemDelete((CFDictionaryRef)keychainQuery);
-    NSLog(@"delete status:%d",status);
+    NSLog(@"delete status:%ld",status);
 }
 
 @end

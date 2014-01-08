@@ -32,8 +32,22 @@ static inline void CustomLog(NSString *format, ...)
     NSString *str = [[NSString alloc] initWithFormat:format arguments:args];
     va_end(args);
     NSLog( @"%@",str);
+#if __has_feature(objc_arc)
+    
+#else
+    [str release];
+    //#error This file must be compiled with ARC. Either turn on ARC for the project or use -fobjc-arc flag
+#endif
+    
 #endif
 }
+
+#ifdef LOG_ON
+#	define MyNSLog(fmt, ...) NSLog((@"<<Chao-->%s-->[Line %d]-->" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#	define MyNSLog(...)
+#endif
+
     #define IsIOS6OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<7.0)
     #define IsIOS5OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<6.0)
     #define IsIOS4OrLower ([[[UIDevice currentDevice] systemVersion] floatValue]<5.0)
