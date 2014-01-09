@@ -49,7 +49,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLogoutNotification:) name:LogoutSuccessNotification object:nil];
     
     self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
-    //[ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
+    [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     
     [self resetContentView];
 }

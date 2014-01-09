@@ -12,6 +12,7 @@
 
 +(void)selfDefineNaviBar:(UINavigationBar*)naviBar
 {
+    naviBar.hidden = YES;
     [naviBar setBackgroundImage:[ApplicationPublic changeImageToCGImage:[UIImage imageNamed:@"navi_bg.png"]] forBarMetrics:UIBarMetricsDefault];
 }
 

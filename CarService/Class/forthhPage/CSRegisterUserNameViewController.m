@@ -91,11 +91,11 @@
 - (void)adjustSubView:(int)startY
 {
     [UIView animateWithDuration:0.3 animations:^{
-        if (Is_iPhone5)
+        /*if (Is_iPhone5)
         {
             
         }
-        else
+        else*/
         {
             self.phoneNumberBackView.frame = CGRectMake(self.phoneNumberBackView.frame.origin.x, startY, self.phoneNumberBackView.frame.size.width, self.phoneNumberBackView.frame.size.height);
             self.phoneNumberField.frame = CGRectMake(self.phoneNumberField.frame.origin.x, startY + 1, self.phoneNumberField.frame.size.width, self.phoneNumberField.frame.size.height);
@@ -123,7 +123,11 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            
+            if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder] || [self.checkSecretCodeField isFirstResponder])
+            {
+                CustomLog(@"Do Nothing");
+                self.backView.frame = CGRectMake(0, -50, self.backView.frame.size.width, self.backView.frame.size.height);
+            }
         }
         else
         {
@@ -145,11 +149,11 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            
+            self.backView.frame = CGRectMake(0, 41, self.backView.frame.size.width, self.backView.frame.size.height);
+
         }
         else
         {
-            //self.inputBackView.frame = CGRectMake(15, 115, self.inputBackView.frame.size.width, self.inputBackView.frame.size.height);
             [self adjustSubView:10];
         }
     }];
