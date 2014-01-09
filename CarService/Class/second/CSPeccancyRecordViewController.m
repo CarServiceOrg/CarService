@@ -21,17 +21,18 @@
 @implementation CSPeccancyRecordViewController
 @synthesize dataArray;
 
+//标题长度
+#define CSPeccancyRecordViewController_cell_title_length  55
 //时间 地点 违法行为 积分 罚款
-#define CSPeccancyRecordViewController_time     65
-#define CSPeccancyRecordViewController_address  55
-#define CSPeccancyRecordViewController_category 85
-#define CSPeccancyRecordViewController_mark     50
-#define CSPeccancyRecordViewController_cost     45
+#define CSPeccancyRecordViewController_time     (([UIScreen mainScreen].bounds.size.width-10*2)-10*2)-CSPeccancyRecordViewController_cell_title_length
+#define CSPeccancyRecordViewController_address  (([UIScreen mainScreen].bounds.size.width-10*2)-10*2)-CSPeccancyRecordViewController_cell_title_length
+#define CSPeccancyRecordViewController_category (([UIScreen mainScreen].bounds.size.width-10*2)-10*2)-CSPeccancyRecordViewController_cell_title_length
+#define CSPeccancyRecordViewController_mark     ((([UIScreen mainScreen].bounds.size.width-10*2)-10*2)-CSPeccancyRecordViewController_cell_title_length)/2.0-20
+#define CSPeccancyRecordViewController_cost     ((([UIScreen mainScreen].bounds.size.width-10*2)-10*2)-CSPeccancyRecordViewController_cell_title_length)/2.0-20
 //默认行高
 #define CSPeccancyRecordViewController_height  30
 //字体
 #define CSPeccancyRecordViewController_font_text  12
-
 
 
 - (id)initWithDataArray:(NSMutableArray *)aArray
@@ -88,28 +89,6 @@
     [self.view addSubview:bgImageView];
     [self.view sendSubviewToBack:bgImageView];
     [bgImageView release];
-    
-    UIView* headerView=[[UIView alloc] initWithFrame:CGRectMake(10, 15, 320-10*2, 35)];
-    [headerView setBackgroundColor:[UIColor clearColor]];
-    {
-        //时间
-        x=0; y=0; width=CSPeccancyRecordViewController_time; height=headerView.frame.size.height;
-        [self setUpButton:headerView with_tag:1001 with_frame:CGRectMake(x, y, width, height) with_text:@"时间"];
-        //地址
-        x=x+width; width=CSPeccancyRecordViewController_address;
-        [self setUpButton:headerView with_tag:1002 with_frame:CGRectMake(x, y, width, height) with_text:@"地点"];
-        //违法行为
-        x=x+width; width=CSPeccancyRecordViewController_category;
-        [self setUpButton:headerView with_tag:1003 with_frame:CGRectMake(x, y, width, height) with_text:@"违法行为"];
-        //计分
-        x=x+width; width=CSPeccancyRecordViewController_mark;
-        [self setUpButton:headerView with_tag:1004 with_frame:CGRectMake(x, y, width, height) with_text:@"计分"];
-        //罚款
-        x=x+width; width=CSPeccancyRecordViewController_cost;
-        [self setUpButton:headerView with_tag:1005 with_frame:CGRectMake(x, y, width, height) with_text:@"罚款"];
-    }
-    [self.view addSubview:headerView];
-    [headerView release];
 }
 
 -(void)backBtnClick:(id)sender
@@ -186,7 +165,14 @@
 //创建详情列表
 -(void)initSetUpTableView:(CGRect)frame
 {
-	UITableView *aTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+    frame=CGRectMake(10, DiffY+44+4, [UIScreen mainScreen].bounds.size.width-10*2, CSTabelViewHeight);
+    UIImageView* tabviewBg=[[UIImageView alloc] initWithFrame:frame];
+    [tabviewBg setImage:[ApplicationPublic getOriginImage:@"new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" withInset:UIEdgeInsetsMake(40, 40, 40, 40)]];
+    tabviewBg.backgroundColor =[UIColor clearColor];
+    [self.view addSubview:tabviewBg];
+    [tabviewBg release];
+   
+	UITableView *aTableView = [[UITableView alloc] initWithFrame:CGRectInset(frame, 5, 5) style:UITableViewStylePlain];
     [aTableView setTag:101];
     [aTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 	[aTableView setSeparatorColor:[UIColor clearColor]];
@@ -206,9 +192,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
-    self.navigationItem.title=@"违章记录";
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
+    [ApplicationPublic selfDefineBg:self.view];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章记录" withTarget:self with_action:@selector(backBtnClicked:)];
     [self init_selfView];
     [self initSetUpTableView:CGRectMake(10, 15+35+3, 300, self.view.bounds.size.height-40-55-(15+35+3+8))];
 }
@@ -253,19 +238,43 @@
 -(void)createViewForcell:(UITableViewCell*)cell atRow:(NSIndexPath *)indexPath{
     
     //时间
-    [self setUpLabel:cell.contentView with_tag:1001 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentCenter];
+    [self setUpLabel:cell.contentView with_tag:2001 with_frame:CGRectMake(0, 0, CSPeccancyRecordViewController_cell_title_length, CSPeccancyRecordViewController_height) with_text:@"时间：" with_Alignment:NSTextAlignmentCenter];
+    if ([cell.contentView viewWithTag:2001]) {
+        [(UILabel*)[cell.contentView viewWithTag:2001] setTextColor:[UIColor grayColor]];
+    }
+    [self setUpLabel:cell.contentView with_tag:1001 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentLeft];
     
     //地址
+    [self setUpLabel:cell.contentView with_tag:2002 with_frame:CGRectMake(0, 0, CSPeccancyRecordViewController_cell_title_length, CSPeccancyRecordViewController_height) with_text:@"地点：" with_Alignment:NSTextAlignmentCenter];
+    if ([cell.contentView viewWithTag:2002]) {
+        [(UILabel*)[cell.contentView viewWithTag:2002] setTextColor:[UIColor grayColor]];
+    }
     [self setUpLabel:cell.contentView with_tag:1002 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentLeft];
     
     //违法行为
-    [self setUpLabel:cell.contentView with_tag:1003 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentCenter];
+    [self setUpLabel:cell.contentView with_tag:2003 with_frame:CGRectMake(0, 0, CSPeccancyRecordViewController_cell_title_length, CSPeccancyRecordViewController_height) with_text:@"违章：" with_Alignment:NSTextAlignmentCenter];
+    if ([cell.contentView viewWithTag:2003]) {
+        [(UILabel*)[cell.contentView viewWithTag:2003] setTextColor:[UIColor grayColor]];
+    }
+    [self setUpLabel:cell.contentView with_tag:1003 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentLeft];
     
+    //扣
+    UIImageView* kouImgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [kouImgView setTag:1006];
+    [kouImgView setImage:[UIImage imageNamed:@"new_weichangchaxun_kou.png"]];
+    [cell.contentView addSubview:kouImgView];
+    [kouImgView release];
     //计分
-    [self setUpLabel:cell.contentView with_tag:1004 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentCenter];
+    [self setUpLabel:cell.contentView with_tag:1004 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentLeft];
 
+    //罚
+    UIImageView* faImgView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [faImgView setTag:1007];
+    [faImgView setImage:[UIImage imageNamed:@"new_weizhangchaxun_fa_tubiao.png"]];
+    [cell.contentView addSubview:faImgView];
+    [faImgView release];
     //费用
-    [self setUpLabel:cell.contentView with_tag:1005 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentCenter];
+    [self setUpLabel:cell.contentView with_tag:1005 with_frame:CGRectZero with_text:@"" with_Alignment:NSTextAlignmentLeft];
 }
 
 -(float)heigtForString:(NSString*)string  with_width:(float)width
@@ -305,57 +314,107 @@
         NSString* cost=[dict objectForKey:@"cost"];
         
         float x, y, width, height;
-        height=[self heightForCell:indexPath];
+        x=0; y=0; width=0; height=0;
         //时间
         UILabel* timeLabel=(UILabel*)[cell.contentView viewWithTag:1001];
         if (timeLabel) {
             timeLabel.text=time;
-            x=0; y=0; width=CSPeccancyRecordViewController_time;
+            x=CSPeccancyRecordViewController_cell_title_length;
+            y=0;
+            width=CSPeccancyRecordViewController_time;
+            height=[self heigtForString:time with_width:CSPeccancyRecordViewController_time];
             timeLabel.frame=CGRectMake(x, y, width, height);
+        }
+        if ([cell.contentView viewWithTag:2001]) {
+            UILabel* titleLable=(UILabel*)[cell.contentView viewWithTag:2001];
+            titleLable.frame=CGRectMake(0, y, titleLable.frame.size.width, height);
         }
         
         //地址
         UILabel* addressLabel=(UILabel*)[cell.contentView viewWithTag:1002];
         if (addressLabel) {
             addressLabel.text=address;
-            x=x+width; width=CSPeccancyRecordViewController_address;
+            y=y+height;
+            width=CSPeccancyRecordViewController_address;
+            height=[self heigtForString:address with_width:CSPeccancyRecordViewController_address];
             addressLabel.frame=CGRectMake(x, y, width, height);
+        }
+        if ([cell.contentView viewWithTag:2002]) {
+            UILabel* titleLable=(UILabel*)[cell.contentView viewWithTag:2002];
+            titleLable.frame=CGRectMake(0, y, titleLable.frame.size.width, height);
         }
         
         //违法记录
         UILabel* categoryLabel=(UILabel*)[cell.contentView viewWithTag:1003];
         if (categoryLabel) {
             categoryLabel.text=category;
-            x=x+width; width=CSPeccancyRecordViewController_category;
+            y=y+height;
+            width=CSPeccancyRecordViewController_category;
+            height= [self heigtForString:category with_width:CSPeccancyRecordViewController_category];
             categoryLabel.frame=CGRectMake(x, y, width, height);
         }
+        if ([cell.contentView viewWithTag:2003]) {
+            UILabel* titleLable=(UILabel*)[cell.contentView viewWithTag:2003];
+            titleLable.frame=CGRectMake(0, y, titleLable.frame.size.width, height);
+        }
         
+        //扣
+        UIImageView* kouImgView=(UIImageView*)[cell.contentView viewWithTag:1006];
+        {
+            y=y+height+(CSPeccancyRecordViewController_height-kouImgView.frame.size.height)/2.0;
+            width=kouImgView.frame.size.width;
+            height=kouImgView.frame.size.height;
+            kouImgView.frame=CGRectMake(x, y, width, kouImgView.frame.size.height);
+        }
         //计分
         UILabel* markLabel=(UILabel*)[cell.contentView viewWithTag:1004];
         if (markLabel) {
             markLabel.text=mark;
-            x=x+width; width=CSPeccancyRecordViewController_mark;
-            markLabel.frame=CGRectMake(x, y, width, height);
+            x=x+width;
+            width=CSPeccancyRecordViewController_mark;
+            markLabel.frame=CGRectMake(x+5, y, width, height);
         }
         
+        //罚
+        UIImageView* faImgView=(UIImageView*)[cell.contentView viewWithTag:1007];
+        {
+            x=x+width;
+            width=faImgView.frame.size.width;
+            faImgView.frame=CGRectMake(x, y, width, kouImgView.frame.size.height);
+        }
         //罚款
         UILabel* costLabel=(UILabel*)[cell.contentView viewWithTag:1005];
         if (costLabel) {
             costLabel.text=cost;
-            x=x+width; width=CSPeccancyRecordViewController_cost;
-            costLabel.frame=CGRectMake(x, y, width, height);
+            x=x+width;
+            width=CSPeccancyRecordViewController_cost;
+            costLabel.frame=CGRectMake(x+5, y, width, height);
         }
     }
     
+    NSInteger rowCount = [tableView numberOfRowsInSection:indexPath.section];
+    NSInteger row = indexPath.row;
+    if (rowCount==1) {
+        cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+    }
+    else if(rowCount>=2){
+        if (row == 0) {
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }else if (row == rowCount-1){
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }else{
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }
+    }
+    
+    cell.backgroundColor=[UIColor clearColor];
     cell.accessoryType=UITableViewCellAccessoryNone;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    UIImage* bgImage;
-    if (indexPath.row%2==0) {
-        bgImage=[[UIImage imageNamed:@"cell_bg_01.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-    }else{
-        bgImage=[[UIImage imageNamed:@"cell_bg_02.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-    }
-    cell.backgroundView = [[[UIImageView alloc] initWithImage:bgImage] autorelease];
+
     return cell;
 }
 
@@ -366,24 +425,13 @@
         NSString* time=[dict objectForKey:@"time"];
         NSString* address=[dict objectForKey:@"address"];
         NSString* category=[dict objectForKey:@"category"];
-        NSString* cost=[dict objectForKey:@"cost"];
         
-        float temp = [self heigtForString:time with_width:CSPeccancyRecordViewController_time];
-        if (temp<[self heigtForString:address with_width:CSPeccancyRecordViewController_address]) {
-            temp=[self heigtForString:address with_width:CSPeccancyRecordViewController_address];
-        }
-        if (temp<[self heigtForString:category with_width:CSPeccancyRecordViewController_category]) {
-            temp=[self heigtForString:category with_width:CSPeccancyRecordViewController_category];
-        }
-        if (temp<[self heigtForString:cost with_width:CSPeccancyRecordViewController_cost]) {
-            temp=[self heigtForString:cost with_width:CSPeccancyRecordViewController_cost];
-        }
-        
-        if (temp>CSPeccancyRecordViewController_height) {
-            return temp;
-        }else{
-            return CSPeccancyRecordViewController_height;
-        }
+        float time_h = [self heigtForString:time with_width:CSPeccancyRecordViewController_time];
+        float address_h = [self heigtForString:address with_width:CSPeccancyRecordViewController_address];
+        float category_h = [self heigtForString:category with_width:CSPeccancyRecordViewController_category];
+        float kouAndFa_h = CSPeccancyRecordViewController_height;
+
+        return time_h+address_h+category_h+kouAndFa_h;
     }
     return CSPeccancyRecordViewController_height;
 }

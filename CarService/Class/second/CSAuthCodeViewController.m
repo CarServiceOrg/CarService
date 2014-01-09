@@ -38,35 +38,26 @@
 
 -(void)init_selfView
 {
-    //返回按钮
-    [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backBtnClick:)];
+    [ApplicationPublic selfDefineBg:self.view];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章查询" withTarget:self with_action:@selector(backBtnClick:)];
 
-    float x, y, width, height;
-    x=0; y=0; width=320;
-    if (Is_iPhone5) {
-        height=1136/2.0;
-    }else{
-        height=960/2.0;
-    }
-    //背景
-    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    if (Is_iPhone5) {
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone5.png"]];
-    }else{
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone4.png"]];
-    }
-    [self.view addSubview:bgImageView];
-    [bgImageView release];
+    CGRect frame=CGRectMake(10, DiffY+44+4, [UIScreen mainScreen].bounds.size.width-10*2, CSTabelViewHeight);
+    UIImageView* tabviewBg=[[UIImageView alloc] initWithFrame:frame];
+    [tabviewBg setImage:[ApplicationPublic getOriginImage:@"new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" withInset:UIEdgeInsetsMake(40, 40, 40, 40)]];
+    tabviewBg.backgroundColor =[UIColor clearColor];
+    [self.view addSubview:tabviewBg];
+    [tabviewBg release];
     
+    float x, y, width, height;
     //车牌号
-    x=10; y=20; width=320-10*2; height=40;
+    x=frame.origin.x+5; y=frame.origin.y+5; width=frame.size.width-5*2; height=40;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"请输入验证码" with_delegate:self];
     {
         m_codeTextField=(UITextField*)[self.view viewWithTag:101];
     }
     
     //点击获取验证码
-    x=10; y=y+height+10; width=170; height=40;
+    y=y+height+10; width=170; height=40;
     m_getCodeBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [m_getCodeBtn setTitle:@"点击获取验证码" forState:UIControlStateNormal];
     [m_getCodeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -76,13 +67,12 @@
     [self.view addSubview:m_getCodeBtn];
     [m_getCodeBtn release];
 
-    x=10; y=20+40; width=320-10*2; height=25+200+25;
+    y=frame.origin.y+5+40; width=320-10*2; height=25+200+25;
     m_authView=[[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [m_authView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:m_authView];
     [m_authView release];
     m_authView.alpha=0.0;
-    
     {
         //说明：请输入图片中的变形文字
         x=0; y=0; width=320-10*2; height=25;
@@ -90,6 +80,7 @@
         {
             UILabel* alabel=(UILabel*)[m_authView viewWithTag:1001];
             if (alabel) {
+                m_noteLabel.textColor=[UIColor blackColor];
                 m_noteLabel=alabel;
             }
         }
@@ -122,10 +113,11 @@
     }
     
     //查询
-    width=133/2.0+20; x=(320-width)/2.0; y=20+40+10+40+20; height=48/2.0+10;
+    width=133/2.0+20; x=(320-width)/2.0; y=CGRectGetMaxY(m_getCodeBtn.frame)+20; height=48/2.0+10;
     m_queryBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [m_queryBtn setTitle:@"确 定" forState:UIControlStateNormal];
-    [m_queryBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateNormal];
+    //[m_queryBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateNormal];
+    [m_queryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [m_queryBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateDisabled];
     [m_queryBtn setBackgroundImage:[UIImage imageNamed:@"chaoxun_btn.png"] forState:UIControlStateNormal];
     [m_queryBtn setBackgroundImage:[UIImage imageNamed:@"chanxun_btn_press.png"] forState:UIControlStateHighlighted];
@@ -157,9 +149,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
-    [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
-    self.navigationItem.title=@"";
     [self init_selfView];
 }
 

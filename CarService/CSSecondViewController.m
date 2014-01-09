@@ -31,31 +31,46 @@
 
 -(void)init_selfView
 {
+    CGRect frame=CGRectMake(10, DiffY+44+4, [UIScreen mainScreen].bounds.size.width-10*2, CSTabelViewHeight);
+    UIImageView* tabviewBg=[[UIImageView alloc] initWithFrame:frame];
+    [tabviewBg setImage:[ApplicationPublic getOriginImage:@"new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" withInset:UIEdgeInsetsMake(40, 40, 40, 40)]];
+    tabviewBg.backgroundColor =[UIColor clearColor];
+    [self.view addSubview:tabviewBg];
+    [tabviewBg release];
+
     float x, y, width, height;
-    x=0; y=0; width=320;
-    if (Is_iPhone5) {
-        height=1136/2.0;
-    }else{
-        height=960/2.0;
-    }
-    //背景
-    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    if (Is_iPhone5) {
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone5.png"]];
-    }else{
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone4.png"]];
-    }
-    [self.view addSubview:bgImageView];
-    [bgImageView release];
 
-    //车牌号
-    x=10; y=20; width=320-10*2; height=40;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"车牌号：" with_delegate:self];
+    x=frame.origin.x+5; y=frame.origin.y+5; width=frame.size.width-5*2; height=40;
+    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:100 with_placeHolder:@"仅支持北京地区车牌" with_delegate:self];
+    {
+        UITextField* aField=(UITextField*)[self.view viewWithTag:100];
+        if (aField) {
+            [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
+            [aField setEnabled:NO];
+            [self setLeftView:aField text:@"选择城市：" flag:YES fontSize:15.0];
+        }
+    }
     
+    //车牌号
+    y=y+height+1;
+    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"请输入车牌号" with_delegate:self];
+    {
+        UITextField* aField=(UITextField*)[self.view viewWithTag:101];
+        if (aField) {
+            [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
+            [self setLeftView:aField text:@"车牌号码：" flag:YES fontSize:15.0];
+        }
+    }
     //发动机号
-    y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"发动机号：" with_delegate:self];
-
+    y=y+height+1;
+    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"请输入发动机号" with_delegate:self];
+    {
+        UITextField* aField=(UITextField*)[self.view viewWithTag:102];
+        if (aField) {
+            [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
+            [self setLeftView:aField text:@"发动机号：" flag:YES fontSize:15.0];
+        }
+    }
     //查询
     width=133/2.0+20; x=(320-width)/2.0; y=y+height+30; height=48/2.0+10;
     UIButton* queryBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
@@ -68,13 +83,60 @@
     [queryBtn release];
 }
 
+-(void)setLeftView:(UITextField*)aField text:(NSString*)text flag:(BOOL)isFlag fontSize:(float)fSize
+{
+    UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UILabel* aLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, aField.frame.size.height/2.0, aField.frame.size.height)];
+    [aLabel setBackgroundColor:[UIColor clearColor]];
+    aLabel.textAlignment=NSTextAlignmentRight;
+    aLabel.baselineAdjustment=UIBaselineAdjustmentAlignCenters;
+    aLabel.textColor=[UIColor blackColor];
+    aLabel.font=[UIFont systemFontOfSize:30];
+    aLabel.text=@"*";
+    [view addSubview:aLabel];
+    [aLabel release];
+    if (isFlag==NO) {
+        aLabel.frame=CGRectZero;
+    }
+    
+    UIFont* textFont=[UIFont systemFontOfSize:fSize];
+    CGSize textSize=[text sizeWithFont:textFont];
+    UILabel* bLabel=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(aLabel.frame), 0, textSize.width, aField.frame.size.height)];
+    bLabel.textAlignment=NSTextAlignmentLeft;
+    bLabel.baselineAdjustment=UIBaselineAdjustmentAlignCenters;
+    bLabel.textColor=[UIColor blackColor];
+    bLabel.font=textFont;
+    bLabel.text=text;
+    [view addSubview:bLabel];
+    [bLabel release];
+    
+    if (aField.tag==101) {
+        UIImageView* imageView=[[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(bLabel.frame), (aField.frame.size.height-18)/2.0, 18, 18)];
+        [imageView setImage:[UIImage imageNamed:@"new_weichangchaxun_jing.png"]];
+        [view addSubview:imageView];
+        [imageView release];
+     
+        view.frame=CGRectMake(0, 0, CGRectGetWidth(aLabel.frame)+CGRectGetWidth(bLabel.frame)+CGRectGetWidth(imageView.frame)+5, aField.frame.size.height);
+    }else{
+        view.frame=CGRectMake(0, 0, CGRectGetWidth(aLabel.frame)+CGRectGetWidth(bLabel.frame), aField.frame.size.height);
+    }
+    
+    aField.leftView=view;
+    [view release];
+}
+
+-(void)backBtnClicked:(UIButton*)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
-    [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
-    self.navigationItem.title=@"违章查询";
+    [ApplicationPublic selfDefineBg:self.view];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章查询" withTarget:self with_action:@selector(backBtnClicked:)];
     [self init_selfView];
 }
 
@@ -154,8 +216,8 @@
         [request setPostValue:bTextField.text forKey:@"fdjh"];
     }
     //for test
-    //[request setPostValue:@"phq600" forKey:@"carno"];
-    //[request setPostValue:@"80229789" forKey:@"fdjh"];
+    [request setPostValue:@"phq600" forKey:@"carno"];
+    [request setPostValue:@"80229789" forKey:@"fdjh"];
 
     [request setPostValue:@"11" forKey:@"sf"];
     [request startSynchronous];

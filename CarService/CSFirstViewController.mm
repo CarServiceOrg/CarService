@@ -23,6 +23,7 @@
 #import "CSForthViewController.h"
 #import "CSFifthViewController.h"
 #import "CSDelegateServiceViewController.h"
+#import "CSSecondViewController.h"
 
 static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
@@ -1042,7 +1043,13 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //违章查询
 -(void)weiZhangChaXunBtnClicked:(UIButton*)sender
 {
-    
+    if ([sender.superview isEqual:self.m_tabScrollView]) {
+        
+    }else{
+        CSSecondViewController* ctrler=[[CSSecondViewController alloc] init];
+        [self.navigationController pushViewController:ctrler animated:YES];
+        [ctrler release];
+    }
 }
 
 //套餐

@@ -141,7 +141,7 @@
     [aTextField setTextAlignment:NSTextAlignmentLeft];
     [aTextField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(10, 10, 10, 10)]];
     [aTextField setBackgroundColor:[UIColor clearColor]];
-    [aTextField setTextColor:[UIColor whiteColor]];
+    [aTextField setTextColor:[UIColor blackColor]];
     [aTextField setFont:[UIFont systemFontOfSize:14.0]];
     [aTextField setPlaceholder:placeHolderStr];
     {
