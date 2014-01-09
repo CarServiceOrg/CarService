@@ -19,18 +19,19 @@
 #import "CSLogInViewController.h"
 #import "CSMessageViewController.h"
 #import "LBSDataUtil.h"
-
+#import "CSReportCaseAskViewCtrler.h"
 
 static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
 static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 blue:0x41/255.0 alpha:1.0];
 
-@interface CSFirstViewController ()<CSLogInViewController_Delegate>
+@interface CSFirstViewController ()<CSLogInViewController_Delegate,UINavigationControllerDelegate>
 {
     
 }
 
 @property(nonatomic,retain)NSMutableArray* m_msgArray;
+@property(nonatomic,retain)UIScrollView* m_tabScrollView;
 
 @end
 
@@ -357,27 +358,13 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 
 -(void)initSelfView_top
 {
-    //bg
     float x, y, width, height;
     
-    x=0; y=20; width=320;
-    if (Is_iPhone5) {
-        height=1136/2.0;
-    }else{
-        height=960/2.0;
-    }
-    //背景
-    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    if (Is_iPhone5) {
-        [bgImageView setImage:[UIImage imageNamed:@"shouye_iphone5.png"]];
-    }else{
-        [bgImageView setImage:[UIImage imageNamed:@"new_shouye_bg.png"]];
-    }
-    [self.view addSubview:bgImageView];
-    [bgImageView release];
+    //bg
+    [ApplicationPublic selfDefineBg:self.view];
     
     //logo
-    x=10; y=y+10; width=229/2.0; height=52/2.0;
+    x=10; y=20+10; width=229/2.0; height=52/2.0;
     UIImageView* logoImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [logoImageView setImage:[UIImage imageNamed:@"new_logo.png"]];
     [self.view addSubview:logoImageView];
@@ -452,7 +439,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
                 [self setUpLabel:aLabel with_tag:10003 with_frame:CGRectMake(0, 25, width, 2) with_text:@"" with_Alignment:NSTextAlignmentLeft fontSize:16.0];
                 UILabel* bLabel=(UILabel*)[aLabel viewWithTag:10003];
                 if (bLabel) {
-                    bLabel.backgroundColor=[UIColor grayColor];
+                    bLabel.backgroundColor=[UIColor whiteColor];
                     bLabel.transform=CGAffineTransformMakeRotation(-M_PI_4);
                 }
                 //第二个温度
@@ -786,6 +773,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor blackColor];
     self.navigationController.navigationBar.hidden=YES;
+    self.navigationController.delegate=self;
 	// Do any additional setup after loading the view, typically from a nib.
     [self initSelfView_top];
     [self initSelfView_middle];
@@ -843,7 +831,137 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.m_msgArray=nil;
+    self.m_tabScrollView=nil;
     [super dealloc];
+}
+
+#pragma mark - window上的btn
+-(void)initTabScrollView
+{
+    //底部导航栏
+    float x,y,width,height;
+    x=[UIScreen mainScreen].bounds.size.width; y=[UIScreen mainScreen].bounds.size.height-CSTabScrollHeight; width=140; height=CSTabScrollHeight;
+    self.m_tabScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    _m_tabScrollView.backgroundColor=[UIColor clearColor];
+    _m_tabScrollView.showsHorizontalScrollIndicator=NO;
+    _m_tabScrollView.showsVerticalScrollIndicator=NO;
+    [[UIApplication sharedApplication].keyWindow addSubview:_m_tabScrollView];
+    [_m_tabScrollView release];
+    {
+        float x, y, width, height;
+
+        y=10; width=65; height=65;
+        //事故报案
+        {
+            x=12;
+            UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            aBtn.tag=2001;
+            aBtn.backgroundColor=[UIColor clearColor];
+            [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+            [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_baoanzixun_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+            [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_baoanzixun_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+            [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateNormal];
+            [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateHighlighted];
+            [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateNormal];
+            [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateHighlighted];
+            [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+            [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+            [aBtn setTitle:@"事故报案" forState:UIControlStateNormal];
+            [aBtn addTarget:self action:@selector(shiGuBaoAnBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [_m_tabScrollView addSubview:aBtn];
+            [aBtn release];
+        }
+        
+        //代维服务
+        {
+            x=x+width+12;
+            UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            aBtn.tag=2002;
+            aBtn.backgroundColor=[UIColor clearColor];
+            [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+            [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_daiweifuwu_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+            [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_daiweifuwu_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+            [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateNormal];
+            [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateHighlighted];
+            [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateNormal];
+            [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateHighlighted];
+            [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+            [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+            [aBtn setTitle:@"代维服务" forState:UIControlStateNormal];
+            [aBtn addTarget:self action:@selector(daiWeiFuWuBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [_m_tabScrollView addSubview:aBtn];
+            [aBtn release];
+        }
+        //消费记录
+        {
+            x=x+width+12;
+            UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            aBtn.tag=2003;
+            aBtn.backgroundColor=[UIColor clearColor];
+            [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+            [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_xiaofeijilu_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+            [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_xiaofeijilu_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+            [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateHighlighted];
+            [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateNormal];
+            [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateHighlighted];
+            [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateNormal];
+            [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+            [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+            [aBtn setTitle:@"消费记录" forState:UIControlStateNormal];
+            [aBtn addTarget:self action:@selector(xiaoFeiJiLuBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [_m_tabScrollView addSubview:aBtn];
+            [aBtn release];
+        }
+        
+        //我要投保
+        {
+            x=x+width+12;
+            UIButton* aBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            aBtn.tag=2004;
+            aBtn.backgroundColor=[UIColor clearColor];
+            [aBtn setImageEdgeInsets:UIEdgeInsetsMake(15, (75-26)/2.0, 75-53/2.0-15, (75-26)/2.0)];
+            [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_woyaotoubao_tubiao.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+            [aBtn  setImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"shouye_woyaotoubao_tubiao02.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+            [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_baibeijing.png"] forState:UIControlStateNormal];
+            [aBtn setBackgroundImage:[UIImage imageNamed:@"shouye_anniu_lanbeijing.png"] forState:UIControlStateHighlighted];
+            [aBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateNormal];
+            [aBtn setTitleColor:BtnTitleColorWhite forState:UIControlStateHighlighted];
+            [aBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+            [aBtn setTitleEdgeInsets:UIEdgeInsetsMake(35, -20, 0, 0)];
+            [aBtn setTitle:@"我要投保" forState:UIControlStateNormal];
+            [aBtn addTarget:self action:@selector(woYaoTouBaoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [_m_tabScrollView addSubview:aBtn];
+            [aBtn release];
+        }
+    }
+}
+
+-(void)showTabScrollView:(BOOL)flagShowBool
+{
+    if (flagShowBool) {
+        [UIView animateWithDuration:0.6 animations:^{
+            self.m_tabScrollView.frame=CGRectMake(self.m_tabScrollView.frame.origin.x, [UIScreen mainScreen].bounds.size.height, self.m_tabScrollView.bounds.size.width, self.m_tabScrollView.bounds.size.height);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }else{
+        [UIView animateWithDuration:0.6 animations:^{
+            self.m_tabScrollView.frame=CGRectMake(self.m_tabScrollView.frame.origin.x, [UIScreen mainScreen].bounds.size.height-self.m_tabScrollView.bounds.size.height, self.m_tabScrollView.bounds.size.width, self.m_tabScrollView.bounds.size.height);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+}
+
+-(int)getSelectedIndexInWindow
+{
+    for (UIView* subView in self.m_tabScrollView.subviews) {
+        if ([subView isKindOfClass:[UIButton class]]) {
+            [(UIButton*)subView isSelected];
+            return subView.tag-2000;
+        }
+    }
+    return -1;
 }
 
 #pragma mark - 首页点击事件
@@ -851,7 +969,13 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //事故报案
 -(void)shiGuBaoAnBtnClicked:(UIButton*)sender
 {
-    
+    if ([sender.superview isEqual:self.m_tabScrollView]) {
+        
+    }else{
+        CSReportCaseAskViewCtrler* viewCtrler=[[CSReportCaseAskViewCtrler alloc] init];
+        [self.navigationController pushViewController:viewCtrler animated:YES];
+        [viewCtrler release];
+    }
 }
 
 //代维服务
@@ -1238,6 +1362,14 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
     }else if ([flagStr isEqualToString:@""]){
        
     }
+}
+
+#pragma mark - UINavigationControllerDelegate
+// Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    MyNSLog();
+    
 }
 
 @end

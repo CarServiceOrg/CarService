@@ -27,30 +27,21 @@
 
 -(void)init_selfView
 {
-    float x, y, width, height;
-    
-    [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backBtnClick:)];
-    
-    x=0; y=0; width=320;
-    if (Is_iPhone5) {
-        height=1136/2.0;
-    }else{
-        height=960/2.0;
-    }
     //背景
-    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    if (Is_iPhone5) {
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone5.png"]];
-    }else{
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone4.png"]];
-    }
-    [self.view addSubview:bgImageView];
-    [self.view sendSubviewToBack:bgImageView];
-    [bgImageView release];
+    [ApplicationPublic selfDefineBg:self.view];
+    //标题栏
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"参考格式" withTarget:self with_action:@selector(backBtnClick:)];
     
-    x=15; y=15; width=320-x*2; height=self.view.bounds.size.height-40-55-y*2;
-     //滚动视图
-    UIScrollView* scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    //滚动视图
+    CGRect frame=CGRectMake(10, DiffY+44+4, [UIScreen mainScreen].bounds.size.width-10*2, CSTabelViewHeight);
+    UIImageView* tabviewBg=[[UIImageView alloc] initWithFrame:frame];
+    [tabviewBg setImage:[ApplicationPublic getOriginImage:@"new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" withInset:UIEdgeInsetsMake(40, 40, 40, 40)]];
+    tabviewBg.backgroundColor =[UIColor clearColor];
+    [self.view addSubview:tabviewBg];
+    [tabviewBg release];
+
+    //滚动视图
+    UIScrollView* scrollView=[[UIScrollView alloc] initWithFrame:frame];
     [scrollView setTag:101];
     [scrollView setDelegate:self];
     scrollView.minimumZoomScale=1.0;

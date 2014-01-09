@@ -160,6 +160,7 @@
 		E14FBE11187C734400C6C466 /* shouye_xiaofeijilu_tubiao02.png in Resources */ = {isa = PBXBuildFile; fileRef = E14FBD8B187C734400C6C466 /* shouye_xiaofeijilu_tubiao02.png */; };
 		E14FBE12187C734400C6C466 /* shouye_yonghu_tubiao.png in Resources */ = {isa = PBXBuildFile; fileRef = E14FBD8C187C734400C6C466 /* shouye_yonghu_tubiao.png */; };
 		E14FBE13187C734400C6C466 /* shouye_yonghu_tubiao02.png in Resources */ = {isa = PBXBuildFile; fileRef = E14FBD8D187C734400C6C466 /* shouye_yonghu_tubiao02.png */; };
+		E14FBE16187E828B00C6C466 /* CSReportCaseAskViewCtrler.m in Sources */ = {isa = PBXBuildFile; fileRef = E14FBE15187E828B00C6C466 /* CSReportCaseAskViewCtrler.m */; };
 		E152A9CA17E8AF0A00E73902 /* name.txt in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AC17E8AF0A00E73902 /* name.txt */; };
 		E152A9CB17E8AF0A00E73902 /* weatherList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AD17E8AF0A00E73902 /* weatherList.plist */; };
 		E152A9CC17E8AF0A00E73902 /* 中雨.png in Resources */ = {isa = PBXBuildFile; fileRef = E152A9AE17E8AF0A00E73902 /* 中雨.png */; };
@@ -737,6 +738,8 @@
 		E14FBD8B187C734400C6C466 /* shouye_xiaofeijilu_tubiao02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouye_xiaofeijilu_tubiao02.png; sourceTree = "<group>"; };
 		E14FBD8C187C734400C6C466 /* shouye_yonghu_tubiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouye_yonghu_tubiao.png; sourceTree = "<group>"; };
 		E14FBD8D187C734400C6C466 /* shouye_yonghu_tubiao02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouye_yonghu_tubiao02.png; sourceTree = "<group>"; };
+		E14FBE14187E828B00C6C466 /* CSReportCaseAskViewCtrler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSReportCaseAskViewCtrler.h; sourceTree = "<group>"; };
+		E14FBE15187E828B00C6C466 /* CSReportCaseAskViewCtrler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSReportCaseAskViewCtrler.m; sourceTree = "<group>"; };
 		E152A9AC17E8AF0A00E73902 /* name.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		E152A9AD17E8AF0A00E73902 /* weatherList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = weatherList.plist; sourceTree = "<group>"; };
 		E152A9AE17E8AF0A00E73902 /* 中雨.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "中雨.png"; sourceTree = "<group>"; };
@@ -1635,6 +1638,8 @@
 				E19AE7D317E82082007B9F07 /* CSDelegateServiceViewController.m */,
 				E19AE7D817E82082007B9F07 /* CSReportCaseViewController.h */,
 				E19AE7D917E82082007B9F07 /* CSReportCaseViewController.m */,
+				E14FBE14187E828B00C6C466 /* CSReportCaseAskViewCtrler.h */,
+				E14FBE15187E828B00C6C466 /* CSReportCaseAskViewCtrler.m */,
 				E19AE7D617E82082007B9F07 /* CSInsureAcknowledgeViewController.h */,
 				E19AE7D717E82082007B9F07 /* CSInsureAcknowledgeViewController.m */,
 				E17C2FC317EC3B7D00D29BD4 /* CSInsuranceDetailViewController.h */,
@@ -3031,6 +3036,7 @@
 				E19AE7DC17E82082007B9F07 /* CSCarCareViewController.m in Sources */,
 				E19AE7DD17E82082007B9F07 /* CSDelegateServiceViewController.m in Sources */,
 				E19AE7DE17E82082007B9F07 /* CSInsuranceViewController.m in Sources */,
+				E14FBE16187E828B00C6C466 /* CSReportCaseAskViewCtrler.m in Sources */,
 				E19AE7DF17E82082007B9F07 /* CSInsureAcknowledgeViewController.m in Sources */,
 				E19AE7E017E82082007B9F07 /* CSReportCaseViewController.m in Sources */,
 				E19AE7E117E82082007B9F07 /* CSShopRecommendViewController.m in Sources */,

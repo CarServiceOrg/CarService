@@ -56,5 +56,9 @@ static inline void CustomLog(NSString *format, ...)
     #define Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
     #define DiffHeight (Is_iPhone5?88:0) //(1136-960)/2
     #define BGRect CGRectMake(0,0,320,568) //(1136-960)/2 //all BGs are 640*1136
+    #define DiffY (IsIOS6OrLower ? 0 : 20)
+    #define ApplicationHeight (IsIOS6OrLower ? [UIScreen mainScreen].applicationFrame.size.height : [UIScreen mainScreen].bounds.size.height)
+    #define CSTabScrollHeight (10+65+10)
+    #define CSTabelViewHeight (Is_iPhone5 ? ApplicationHeight-(DiffY+44+4+CSTabScrollHeight+5) : ApplicationHeight-(DiffY+44+4+5))
 
 #endif

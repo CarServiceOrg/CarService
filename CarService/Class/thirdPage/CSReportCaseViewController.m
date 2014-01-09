@@ -44,39 +44,23 @@
 
 -(void)init_selfView
 {
+    //背景
+    [ApplicationPublic selfDefineBg:self.view];
+    //标题栏
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"事故咨询" withTarget:self with_action:@selector(backBtnClick:) rightBtn:self with_action:@selector(photeBtnClick:)];
+    
     float x, y, width, height;
     
-    [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backBtnClick:)];
-    
-    x=0; y=0; width=42; height=28;
-    UIButton* photeBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [photeBtn setImage:[UIImage imageNamed:@"shibubaoan_canama.png"] forState:UIControlStateNormal];
-    [photeBtn setImage:[UIImage imageNamed:@"shibubaoan_canama_press.png"] forState:UIControlStateHighlighted];
-    [photeBtn addTarget:self action:@selector(photeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem=[[[UIBarButtonItem alloc] initWithCustomView:photeBtn] autorelease];
-    [photeBtn release];
-
-    x=0; y=0; width=320;
-    if (Is_iPhone5) {
-        height=1136/2.0;
-    }else{
-        height=960/2.0;
-    }
-    //背景
-    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    if (Is_iPhone5) {
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone5.png"]];
-    }else{
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone4.png"]];
-    }
-    [self.view addSubview:bgImageView];
-    [self.view sendSubviewToBack:bgImageView];
-    [bgImageView release];
-    
     //滚动视图
-    height=self.view.bounds.size.height-(40+55);
-    view_ScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [view_ScrollView setContentSize:CGSizeMake(width, 1136/2.0-20-(40+55))];
+    CGRect frame=CGRectMake(10, DiffY+44+4, [UIScreen mainScreen].bounds.size.width-10*2, CSTabelViewHeight);
+    UIImageView* tabviewBg=[[UIImageView alloc] initWithFrame:frame];
+    [tabviewBg setImage:[ApplicationPublic getOriginImage:@"new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" withInset:UIEdgeInsetsMake(40, 40, 40, 40)]];
+    tabviewBg.backgroundColor =[UIColor clearColor];
+    [self.view addSubview:tabviewBg];
+    [tabviewBg release];
+    
+    view_ScrollView=[[UIScrollView alloc] initWithFrame:frame];
+    [view_ScrollView setContentSize:CGSizeMake(frame.size.width, 1136/2.0-20-(40+55))];
     view_ScrollView.backgroundColor=[UIColor clearColor];
     view_ScrollView.showsHorizontalScrollIndicator=NO;
     view_ScrollView.showsVerticalScrollIndicator=NO;
@@ -84,7 +68,7 @@
     [view_ScrollView release];
     
     //车牌号
-    x=10; y=20; width=320-10*2; height=40;
+    x=5; y=10; width=view_ScrollView.frame.size.width-5*2; height=40;
     [ApplicationPublic setUp_UITextField:view_ScrollView with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"时间" with_delegate:self];
     
     //发动机号
@@ -94,7 +78,7 @@
     y=y+height+15; height=180;
     {
         UIImageView* bgImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-        [bgImgView setImage:[[UIImage imageNamed:@"black_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
+        [bgImgView setImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_shiguzhaopianbeijing.png" withInset:UIEdgeInsetsMake(10, 10, 10, 10)]];
         [view_ScrollView addSubview:bgImgView];
         [bgImgView release];
     }
@@ -145,8 +129,8 @@
     UIButton* referBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [referBtn.titleLabel setFont:[UIFont systemFontOfSize:14.0]];
     [referBtn setTitle:@"【查看参考格式】" forState:UIControlStateNormal];
-    [referBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateNormal];
-    [referBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateSelected];
+    [referBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [referBtn setTitleColor:[UIColor colorWithRed:0xe9/255.0f green:0x9e/255.0f blue:0x72/255.0f alpha:1] forState:UIControlStateHighlighted];
     [referBtn addTarget:self action:@selector(referBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [view_ScrollView addSubview:referBtn];
     [referBtn release];

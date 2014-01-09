@@ -15,6 +15,99 @@
     [naviBar setBackgroundImage:[ApplicationPublic changeImageToCGImage:[UIImage imageNamed:@"navi_bg.png"]] forBarMetrics:UIBarMetricsDefault];
 }
 
++(void)selfDefineBg:(UIView*)superView
+{
+    //背景
+    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, DiffY, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    if (Is_iPhone5) {
+        [bgImageView setImage:[UIImage imageNamed:@"shouye_iphone5.png"]];
+    }else{
+        [bgImageView setImage:[UIImage imageNamed:@"new_shouye_bg.png"]];
+    }
+    bgImageView.backgroundColor=[UIColor clearColor];
+    [superView addSubview:bgImageView];
+    [superView sendSubviewToBack:bgImageView];
+    [bgImageView release];
+}
+
++(void)selfDefineNavigationBar:(UIView*)superView title:(NSString*)titleStr withTarget:(id)target with_action:(SEL)action
+{
+    CGRect frame=CGRectMake(0, DiffY, [UIScreen mainScreen].bounds.size.width, 44);
+    UIImageView* naviImgView=[[UIImageView alloc] initWithFrame:frame];
+    naviImgView.backgroundColor =[UIColor clearColor];
+    [superView addSubview:naviImgView];
+    naviImgView.userInteractionEnabled=YES;
+    [naviImgView release];
+    
+    //返回按钮
+    UIButton* backBtn=[[UIButton alloc] initWithFrame:CGRectMake(8, (frame.size.height-34)/2.0, 34, 34)];
+    backBtn.backgroundColor=[UIColor clearColor];
+    [backBtn  setBackgroundImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"new_xiaofeijilu_fanhui_anniu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+    [backBtn  setBackgroundImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"new_xiaofeijilu_fanhui_dianjianniu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+    [backBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [naviImgView addSubview:backBtn];
+    [backBtn release];
+    
+    UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(backBtn.frame)+10, 0, CGRectGetWidth(frame)-10-CGRectGetMaxX(backBtn.frame)*2-10, frame.size.height)];
+    [textLabel setBackgroundColor:[UIColor clearColor]];
+    [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+    [textLabel setTextAlignment:NSTextAlignmentCenter];
+    [textLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    [textLabel setTextColor:[UIColor whiteColor]];
+    [textLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
+    [textLabel setText:titleStr];
+    [naviImgView addSubview:textLabel];
+    [textLabel release];
+}
+
++(void)selfDefineNavigationBar:(UIView*)superView title:(NSString*)titleStr withTarget:(id)target with_action:(SEL)action rightBtn:(id)targetR with_action:(SEL)actionR
+{
+    CGRect frame=CGRectMake(0, DiffY, [UIScreen mainScreen].bounds.size.width, 44);
+    UIImageView* naviImgView=[[UIImageView alloc] initWithFrame:frame];
+    naviImgView.backgroundColor =[UIColor clearColor];
+    [superView addSubview:naviImgView];
+    naviImgView.userInteractionEnabled=YES;
+    [naviImgView release];
+    
+    //返回按钮
+    UIButton* backBtn=[[UIButton alloc] initWithFrame:CGRectMake(8, (frame.size.height-34)/2.0, 34, 34)];
+    backBtn.backgroundColor=[UIColor clearColor];
+    [backBtn  setBackgroundImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"new_xiaofeijilu_fanhui_anniu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateNormal];
+    [backBtn  setBackgroundImage:[UIImage imageWithCGImage:[UIImage imageNamed:@"new_xiaofeijilu_fanhui_dianjianniu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] forState:UIControlStateHighlighted];
+    [backBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [naviImgView addSubview:backBtn];
+    [backBtn release];
+    
+    //right按钮
+    UIButton* rightBtn=[[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-5-42, (frame.size.height-35)/2.0, 35, 35)];
+    rightBtn.backgroundColor=[UIColor clearColor];
+    [rightBtn setBackgroundImage:[UIImage imageNamed:@"new_baoanzhaoxiang_zhaoxianganniu.png"] forState:UIControlStateNormal];
+    [rightBtn addTarget:targetR action:actionR forControlEvents:UIControlEventTouchUpInside];
+    [naviImgView addSubview:rightBtn];
+    [rightBtn release];
+    
+    UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(backBtn.frame)+10, 0, CGRectGetMinX(rightBtn.frame)-10-CGRectGetMaxX(backBtn.frame)-10, frame.size.height)];
+    [textLabel setBackgroundColor:[UIColor clearColor]];
+    [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+    [textLabel setTextAlignment:NSTextAlignmentCenter];
+    [textLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
+    [textLabel setTextColor:[UIColor whiteColor]];
+    [textLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
+    [textLabel setText:titleStr];
+    [naviImgView addSubview:textLabel];
+    [textLabel release];
+}
+
++(UIImage*)getOriginImage:(NSString*)imageStr withInset:(UIEdgeInsets)insets
+{
+    UIImage* orgImg=[UIImage imageWithCGImage:[UIImage imageNamed:imageStr].CGImage scale:2.0 orientation:UIImageOrientationUp];
+    if (orgImg && !UIEdgeInsetsEqualToEdgeInsets(insets, UIEdgeInsetsZero)) {
+        [orgImg resizableImageWithCapInsets:insets];
+    }
+    
+    return orgImg;
+}
+
 +(UIImage*)changeImageToCGImage:(UIImage*)image
 {
     CGImageRef imageRef = image.CGImage;
@@ -45,7 +138,7 @@
         aTextField.tag=tag;
     }
     [aTextField setTextAlignment:NSTextAlignmentLeft];
-    [aTextField setBackground:[[UIImage imageNamed:@"black_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
+    [aTextField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(10, 10, 10, 10)]];
     [aTextField setBackgroundColor:[UIColor clearColor]];
     [aTextField setTextColor:[UIColor whiteColor]];
     [aTextField setFont:[UIFont systemFontOfSize:14.0]];

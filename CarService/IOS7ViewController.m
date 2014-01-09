@@ -30,7 +30,7 @@
     
     // 强制VC为全屏坐标，其实点为0.0，让iOS6和iOS7保持一致
     // 尽量不要使用系统的NavigationBar,否则跨版本不好控制工具栏
-    [self  setWantsFullScreenLayout:YES];
+    [self setWantsFullScreenLayout:YES];
 
 }
 
