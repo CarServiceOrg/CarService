@@ -47,9 +47,9 @@
 	// Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLoginNotification:) name:LoginSuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiviLogoutNotification:) name:LogoutSuccessNotification object:nil];
+    
     self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
-    self.navigationItem.title=@"个人中心";
     
     [self resetContentView];
 }
@@ -62,25 +62,23 @@
         [tempView removeFromSuperview];
     }
     
+    UILabel *titleLabel = (UILabel *)[self.view viewWithTag:100];
     if ([[Util sharedUtil] hasLogin])
     {
         MemberCenterViewController *controller = [[MemberCenterViewController alloc] initWithNibName:@"MemberCenterViewController" bundle:nil];
         controller.parentController = self;
+        
         [self.view addSubview:controller.view];
         
-        self.navigationItem.title = @"会员中心";
+        titleLabel.text = @"会员中心";
     }
     else
     {
         CSLogInViewController *controller = [[CSLogInViewController alloc] initWithNibName:@"CSLogInViewController" bundle:nil];
-        //if (Is_iPhone5)
-        {
-            controller.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
-        }
+        controller.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
         controller.parentController = self;
         [self.view addSubview:controller.view];
-        self.navigationItem.title = @"登陆";
-
+        titleLabel.text = @"登陆";
     }
 }
 - (void)didReceiveMemoryWarning

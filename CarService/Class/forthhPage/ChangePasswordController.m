@@ -115,7 +115,7 @@
     }
     else
     {
-        /*if ([self.oldPassField isFirstResponder])
+        if ([self.oldPassField isFirstResponder])
         {
             CustomLog(@"Do Nothing");
             [self adjustSubView:0];
@@ -127,7 +127,7 @@
         else if ([self.confirmField isFirstResponder])
         {
             [self adjustSubView:-40];
-        }*/
+        }
         
     }
     
@@ -141,7 +141,7 @@
     }
     else
     {
-       // [self adjustSubView:0];
+        [self adjustSubView:0];
     }
 }
 
