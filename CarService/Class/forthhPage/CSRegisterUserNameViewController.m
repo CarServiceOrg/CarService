@@ -234,7 +234,7 @@
     }
     
     [self.registerRequest clearDelegatesAndCancel];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"register",@"action",self.phoneNumberField.text,@"phone",self.phoneNumberField,@"username", [self.secretCodeField.text md5String],@"password", nil];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"register",@"action",self.phoneNumberField.text,@"phone",self.phoneNumberField.text,@"username", [self.secretCodeField.text md5String],@"password", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
