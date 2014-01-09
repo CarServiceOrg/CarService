@@ -184,8 +184,10 @@
 {
     if ([self.parentController isKindOfClass:[CSForthViewController class]]) {
         [self.parentController.navigationController popViewControllerAnimated:YES];
-    }else if (([self.parentController isKindOfClass:[CSThirdViewController class]] || [self.parentController isKindOfClass:[CSFirstViewController class]])){
+    }else if ([self.parentController isKindOfClass:[CSThirdViewController class]]){
         [self.navigationController popToRootViewControllerAnimated:YES];
+    }else if ([self.parentController isKindOfClass:[CSFirstViewController class]]){
+        [self dismissModalViewControllerAnimated:YES];
     }
 }
 

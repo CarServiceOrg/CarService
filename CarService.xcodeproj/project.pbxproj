@@ -1132,7 +1132,6 @@
 		E53ABA4217E0DD020096754D /* CarService-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CarService-Prefix.pch"; sourceTree = "<group>"; };
 		E53ABA4317E0DD020096754D /* CSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAppDelegate.h; sourceTree = "<group>"; };
 		E53ABA4417E0DD020096754D /* CSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSAppDelegate.m; sourceTree = "<group>"; };
-		E53ABA4D17E0DD020096754D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		E53ABA4F17E0DD020096754D /* CSFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSFirstViewController.h; sourceTree = "<group>"; };
 		E53ABA5017E0DD020096754D /* CSFirstViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CSFirstViewController.mm; sourceTree = "<group>"; };
 		E53ABA5617E0DD020096754D /* CSSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSecondViewController.h; sourceTree = "<group>"; };
@@ -3096,7 +3095,6 @@
 		E53ABA4C17E0DD020096754D /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E53ABA4D17E0DD020096754D /* en */,
 				E19AE9DA17F005C7007B9F07 /* zh-Hans */,
 			);
 			name = MainStoryboard.storyboard;

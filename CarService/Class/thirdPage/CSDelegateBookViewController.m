@@ -51,34 +51,14 @@
 
 -(void)init_selfView
 {
-    float x, y, width, height;
-    
-    //返回按钮
-    [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backBtnClick:)];
-    
-    x=0; y=0; width=320;
-    if (Is_iPhone5) {
-        height=1136/2.0;
-    }else{
-        height=960/2.0;
-    }
-    //背景
-    UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    if (Is_iPhone5) {
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone5.png"]];
-    }else{
-        [bgImageView setImage:[UIImage imageNamed:@"bg_iphone4.png"]];
-    }
-    [self.view addSubview:bgImageView];
-    [bgImageView release];
-    
+    NSString* titleStr=@"";
     NSString* firstHolderStr=@"";
     NSString* secondtHolderStr=@"";
     NSString* thirdHolderStr=@"";
     switch (_type) {
         case CSDelegateServiceType_wash:
         {
-            self.navigationItem.title=@"我要洗车";
+            titleStr=@"我要洗车";
             firstHolderStr=@"预约时间：";
             secondtHolderStr=@"地点";
             thirdHolderStr=@"备注：";
@@ -86,7 +66,7 @@
             break;
         case CSDelegateServiceType_check:
         {
-            self.navigationItem.title=@"我要验车";
+            titleStr=@"我要验车";
             firstHolderStr=@"时间：";
             secondtHolderStr=@"地点";
             thirdHolderStr=@"备注：";
@@ -95,7 +75,7 @@
             break;
         case CSDelegateServiceType_fix:
         {
-            self.navigationItem.title=@"我要修车";
+            titleStr=@"我要修车";
             firstHolderStr=@"预约时间：";
             secondtHolderStr=@"地点";
             thirdHolderStr=@"备注：";
@@ -103,7 +83,7 @@
             break;
         case CSDelegateServiceType_sale:
         {
-            self.navigationItem.title=@"我要卖车";
+            titleStr=@"我要卖车";
             firstHolderStr=@"预约时间：";
             secondtHolderStr=@"地点";
             thirdHolderStr=@"备注：";
@@ -113,8 +93,20 @@
             break;
     }
     
+    [ApplicationPublic selfDefineBg:self.view];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:titleStr withTarget:self with_action:@selector(backBtnClick:)];
+    //半透背景
+    CGRect frame=CGRectMake(10, DiffY+44+4, [UIScreen mainScreen].bounds.size.width-10*2, CSTabelViewHeight);
+    UIImageView* tabviewBg=[[UIImageView alloc] initWithFrame:frame];
+    [tabviewBg setImage:[ApplicationPublic getOriginImage:@"new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" withInset:UIEdgeInsetsMake(40, 40, 40, 40)]];
+    tabviewBg.backgroundColor =[UIColor clearColor];
+    [self.view addSubview:tabviewBg];
+    [tabviewBg release];
+
+    float x, y, width, height;
+
     //时间
-    x=10; y=20; width=320-10*2; height=40;
+    x=frame.origin.x+5; y=frame.origin.y+5; width=frame.size.width-5*2; height=40;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:firstHolderStr with_delegate:self];
     
     //地点
@@ -125,7 +117,7 @@
     {
         UIImageView* textViewBg=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         [textViewBg setBackgroundColor:[UIColor clearColor]];
-        [textViewBg setImage:[[UIImage imageNamed:@"black_bg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)]];
+        [textViewBg setImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(10, 10, 10, 10)]];
         [self.view addSubview:textViewBg];
         [textViewBg release];
     }    
@@ -156,8 +148,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
-    [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
     [self init_selfView];
 }
 

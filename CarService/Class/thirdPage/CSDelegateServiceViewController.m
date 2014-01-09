@@ -9,6 +9,8 @@
 #import "CSDelegateServiceViewController.h"
 #import "CSDelegateBookViewController.h"
 
+static CGFloat const CellHeight = 50;
+
 @interface CSDelegateServiceViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
     
@@ -28,7 +30,7 @@
     return self;
 }
 
--(void)backBtnClick:(id)sender
+-(void)backBtnClicked:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -38,7 +40,7 @@
     float x, y, width, height;
     
     //返回按钮
-    [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backBtnClick:)];
+    [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backBtnClicked:)];
     
     x=0; y=0; width=320;
     if (Is_iPhone5) {
@@ -60,6 +62,14 @@
 
 //创建详情列表
 -(void)initSetUpTableView:(CGRect)frame{
+    //表格背景 605*683
+    frame=CGRectMake(10, DiffY+44+4, [UIScreen mainScreen].bounds.size.width-10*2, CSTabelViewHeight);
+    UIImageView* tabviewBg=[[UIImageView alloc] initWithFrame:frame];
+    [tabviewBg setImage:[ApplicationPublic getOriginImage:@"new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" withInset:UIEdgeInsetsMake(40, 40, 40, 40)]];
+    tabviewBg.backgroundColor =[UIColor clearColor];
+    [self.view addSubview:tabviewBg];
+    [tabviewBg release];
+
 	UITableView *aTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     [aTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 	[aTableView setSeparatorColor:[UIColor darkGrayColor]];
@@ -79,9 +89,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
-    self.title=@"代维服务";
-    [self init_selfView];
+    [ApplicationPublic selfDefineBg:self.view];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"代维服务" withTarget:self with_action:@selector(backBtnClicked:)];
     [self initSetUpTableView:self.view.bounds];
 }
 
@@ -101,20 +110,20 @@
 -(void)createViewForcell:(UITableViewCell*)cell atRow:(NSIndexPath *)indexPath{
     float x, y, width, height;
     
-    width=44/2.0; height=35/2.0; x=10; y=(45-height)/2.0;
+    x=20; y=(CellHeight-34/2.0)/2.0; width=42/2.0; height=34/2.0;
     UIImageView* imageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [imageView setTag:1001];
     [cell.contentView addSubview:imageView];
     [imageView release];
     
-    x=x+width+5; y=0; width=120; height=45;
+    x=x+width+10; y=0; width=cell.bounds.size.width-x-10; height=CellHeight;
     UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
     [textLabel setTag:1002];
     [textLabel setBackgroundColor:[UIColor clearColor]];
     [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     [textLabel setTextAlignment:NSTextAlignmentLeft];
-    [textLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
-    [textLabel setTextColor:[UIColor whiteColor]];
+    [textLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    [textLabel setTextColor:[UIColor blackColor]];
     [cell.contentView addSubview:textLabel];
     [textLabel release];
     
@@ -123,12 +132,14 @@
     triangleImageView.image=[UIImage imageNamed:@"membercenter_arrow.png"];
     [cell.contentView addSubview:triangleImageView];
     [triangleImageView release];
+    triangleImageView.hidden=YES;
 
     x=40; y=45-2; width=320; height=2;
     UIImageView* lineImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
     lineImageView.image=[UIImage imageNamed:@"black_bg.png"];
     [cell.contentView addSubview:lineImageView];
     [lineImageView release];
+    lineImageView.hidden=YES;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -147,25 +158,25 @@
         switch (indexPath.row) {
             case 0:
             {
-                 imageView.image=[UIImage imageNamed:@"daiweifuwu_clean.png"];
+                 imageView.image=[UIImage imageNamed:@"new_daiweifuwu_woyaoxiche_tubiao.png"];
                 textLabel.text=@"我要洗车";
             }
                 break;
             case 1:
             {
-                imageView.image=[UIImage imageNamed:@"daiweifuwu_check.png"];
+                imageView.image=[UIImage imageNamed:@"new_daiweifuwu_woyaoyanche_tubiao.png"];
                 textLabel.text=@"我要验车";
             }
                 break;
             case 2:
             {
-                imageView.image=[UIImage imageNamed:@"daiweifuwu_repair.png"];
+                imageView.image=[UIImage imageNamed:@"new_daiweifuwu_woyaoxiuche_tubiao.png"];
                 textLabel.text=@"我要修车";
             }
                 break;
             case 3:
             {
-                imageView.image=[UIImage imageNamed:@"daiweifuwu_sale.png"];
+                imageView.image=[UIImage imageNamed:@"new_daiweifuwu_woyaomaiche_tubiao.png"];
                 textLabel.text=@"我要卖车";
             }
                 break;
@@ -174,16 +185,35 @@
         }
     }
     
-    cell.accessoryType=UITableViewCellAccessoryNone;
+    NSInteger rowCount = [tableView numberOfRowsInSection:indexPath.section];
+    NSInteger row = indexPath.row;
+    if (rowCount==1) {
+        cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+    }
+    else if(rowCount>=2){
+        if (row == 0) {
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }else if (row == rowCount-1){
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }else{
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }
+    }
+    
+    cell.backgroundColor=[UIColor clearColor];
+    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle=UITableViewCellSelectionStyleGray;
-    cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"tianjiacheliang_cell_bg.png"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]]autorelease];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return CellHeight;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
