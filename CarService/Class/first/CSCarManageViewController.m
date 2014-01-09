@@ -87,7 +87,14 @@
 //创建详情列表
 -(void)initSetUpTableView:(CGRect)frame
 {
-	UITableView *aTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+    frame=CGRectMake(10, DiffY+44+4, [UIScreen mainScreen].bounds.size.width-10*2, CSTabelViewHeight);
+    UIImageView* tabviewBg=[[UIImageView alloc] initWithFrame:frame];
+    [tabviewBg setImage:[ApplicationPublic getOriginImage:@"new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" withInset:UIEdgeInsetsMake(40, 40, 40, 40)]];
+    tabviewBg.backgroundColor =[UIColor clearColor];
+    [self.view addSubview:tabviewBg];
+    [tabviewBg release];
+    
+	UITableView *aTableView = [[UITableView alloc] initWithFrame:CGRectInset(frame, 5, 5) style:UITableViewStylePlain];
     [aTableView setTag:101];
     [aTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 	[aTableView setSeparatorColor:[UIColor clearColor]];
@@ -113,7 +120,7 @@
     [aLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     [aLabel setTextAlignment:alignment];
     [aLabel setFont:[UIFont systemFontOfSize:14]];
-    [aLabel setTextColor:[UIColor whiteColor]];
+    [aLabel setTextColor:[UIColor blackColor]];
     [aLabel setText:text];
     [superView addSubview:aLabel];
     [aLabel release];
@@ -123,10 +130,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
-    self.navigationItem.title=@"车辆管理";
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];    
-    [self init_selfView];
+    [ApplicationPublic selfDefineBg:self.view];
+    //添加按钮
+    float x, y, width, height;
+    x=0; y=0; width=82/2.0+4; height=26;
+    UIButton* addCarBtn=[[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)] autorelease];
+    [addCarBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+    [addCarBtn setTitleColor:[UIColor colorWithRed:13/255.0 green:43/255.0 blue:83/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [addCarBtn setTitle:@"添 加" forState:UIControlStateNormal];
+    [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
+    [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back_press.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
+    [addCarBtn addTarget:self action:@selector(addCarBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"车辆管理" withTarget:self with_action:@selector(backBtnClick:) rightBtn:addCarBtn];
     [self initSetUpTableView:CGRectMake(0, 10, 320, self.view.bounds.size.height-40-55 -10*2)];
 }
 
@@ -171,6 +186,7 @@
     [bgImageView setImage:[UIImage imageNamed:@"tianjiacheliang_cell_bg.png"]];
     [cell.contentView addSubview:bgImageView];
     [bgImageView release];
+    bgImageView.hidden=YES;
 
     //图片
     x=x+5; y=y+5; width=70; height=CSCarManageViewController_cell_hegight-y*2;
@@ -187,10 +203,10 @@
     [self setUpLabel:cell.contentView with_tag:1003 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
 
     //删除按钮
-    width=22; height=25; x=CGRectGetMaxX(bgImageView.frame)-width; y=bgImageView.frame.origin.y-3;
+    width=20; height=20; x=((320-10*2)-5*2)-width-5; y=3;
     UIButton* deleteBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [deleteBtn setBackgroundImage:[UIImage imageNamed:@"tianjiacheliang_close.png"] forState:UIControlStateNormal];
-    [deleteBtn setBackgroundImage:[UIImage imageNamed:@"tianjiacheliang_close_press.png"] forState:UIControlStateHighlighted];
+    deleteBtn.backgroundColor=[UIColor clearColor];
+    [deleteBtn setBackgroundImage:[UIImage imageNamed:@"new_baoanzixun_shanchuanniu.png"] forState:UIControlStateNormal];
     [deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:deleteBtn];
     [deleteBtn release];
@@ -281,6 +297,26 @@
         }
      }
     
+    NSInteger rowCount = [tableView numberOfRowsInSection:indexPath.section];
+    NSInteger row = indexPath.row;
+    if (rowCount==1) {
+        cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+    }
+    else if(rowCount>=2){
+        if (row == 0) {
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }else if (row == rowCount-1){
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }else{
+            cell.backgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+            cell.selectedBackgroundView = [[[UIImageView alloc]initWithImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]]autorelease];
+        }
+    }
+    
+    cell.backgroundColor=[UIColor clearColor];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }

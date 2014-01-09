@@ -61,7 +61,7 @@
     [textLabel release];
 }
 
-+(void)selfDefineNavigationBar:(UIView*)superView title:(NSString*)titleStr withTarget:(id)target with_action:(SEL)action rightBtn:(id)targetR with_action:(SEL)actionR
++(void)selfDefineNavigationBar:(UIView*)superView title:(NSString*)titleStr withTarget:(id)target with_action:(SEL)action rightBtn:(UIButton*)rightBtn
 {
     CGRect frame=CGRectMake(0, DiffY, [UIScreen mainScreen].bounds.size.width, 44);
     UIImageView* naviImgView=[[UIImageView alloc] initWithFrame:frame];
@@ -80,12 +80,8 @@
     [backBtn release];
     
     //right按钮
-    UIButton* rightBtn=[[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-5-42, (frame.size.height-35)/2.0, 35, 35)];
-    rightBtn.backgroundColor=[UIColor clearColor];
-    [rightBtn setBackgroundImage:[UIImage imageNamed:@"new_baoanzhaoxiang_zhaoxianganniu.png"] forState:UIControlStateNormal];
-    [rightBtn addTarget:targetR action:actionR forControlEvents:UIControlEventTouchUpInside];
+    rightBtn.frame=CGRectMake(frame.size.width-5-CGRectGetWidth(rightBtn.frame), (frame.size.height-CGRectGetHeight(rightBtn.frame))/2.0, CGRectGetWidth(rightBtn.frame), CGRectGetHeight(rightBtn.frame));
     [naviImgView addSubview:rightBtn];
-    [rightBtn release];
     
     UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(backBtn.frame)+10, 0, CGRectGetMinX(rightBtn.frame)-10-CGRectGetMaxX(backBtn.frame)-10, frame.size.height)];
     [textLabel setBackgroundColor:[UIColor clearColor]];
