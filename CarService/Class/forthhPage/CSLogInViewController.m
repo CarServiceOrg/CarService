@@ -18,7 +18,7 @@
 #import "CSThirdViewController.h"
 #import "CSFirstViewController.h"
 
-#define AnimationChangeHeight 105
+#define AnimationChangeHeight 160
 
 @interface CSLogInViewController ()
 
@@ -78,7 +78,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib. 
+    // Do any additional setup after loading the view from its nib.
+    
+    /*
+     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+     backButton.frame = CGRectMake(13, 13, 40, 40);
+     [backButton setBackgroundImage:[UIImage imageNamed:@"new_xiaofeijilu_fanhui_anniu.png"] forState:UIControlStateNormal];
+     [backButton setBackgroundImage:[UIImage imageNamed:@"new_xiaofeijilu_fanhui_dianjianniu.png"] forState:UIControlStateHighlighted];
+     [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+     [self.view addSubview:backButton];
+     
+     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 25, 160, 16)];
+     titleLabel.textAlignment = NSTextAlignmentCenter;
+     titleLabel.font = [UIFont systemFontOfSize:16];
+     titleLabel.textColor = [UIColor whiteColor];
+     titleLabel.backgroundColor = [UIColor clearColor];
+     titleLabel.tag = 100;
+     [self.view addSubview:titleLabel];
+     [titleLabel release];
+     */
     if (self.parentController && ([self.parentController isKindOfClass:[CSThirdViewController class]] || [self.parentController isKindOfClass:[CSFirstViewController class]])) {
         self.navigationItem.title=@"登录";
         [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backClicked)];
@@ -86,7 +104,7 @@
         self.navigationController.navigationBar.hidden = YES;
     }
     self.scrollView.contentSize = CGSizeMake(320, self.view.frame.size.height - 40 - 49);
-    rememberPassword = YES;
+    rememberPassword = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHeightChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
     keyboardShowed = NO;
     
@@ -191,13 +209,13 @@
     
     if (self.rememberPassword)
     {
-        [self.rememberPasswordButton setBackgroundImage:[UIImage imageNamed:@"denglu_check_yes.png"] forState:UIControlStateNormal];
-        [self.rememberPasswordButton setBackgroundImage:[UIImage imageNamed:@"denglu_check_yes.png"] forState:UIControlStateHighlighted];
+        [self.rememberPasswordButton setBackgroundImage:[UIImage imageNamed:@"new_denglu_fuxuankuang_dianji.png"] forState:UIControlStateNormal];
+        [self.rememberPasswordButton setBackgroundImage:[UIImage imageNamed:@"new_denglu_fuxuankuang_dianji.png"] forState:UIControlStateHighlighted];
     }
     else
     {
-        [self.rememberPasswordButton setBackgroundImage:[UIImage imageNamed:@"denglu_check_no.png"] forState:UIControlStateNormal];
-        [self.rememberPasswordButton setBackgroundImage:[UIImage imageNamed:@"denglu_check_no.png"] forState:UIControlStateHighlighted];
+        [self.rememberPasswordButton setBackgroundImage:[UIImage imageNamed:@"new_denglu_fuxuankuang.png"] forState:UIControlStateNormal];
+        [self.rememberPasswordButton setBackgroundImage:[UIImage imageNamed:@"new_denglu_fuxuankuang.png"] forState:UIControlStateHighlighted];
     }
 }
 
@@ -318,7 +336,7 @@
         return;
     }
     
-    /*NSDictionary *tempUserInfo = [notification userInfo];
+    NSDictionary *tempUserInfo = [notification userInfo];
     NSValue* aValue = [tempUserInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [aValue CGRectValue];
     CustomLog(@"frame:%f,%f,%f,%f",keyboardRect.origin.x,keyboardRect.origin.y,keyboardRect.size.width,keyboardRect.size.height);
@@ -334,7 +352,7 @@
             self.backView.frame = CGRectMake(self.backView.frame.origin.x, self.backView.frame.origin.y - AnimationChangeHeight, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
-    }];*/
+    }];
 
 }
 
@@ -347,7 +365,7 @@
     
     keyboardShowed = NO;
 
-   /* [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
             self.backView.frame = CGRectMake(self.backView.frame.origin.x, self.backView.frame.origin.y + (AnimationChangeHeight - DeviceDiffHeight), self.backView.frame.size.width, self.backView.frame.size.height);
@@ -356,7 +374,7 @@
         {
             self.backView.frame = CGRectMake(self.backView.frame.origin.x, self.backView.frame.origin.y + AnimationChangeHeight, self.backView.frame.size.width, self.backView.frame.size.height);
         }
-    }];*/
+    }];
 
 }
 

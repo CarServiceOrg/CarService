@@ -19,7 +19,8 @@
 #import "CSLogInViewController.h"
 #import "CSMessageViewController.h"
 #import "LBSDataUtil.h"
-
+#import "CSForthViewController.h"
+#import "CSFifthViewController.h"
 
 static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
@@ -887,13 +888,17 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //个人中心
 -(void)geRenZhongXinBtnClicked:(UIButton*)sender
 {
-    
+    CSForthViewController *controller = [[CSForthViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 //更多
 -(void)gengDuoBtnClicked:(UIButton*)sender
 {
-    
+    CSFifthViewController *controller = [[CSFifthViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 #pragma mark 通知
