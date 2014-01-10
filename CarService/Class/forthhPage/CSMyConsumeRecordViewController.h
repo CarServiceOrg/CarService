@@ -10,5 +10,10 @@
 #import "CommonViewController.h"
 
 @interface CSMyConsumeRecordViewController : CommonViewController
+{
+    
+}
+
+@property(nonatomic,assign)BOOL m_isPresentBool;
 
 @end

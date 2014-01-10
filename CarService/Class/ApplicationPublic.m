@@ -21,7 +21,7 @@
     //背景
     UIImageView* bgImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, DiffY, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     if (Is_iPhone5) {
-        [bgImageView setImage:[UIImage imageNamed:@"shouye_iphone5.png"]];
+        [bgImageView setImage:[UIImage imageNamed:@"new_shouye_bg.png"]]; // shouye_iphone5.png
     }else{
         [bgImageView setImage:[UIImage imageNamed:@"new_shouye_bg.png"]];
     }

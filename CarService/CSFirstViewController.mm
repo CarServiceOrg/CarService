@@ -1098,8 +1098,32 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //消费记录
 -(void)xiaoFeiJiLuBtnClicked:(UIButton*)sender
 {
-    if ([[Util sharedUtil] hasLogin])
-    {
+    if ([[Util sharedUtil] hasLogin]){
+        if ([sender.superview isEqual:self.m_tabScrollView]) {
+            
+            if (self.navigationController.topViewController.presentedViewController) {
+                [self.navigationController.topViewController dismissModalViewControllerAnimated:YES];
+            }
+            
+            if ([self.navigationController.topViewController isKindOfClass:[CSDelegateServiceViewController class]] || sender.isSelected==YES) {
+                return;
+            }
+            
+            CSMyConsumeRecordViewController *viewCtrler = [[CSMyConsumeRecordViewController alloc] initWithNibName:@"CSMyConsumeRecordViewController" bundle:nil];
+            viewCtrler.m_isPresentBool=YES;
+            UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:viewCtrler];
+            [navi.navigationBar setHidden:YES];
+            [self.navigationController.topViewController presentModalViewController:navi animated:YES];
+            [viewCtrler release];
+            [navi release];
+        }else{
+            [self setTabBtnSelectedWithTag:2003];
+            
+            CSMyConsumeRecordViewController *ctrler = [[CSMyConsumeRecordViewController alloc] initWithNibName:@"CSMyConsumeRecordViewController" bundle:nil];
+            [self.navigationController pushViewController:ctrler animated:YES];
+            [ctrler release];
+        }
+        
         CSMyConsumeRecordViewController *controller = [[CSMyConsumeRecordViewController alloc] initWithNibName:@"CSMyConsumeRecordViewController" bundle:nil];
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];

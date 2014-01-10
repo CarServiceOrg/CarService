@@ -322,7 +322,11 @@
 
 - (IBAction)backButtonPressed:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.m_isPresentBool) {
+        [self dismissModalViewControllerAnimated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)comfirmActionPressed:(id)sender
