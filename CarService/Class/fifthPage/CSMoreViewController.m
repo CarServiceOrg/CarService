@@ -13,6 +13,7 @@
 #import "ASIHTTPRequest.h"
 #import "AboutViewController.h"
 #import "WeiboSDK.h"
+#import "CSShareViewController.h"
 
 @interface CSMoreViewController ()
 
@@ -126,7 +127,7 @@
         [title release];
         
         UIImageView *arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"membercenter_arrow.png"]];
-        arrowView.frame = CGRectMake(280, 16, 8, 11);
+        arrowView.frame = CGRectMake(258, 16, 8, 11);
         
         [cell.contentView addSubview:arrowView];
         [arrowView release];
@@ -266,8 +267,11 @@
             break;
         case 3:
             CustomLog(@"分享软件");
+            controller = [[CSShareViewController alloc] initWithNibName:@"CSShareViewController" bundle:nil];
+            [self.parentController.navigationController pushViewController:controller animated:YES];
+            [controller release];
             //分享
-            BlockActionSheet *sheet = [BlockActionSheet sheetWithTitle:@""];
+            /*BlockActionSheet *sheet = [BlockActionSheet sheetWithTitle:@""];
             [sheet setCancelButtonWithTitle:@"取消" block:nil];
             [sheet setDestructiveButtonWithTitle:@"新浪微博" block:^{
                 WBImageObject *imageObject = [WBImageObject object];
@@ -292,7 +296,7 @@
             [sheet setDestructiveButtonWithTitle:@"短信" block:^{
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms://10086"]];
             }];
-            [sheet showInView:self.view];
+            [sheet showInView:self.view];*/
             
                         break;
         case 4:

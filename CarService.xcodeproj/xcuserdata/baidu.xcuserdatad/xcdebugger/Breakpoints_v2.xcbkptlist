@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/Class/fifthPage/CSMoreViewController.m"
-            timestampString = "403184841.676191"
+            timestampString = "411013501.685768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "402"
-            endingLineNumber = "402"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "-requestDidFailed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/Class/forthhPage/CSLogInViewController.m"
-            timestampString = "410949162.153243"
+            timestampString = "410980709.356751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-loginButtonPressed:"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "-requestDidFailed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,13 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CarService/Class/forthhPage/CSLogInViewController.m"
-            timestampString = "410980709.356751"
+            filePath = "CarService/CSAppDelegate.m"
+            timestampString = "411013776.375279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "-requestDidFailed:"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-applicationDidBecomeActive:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

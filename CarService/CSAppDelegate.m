@@ -100,7 +100,7 @@
         [indexView setHighlightedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_press.png",imgPath]]];
         [imgView addSubview:indexView];
         [indexView release];
-        
+    
         UILabel* titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height-25, frame.size.width, 25)];
         [titleLabel setBackgroundColor:[UIColor clearColor]];
         [titleLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];

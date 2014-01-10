@@ -16,6 +16,8 @@
 		E11D05CB17E98428005A976D /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D05CA17E98428005A976D /* NSString+MD5.m */; };
 		E11D05CE17E985B8005A976D /* CSCareKnowledgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11D05CD17E985B8005A976D /* CSCareKnowledgeViewController.m */; };
 		E123DA1E187EDEDE00158CD4 /* new_huiyuanzhongxin_beijing.png in Resources */ = {isa = PBXBuildFile; fileRef = E123DA1D187EDEDE00158CD4 /* new_huiyuanzhongxin_beijing.png */; };
+		E123DA24187F8E4900158CD4 /* CSShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123DA22187F8E4900158CD4 /* CSShareViewController.m */; };
+		E123DA25187F8E4900158CD4 /* CSShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DA23187F8E4900158CD4 /* CSShareViewController.xib */; };
 		E12A9AC217E9FA2F00A5F451 /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E12A9AC517E9FC6800A5F451 /* CSDelegateBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC417E9FC6800A5F451 /* CSDelegateBookViewController.m */; };
 		E12A9AC817EA19A900A5F451 /* shigubaoan_placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9AC717EA19A900A5F451 /* shigubaoan_placeHolder.png */; };
@@ -587,6 +589,9 @@
 		E11D05CC17E985B8005A976D /* CSCareKnowledgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCareKnowledgeViewController.h; sourceTree = "<group>"; };
 		E11D05CD17E985B8005A976D /* CSCareKnowledgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCareKnowledgeViewController.m; sourceTree = "<group>"; };
 		E123DA1D187EDEDE00158CD4 /* new_huiyuanzhongxin_beijing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_huiyuanzhongxin_beijing.png; sourceTree = "<group>"; };
+		E123DA21187F8E4900158CD4 /* CSShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSShareViewController.h; sourceTree = "<group>"; };
+		E123DA22187F8E4900158CD4 /* CSShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSShareViewController.m; sourceTree = "<group>"; };
+		E123DA23187F8E4900158CD4 /* CSShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSShareViewController.xib; sourceTree = "<group>"; };
 		E12A9AC017E9FA2F00A5F451 /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
 		E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
 		E12A9AC317E9FC6800A5F451 /* CSDelegateBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDelegateBookViewController.h; sourceTree = "<group>"; };
@@ -1797,6 +1802,9 @@
 				E19AE81617E88FFC007B9F07 /* CSFeedBackViewController.h */,
 				E19AE81717E88FFC007B9F07 /* CSFeedBackViewController.m */,
 				E19AE81817E88FFC007B9F07 /* CSFeedBackViewController.xib */,
+				E123DA21187F8E4900158CD4 /* CSShareViewController.h */,
+				E123DA22187F8E4900158CD4 /* CSShareViewController.m */,
+				E123DA23187F8E4900158CD4 /* CSShareViewController.xib */,
 				E19AE81B17E89CBC007B9F07 /* AboutViewController.h */,
 				E19AE81C17E89CBD007B9F07 /* AboutViewController.m */,
 				E19AE81D17E89CBD007B9F07 /* AboutViewController.xib */,
@@ -2869,6 +2877,7 @@
 				E14FBDA5187C734400C6C466 /* new_daiweifuwu_woyaoxiche_tubiao.png in Resources */,
 				E152AA2217E8DBE400E73902 /* tianjiacheliang_cell_bg.png in Resources */,
 				E14FBD9B187C734400C6C466 /* new_chelianggenzong_weizhi_tubiao.png in Resources */,
+				E123DA25187F8E4900158CD4 /* CSShareViewController.xib in Resources */,
 				E152AA2317E8DBE400E73902 /* tianjiacheliang_close_press.png in Resources */,
 				E152AA2417E8DBE400E73902 /* tianjiacheliang_close.png in Resources */,
 				E152AA2517E8DBE400E73902 /* tianjiacheliang_pic.png in Resources */,
@@ -3052,6 +3061,7 @@
 				E19AE81917E88FFC007B9F07 /* CSFeedBackViewController.m in Sources */,
 				E19AE81E17E89CBD007B9F07 /* AboutViewController.m in Sources */,
 				E152A9EA17E8BFAB00E73902 /* CSCareRecordViewController.m in Sources */,
+				E123DA24187F8E4900158CD4 /* CSShareViewController.m in Sources */,
 				E152A9ED17E8D98100E73902 /* CSCareReferViewController.m in Sources */,
 				E11D05CB17E98428005A976D /* NSString+MD5.m in Sources */,
 				E11D05CE17E985B8005A976D /* CSCareKnowledgeViewController.m in Sources */,
