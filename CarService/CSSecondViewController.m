@@ -216,8 +216,8 @@
         [request setPostValue:bTextField.text forKey:@"fdjh"];
     }
     //for test
-    [request setPostValue:@"phq600" forKey:@"carno"];
-    [request setPostValue:@"80229789" forKey:@"fdjh"];
+    //[request setPostValue:@"phq600" forKey:@"carno"];
+    //[request setPostValue:@"80229789" forKey:@"fdjh"];
 
     [request setPostValue:@"11" forKey:@"sf"];
     [request startSynchronous];
