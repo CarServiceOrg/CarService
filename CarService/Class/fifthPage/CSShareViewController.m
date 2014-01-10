@@ -7,6 +7,7 @@
 //
 
 #import "CSShareViewController.h"
+#import "WeiboSDK.h"
 
 @interface CSShareViewController ()
 
@@ -32,7 +33,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 4;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,41 +94,14 @@
     }
     else if (indexPath.row == 1)
     {
-        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_zhongbu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_zhongbu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-        title.text = @"分享到腾讯微博";
+        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_dibu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_dibu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
+        title.text = @"短信";
         UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
         if (nil != icon)
         {
             icon.image = [UIImage imageNamed:@"new_fenxiangruanjian_tengxunweibo.png"];
             icon.frame = CGRectMake(10, 13, 20, 18);
-        }
-        
-    }
-    else if (indexPath.row == 2)
-    {
-        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_zhongbu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_zhongbu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-        title.text = @"分享到人人网";
-        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-        if (nil != icon)
-        {
-            icon.image = [UIImage imageNamed:@"new_fenxiangruanjian_renrenwang.png"];
-            icon.frame = CGRectMake(10, 13, 20, 18);
-        }
-        
-    }
-    else if (indexPath.row == 3)
-    {
-        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_dibu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_dibu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-        title.text = @"分享到豆瓣";
-        
-        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-        if (nil != icon)
-        {
-            icon.image = [UIImage imageNamed:@"new_fenxiangruanjian_douban.png"];
-            icon.frame = CGRectMake(10, 13, 18, 17);
         }
         
     }
@@ -158,18 +132,28 @@
     {
         case 0:
             CustomLog(@"sina");
-            
+            WBImageObject *imageObject = [WBImageObject object];
+            imageObject.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"test" ofType:@"png" ]];
+            WBMessageObject *message1 = [ [ WBMessageObject alloc] init];
+            message1.text = @"This is a test";
+            //message1.imageObject = imageObject;
+            WBSendMessageToWeiboRequest *req = [[[WBSendMessageToWeiboRequest alloc] init] autorelease];
+            req.message = message1;
+            BOOL ret = [ WeiboSDK sendRequest:req ];
+            if (!ret)
+            {
+                CustomLog(@"arg wrong");
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"分享失败，请稍后重试"];
+            }
+            else
+            {
+                CustomLog(@"share by sina weibo app");
+            }
+
             break;
         case 1:
-            CustomLog(@"qq");
-            
-            break;
-        case 2:
-            CustomLog(@"renren");
-            break;
-        case 3:
-            CustomLog(@"douban");
-            //分享
+            CustomLog(@"短信");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms://10086"]];
             break;
         default:
             break;

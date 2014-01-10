@@ -38,7 +38,27 @@
     //[self init_imgViewArray];
     //默认先选中首页
     //[self updateSelectIndex:0];
+    /*
+    //share sdk
+    [ShareSDK registerApp:@"1111d881143f"];
+    //添加新浪微博应用
+    [ShareSDK connectSinaWeiboWithAppKey:@"3201194191"
+                               appSecret:@"0334252914651e8f76bad63337b3b78f"
+                             redirectUri:@"http://www.baidu.com"];
     
+    //添加腾讯微博应用
+    [ShareSDK connectTencentWeiboWithAppKey:@"801468113"
+                                  appSecret:@"d56601877183db32015499e0ff9082a1"
+                                redirectUri:@"http://www.baidu.com"];
+    //添加豆瓣应用
+    [ShareSDK connectDoubanWithAppKey:@"09e3405fc26bdca81da9c11f474395f8"
+                            appSecret:@"ec4a3fc66073e6b4"
+                          redirectUri:@"http://www.baidu.com"];
+    
+    //添加人人网应用
+    [ShareSDK connectRenRenWithAppKey:@"fc5b8aed373c4c27a05b712acba0f8c3"
+                            appSecret:@"f29df781abdd4f49beca5a2194676ca4"];
+    */
     //在无网情况下启动 会耽误应用启动时间
     [LBSDataUtil shareUtil]; //开启定位
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
