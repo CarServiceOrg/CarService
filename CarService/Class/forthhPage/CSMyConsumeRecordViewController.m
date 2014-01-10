@@ -372,6 +372,7 @@
         [sheet setDestructiveButtonWithTitle:[dic objectForKey:@"typename"] block:^{
             self.currentClassInfoDic = dic;
             [self setHeaderViewContent];
+            [self loadContent];
         }];
     }
     
