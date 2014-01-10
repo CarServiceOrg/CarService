@@ -16,6 +16,7 @@
 #import "CSMessageViewController.h"
 #import "CSOrderListViewController.h"
 #import "CSDaiWeiViewController.h"
+#import "CSFirstViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -72,6 +73,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.contentTableView.tableFooterView = [self getFooterView];
+    CSFirstViewController *controller = (CSFirstViewController *)[self.parentController.navigationController.viewControllers objectAtIndex:0];
+    if ([controller isKindOfClass:[CSFirstViewController class]])
+    {
+        CustomLog(@"set message and weather info");
+        self.timeLabel.text = [NSString stringWithFormat:@"%@,%@",[controller.m_weatherDict objectForKey:@"date_y"],[controller.m_weatherDict objectForKey:@"week"]];
+        self.weatherLabel.text = [NSString stringWithFormat:@"%@  %@",[controller.m_weatherDict objectForKey:@"weather1"],[controller.m_weatherDict objectForKey:@"temp1"]];
+        [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateNormal];
+        [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateHighlighted];
+
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning
