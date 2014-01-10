@@ -139,7 +139,6 @@
 
 - (BOOL)hasLogin
 {
-    return YES;
     return (nil != self.userInfo);
 }
 

@@ -147,7 +147,7 @@
         UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
         if (nil != icon)
         {
-            icon.image = [UIImage imageNamed:@"gengduo_setting.png"];
+            icon.image = [UIImage imageNamed:@"new_gengduo_shezhi_tubiao.png"];
             icon.frame = CGRectMake(10, 13, 18, 17);
         }
         
@@ -160,7 +160,7 @@
         UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
         if (nil != icon)
         {
-            icon.image = [UIImage imageNamed:@"gengduo_feedback.png"];
+            icon.image = [UIImage imageNamed:@"new_gengduo_yijianfankui_tubiao.png"];
             icon.frame = CGRectMake(10, 13, 18, 17);
         }
         
@@ -173,7 +173,7 @@
         UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
         if (nil != icon)
         {
-            icon.image = [UIImage imageNamed:@"gengduo_update.png"];
+            icon.image = [UIImage imageNamed:@"new_gengduo_jianchagengxin_tubiao.png"];
             icon.frame = CGRectMake(10, 13, 18, 17);
         }
         
@@ -187,7 +187,7 @@
         UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
         if (nil != icon)
         {
-            icon.image = [UIImage imageNamed:@"gengduo_share.png"];
+            icon.image = [UIImage imageNamed:@"new_gengduo_fenxiangruanjian_tubiao.png"];
             icon.frame = CGRectMake(10, 13, 18, 17);
         }
         
@@ -201,7 +201,7 @@
         UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
         if (nil != icon)
         {
-            icon.image = [UIImage imageNamed:@"gengduo_phone.png"];
+            icon.image = [UIImage imageNamed:@"new_gengduo_kefudianhua_tubiao.png"];
             icon.frame = CGRectMake(10, 13, 18, 17);
         }
         
@@ -215,7 +215,7 @@
         UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
         if (nil != icon)
         {
-            icon.image = [UIImage imageNamed:@"gengduo_about.png"];
+            icon.image = [UIImage imageNamed:@"new_gengduo_guanyu_tubiao.png"];
             icon.frame = CGRectMake(10, 13, 18, 17);
         }
         

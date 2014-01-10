@@ -18,7 +18,16 @@
 @property (nonatomic,retain) IBOutlet UIScrollView *contentScrollView;
 @property (nonatomic,retain) IBOutlet UIButton *confirmButton;
 @property (nonatomic,retain) IBOutlet UIButton *cancelButton;
+@property (nonatomic,retain) IBOutlet UIButton *firstRateButton;
+@property (nonatomic,retain) IBOutlet UIButton *secondRateButton;
+@property (nonatomic,retain) IBOutlet UIButton *thirdRateButton;
+@property (nonatomic,retain) IBOutlet UIButton *forthRateButton;
+@property (nonatomic,retain) IBOutlet UIButton *fifthRateButton;
+@property (nonatomic,assign) NSUInteger rateNumber;
+@property (nonatomic,retain) UILabel *rateTipLabel;
+@property (nonatomic,retain) NSArray *rateButtonArray;
 
+- (IBAction)rateButtonPressed:(id)sender;
 - (void)hideKeyBoard;
 
 @end
@@ -31,6 +40,14 @@
 @synthesize confirmButton;
 @synthesize cancelButton;
 @synthesize textViewBackView;
+@synthesize firstRateButton;
+@synthesize secondRateButton;
+@synthesize thirdRateButton;
+@synthesize forthRateButton;
+@synthesize fifthRateButton;
+@synthesize rateNumber;
+@synthesize rateTipLabel;
+@synthesize rateButtonArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +58,30 @@
     return self;
 }
 
+- (IBAction)rateButtonPressed:(id)sender
+{
+    
+    UIButton *button = (UIButton *)sender;
+    self.rateNumber = button.tag + 1;
+    for (int i = 0; i < 5; i ++)
+    {
+        UIButton *tempButton = (UIButton *)[self.rateButtonArray objectAtIndexWithCheck:i];
+        if (i <= button.tag)
+        {
+            [tempButton setBackgroundImage:[UIImage imageNamed:@"new_yijianfankui_xingxing01.png"] forState:UIControlStateNormal];
+            [tempButton setBackgroundImage:[UIImage imageNamed:@"new_yijianfankui_xingxing01.png"] forState:UIControlStateHighlighted];
+
+        }
+        else
+        {
+            [tempButton setBackgroundImage:[UIImage imageNamed:@"new_yijianfankui_xingxing02.png"] forState:UIControlStateNormal];
+            [tempButton setBackgroundImage:[UIImage imageNamed:@"new_yijianfankui_xingxing02.png"] forState:UIControlStateHighlighted];
+
+        }
+    }
+
+}
+
 - (void)hideKeyBoard
 {
     [self.textView resignFirstResponder];
@@ -48,12 +89,19 @@
 
 - (void)dealloc
 {
+    [rateButtonArray release];
     [textPlaceHolderLabel release];
     [textView release];
     [commentRequest clearDelegatesAndCancel];
     [commentRequest release];
     [contentScrollView release];
     [textViewBackView release];
+    [firstRateButton release];
+    [secondRateButton release];
+    [thirdRateButton release];
+    [forthRateButton release];
+    [fifthRateButton release];
+    [rateTipLabel release];
     [super dealloc];
 }
 
@@ -64,21 +112,20 @@
 
 - (void)adjustLayout:(BOOL)showKeyBoard
 {
+    int confirmButtonSpace = 12;
     if (showKeyBoard)
     {
         if (Is_iPhone5)
         {
-            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,180);
-            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,180);
-            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
-            self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,150);
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,150);
+            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + confirmButtonSpace, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
         }
         else
         {
             self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,100);
             self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,100);
-            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
-            self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + confirmButtonSpace, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
         }
 
     }
@@ -86,17 +133,15 @@
     {
         if (Is_iPhone5)
         {
-            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,375);
-            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,375);
-            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
-            self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,270);
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,270);
+            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + confirmButtonSpace, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
         }
         else
         {
-            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,285);
-            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,285);
-            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
-            self.cancelButton.frame = CGRectMake(self.cancelButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + 8, self.cancelButton.frame.size.width, self.cancelButton.frame.size.height);
+            self.textViewBackView.frame = CGRectMake(self.textViewBackView.frame.origin.x, self.textViewBackView.frame.origin.y, self.textViewBackView.frame.size.width,270);
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width,270);
+            self.confirmButton.frame = CGRectMake(self.confirmButton.frame.origin.x, self.textView.frame.origin.y + self.textView.frame.size.height + confirmButtonSpace, self.confirmButton.frame.size.width, self.confirmButton.frame.size.height);
         }
 
     }
@@ -123,9 +168,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     self.navigationItem.leftBarButtonItem = [self getBackItem];
     self.navigationItem.title = @"意见反馈";
     
+    self.rateButtonArray = [NSArray arrayWithObjects:self.firstRateButton,self.secondRateButton,self.thirdRateButton,self.forthRateButton,self.fifthRateButton, nil];
+    self.rateNumber = 4;
     UITapGestureRecognizer* tapReconginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     tapReconginzer.delegate = self;
     tapReconginzer.numberOfTapsRequired = 1;
@@ -156,7 +204,11 @@
     
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
     NSString *uid = [dic objectForKey:@"id"];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"feedback",@"action",uid,@"user_id",self.textView.text,@"content", nil];
+    if (nil == uid)
+    {
+        uid = @"000000";
+    }
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"feedback",@"action",uid,@"user_id",self.textView.text,@"content",[NSString stringWithFormat:@"%d",self.rateNumber],@"rate", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
@@ -184,12 +236,12 @@
     CustomLog(@"login request request dic:%@",requestDic);
     if (nil == [requestDic objectForKey:@"status"] || [[requestDic objectForKey:@"status"] intValue] != 0)
     {
-        [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请稍后重试!"];
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论失败，请稍后重试!"];
         return;
     }
     else
     {
-        [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改成功!"];
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论成功!"];
         [self.navigationController popViewControllerAnimated:YES];
     }
     
@@ -197,7 +249,7 @@
 
 - (void)editingRequestDidFailed:(ASIHTTPRequest *)request
 {
-    [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改失败，请检查网络连接!"];
+    [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论失败，请检查网络连接!"];
     return;
     CustomLog(@"%@",[request responseString]);
 }
