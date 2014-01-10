@@ -43,3 +43,7 @@
 #define URL_TrafficControls [NSString stringWithFormat:@"%@?json={\"action\":\"raffic\"}",ServerAddress]
 //获取天气
 #define URL_Weather [NSString stringWithFormat:@"%@",@"http://m.weather.com.cn/data/101010100.html"]
+//31套餐列表
+#define URL_mall_list [NSString stringWithFormat:@"%@?json={\"action\":\"mall_list\"}",ServerAddress]
+//32套餐详细信息
+#define URL_mall_info [NSString stringWithFormat:@"%@?json={\"action\":\"mall_info\",\"id\":\"%@\"}",ServerAddress]

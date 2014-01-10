@@ -317,6 +317,13 @@
 		E1BCA4CD17E3968A0086BA51 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BCA41517E396890086BA51 /* SDWebImageManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E1BCA4CE17E3968A0086BA51 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BCA41817E396890086BA51 /* SDWebImagePrefetcher.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E1BCA54217E397EA0086BA51 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BCA54117E397EA0086BA51 /* MapKit.framework */; };
+		E1BDC032187FE1CF0079ECDD /* CSTaoCanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC031187FE1CF0079ECDD /* CSTaoCanListViewController.m */; };
+		E1BDC035187FF4F80079ECDD /* CSTaoCanDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC034187FF4F80079ECDD /* CSTaoCanDetailViewController.m */; };
+		E1BDC03818800AFF0079ECDD /* CSTaoCanSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC03718800AFF0079ECDD /* CSTaoCanSubmitViewController.m */; };
+		E1BDC043188012730079ECDD /* README_TPKeyboardAvoiding.md in Resources */ = {isa = PBXBuildFile; fileRef = E1BDC03A188012730079ECDD /* README_TPKeyboardAvoiding.md */; };
+		E1BDC045188012730079ECDD /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC03E188012730079ECDD /* TPKeyboardAvoidingScrollView.m */; };
+		E1BDC046188012730079ECDD /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC040188012730079ECDD /* TPKeyboardAvoidingTableView.m */; };
+		E1BDC047188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC042188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		E1C063E217E48D15003336B2 /* CSThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E117E48D15003336B2 /* CSThirdViewController.m */; };
 		E1C063E517E48D62003336B2 /* CSForthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E417E48D62003336B2 /* CSForthViewController.m */; };
 		E1C063E817E48D94003336B2 /* CSFifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E717E48D94003336B2 /* CSFifthViewController.m */; };
@@ -983,6 +990,19 @@
 		E1BCA41717E396890086BA51 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
 		E1BCA41817E396890086BA51 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
 		E1BCA54117E397EA0086BA51 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E1BDC030187FE1CF0079ECDD /* CSTaoCanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTaoCanListViewController.h; sourceTree = "<group>"; };
+		E1BDC031187FE1CF0079ECDD /* CSTaoCanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTaoCanListViewController.m; sourceTree = "<group>"; };
+		E1BDC033187FF4F80079ECDD /* CSTaoCanDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTaoCanDetailViewController.h; sourceTree = "<group>"; };
+		E1BDC034187FF4F80079ECDD /* CSTaoCanDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTaoCanDetailViewController.m; sourceTree = "<group>"; };
+		E1BDC03618800AFF0079ECDD /* CSTaoCanSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTaoCanSubmitViewController.h; sourceTree = "<group>"; };
+		E1BDC03718800AFF0079ECDD /* CSTaoCanSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTaoCanSubmitViewController.m; sourceTree = "<group>"; };
+		E1BDC03A188012730079ECDD /* README_TPKeyboardAvoiding.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README_TPKeyboardAvoiding.md; sourceTree = "<group>"; };
+		E1BDC03D188012730079ECDD /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		E1BDC03E188012730079ECDD /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		E1BDC03F188012730079ECDD /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		E1BDC040188012730079ECDD /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		E1BDC041188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		E1BDC042188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		E1C063E017E48D14003336B2 /* CSThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSThirdViewController.h; sourceTree = "<group>"; };
 		E1C063E117E48D15003336B2 /* CSThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSThirdViewController.m; sourceTree = "<group>"; };
 		E1C063E317E48D62003336B2 /* CSForthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSForthViewController.h; sourceTree = "<group>"; };
@@ -1784,6 +1804,20 @@
 			path = source;
 			sourceTree = "<group>";
 		};
+		E1BDC039188012730079ECDD /* KeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				E1BDC03A188012730079ECDD /* README_TPKeyboardAvoiding.md */,
+				E1BDC03D188012730079ECDD /* TPKeyboardAvoidingScrollView.h */,
+				E1BDC03E188012730079ECDD /* TPKeyboardAvoidingScrollView.m */,
+				E1BDC03F188012730079ECDD /* TPKeyboardAvoidingTableView.h */,
+				E1BDC040188012730079ECDD /* TPKeyboardAvoidingTableView.m */,
+				E1BDC041188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				E1BDC042188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			path = KeyboardAvoiding;
+			sourceTree = "<group>";
+		};
 		E1D043B117E6DCC2008CBE90 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -2033,6 +2067,12 @@
 		E1EBEC8717EADA1C0026682A /* first */ = {
 			isa = PBXGroup;
 			children = (
+				E1BDC030187FE1CF0079ECDD /* CSTaoCanListViewController.h */,
+				E1BDC031187FE1CF0079ECDD /* CSTaoCanListViewController.m */,
+				E1BDC033187FF4F80079ECDD /* CSTaoCanDetailViewController.h */,
+				E1BDC034187FF4F80079ECDD /* CSTaoCanDetailViewController.m */,
+				E1BDC03618800AFF0079ECDD /* CSTaoCanSubmitViewController.h */,
+				E1BDC03718800AFF0079ECDD /* CSTaoCanSubmitViewController.m */,
 				E1EBEC8817EADA570026682A /* CSCarManageViewController.h */,
 				E1EBEC8917EADA570026682A /* CSCarManageViewController.m */,
 				E1EBEC8B17EB5B800026682A /* CSAddCarViewController.h */,
@@ -2224,6 +2264,7 @@
 		E53ABA7617E0E0E10096754D /* util */ = {
 			isa = PBXGroup;
 			children = (
+				E1BDC039188012730079ECDD /* KeyboardAvoiding */,
 				E16201BA17F34C06008926D0 /* htmlParser */,
 				E1EBEC8E17EB6CC30026682A /* TSMessages */,
 				E12A9ACF17EA275400A5F451 /* UIImageCategory */,
@@ -2855,6 +2896,7 @@
 				E14FBDBD187C734400C6C466 /* new_gerenziliao_biaogebeijing.png in Resources */,
 				E14FBDA6187C734400C6C466 /* new_daiweifuwu_woyaoxiuche_tubiao.png in Resources */,
 				E152A9E417E8AF0A00E73902 /* 雨夹雪.png in Resources */,
+				E1BDC043188012730079ECDD /* README_TPKeyboardAvoiding.md in Resources */,
 				E152A9E517E8AF0A00E73902 /* 雷阵雨.png in Resources */,
 				E14FBDEB187C734400C6C466 /* new_xiaofeijilu_baoanzixun_dianjianniu.png in Resources */,
 				E14FBD8F187C734400C6C466 /* new_baoanzixun_baoanjilu.png in Resources */,
@@ -3030,9 +3072,11 @@
 				E53ABBB117E0F4AC0096754D /* MD5Digest.m in Sources */,
 				E53ABBB317E0F4AC0096754D /* NSObject+SBJSON.m in Sources */,
 				E53ABBB417E0F4AC0096754D /* NSString+SBJSON.m in Sources */,
+				E1BDC032187FE1CF0079ECDD /* CSTaoCanListViewController.m in Sources */,
 				E53ABBB517E0F4AC0096754D /* SBJSON.m in Sources */,
 				E53ABBB617E0F4AC0096754D /* SBJsonBase.m in Sources */,
 				E53ABBB717E0F4AC0096754D /* SBJsonParser.m in Sources */,
+				E1BDC047188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				E53ABBB817E0F4AC0096754D /* SBJsonWriter.m in Sources */,
 				E112190D17E22ABB00926B05 /* JSONKit.m in Sources */,
 				E1BCA4C017E3968A0086BA51 /* MKAnnotationView+WebCache.m in Sources */,
@@ -3041,8 +3085,10 @@
 				E1BCA4C317E3968A0086BA51 /* UIImage+GIF.m in Sources */,
 				E1BCA4C417E3968A0086BA51 /* UIImage+MultiFormat.m in Sources */,
 				E1BCA4C517E3968A0086BA51 /* UIImage+WebP.m in Sources */,
+				E1BDC03818800AFF0079ECDD /* CSTaoCanSubmitViewController.m in Sources */,
 				E1BCA4C617E3968A0086BA51 /* UIImageView+WebCache.m in Sources */,
 				E1BCA4C817E3968A0086BA51 /* SDImageCache.m in Sources */,
+				E1BDC035187FF4F80079ECDD /* CSTaoCanDetailViewController.m in Sources */,
 				E1BCA4C917E3968A0086BA51 /* SDWebImageCompat.m in Sources */,
 				E1BCA4CA17E3968A0086BA51 /* SDWebImageDecoder.m in Sources */,
 				E1BCA4CB17E3968A0086BA51 /* SDWebImageDownloader.m in Sources */,
@@ -3073,6 +3119,7 @@
 				E19AE7E117E82082007B9F07 /* CSShopRecommendViewController.m in Sources */,
 				E19AE7E517E820F1007B9F07 /* CSMyProfileViewController.m in Sources */,
 				E19AE7EA17E860F4007B9F07 /* CSCarTracViewController.m in Sources */,
+				E1BDC045188012730079ECDD /* TPKeyboardAvoidingScrollView.m in Sources */,
 				E19AE7F217E86F5D007B9F07 /* LBSDataUtil.m in Sources */,
 				E19AE7F517E870CE007B9F07 /* NSArray+CheckRange.m in Sources */,
 				E19AE80B17E87C94007B9F07 /* CSCommentViewController.m in Sources */,
@@ -3103,6 +3150,7 @@
 				E17C2FC817ECCB1600D29BD4 /* ApplicationRequest.m in Sources */,
 				E19AE9E817F04483007B9F07 /* CSMessageViewController.m in Sources */,
 				E19AE9ED17F04597007B9F07 /* CSMessageTableViewCell.m in Sources */,
+				E1BDC046188012730079ECDD /* TPKeyboardAvoidingTableView.m in Sources */,
 				E19AE9F417F05981007B9F07 /* CSMessageDetailViewController.m in Sources */,
 				E19D5EC617F1B5F0007AAE23 /* CSOrderListViewController.m in Sources */,
 				E19D5ECB17F1B88B007AAE23 /* CSOrderListCell.m in Sources */,
