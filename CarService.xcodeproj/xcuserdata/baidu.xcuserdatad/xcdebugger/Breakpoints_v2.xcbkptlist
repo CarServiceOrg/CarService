@@ -154,27 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/Class/forthhPage/CSMyConsumeRecordViewController.m"
-            timestampString = "411026962.787722"
+            timestampString = "411036726.393016"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
-            landmarkName = "-classRequestDidFinished:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CarService/Class/forthhPage/CSMyConsumeRecordViewController.m"
-            timestampString = "411026962.787722"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "-classRequestDidFailed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/Class/forthhPage/CSMyConsumeRecordViewController.m"
-            timestampString = "411026962.787722"
+            timestampString = "411036726.393016"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "-loadContent"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,27 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/Class/forthhPage/CSMyConsumeRecordViewController.m"
-            timestampString = "411026962.787722"
+            timestampString = "411036726.393016"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "-requestDidFinished:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CarService/Class/forthhPage/CSMyConsumeRecordViewController.m"
-            timestampString = "411026962.787722"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-requestDidFailed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/Class/forthhPage/CSMyConsumeRecordViewController.m"
-            timestampString = "411026962.787722"
+            timestampString = "411036726.393016"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "-comfirmActionPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -265,13 +233,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CarService/Class/forthhPage/MemberCenterViewController.m"
-            timestampString = "411031416.463945"
+            filePath = "CarService/Class/forthhPage/CSDaiWeiListViewController.m"
+            timestampString = "411036852.619795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
-            landmarkName = "-woDeDaiWeiButtonPressed:"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-requestDidFailed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

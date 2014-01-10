@@ -5,8 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CSDaiWeiViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CSDaiWeiListViewController">
             <connections>
+                <outlet property="contentTableView" destination="Nex-9x-zFO" id="qv5-cP-0rb"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -15,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView contentMode="scaleToFill" image="new_denglubeijing.png" id="wcT-hC-Dld">
+                <imageView contentMode="scaleToFill" image="new_denglubeijing.png" id="GnK-cR-Xbq">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j9A-ix-ej3">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FlT-SD-sXR">
                     <rect key="frame" x="10" y="25" width="35" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -29,10 +30,10 @@
                     </state>
                     <state key="highlighted" backgroundImage="new_xiaofeijilu_fanhui_dianjianniu.png"/>
                     <connections>
-                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="svG-Vo-30R"/>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="G6n-UW-TAc"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的代维" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AUM-BT-kwI">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="代维列表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zCh-fq-CcT">
                     <rect key="frame" x="80" y="32" width="160" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -40,23 +41,27 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" id="1oW-dJ-d7K">
-                    <rect key="frame" x="10" y="79" width="300" height="410"/>
+                <view contentMode="scaleToFill" id="BO4-jP-pg0">
+                    <rect key="frame" x="10" y="70" width="300" height="410"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" id="Eea-ft-pS5">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" id="WbQ-1b-mUO">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="410"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="taA-vs-nyF">
-                            <rect key="frame" x="9" y="12" width="282" height="386"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_daiweiliebiao_header.png" highlightedImage="new_daiweiliebiao_header.png" id="e6X-1h-Sm7">
+                            <rect key="frame" x="8" y="10" width="284" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" id="Nex-9x-zFO">
+                            <rect key="frame" x="8" y="42" width="284" height="386"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>
-                                <outlet property="dataSource" destination="-1" id="Oz1-cC-IAs"/>
-                                <outlet property="delegate" destination="-1" id="Y7o-cS-Ur9"/>
+                                <outlet property="dataSource" destination="-1" id="z1m-g1-49G"/>
+                                <outlet property="delegate" destination="-1" id="OSl-wv-gbr"/>
                             </connections>
                         </tableView>
                     </subviews>
@@ -69,6 +74,7 @@
         </view>
     </objects>
     <resources>
+        <image name="new_daiweiliebiao_header.png" width="337" height="39"/>
         <image name="new_denglubeijing.png" width="540" height="960"/>
         <image name="new_xiaofeijilu_fanhui_anniu.png" width="53" height="53"/>
         <image name="new_xiaofeijilu_fanhui_dianjianniu.png" width="53" height="53"/>
