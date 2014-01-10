@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/Class/forthhPage/MemberCenterViewController.m"
-            timestampString = "411053883.435607"
+            timestampString = "411055106.235134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>

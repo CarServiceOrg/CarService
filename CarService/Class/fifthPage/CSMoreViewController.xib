@@ -42,7 +42,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="GRf-kK-SYT">
-                    <rect key="frame" x="10" y="79" width="300" height="410"/>
+                    <rect key="frame" x="10" y="70" width="300" height="410"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" id="Db5-JI-Uf9">

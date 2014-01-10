@@ -27,6 +27,7 @@
 #import "CSAppDelegate.h"
 #import "CSTaoCanListViewController.h"
 #import "CSWoYaoTouBaoViewController.h"
+#import "CSMyConsumeRecordViewController.h"
 
 static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
@@ -1097,7 +1098,29 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //消费记录
 -(void)xiaoFeiJiLuBtnClicked:(UIButton*)sender
 {
-   
+    if ([[Util sharedUtil] hasLogin])
+    {
+        CSMyConsumeRecordViewController *controller = [[CSMyConsumeRecordViewController alloc] initWithNibName:@"CSMyConsumeRecordViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
+    else
+    {
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        [alert setCancelButtonWithTitle:@"取消" block:nil];
+        [alert setDestructiveButtonWithTitle:@"登录" block:^{
+            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSMyConsumeRecordViewController" with_NibName:@"CSLogInViewController" bundle:nil];
+            ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+            ctrler.delegate=self;
+            UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
+            [ApplicationPublic selfDefineNaviBar:navi.navigationBar];
+            [self presentModalViewController:navi animated:YES];
+            [ctrler release];
+            [navi release];
+        }];
+        [alert show];
+
+    }
 }
 
 //我要投保
