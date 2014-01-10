@@ -26,6 +26,7 @@
 @property (nonatomic,retain) IBOutlet UILabel *nameLabel;
 @property (nonatomic,retain) IBOutlet UIButton *messageButton;
 
+
 - (IBAction)messageButtonPressed:(id)sender;
 - (IBAction)changePasswordButtonPressed:(id)sender;
 - (IBAction)woDeDaiWeiButtonPressed:(id)sender;

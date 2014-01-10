@@ -1,4 +1,4 @@
-//
+0//
 //  CSMyProfileViewController.m
 //  CarService
 //
@@ -22,6 +22,8 @@
 @property (nonatomic,retain) IBOutlet UIView *dataPickerView;
 @property (nonatomic,retain) ASIHTTPRequest *changeInfoRequest;
 @property (nonatomic,retain) IBOutlet UIView *backView;
+@property (nonatomic,retain) IBOutlet UIImageView *headerSexImageView;
+@property (nonatomic,retain) IBOutlet UILabel *headerNameLabel;
 
 @end
 
@@ -37,6 +39,8 @@
 @synthesize dataPickerView;
 @synthesize changeInfoRequest;
 @synthesize backView;
+@synthesize headerNameLabel;
+@synthesize headerSexImageView;
 
 - (id)initWithInfo:(NSMutableDictionary *)info
 {
@@ -70,7 +74,9 @@
     self.nameLabel.text = [self.userInfo objectForKey:@"username"];
     self.ageField.text = [self.userInfo objectForKey:@"age"];
     self.sexLabel.text = [self.userInfo objectForKey:@"sex"];
+    //set headerSexImageView
     self.phoneField.text = [self.userInfo objectForKey:@"phone"];
+    self.headerNameLabel.text = [self.userInfo objectForKey:@"phone"];
     self.driverLecenseField.text = [self.userInfo objectForKey:@"drivecard"];
 }
 
@@ -275,6 +281,8 @@
     [sexLabel release];
     [phoneField release];
     [driverLecenseField release];
+    [headerSexImageView release];
+    [headerNameLabel release];
     [super dealloc];
 }
 
@@ -286,6 +294,11 @@
     self.navigationItem.rightBarButtonItem = [self getRithtItem:@"修改"];
     self.navigationItem.title = @"个人资料";
     
+    if (!IsIOS6OrLower)
+    {
+        self.pickerView.backgroundColor = [UIColor whiteColor];
+        self.pickerView.tintColor = [UIColor blackColor];
+    }
     //点击页面使键盘消失
     UITapGestureRecognizer* tapReconginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     tapReconginzer.numberOfTapsRequired = 1;
