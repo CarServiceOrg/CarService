@@ -7,6 +7,7 @@
 //
 
 #import "CSDaiWeiViewController.h"
+#import "CSDaiWeiListViewController.h"
 
 @interface CSDaiWeiViewController ()
 
@@ -40,7 +41,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 2;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,19 +89,6 @@
     
     if (indexPath.row == 0)
     {
-        normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaogetoubu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-        selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaogetoubu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
-        title.text = @"代维状态";
-        UIImageView *icon = (UIImageView *)[cell viewWithTag:1000];
-        if (nil != icon)
-        {
-            icon.image = [UIImage imageNamed:@"new_wodedaiwei_daiweizhuangtai_tubiao.png"];
-            icon.frame = CGRectMake(10, 13, 18, 18);
-        }
-        
-    }
-    else if (indexPath.row == 1)
-    {
         normalImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_zhongbu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
         selectImage = [[UIImage imageWithCGImage:[UIImage imageNamed:@"new_baoanzixun_biaoge_zhongbu.png"].CGImage scale:2.0 orientation:UIImageOrientationUp] stretchableImageWithLeftCapWidth:25 topCapHeight:25];
         title.text = @"代维列表";
@@ -141,15 +129,9 @@
     {
         case 0:
             CustomLog(@"设置");
-            /*controller = [[CSSettingsViewController alloc] initWithNibName:@"CSSettingsViewController" bundle:nil];
-            [self.parentController.navigationController pushViewController:controller animated:YES];
-            [controller release];*/
-            break;
-        case 1:
-            CustomLog(@"意见反馈");
-            /*controller = [[CSFeedBackViewController alloc] initWithNibName:@"CSFeedBackViewController" bundle:nil];
-            [self.parentController.navigationController pushViewController:controller animated:YES];
-            [controller release];*/
+            controller = [[CSDaiWeiListViewController alloc] initWithNibName:@"CSDaiWeiListViewController" bundle:nil];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
             break;
         default:
             break;

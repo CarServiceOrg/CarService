@@ -22,6 +22,12 @@
 		E123DAB8187FCAA200158CD4 /* CSKefuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DAB6187FCAA200158CD4 /* CSKefuViewController.xib */; };
 		E123DABC187FD1F400158CD4 /* CSDaiWeiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123DABA187FD1F400158CD4 /* CSDaiWeiViewController.m */; };
 		E123DABD187FD1F400158CD4 /* CSDaiWeiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DABB187FD1F400158CD4 /* CSDaiWeiViewController.xib */; };
+		E123DAC1187FE1BE00158CD4 /* CSDaiWeiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123DABF187FE1BE00158CD4 /* CSDaiWeiListViewController.m */; };
+		E123DAC2187FE1BE00158CD4 /* CSDaiWeiListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DAC0187FE1BE00158CD4 /* CSDaiWeiListViewController.xib */; };
+		E123DAC4187FE5AF00158CD4 /* new_daiweiliebiao_header.png in Resources */ = {isa = PBXBuildFile; fileRef = E123DAC3187FE5AF00158CD4 /* new_daiweiliebiao_header.png */; };
+		E123DAC8187FE6A800158CD4 /* CSDaiWeiListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E123DAC6187FE6A800158CD4 /* CSDaiWeiListViewCell.m */; };
+		E123DAC9187FE6A800158CD4 /* CSDaiWeiListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DAC7187FE6A800158CD4 /* CSDaiWeiListViewCell.xib */; };
+		E123DACB187FFC6900158CD4 /* new_daiweiliebiao_cell_back.png in Resources */ = {isa = PBXBuildFile; fileRef = E123DACA187FFC6800158CD4 /* new_daiweiliebiao_cell_back.png */; };
 		E12A9AC217E9FA2F00A5F451 /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E12A9AC517E9FC6800A5F451 /* CSDelegateBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC417E9FC6800A5F451 /* CSDelegateBookViewController.m */; };
 		E12A9AC817EA19A900A5F451 /* shigubaoan_placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9AC717EA19A900A5F451 /* shigubaoan_placeHolder.png */; };
@@ -609,6 +615,14 @@
 		E123DAB9187FD1F400158CD4 /* CSDaiWeiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDaiWeiViewController.h; sourceTree = "<group>"; };
 		E123DABA187FD1F400158CD4 /* CSDaiWeiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDaiWeiViewController.m; sourceTree = "<group>"; };
 		E123DABB187FD1F400158CD4 /* CSDaiWeiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSDaiWeiViewController.xib; sourceTree = "<group>"; };
+		E123DABE187FE1BE00158CD4 /* CSDaiWeiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDaiWeiListViewController.h; sourceTree = "<group>"; };
+		E123DABF187FE1BE00158CD4 /* CSDaiWeiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDaiWeiListViewController.m; sourceTree = "<group>"; };
+		E123DAC0187FE1BE00158CD4 /* CSDaiWeiListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSDaiWeiListViewController.xib; sourceTree = "<group>"; };
+		E123DAC3187FE5AF00158CD4 /* new_daiweiliebiao_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_daiweiliebiao_header.png; sourceTree = "<group>"; };
+		E123DAC5187FE6A800158CD4 /* CSDaiWeiListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDaiWeiListViewCell.h; sourceTree = "<group>"; };
+		E123DAC6187FE6A800158CD4 /* CSDaiWeiListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDaiWeiListViewCell.m; sourceTree = "<group>"; };
+		E123DAC7187FE6A800158CD4 /* CSDaiWeiListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSDaiWeiListViewCell.xib; sourceTree = "<group>"; };
+		E123DACA187FFC6800158CD4 /* new_daiweiliebiao_cell_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_daiweiliebiao_cell_back.png; sourceTree = "<group>"; };
 		E12A9AC017E9FA2F00A5F451 /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
 		E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
 		E12A9AC317E9FC6800A5F451 /* CSDelegateBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDelegateBookViewController.h; sourceTree = "<group>"; };
@@ -1458,6 +1472,8 @@
 				E14FBD1E187C734300C6C466 /* new_daiweifuwu_woyaomaiche_tubiao.png */,
 				E14FBD1F187C734300C6C466 /* new_daiweifuwu_woyaoxiche_tubiao.png */,
 				E14FBD20187C734300C6C466 /* new_daiweifuwu_woyaoxiuche_tubiao.png */,
+				E123DAC3187FE5AF00158CD4 /* new_daiweiliebiao_header.png */,
+				E123DACA187FFC6800158CD4 /* new_daiweiliebiao_cell_back.png */,
 				E14FBD21187C734300C6C466 /* new_daiweifuwu_woyaoyanche_tubiao.png */,
 				E14FBD22187C734300C6C466 /* new_denglu_dengluanniu.png */,
 				E14FBD23187C734300C6C466 /* new_denglu_dengluanniu_dianji.png */,
@@ -1886,6 +1902,12 @@
 				E123DAB9187FD1F400158CD4 /* CSDaiWeiViewController.h */,
 				E123DABA187FD1F400158CD4 /* CSDaiWeiViewController.m */,
 				E123DABB187FD1F400158CD4 /* CSDaiWeiViewController.xib */,
+				E123DABE187FE1BE00158CD4 /* CSDaiWeiListViewController.h */,
+				E123DABF187FE1BE00158CD4 /* CSDaiWeiListViewController.m */,
+				E123DAC0187FE1BE00158CD4 /* CSDaiWeiListViewController.xib */,
+				E123DAC5187FE6A800158CD4 /* CSDaiWeiListViewCell.h */,
+				E123DAC6187FE6A800158CD4 /* CSDaiWeiListViewCell.m */,
+				E123DAC7187FE6A800158CD4 /* CSDaiWeiListViewCell.xib */,
 				E19AE7E717E860F3007B9F07 /* CSCarTracViewController.h */,
 				E19AE7E817E860F3007B9F07 /* CSCarTracViewController.m */,
 				E19AE7E917E860F4007B9F07 /* CSCarTracViewController.xib */,
@@ -2765,6 +2787,7 @@
 				E1D044A317E71BED008CBE90 /* membercenter_profile.png in Resources */,
 				E1D044A417E71BED008CBE90 /* membercenter_rate.png in Resources */,
 				E1D044A517E71BED008CBE90 /* membercenter_top.png in Resources */,
+				E123DAC9187FE6A800158CD4 /* CSDaiWeiListViewCell.xib in Resources */,
 				E1D044A617E71BED008CBE90 /* membercenter_top_click.png in Resources */,
 				E1D044A717E71BED008CBE90 /* navi_bg.png in Resources */,
 				E1D044A817E71BED008CBE90 /* second.png in Resources */,
@@ -2777,6 +2800,7 @@
 				E14FBE06187C734400C6C466 /* shouye_daiweifuwu_tubiao.png in Resources */,
 				E1D044AC17E71BED008CBE90 /* shigubaoan_delete.png in Resources */,
 				E1D044AD17E71BED008CBE90 /* shigubaoan_delete_press.png in Resources */,
+				E123DAC2187FE1BE00158CD4 /* CSDaiWeiListViewController.xib in Resources */,
 				E1D044AE17E71BED008CBE90 /* shigubaoan_pic.png in Resources */,
 				E1D044AF17E71BED008CBE90 /* shigubaoan_pic_bg.png in Resources */,
 				E14FBE07187C734400C6C466 /* shouye_daiweifuwu_tubiao02.png in Resources */,
@@ -2845,6 +2869,7 @@
 				E14FBDBF187C734400C6C466 /* new_gerenziliao_touxiang.png in Resources */,
 				E19AE81017E887A1007B9F07 /* setting_clear_cache_back.png in Resources */,
 				E19AE81517E88855007B9F07 /* CSSettingsViewController.xib in Resources */,
+				E123DAC4187FE5AF00158CD4 /* new_daiweiliebiao_header.png in Resources */,
 				E19AE81A17E88FFC007B9F07 /* CSFeedBackViewController.xib in Resources */,
 				E14FBDED187C734400C6C466 /* new_xiaofeijilu_biaotibeijing.png in Resources */,
 				E19AE81F17E89CBD007B9F07 /* AboutViewController.xib in Resources */,
@@ -2984,6 +3009,7 @@
 				E1EBECC617EB6CC30026682A /* TSMessagesDefaultDesign.json in Resources */,
 				E14FBDAE187C734400C6C466 /* new_denglu_wenbenkuang_mima.png in Resources */,
 				E19AE9E217F042AE007B9F07 /* Default.png in Resources */,
+				E123DACB187FFC6900158CD4 /* new_daiweiliebiao_cell_back.png in Resources */,
 				E14FBDB7187C734400C6C466 /* new_gengduo_fenxiangruanjian_tubiao.png in Resources */,
 				E19AE9E317F042AE007B9F07 /* Default@2x.png in Resources */,
 				E19AE9E417F042AE007B9F07 /* Default-568h@2x.png in Resources */,
@@ -3049,6 +3075,7 @@
 				E53ABB1F17E0EAC60096754D /* TTTAttributedLabel.m in Sources */,
 				E53ABB4E17E0F10D0096754D /* AbstractActionSheetPicker.m in Sources */,
 				E53ABB5017E0F10D0096754D /* ActionSheetDatePicker.m in Sources */,
+				E123DAC1187FE1BE00158CD4 /* CSDaiWeiListViewController.m in Sources */,
 				E53ABB5117E0F10D0096754D /* ActionSheetDistancePicker.m in Sources */,
 				E53ABB5217E0F10D0096754D /* ActionSheetMultiStringPicker.m in Sources */,
 				E53ABB5317E0F10D0096754D /* ActionSheetStringPicker.m in Sources */,
@@ -3083,6 +3110,7 @@
 				E1BCA4C117E3968A0086BA51 /* NSData+GIF.m in Sources */,
 				E1BCA4C217E3968A0086BA51 /* UIButton+WebCache.m in Sources */,
 				E1BCA4C317E3968A0086BA51 /* UIImage+GIF.m in Sources */,
+				E123DAC8187FE6A800158CD4 /* CSDaiWeiListViewCell.m in Sources */,
 				E1BCA4C417E3968A0086BA51 /* UIImage+MultiFormat.m in Sources */,
 				E1BCA4C517E3968A0086BA51 /* UIImage+WebP.m in Sources */,
 				E1BDC03818800AFF0079ECDD /* CSTaoCanSubmitViewController.m in Sources */,
