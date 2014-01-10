@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CommonViewController.h"
 
-@interface CSMessageViewController : CommonViewController
+@interface CSMessageViewController : UIViewController
 
 @end

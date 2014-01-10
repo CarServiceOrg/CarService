@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CommonViewController.h"
 
-@interface CSMessageDetailViewController : CommonViewController
+@interface CSMessageDetailViewController : UIViewController
 
 - (id)initWithContent:(NSDictionary *)dic;
 

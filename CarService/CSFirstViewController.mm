@@ -818,18 +818,28 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
             
             UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
             if (msgBtn) {
-                msgBtn.alpha=0.0;
+                if (self.m_msgArray) {
+                    msgBtn.alpha=1.0;
+                }else{
+                    msgBtn.alpha=0.0;
+                }
             }
             
             //更新位置
             UIButton* addCarBtn=(UIButton*)[containView viewWithTag:1003];
             if (addCarBtn) {
-                addCarBtn.frame=CGRectMake(0, CGRectGetMinY(msgBtn.frame)+5, addCarBtn.bounds.size.width, addCarBtn.bounds.size.height);
+                if (msgBtn.alpha) {
+                    addCarBtn.frame=CGRectMake(0, CGRectGetMaxY(msgBtn.frame)+5, addCarBtn.bounds.size.width, addCarBtn.bounds.size.height);
+                }else{
+                    addCarBtn.frame=CGRectMake(0, CGRectGetMinY(msgBtn.frame)+5, addCarBtn.bounds.size.width, addCarBtn.bounds.size.height);
+                }
             }
         }else{
             
         }
     }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -1082,7 +1092,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
-            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSMessageViewController" with_NibName:@"CSLogInViewController" bundle:nil];
+            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSReportCaseAskViewCtrler" with_NibName:@"CSLogInViewController" bundle:nil];
             ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
             ctrler.delegate=self;
             UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
@@ -1236,7 +1246,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
-            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSMessageViewController" with_NibName:@"CSLogInViewController" bundle:nil];
+            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSReportCaseAskViewCtrler" with_NibName:@"CSLogInViewController" bundle:nil];
             ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
             ctrler.delegate=self;
             UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
@@ -1610,7 +1620,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 
 -(void)push_messageViewCtrler
 {
-    CSMessageViewController* controller = [[CSMessageViewController alloc] initWithNibName:@"CSMessageViewController" bundle:nil];
+    CSMessageViewController* controller = [[CSMessageViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }

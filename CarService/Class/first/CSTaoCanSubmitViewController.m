@@ -458,27 +458,11 @@
             //显示到中间
             [textField setTextAlignment:NSTextAlignmentCenter];
             
-            NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+            NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
             [formatter setDateFormat:@"yyyy-MM-dd"];
             NSString* formatStr=[formatter stringFromDate:selectedDate];
             [textField setText:formatStr];
         }
-    }
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    int tag=textField.tag;
-    switch (tag) {
-        case 100001: //统一定价
-        {
-            if (textField.text.length==0) {
-                textField.placeholder=@"0.1~9999.9元";
-            }
-        }
-            break;
-        default:
-            break;
     }
 }
 
