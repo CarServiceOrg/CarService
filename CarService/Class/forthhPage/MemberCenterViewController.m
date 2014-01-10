@@ -342,6 +342,13 @@
     [self.parentController.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)profileButtonPressed:(id)sender
+{
+    CSMyProfileViewController *controller = [[CSMyProfileViewController alloc] initWithNibName:@"CSMyProfileViewController" bundle:nil];
+    [self.parentController.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 - (void)logoutUser
 {
     [[Util sharedUtil] logout];

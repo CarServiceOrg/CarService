@@ -63,10 +63,18 @@
                             <rect key="frame" x="136" y="45" width="154" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_huiyuanzhongxin_touxiang.png" id="yeT-YQ-6jl">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zdA-5b-VAD">
                             <rect key="frame" x="9" y="108" width="65" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" backgroundImage="new_huiyuanzhongxin_touxiang.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="new_huiyuanzhongxin_touxiang.png"/>
+                            <connections>
+                                <action selector="profileButtonPressed:" destination="-1" eventType="touchUpInside" id="XUj-VJ-6Ev"/>
+                            </connections>
+                        </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_gerenziliao_nvtubiao.png" id="hdw-Fx-U0C">
                             <rect key="frame" x="76" y="154" width="12" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

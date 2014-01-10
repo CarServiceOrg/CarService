@@ -14,6 +14,7 @@
 @interface MemberCenterViewController : CommonViewController
 
 - (IBAction)backButtonPressed:(id)sender;
+- (IBAction)profileButtonPressed:(id)sender;
 
 @property (nonatomic,assign) CSForthViewController *parentController;
 
