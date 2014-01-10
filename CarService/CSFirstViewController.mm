@@ -25,6 +25,7 @@
 #import "CSDelegateServiceViewController.h"
 #import "CSSecondViewController.h"
 #import "CSAppDelegate.h"
+#import "CSTaoCanListViewController.h"
 
 static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
@@ -1002,7 +1003,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //事故报案
 -(void)shiGuBaoAnBtnClicked:(UIButton*)sender
 {
-    if (![[Util sharedUtil] hasLogin]) {
+    if ([[Util sharedUtil] hasLogin]) {
         if ([sender.superview isEqual:self.m_tabScrollView]) {
             
             if (self.navigationController.topViewController.presentedViewController) {
@@ -1048,7 +1049,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //代维服务
 -(void)daiWeiFuWuBtnClicked:(UIButton*)sender
 {
-    if (![[Util sharedUtil] hasLogin]) {
+    if ([[Util sharedUtil] hasLogin]) {
         if ([sender.superview isEqual:self.m_tabScrollView]) {
 
             if (self.navigationController.topViewController.presentedViewController) {
@@ -1121,7 +1122,43 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //套餐
 -(void)taoCanBtnClicked:(UIButton*)sender
 {
+    if ([sender.superview isEqual:self.m_tabScrollView]) {
+        
+    }else{
+        [self setTabBtnSelectedWithTag:-1];
+        
+        CSTaoCanListViewController* ctrler=[[CSTaoCanListViewController alloc] init];
+        [self.navigationController pushViewController:ctrler animated:YES];
+        [ctrler release];
+    }
+    return;
     
+    if ([[Util sharedUtil] hasLogin]) {
+        if ([sender.superview isEqual:self.m_tabScrollView]) {
+            
+        }else{
+            [self setTabBtnSelectedWithTag:-1];
+            
+            CSTaoCanListViewController* ctrler=[[CSTaoCanListViewController alloc] init];
+            [self.navigationController pushViewController:ctrler animated:YES];
+            [ctrler release];
+        }
+    }else{
+        //提示登录
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        [alert setCancelButtonWithTitle:@"取消" block:nil];
+        [alert setDestructiveButtonWithTitle:@"登录" block:^{
+            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSMessageViewController" with_NibName:@"CSLogInViewController" bundle:nil];
+            ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+            ctrler.delegate=self;
+            UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
+            [ApplicationPublic selfDefineNaviBar:navi.navigationBar];
+            [self presentModalViewController:navi animated:YES];
+            [ctrler release];
+            [navi release];
+        }];
+        [alert show];
+    }
 }
 
 //个人中心

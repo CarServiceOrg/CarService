@@ -17,6 +17,7 @@
 +(void)selfDefineBg:(UIView*)superView; //背景
 +(void)selfDefineNavigationBar:(UIView*)superView title:(NSString*)titleStr withTarget:(id)target with_action:(SEL)action; //透明导航栏 返回按钮
 +(void)selfDefineNavigationBar:(UIView*)superView title:(NSString*)titleStr withTarget:(id)target with_action:(SEL)action rightBtn:(UIButton*)rightBtn; //导航栏有右按钮
++(void)setLeftView:(UITextField*)aField text:(NSString*)text flag:(BOOL)isFlag fontSize:(float)fSize; //含有选填何必必填的输入框
 +(UIImage*)getOriginImage:(NSString*)imageStr withInset:(UIEdgeInsets)insets;   //双倍分辨率下的图片
 +(void)setUp_UITextField:(UIView*)superView with_frame:(CGRect)frame with_tag:(int)tag with_placeHolder:(NSString*)placeHolderStr with_delegate:(id)delegate;
 +(void)setUp_BackBtn:(UINavigationItem*)navigationItem withTarget:(id)target with_action:(SEL)action;

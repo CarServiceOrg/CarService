@@ -80,7 +80,7 @@
     [backBtn release];
     
     //right按钮
-    rightBtn.frame=CGRectMake(frame.size.width-5-CGRectGetWidth(rightBtn.frame), (frame.size.height-CGRectGetHeight(rightBtn.frame))/2.0, CGRectGetWidth(rightBtn.frame), CGRectGetHeight(rightBtn.frame));
+    rightBtn.frame=CGRectMake(frame.size.width-10-CGRectGetWidth(rightBtn.frame), (frame.size.height-CGRectGetHeight(rightBtn.frame))/2.0, CGRectGetWidth(rightBtn.frame), CGRectGetHeight(rightBtn.frame));
     [naviImgView addSubview:rightBtn];
     
     UILabel* textLabel=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(backBtn.frame)+10, 0, CGRectGetMinX(rightBtn.frame)-10-CGRectGetMaxX(backBtn.frame)-10, frame.size.height)];
@@ -93,6 +93,49 @@
     [textLabel setText:titleStr];
     [naviImgView addSubview:textLabel];
     [textLabel release];
+}
+
++(void)setLeftView:(UITextField*)aField text:(NSString*)text flag:(BOOL)isFlag fontSize:(float)fSize
+{
+    UIView* view = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UILabel* aLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, aField.frame.size.height/2.0, aField.frame.size.height)];
+    [aLabel setBackgroundColor:[UIColor clearColor]];
+    aLabel.textAlignment=NSTextAlignmentRight;
+    aLabel.baselineAdjustment=UIBaselineAdjustmentAlignCenters;
+    aLabel.textColor=[UIColor blackColor];
+    aLabel.font=[UIFont systemFontOfSize:30];
+    aLabel.text=@"*";
+    [view addSubview:aLabel];
+    [aLabel release];
+    if (isFlag==NO) {
+        aLabel.frame=CGRectZero;
+    }
+    
+    UIFont* textFont=[UIFont systemFontOfSize:fSize];
+    CGSize textSize=[text sizeWithFont:textFont];
+    UILabel* bLabel=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(aLabel.frame), 0, textSize.width, aField.frame.size.height)];
+    bLabel.textAlignment=NSTextAlignmentLeft;
+    bLabel.baselineAdjustment=UIBaselineAdjustmentAlignCenters;
+    bLabel.textColor=[UIColor blackColor];
+    bLabel.font=textFont;
+    bLabel.text=text;
+    [view addSubview:bLabel];
+    [bLabel release];
+    
+    if (aField.tag==101) {
+        UIImageView* imageView=[[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(bLabel.frame), (aField.frame.size.height-18)/2.0, 18, 18)];
+        [imageView setImage:[UIImage imageNamed:@"new_weichangchaxun_jing.png"]];
+        [view addSubview:imageView];
+        [imageView release];
+        
+        view.frame=CGRectMake(0, 0, CGRectGetWidth(aLabel.frame)+CGRectGetWidth(bLabel.frame)+CGRectGetWidth(imageView.frame)+5, aField.frame.size.height);
+    }else{
+        view.frame=CGRectMake(0, 0, CGRectGetWidth(aLabel.frame)+CGRectGetWidth(bLabel.frame), aField.frame.size.height);
+    }
+    
+    aField.leftView=view;
+    [view release];
 }
 
 +(UIImage*)getOriginImage:(NSString*)imageStr withInset:(UIEdgeInsets)insets
