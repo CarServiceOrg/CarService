@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface CSReportCaseAskViewCtrler : UIViewController
+{
+    
+}
+
+@property(nonatomic,assign)BOOL m_isPresentBool;
 
 @end
