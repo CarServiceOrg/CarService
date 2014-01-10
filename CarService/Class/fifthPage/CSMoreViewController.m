@@ -107,11 +107,11 @@
     UILabel *title;
     
     cell = [tableView dequeueReusableCellWithIdentifier:ImageTypeCell];
-    
     if(cell == nil)
     {
         cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ImageTypeCell]autorelease];
-        
+        cell.backgroundColor = [UIColor clearColor];
+
         iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 13, 18, 17)];
         iconView.tag = 1000;
         [cell.contentView addSubview:iconView];
