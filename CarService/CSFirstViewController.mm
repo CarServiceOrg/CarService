@@ -37,8 +37,8 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
     UIViewController* _curPresentViewCtrler; //当前导航正处于preset的视图
 }
 
-@property(nonatomic,retain)NSMutableArray* m_msgArray;
 @property(nonatomic,retain)UIScrollView* m_tabScrollView;
+
 
 @end
 
@@ -1363,6 +1363,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([requestDic objectForKey:@"weatherinfo"]) {
                 NSDictionary* backDict=[requestDic objectForKey:@"weatherinfo"];
+                self.m_weatherDict=backDict;
                 
                 //定位城市
                 [self updateTextForLabel:@"北京市天气" with_superViewTag:201 with_LabelTag:1001];
