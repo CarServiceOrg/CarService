@@ -14,6 +14,7 @@
 #import "AboutViewController.h"
 #import "WeiboSDK.h"
 #import "CSShareViewController.h"
+#import "CSKefuViewController.h"
 
 @interface CSMoreViewController ()
 
@@ -106,11 +107,11 @@
     UILabel *title;
     
     cell = [tableView dequeueReusableCellWithIdentifier:ImageTypeCell];
-    
     if(cell == nil)
     {
         cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ImageTypeCell]autorelease];
-        
+        cell.backgroundColor = [UIColor clearColor];
+
         iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 13, 18, 17)];
         iconView.tag = 1000;
         [cell.contentView addSubview:iconView];
@@ -301,13 +302,17 @@
                         break;
         case 4:
             CustomLog(@"客服电话");
+            controller = [[CSKefuViewController alloc] initWithNibName:@"CSKefuViewController" bundle:nil];
+            [self.parentController.navigationController pushViewController:controller animated:YES];
+            [controller release];
+    /*
             BlockAlertView *alert = [BlockAlertView alertWithTitle:@"客服电话" message:@"是否电话呼叫咨询？"];
             [alert setCancelButtonWithTitle:@"取消" block:nil];
             [alert setDestructiveButtonWithTitle:@"呼叫" block:^{
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",TELEPHONE_KEFU]]];
             }];
             [alert show];
-
+     */
             break;
         case 5:
             CustomLog(@"关于");

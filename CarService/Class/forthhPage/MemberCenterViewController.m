@@ -15,6 +15,7 @@
 #import "CSCarTracViewController.h"
 #import "CSMessageViewController.h"
 #import "CSOrderListViewController.h"
+#import "CSDaiWeiViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -274,8 +275,11 @@
 }
 - (IBAction)woDeDaiWeiButtonPressed:(id)sender
 {
-    
+    CSDaiWeiViewController *controller = [[CSDaiWeiViewController alloc] initWithNibName:@"CSDaiWeiViewController" bundle:nil];
+    [self.parentController.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
+
 - (IBAction)myResumeRecordButtonPressed:(id)sender
 {
     CSMyConsumeRecordViewController *controller = [[CSMyConsumeRecordViewController alloc] initWithNibName:@"CSMyConsumeRecordViewController" bundle:nil];
