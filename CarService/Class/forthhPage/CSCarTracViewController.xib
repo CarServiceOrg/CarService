@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CSCarTracViewController">
             <connections>
+                <outlet property="contentBackView" destination="2MZ-0b-UEa" id="DL9-36-XAi"/>
                 <outlet property="locationLabel" destination="9" id="12"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -16,21 +17,57 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cartrac_title_back.png" id="4">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView contentMode="scaleToFill" image="new_denglubeijing.png" id="PWj-S7-uio">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="北京市海淀区清河中街" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9">
-                    <rect key="frame" x="27" y="7" width="281" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4WD-Rg-w8b">
+                    <rect key="frame" x="10" y="25" width="35" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" backgroundImage="new_xiaofeijilu_fanhui_anniu.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="new_xiaofeijilu_fanhui_dianjianniu.png"/>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="CrQ-zU-O84"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车辆跟踪" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qwk-em-tJU">
+                    <rect key="frame" x="80" y="32" width="160" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cartrac_location_tip.png" id="10">
-                    <rect key="frame" x="7" y="9" width="13" height="18"/>
+                <view contentMode="scaleToFill" id="2MZ-0b-UEa">
+                    <rect key="frame" x="10" y="70" width="300" height="410"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" id="hUK-zW-lCd">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="410"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cartrac_title_back.png" id="4">
+                            <rect key="frame" x="8" y="10" width="283" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="北京市海淀区清河中街" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9">
+                            <rect key="frame" x="41" y="14" width="281" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cartrac_location_tip.png" id="10">
+                            <rect key="frame" x="20" y="16" width="13" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -40,5 +77,9 @@
     <resources>
         <image name="cartrac_location_tip.png" width="17" height="23"/>
         <image name="cartrac_title_back.png" width="640" height="71"/>
+        <image name="new_denglubeijing.png" width="540" height="960"/>
+        <image name="new_xiaofeijilu_fanhui_anniu.png" width="53" height="53"/>
+        <image name="new_xiaofeijilu_fanhui_dianjianniu.png" width="53" height="53"/>
+        <image name="new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" width="605" height="683"/>
     </resources>
 </document>
