@@ -88,9 +88,8 @@
         return;
     }
     
-    NSMutableDictionary* dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:aTextField.text, @"tel", bTextField.text, @"idcar", nil];
-    
     //开始网络请求
+    NSMutableDictionary* dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:aTextField.text, @"tel", bTextField.text, @"idcar", nil];
     [self startHttpRequest:dict];
 }
 

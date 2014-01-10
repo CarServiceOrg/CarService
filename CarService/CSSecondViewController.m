@@ -59,6 +59,7 @@
         if (aField) {
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [ApplicationPublic setLeftView:aField text:@"车牌号码：" flag:YES fontSize:15.0];
+            //[aField setText:@"phq600"];
         }
     }
     //发动机号
@@ -69,6 +70,7 @@
         if (aField) {
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [ApplicationPublic setLeftView:aField text:@"发动机号：" flag:YES fontSize:15.0];
+            //[aField setText:@"80229789"];
         }
     }
     //查询
@@ -225,8 +227,84 @@
         return;
     }
     
-    //开始网络请求
+    //(1)开始网络请求
     [self startHttpRequest];
+    
+    //(2)开始网络请求
+    //NSMutableDictionary* dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:aTextField.text, @"lsnum", bTextField.text, @"engineno", nil];
+    //[self startHttpRequest:dict];
+}
+
+#pragma mark 网络相关
+
+-(void)startHttpRequest:(NSMutableDictionary*)dict{
+    {
+        self.alertView.mode = MBProgressHUDModeText;
+        self.alertView.labelText = NSLocalizedString(@"提交中...", nil);
+        [self.alertView show:YES];
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSString *urlStr = [[NSString stringWithFormat:@"%@?json={\"action\":\"wzcx\",\"lsprefix\":\"%@\",\"lsnum\":\"%@\",\"engineno\":\"%@\"}",
+                             ServerAddress,
+                             @"京",   //[[[Util sharedUtil] getUserInfo] objectForKey:@"id"],
+                             [dict objectForKey:@"lsnum"],
+                             [dict objectForKey:@"engineno"]
+                             ] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+        [request setTimeOutSeconds:60.0];
+        [request setRequestMethod:@"POST"];
+        [request setCompletionBlock:^{
+            
+            NSDictionary *requestDic =[[request responseString] JSONValue];
+            MyNSLog(@"requestDic:%@",requestDic);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.alertView hide:YES];
+                
+                if ([requestDic objectForKey:@"status"]) {
+                    int status=[[requestDic objectForKey:@"status"] intValue];
+                    
+                    switch (status) {
+                        case 0:
+                            [self showMessage:NSLocalizedString(@"成功", nil) with_detail:NSLocalizedString(@"提交成功！", nil) with_type:TSMessageNotificationTypeSuccess];
+                            [self performSelector:@selector(backBtnClicked:) withObject:nil afterDelay:1.5];
+                            break;
+                        case 1:
+                            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"提交数据失败！", nil) with_type:TSMessageNotificationTypeError];
+                            break;
+                            
+                        default:
+                            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"提交数据失败！", nil) with_type:TSMessageNotificationTypeError];
+                            break;
+                    }
+                }
+            });
+        }];
+        [request setFailedBlock:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.alertView hide:YES];
+                [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"提交数据失败，请检验网络！", nil) with_type:TSMessageNotificationTypeError];
+            });
+        }];
+        [request startAsynchronous];
+    });
+}
+
+-(void)showMessage:(NSString*)titleStr with_detail:(NSString*)detailStr with_type:(TSMessageNotificationType)type
+{
+    [TSMessage showNotificationInViewController:self
+                                          title:titleStr
+                                       subtitle:detailStr
+                                          image:nil
+                                           type:type
+                                       duration:4.0
+                                       callback:nil
+                                    buttonTitle:nil
+                                 buttonCallback:nil
+                                     atPosition:TSMessageNotificationPositionTop
+                            canBeDismisedByUser:YES];
 }
 
 #pragma mark - UITextFieldDelegate
