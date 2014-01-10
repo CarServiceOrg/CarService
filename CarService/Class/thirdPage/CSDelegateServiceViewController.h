@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface CSDelegateServiceViewController : UIViewController
+{
+    
+}
+
+@property(nonatomic,assign)BOOL m_isPresentBool;
 
 @end

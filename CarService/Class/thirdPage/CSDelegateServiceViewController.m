@@ -32,7 +32,11 @@ static CGFloat const CellHeight = 50;
 
 -(void)backBtnClicked:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.m_isPresentBool) {
+        [self dismissModalViewControllerAnimated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void)init_selfView

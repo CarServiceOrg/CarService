@@ -92,7 +92,11 @@ static inline NSRegularExpression * ParenthesisRegularExpression() {
 
 -(void)backBtnClicked:(UIButton*)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.m_isPresentBool) {
+        [self dismissModalViewControllerAnimated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark -UITableViewDataSource
