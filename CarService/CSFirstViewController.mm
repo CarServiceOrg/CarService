@@ -26,6 +26,7 @@
 #import "CSSecondViewController.h"
 #import "CSAppDelegate.h"
 #import "CSTaoCanListViewController.h"
+#import "CSWoYaoTouBaoViewController.h"
 
 static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
@@ -1102,7 +1103,47 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //我要投保
 -(void)woYaoTouBaoBtnClicked:(UIButton*)sender
 {
-    
+    if (![[Util sharedUtil] hasLogin]) {
+        if ([sender.superview isEqual:self.m_tabScrollView]) {
+            
+            if (self.navigationController.topViewController.presentedViewController) {
+                [self.navigationController.topViewController dismissModalViewControllerAnimated:YES];
+            }
+            
+            if ([self.navigationController.topViewController isKindOfClass:[CSWoYaoTouBaoViewController class]] || sender.isSelected==YES) {
+                return;
+            }
+            
+            CSWoYaoTouBaoViewController* viewCtrler=[[CSWoYaoTouBaoViewController alloc] init];
+            viewCtrler.m_isPresentBool=YES;
+            UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:viewCtrler];
+            [navi.navigationBar setHidden:YES];
+            [self.navigationController.topViewController presentModalViewController:navi animated:YES];
+            [viewCtrler release];
+            [navi release];
+        }else{
+            [self setTabBtnSelectedWithTag:2004];
+            
+            CSWoYaoTouBaoViewController* viewCtrler=[[CSWoYaoTouBaoViewController alloc] init];
+            [self.navigationController pushViewController:viewCtrler animated:YES];
+            [viewCtrler release];
+        }
+    }else{
+        //提示登录
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        [alert setCancelButtonWithTitle:@"取消" block:nil];
+        [alert setDestructiveButtonWithTitle:@"登录" block:^{
+            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSReportCaseAskViewCtrler" with_NibName:@"CSLogInViewController" bundle:nil];
+            ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+            ctrler.delegate=self;
+            UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
+            [navi.navigationBar setHidden:YES];
+            [self presentModalViewController:navi animated:YES];
+            [ctrler release];
+            [navi release];
+        }];
+        [alert show];
+    }
 }
 
 //违章查询

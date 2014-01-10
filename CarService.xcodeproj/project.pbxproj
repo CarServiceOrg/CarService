@@ -332,6 +332,8 @@
 		E1BDC045188012730079ECDD /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC03E188012730079ECDD /* TPKeyboardAvoidingScrollView.m */; };
 		E1BDC046188012730079ECDD /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC040188012730079ECDD /* TPKeyboardAvoidingTableView.m */; };
 		E1BDC047188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC042188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		E1BDC04A18801EB60079ECDD /* CSWoYaoTouBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC04918801EB60079ECDD /* CSWoYaoTouBaoViewController.m */; };
+		E1BDC04D1880204B0079ECDD /* CSWoYaoTouBaoSubmitViewCtrler.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BDC04C1880204B0079ECDD /* CSWoYaoTouBaoSubmitViewCtrler.m */; };
 		E1C063E217E48D15003336B2 /* CSThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E117E48D15003336B2 /* CSThirdViewController.m */; };
 		E1C063E517E48D62003336B2 /* CSForthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E417E48D62003336B2 /* CSForthViewController.m */; };
 		E1C063E817E48D94003336B2 /* CSFifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E717E48D94003336B2 /* CSFifthViewController.m */; };
@@ -1022,6 +1024,10 @@
 		E1BDC040188012730079ECDD /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		E1BDC041188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		E1BDC042188012730079ECDD /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		E1BDC04818801EB60079ECDD /* CSWoYaoTouBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSWoYaoTouBaoViewController.h; sourceTree = "<group>"; };
+		E1BDC04918801EB60079ECDD /* CSWoYaoTouBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSWoYaoTouBaoViewController.m; sourceTree = "<group>"; };
+		E1BDC04B1880204B0079ECDD /* CSWoYaoTouBaoSubmitViewCtrler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSWoYaoTouBaoSubmitViewCtrler.h; sourceTree = "<group>"; };
+		E1BDC04C1880204B0079ECDD /* CSWoYaoTouBaoSubmitViewCtrler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSWoYaoTouBaoSubmitViewCtrler.m; sourceTree = "<group>"; };
 		E1C063E017E48D14003336B2 /* CSThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSThirdViewController.h; sourceTree = "<group>"; };
 		E1C063E117E48D15003336B2 /* CSThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSThirdViewController.m; sourceTree = "<group>"; };
 		E1C063E317E48D62003336B2 /* CSForthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSForthViewController.h; sourceTree = "<group>"; };
@@ -2107,6 +2113,10 @@
 				E1EBEC8917EADA570026682A /* CSCarManageViewController.m */,
 				E1EBEC8B17EB5B800026682A /* CSAddCarViewController.h */,
 				E1EBEC8C17EB5B800026682A /* CSAddCarViewController.m */,
+				E1BDC04818801EB60079ECDD /* CSWoYaoTouBaoViewController.h */,
+				E1BDC04918801EB60079ECDD /* CSWoYaoTouBaoViewController.m */,
+				E1BDC04B1880204B0079ECDD /* CSWoYaoTouBaoSubmitViewCtrler.h */,
+				E1BDC04C1880204B0079ECDD /* CSWoYaoTouBaoSubmitViewCtrler.m */,
 			);
 			path = first;
 			sourceTree = "<group>";
@@ -3118,6 +3128,7 @@
 				E112190D17E22ABB00926B05 /* JSONKit.m in Sources */,
 				E1BCA4C017E3968A0086BA51 /* MKAnnotationView+WebCache.m in Sources */,
 				E1BCA4C117E3968A0086BA51 /* NSData+GIF.m in Sources */,
+				E1BDC04A18801EB60079ECDD /* CSWoYaoTouBaoViewController.m in Sources */,
 				E1BCA4C217E3968A0086BA51 /* UIButton+WebCache.m in Sources */,
 				E1BCA4C317E3968A0086BA51 /* UIImage+GIF.m in Sources */,
 				E123DAC8187FE6A800158CD4 /* CSDaiWeiListViewCell.m in Sources */,
@@ -3134,6 +3145,7 @@
 				E1BCA4CD17E3968A0086BA51 /* SDWebImageManager.m in Sources */,
 				E1BCA4CE17E3968A0086BA51 /* SDWebImagePrefetcher.m in Sources */,
 				E1C063E217E48D15003336B2 /* CSThirdViewController.m in Sources */,
+				E1BDC04D1880204B0079ECDD /* CSWoYaoTouBaoSubmitViewCtrler.m in Sources */,
 				E1C063E517E48D62003336B2 /* CSForthViewController.m in Sources */,
 				E1C063E817E48D94003336B2 /* CSFifthViewController.m in Sources */,
 				E174C2AD17E5B71C00C1CE71 /* KeyChainUtil.m in Sources */,
