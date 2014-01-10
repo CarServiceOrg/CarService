@@ -134,6 +134,12 @@
     [self showHeaderView:NO];
     [self loadClasses];
     firstDataRequest  = YES;
+    
+    if (!IsIOS6OrLower)
+    {
+        self.datePicker.backgroundColor = [UIColor whiteColor];
+        self.datePicker.tintColor = [UIColor blackColor];
+    }
 }
 
 - (void)loadClasses
@@ -158,7 +164,7 @@
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
      NSString *uid = [dic objectForKey:@"id"];
      NSString *sessionId = [dic objectForKey:@"session_id"];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"start_tim",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"end_time",nil];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"start_time",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"end_time",nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
