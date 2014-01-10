@@ -164,7 +164,9 @@
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
      NSString *uid = [dic objectForKey:@"id"];
      NSString *sessionId = [dic objectForKey:@"session_id"];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"start_time",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"end_time",nil];
+    //NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"start_time",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"end_time",nil];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",@"",@"start_time",@"",@"end_time",nil];
+
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
@@ -300,14 +302,14 @@
     
     NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];
     [cell reloadConetent:dic];
-    if (indexPath.row % 2 == 0)
+    /*if (indexPath.row % 2 == 0)
     {
         [cell setBackgroundImage:[UIImage imageNamed:@"cell_bg_01.png"]];
     }
     else
     {
         [cell setBackgroundImage:[UIImage imageNamed:@"cell_bg_02.png"]]; 
-    }
+    }*/
     return cell;
 }
 
@@ -340,6 +342,8 @@
     } completion:^(BOOL finish){
         [self.datePickerBackView removeFromSuperview];
     }];
+    [self loadContent];
+
 }
 
 - (IBAction)cancelActionPressed:(id)sender
