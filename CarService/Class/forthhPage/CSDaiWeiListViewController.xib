@@ -74,7 +74,7 @@
         </view>
     </objects>
     <resources>
-        <image name="new_daiweiliebiao_header.png" width="337" height="39"/>
+        <image name="new_daiweiliebiao_header.png" width="567" height="65"/>
         <image name="new_denglubeijing.png" width="540" height="960"/>
         <image name="new_xiaofeijilu_fanhui_anniu.png" width="53" height="53"/>
         <image name="new_xiaofeijilu_fanhui_dianjianniu.png" width="53" height="53"/>

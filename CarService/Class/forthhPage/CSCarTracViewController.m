@@ -14,12 +14,14 @@
 
 @property (nonatomic,retain) IBOutlet UILabel *locationLabel;
 @property (nonatomic,retain) IBOutlet BMKMapView *mapView;
+@property (nonatomic,retain) IBOutlet UIView *contentBackView;
 
 @end
 
 @implementation CSCarTracViewController
 @synthesize locationLabel;
 @synthesize mapView;
+@synthesize contentBackView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +36,7 @@
 {
     [locationLabel release];
     [mapView release];
+    [contentBackView release];
     [super dealloc];
 }
 
@@ -54,8 +57,8 @@
         [[LBSDataUtil shareUtil] refreshLocation];
     }
     
-    self.mapView = [[[BMKMapView alloc] initWithFrame:CGRectMake(0, 32, 320, self.view.frame.size.height - 32)]autorelease];
-    [self.view addSubview:self.mapView];
+    self.mapView = [[[BMKMapView alloc] initWithFrame:CGRectMake(8, 48, 285, 352)]autorelease];
+    [self.contentBackView addSubview:self.mapView];
     if (nil != [LBSDataUtil shareUtil].currentLocation)
     {
         [self.mapView setShowsUserLocation:NO];

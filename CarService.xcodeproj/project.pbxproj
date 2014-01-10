@@ -28,6 +28,8 @@
 		E123DAC8187FE6A800158CD4 /* CSDaiWeiListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E123DAC6187FE6A800158CD4 /* CSDaiWeiListViewCell.m */; };
 		E123DAC9187FE6A800158CD4 /* CSDaiWeiListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DAC7187FE6A800158CD4 /* CSDaiWeiListViewCell.xib */; };
 		E123DACB187FFC6900158CD4 /* new_daiweiliebiao_cell_back.png in Resources */ = {isa = PBXBuildFile; fileRef = E123DACA187FFC6800158CD4 /* new_daiweiliebiao_cell_back.png */; };
+		E123DACF1880152800158CD4 /* CSWoDeDaiWeiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123DACD1880152800158CD4 /* CSWoDeDaiWeiViewController.m */; };
+		E123DAD01880152800158CD4 /* CSWoDeDaiWeiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DACE1880152800158CD4 /* CSWoDeDaiWeiViewController.xib */; };
 		E12A9AC217E9FA2F00A5F451 /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E12A9AC517E9FC6800A5F451 /* CSDelegateBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC417E9FC6800A5F451 /* CSDelegateBookViewController.m */; };
 		E12A9AC817EA19A900A5F451 /* shigubaoan_placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9AC717EA19A900A5F451 /* shigubaoan_placeHolder.png */; };
@@ -616,6 +618,9 @@
 		E123DAC6187FE6A800158CD4 /* CSDaiWeiListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDaiWeiListViewCell.m; sourceTree = "<group>"; };
 		E123DAC7187FE6A800158CD4 /* CSDaiWeiListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSDaiWeiListViewCell.xib; sourceTree = "<group>"; };
 		E123DACA187FFC6800158CD4 /* new_daiweiliebiao_cell_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_daiweiliebiao_cell_back.png; sourceTree = "<group>"; };
+		E123DACC1880152800158CD4 /* CSWoDeDaiWeiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSWoDeDaiWeiViewController.h; sourceTree = "<group>"; };
+		E123DACD1880152800158CD4 /* CSWoDeDaiWeiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSWoDeDaiWeiViewController.m; sourceTree = "<group>"; };
+		E123DACE1880152800158CD4 /* CSWoDeDaiWeiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSWoDeDaiWeiViewController.xib; sourceTree = "<group>"; };
 		E12A9AC017E9FA2F00A5F451 /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
 		E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
 		E12A9AC317E9FC6800A5F451 /* CSDelegateBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDelegateBookViewController.h; sourceTree = "<group>"; };
@@ -1871,6 +1876,9 @@
 				E123DABE187FE1BE00158CD4 /* CSDaiWeiListViewController.h */,
 				E123DABF187FE1BE00158CD4 /* CSDaiWeiListViewController.m */,
 				E123DAC0187FE1BE00158CD4 /* CSDaiWeiListViewController.xib */,
+				E123DACC1880152800158CD4 /* CSWoDeDaiWeiViewController.h */,
+				E123DACD1880152800158CD4 /* CSWoDeDaiWeiViewController.m */,
+				E123DACE1880152800158CD4 /* CSWoDeDaiWeiViewController.xib */,
 				E123DAC5187FE6A800158CD4 /* CSDaiWeiListViewCell.h */,
 				E123DAC6187FE6A800158CD4 /* CSDaiWeiListViewCell.m */,
 				E123DAC7187FE6A800158CD4 /* CSDaiWeiListViewCell.xib */,
@@ -2649,6 +2657,7 @@
 				E53ABB6117E0F10D0096754D /* popover-black-left-arrow-image.png in Resources */,
 				E53ABB6217E0F10D0096754D /* popover-black-left-arrow-image@2x.png in Resources */,
 				E53ABB6317E0F10D0096754D /* popover-black-right-arrow-image.png in Resources */,
+				E123DAD01880152800158CD4 /* CSWoDeDaiWeiViewController.xib in Resources */,
 				E53ABB6417E0F10D0096754D /* popover-black-right-arrow-image@2x.png in Resources */,
 				E14FBDF1187C734400C6C466 /* new_xiaofeijilu_fanhui_dianjianniu.png in Resources */,
 				E53ABB6517E0F10D0096754D /* popover-black-top-arrow-image.png in Resources */,
@@ -3058,6 +3067,7 @@
 				E53ABBB317E0F4AC0096754D /* NSObject+SBJSON.m in Sources */,
 				E53ABBB417E0F4AC0096754D /* NSString+SBJSON.m in Sources */,
 				E53ABBB517E0F4AC0096754D /* SBJSON.m in Sources */,
+				E123DACF1880152800158CD4 /* CSWoDeDaiWeiViewController.m in Sources */,
 				E53ABBB617E0F4AC0096754D /* SBJsonBase.m in Sources */,
 				E53ABBB717E0F4AC0096754D /* SBJsonParser.m in Sources */,
 				E53ABBB817E0F4AC0096754D /* SBJsonWriter.m in Sources */,

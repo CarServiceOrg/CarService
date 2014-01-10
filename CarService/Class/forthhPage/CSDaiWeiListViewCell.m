@@ -8,6 +8,7 @@
 
 #import "CSDaiWeiListViewCell.h"
 #import "CSFeedBackViewController.h"
+#import "CSWoDeDaiWeiViewController.h"
 
 @interface CSDaiWeiListViewCell ()
 
@@ -106,7 +107,9 @@
 {
     if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 1)
     {
-        
+        CSWoDeDaiWeiViewController *controller = [[CSWoDeDaiWeiViewController alloc] initWithOrderInfo:self.infoDic];
+        [self.parentViewController.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
     else if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 2)
     {

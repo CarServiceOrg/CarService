@@ -8,6 +8,7 @@
 
 #import "CSDaiWeiViewController.h"
 #import "CSDaiWeiListViewController.h"
+#import "CSWoDeDaiWeiViewController.h"
 
 @interface CSDaiWeiViewController ()
 

@@ -233,13 +233,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CarService/Class/forthhPage/CSDaiWeiListViewCell.m"
-            timestampString = "411046118.540091"
+            filePath = "CarService/Class/forthhPage/CSWoDeDaiWeiViewController.m"
+            timestampString = "411050065.36621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-detailButtonPressed:"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-requestDidFailed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
