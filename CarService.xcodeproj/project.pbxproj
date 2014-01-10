@@ -20,6 +20,8 @@
 		E123DA25187F8E4900158CD4 /* CSShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DA23187F8E4900158CD4 /* CSShareViewController.xib */; };
 		E123DAB7187FCAA200158CD4 /* CSKefuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123DAB5187FCAA200158CD4 /* CSKefuViewController.m */; };
 		E123DAB8187FCAA200158CD4 /* CSKefuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DAB6187FCAA200158CD4 /* CSKefuViewController.xib */; };
+		E123DABC187FD1F400158CD4 /* CSDaiWeiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123DABA187FD1F400158CD4 /* CSDaiWeiViewController.m */; };
+		E123DABD187FD1F400158CD4 /* CSDaiWeiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E123DABB187FD1F400158CD4 /* CSDaiWeiViewController.xib */; };
 		E12A9AC217E9FA2F00A5F451 /* GCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E12A9AC517E9FC6800A5F451 /* CSDelegateBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AC417E9FC6800A5F451 /* CSDelegateBookViewController.m */; };
 		E12A9AC817EA19A900A5F451 /* shigubaoan_placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9AC717EA19A900A5F451 /* shigubaoan_placeHolder.png */; };
@@ -597,6 +599,9 @@
 		E123DAB4187FCAA200158CD4 /* CSKefuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSKefuViewController.h; sourceTree = "<group>"; };
 		E123DAB5187FCAA200158CD4 /* CSKefuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSKefuViewController.m; sourceTree = "<group>"; };
 		E123DAB6187FCAA200158CD4 /* CSKefuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSKefuViewController.xib; sourceTree = "<group>"; };
+		E123DAB9187FD1F400158CD4 /* CSDaiWeiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDaiWeiViewController.h; sourceTree = "<group>"; };
+		E123DABA187FD1F400158CD4 /* CSDaiWeiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDaiWeiViewController.m; sourceTree = "<group>"; };
+		E123DABB187FD1F400158CD4 /* CSDaiWeiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSDaiWeiViewController.xib; sourceTree = "<group>"; };
 		E12A9AC017E9FA2F00A5F451 /* GCPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPlaceholderTextView.h; sourceTree = "<group>"; };
 		E12A9AC117E9FA2F00A5F451 /* GCPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPlaceholderTextView.m; sourceTree = "<group>"; };
 		E12A9AC317E9FC6800A5F451 /* CSDelegateBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDelegateBookViewController.h; sourceTree = "<group>"; };
@@ -1844,6 +1849,9 @@
 				E19AE7E217E820F1007B9F07 /* CSMyProfileViewController.h */,
 				E19AE7E317E820F1007B9F07 /* CSMyProfileViewController.m */,
 				E19AE7E417E820F1007B9F07 /* CSMyProfileViewController.xib */,
+				E123DAB9187FD1F400158CD4 /* CSDaiWeiViewController.h */,
+				E123DABA187FD1F400158CD4 /* CSDaiWeiViewController.m */,
+				E123DABB187FD1F400158CD4 /* CSDaiWeiViewController.xib */,
 				E19AE7E717E860F3007B9F07 /* CSCarTracViewController.h */,
 				E19AE7E817E860F3007B9F07 /* CSCarTracViewController.m */,
 				E19AE7E917E860F4007B9F07 /* CSCarTracViewController.xib */,
@@ -2755,6 +2763,7 @@
 				E123DA1E187EDEDE00158CD4 /* new_huiyuanzhongxin_beijing.png in Resources */,
 				E1D044C117E71BED008CBE90 /* tab_servicecenter_press.png in Resources */,
 				E1D044C217E71BED008CBE90 /* tab_shouye.png in Resources */,
+				E123DABD187FD1F400158CD4 /* CSDaiWeiViewController.xib in Resources */,
 				E1D044C317E71BED008CBE90 /* tab_shouye_press.png in Resources */,
 				E14FBDD3187C734400C6C466 /* new_shouye_dibu_taocan.png in Resources */,
 				E1D044C417E71BED008CBE90 /* woyaodianping_star.png in Resources */,
@@ -3057,6 +3066,7 @@
 				E19AE7DC17E82082007B9F07 /* CSCarCareViewController.m in Sources */,
 				E19AE7DD17E82082007B9F07 /* CSDelegateServiceViewController.m in Sources */,
 				E19AE7DE17E82082007B9F07 /* CSInsuranceViewController.m in Sources */,
+				E123DABC187FD1F400158CD4 /* CSDaiWeiViewController.m in Sources */,
 				E14FBE16187E828B00C6C466 /* CSReportCaseAskViewCtrler.m in Sources */,
 				E19AE7DF17E82082007B9F07 /* CSInsureAcknowledgeViewController.m in Sources */,
 				E19AE7E017E82082007B9F07 /* CSReportCaseViewController.m in Sources */,
