@@ -126,6 +126,7 @@
     if(cell == nil)
     {
         cell = [CSDaiWeiListViewCell createCell];
+        cell.parentViewController = self;
     }
     
     NSDictionary *dic = [self.dataArray objectAtIndex:indexPath.row];

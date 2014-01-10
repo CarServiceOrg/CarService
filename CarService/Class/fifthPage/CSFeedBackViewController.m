@@ -14,6 +14,8 @@
 @property (nonatomic,retain) IBOutlet UILabel *textPlaceHolderLabel;
 @property (nonatomic,retain) IBOutlet UIImageView *textViewBackView;
 @property (nonatomic,retain) IBOutlet UITextView *textView;
+@property (nonatomic,retain) IBOutlet UILabel *versionRateTipLabel;
+@property (nonatomic,retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic,retain) ASIHTTPRequest *commentRequest;
 @property (nonatomic,retain) IBOutlet UIScrollView *contentScrollView;
 @property (nonatomic,retain) IBOutlet UIButton *confirmButton;
@@ -26,6 +28,8 @@
 @property (nonatomic,assign) NSUInteger rateNumber;
 @property (nonatomic,retain) UILabel *rateTipLabel;
 @property (nonatomic,retain) NSArray *rateButtonArray;
+@property (nonatomic,assign) ControllerType currentType;
+@property (nonatomic,retain) NSDictionary *orderInfoDic;
 
 - (IBAction)rateButtonPressed:(id)sender;
 - (void)hideKeyBoard;
@@ -48,12 +52,28 @@
 @synthesize rateNumber;
 @synthesize rateTipLabel;
 @synthesize rateButtonArray;
+@synthesize currentType;
+@synthesize versionRateTipLabel;
+@synthesize titleLabel;
+@synthesize orderInfoDic;
+
+- (id)initWithOrderInfo:(NSDictionary *)orderInfo
+{
+    self = [self initWithNibName:@"CSFeedBackViewController" bundle:nil];
+    if (self)
+    {
+        self.currentType = ControllerType_IWannaRate;
+        self.orderInfoDic = orderInfo;
+    }
+    return  self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.currentType = ControllerType_FeedBack;
     }
     return self;
 }
@@ -89,6 +109,9 @@
 
 - (void)dealloc
 {
+    [orderInfoDic release];
+    [titleLabel release];
+    [versionRateTipLabel release];
     [rateButtonArray release];
     [textPlaceHolderLabel release];
     [textView release];
@@ -169,6 +192,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    if (currentType == ControllerType_IWannaRate)
+    {
+        self.titleLabel.text = @"我要评分";
+        self.versionRateTipLabel.hidden = YES;
+    }
     self.navigationItem.leftBarButtonItem = [self getBackItem];
     self.navigationItem.title = @"意见反馈";
     
@@ -204,11 +232,22 @@
     
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
     NSString *uid = [dic objectForKey:@"id"];
+    NSString *sessionId = [dic objectForKey:@"session_id"];
     if (nil == uid)
     {
         uid = @"000000";
     }
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"feedback",@"action",uid,@"user_id",self.textView.text,@"content",[NSString stringWithFormat:@"%d",self.rateNumber],@"rate", nil];
+    NSDictionary *argDic;
+    if (currentType == ControllerType_FeedBack)
+    {
+        argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"feedback",@"action",uid,@"user_id",self.textView.text,@"content",[NSString stringWithFormat:@"%d",self.rateNumber],@"rate", nil];
+
+    }
+    else
+    {
+        argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"evaluate",@"action",uid,@"user_id",sessionId,@"session_id",[self.orderInfoDic objectForKey:@"order_sn"],@"order_id",  self.textView.text,@"content",[NSString stringWithFormat:@"%d",self.rateNumber],@"start",[self.orderInfoDic objectForKey:@"serve_type"],@"serve_type",[self.orderInfoDic objectForKey:@"server_id"],@"server_id", nil];
+
+    }
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];

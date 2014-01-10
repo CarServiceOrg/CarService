@@ -57,6 +57,9 @@
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="detailButtonPressed:" destination="ii3-xx-Wz2" eventType="touchUpInside" id="KFw-rK-vkv"/>
+                        </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>

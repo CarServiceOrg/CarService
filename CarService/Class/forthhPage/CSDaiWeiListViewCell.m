@@ -7,6 +7,7 @@
 //
 
 #import "CSDaiWeiListViewCell.h"
+#import "CSFeedBackViewController.h"
 
 @interface CSDaiWeiListViewCell ()
 
@@ -53,6 +54,7 @@
     /*
      {"cons_time":"2013.08.33","cons_address":"\u5317\u4eac\u6d77\u6dc0\u52a0\u6cb9\u7ad9","cons_type":"1","cons_num":"200"}
      */
+    self.infoDic = dic;
     NSString *projectName;
     switch ([[dic objectForKey:@"serve_type"] integerValue])
     {
@@ -108,7 +110,9 @@
     }
     else if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 2)
     {
-        
+        CSFeedBackViewController *controller = [[CSFeedBackViewController alloc] initWithOrderInfo:self.infoDic];
+        [self.parentViewController.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
     else
     {
