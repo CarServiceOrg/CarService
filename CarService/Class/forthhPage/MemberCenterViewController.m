@@ -20,6 +20,16 @@
 
 @property (nonatomic,retain) IBOutlet UITableView *contentTableView;
 @property (nonatomic,retain) ASIHTTPRequest *logoutRequest;
+@property (nonatomic,retain) IBOutlet UILabel *timeLabel;
+@property (nonatomic,retain) IBOutlet UILabel *weatherLabel;
+@property (nonatomic,retain) IBOutlet UIImageView *sexImageView;
+@property (nonatomic,retain) IBOutlet UILabel *nameLabel;
+@property (nonatomic,retain) IBOutlet UIButton *messageButton;
+
+- (IBAction)messageButtonPressed:(id)sender;
+- (IBAction)changePasswordButtonPressed:(id)sender;
+- (IBAction)woDeDaiWeiButtonPressed:(id)sender;
+- (IBAction)myResumeRecordButtonPressed:(id)sender;
 
 @end
 
@@ -27,6 +37,11 @@
 @synthesize contentTableView;
 @synthesize logoutRequest;
 @synthesize parentController;
+@synthesize timeLabel;
+@synthesize weatherLabel;
+@synthesize sexImageView;
+@synthesize nameLabel;
+@synthesize messageButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +57,11 @@
     self.contentTableView = nil;
     [logoutRequest clearDelegatesAndCancel];
     [logoutRequest release];
+    [timeLabel release];
+    [weatherLabel release];
+    [sexImageView release];
+    [nameLabel release];
+    [messageButton release];
     [super dealloc];
 }
 
@@ -239,6 +259,27 @@
     
     
     return cell;
+}
+
+- (IBAction)messageButtonPressed:(id)sender
+{
+    
+}
+- (IBAction)changePasswordButtonPressed:(id)sender
+{
+    ChangePasswordController *controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];
+    [self.parentController.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+- (IBAction)woDeDaiWeiButtonPressed:(id)sender
+{
+    
+}
+- (IBAction)myResumeRecordButtonPressed:(id)sender
+{
+    CSMyConsumeRecordViewController *controller = [[CSMyConsumeRecordViewController alloc] initWithNibName:@"CSMyConsumeRecordViewController" bundle:nil];
+    [self.parentController.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
