@@ -62,7 +62,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [ApplicationPublic selfDefineBg:self.view];
-    [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章查询" withTarget:self with_action:@selector(backBtnClicked:)];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"我要投保" withTarget:self with_action:@selector(backBtnClicked:)];
     [self init_selfView];
 }
 
