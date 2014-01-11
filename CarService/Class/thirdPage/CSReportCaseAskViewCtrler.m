@@ -9,6 +9,7 @@
 #import "CSReportCaseAskViewCtrler.h"
 #import "TTTAttributedLabel.h"
 #import "CSReportCaseViewController.h"
+#import "CSReportCaseListViewController.h"
 
 static CGFloat const CellHeight = 50;
 
@@ -261,7 +262,9 @@ static inline NSRegularExpression * ParenthesisRegularExpression() {
             break;
         case 2:
         {
-            
+            CSReportCaseListViewController* ctrler=[[CSReportCaseListViewController alloc] init];
+            [self.navigationController pushViewController:ctrler animated:YES];
+            [ctrler release];
         }
             break;
 

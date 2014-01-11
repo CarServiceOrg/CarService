@@ -40,6 +40,7 @@
 		E12A9ADE17EA275400A5F451 /* UIImagePLCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AD917EA275400A5F451 /* UIImagePLCategory.m */; };
 		E12A9AE117EA3F6800A5F451 /* yonghumoshi_icon_5_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9ADF17EA3F6800A5F451 /* yonghumoshi_icon_5_2.png */; };
 		E12A9AE217EA3F6800A5F451 /* yonghumoshi_icon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9AE017EA3F6800A5F451 /* yonghumoshi_icon_5.png */; };
+		E136CEDA18811F290034248B /* CSReportCaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E136CED918811F290034248B /* CSReportCaseListViewController.m */; };
 		E14FBD06187C6F5900C6C466 /* IOS7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E14FBD05187C6F5900C6C466 /* IOS7ViewController.m */; };
 		E14FBD8E187C734400C6C466 /* new_baoanzhaoxiang_zhaoxianganniu.png in Resources */ = {isa = PBXBuildFile; fileRef = E14FBD08187C734300C6C466 /* new_baoanzhaoxiang_zhaoxianganniu.png */; };
 		E14FBD8F187C734400C6C466 /* new_baoanzixun_baoanjilu.png in Resources */ = {isa = PBXBuildFile; fileRef = E14FBD09187C734300C6C466 /* new_baoanzixun_baoanjilu.png */; };
@@ -647,6 +648,8 @@
 		E12A9AD917EA275400A5F451 /* UIImagePLCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePLCategory.m; sourceTree = "<group>"; };
 		E12A9ADF17EA3F6800A5F451 /* yonghumoshi_icon_5_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yonghumoshi_icon_5_2.png; sourceTree = "<group>"; };
 		E12A9AE017EA3F6800A5F451 /* yonghumoshi_icon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yonghumoshi_icon_5.png; sourceTree = "<group>"; };
+		E136CED818811F290034248B /* CSReportCaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSReportCaseListViewController.h; sourceTree = "<group>"; };
+		E136CED918811F290034248B /* CSReportCaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSReportCaseListViewController.m; sourceTree = "<group>"; };
 		E14FBD04187C6F5900C6C466 /* IOS7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOS7ViewController.h; sourceTree = "<group>"; };
 		E14FBD05187C6F5900C6C466 /* IOS7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOS7ViewController.m; sourceTree = "<group>"; };
 		E14FBD08187C734300C6C466 /* new_baoanzhaoxiang_zhaoxianganniu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_baoanzhaoxiang_zhaoxianganniu.png; sourceTree = "<group>"; };
@@ -868,7 +871,7 @@
 		E174C2B617E5BC9100C1CE71 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E17C2FC317EC3B7D00D29BD4 /* CSInsuranceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSInsuranceDetailViewController.h; sourceTree = "<group>"; };
 		E17C2FC417EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSInsuranceDetailViewController.m; sourceTree = "<group>"; };
-		E17C2FC617ECCB1300D29BD4 /* ApplicationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationRequest.h; sourceTree = "<group>"; };
+		E17C2FC617ECCB1300D29BD4 /* ApplicationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationRequest.h; path = Class/ApplicationRequest.h; sourceTree = "<group>"; };
 		E17C2FC717ECCB1500D29BD4 /* ApplicationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationRequest.m; sourceTree = "<group>"; };
 		E19AE7CB17E80326007B9F07 /* my_consume_record_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_consume_record_header.png; sourceTree = "<group>"; };
 		E19AE7CC17E80326007B9F07 /* profile_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_background.png; sourceTree = "<group>"; };
@@ -1704,6 +1707,8 @@
 				E19AE7D917E82082007B9F07 /* CSReportCaseViewController.m */,
 				E14FBE14187E828B00C6C466 /* CSReportCaseAskViewCtrler.h */,
 				E14FBE15187E828B00C6C466 /* CSReportCaseAskViewCtrler.m */,
+				E136CED818811F290034248B /* CSReportCaseListViewController.h */,
+				E136CED918811F290034248B /* CSReportCaseListViewController.m */,
 				E19AE7D617E82082007B9F07 /* CSInsureAcknowledgeViewController.h */,
 				E19AE7D717E82082007B9F07 /* CSInsureAcknowledgeViewController.m */,
 				E17C2FC317EC3B7D00D29BD4 /* CSInsuranceDetailViewController.h */,
@@ -1850,7 +1855,6 @@
 			children = (
 				E1D043B217E6DCC2008CBE90 /* ApplicationPublic.h */,
 				E1D043B317E6DCC2008CBE90 /* ApplicationPublic.m */,
-				E17C2FC617ECCB1300D29BD4 /* ApplicationRequest.h */,
 				E17C2FC717ECCB1500D29BD4 /* ApplicationRequest.m */,
 				E16201B917F2F10D008926D0 /* second */,
 				E1EBEC8717EADA1C0026682A /* first */,
@@ -2271,6 +2275,7 @@
 				E1C063E117E48D15003336B2 /* CSThirdViewController.m */,
 				E1C063E317E48D62003336B2 /* CSForthViewController.h */,
 				E1C063E417E48D62003336B2 /* CSForthViewController.m */,
+				E17C2FC617ECCB1300D29BD4 /* ApplicationRequest.h */,
 				E1C063E617E48D94003336B2 /* CSFifthViewController.h */,
 				E1C063E717E48D94003336B2 /* CSFifthViewController.m */,
 				E174C2B217E5BAE000C1CE71 /* CommonViewController.h */,
@@ -3130,6 +3135,7 @@
 				E1BCA4C117E3968A0086BA51 /* NSData+GIF.m in Sources */,
 				E1BDC04A18801EB60079ECDD /* CSWoYaoTouBaoViewController.m in Sources */,
 				E1BCA4C217E3968A0086BA51 /* UIButton+WebCache.m in Sources */,
+				E136CEDA18811F290034248B /* CSReportCaseListViewController.m in Sources */,
 				E1BCA4C317E3968A0086BA51 /* UIImage+GIF.m in Sources */,
 				E123DAC8187FE6A800158CD4 /* CSDaiWeiListViewCell.m in Sources */,
 				E1BCA4C417E3968A0086BA51 /* UIImage+MultiFormat.m in Sources */,
