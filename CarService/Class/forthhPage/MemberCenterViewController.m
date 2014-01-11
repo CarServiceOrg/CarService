@@ -322,7 +322,7 @@
                 break;
             case 2:
                 CustomLog(@"我的消息");
-                controller = [[CSMessageViewController alloc] initWithNibName:@"CSMessageViewController" bundle:nil];
+                controller = [[CSMessageViewController alloc] initWithNibName:nil bundle:nil];
                 [self.parentController.navigationController pushViewController:controller animated:YES];
                 [controller release];
                 break;

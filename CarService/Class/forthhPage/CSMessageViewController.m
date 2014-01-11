@@ -174,8 +174,6 @@
     [titleLabel setTextAlignment:NSTextAlignmentLeft];
     [titleLabel setFont:[UIFont systemFontOfSize:14.0]];
     [titleLabel setTextColor:[UIColor blackColor]];
-    titleLabel.numberOfLines=0;
-    titleLabel.lineBreakMode=UILineBreakModeWordWrap;
     [cell.contentView addSubview:titleLabel];
     [titleLabel release];
     
@@ -188,8 +186,6 @@
     [addressLabel setTextAlignment:NSTextAlignmentLeft];
     [addressLabel setFont:[UIFont systemFontOfSize:12.0]];
     [addressLabel setTextColor:[UIColor grayColor]];
-    addressLabel.numberOfLines=0;
-    addressLabel.lineBreakMode=UILineBreakModeWordWrap;
     [cell.contentView addSubview:addressLabel];
     [addressLabel release];
     
