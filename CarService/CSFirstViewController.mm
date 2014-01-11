@@ -28,6 +28,7 @@
 #import "CSTaoCanListViewController.h"
 #import "CSWoYaoTouBaoViewController.h"
 #import "CSMyConsumeRecordViewController.h"
+#import "CSRegisterUserNameViewController.h"
 
 static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0 blue:254/255.0 alpha:1.0];
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
@@ -1638,8 +1639,9 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 // Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    MyNSLog();
-    if ([viewController isKindOfClass:[CSFirstViewController class]]) {
+    MyNSLog(@"viewController:%@",viewController);
+    if ([viewController isKindOfClass:[CSFirstViewController class]]
+        || (([viewController isKindOfClass:[CSForthViewController class]] || [viewController isKindOfClass:[CSRegisterUserNameViewController class]]) && [[Util sharedUtil] hasLogin]==NO)) {
         [self showTabScrollView:NO];
     }else{
         [self showTabScrollView:YES];
