@@ -115,6 +115,7 @@
     UIFont* textFont=[UIFont systemFontOfSize:fSize];
     CGSize textSize=[text sizeWithFont:textFont];
     UILabel* bLabel=[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(aLabel.frame), 0, textSize.width, aField.frame.size.height)];
+    bLabel.backgroundColor=[UIColor clearColor];
     bLabel.textAlignment=NSTextAlignmentLeft;
     bLabel.baselineAdjustment=UIBaselineAdjustmentAlignCenters;
     bLabel.textColor=[UIColor blackColor];

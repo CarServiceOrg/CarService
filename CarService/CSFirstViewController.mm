@@ -1160,7 +1160,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 //我要投保
 -(void)woYaoTouBaoBtnClicked:(UIButton*)sender
 {
-    if (![[Util sharedUtil] hasLogin]) {
+    if ([[Util sharedUtil] hasLogin]) {
         if ([sender.superview isEqual:self.m_tabScrollView]) {
             
             if (self.navigationController.topViewController.presentedViewController) {
