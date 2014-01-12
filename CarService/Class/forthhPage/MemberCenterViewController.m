@@ -68,6 +68,15 @@
     [super dealloc];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    //刷新消息数目
+    [super viewWillAppear:animated];
+    CSFirstViewController *controller = (CSFirstViewController *)[self.parentController.navigationController.viewControllers objectAtIndex:0];
+    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateNormal];
+    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateHighlighted];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -79,10 +88,7 @@
         CustomLog(@"set message and weather info");
         self.timeLabel.text = [NSString stringWithFormat:@"%@,%@",[controller.m_weatherDict objectForKey:@"date_y"],[controller.m_weatherDict objectForKey:@"week"]];
         self.weatherLabel.text = [NSString stringWithFormat:@"%@  %@",[controller.m_weatherDict objectForKey:@"weather1"],[controller.m_weatherDict objectForKey:@"temp1"]];
-        [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateNormal];
-        [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateHighlighted];
-
-        
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ ,你好",[[[Util sharedUtil] getUserInfo] objectForKey:@"username"]];
     }
 }
 
@@ -277,8 +283,11 @@
 
 - (IBAction)messageButtonPressed:(id)sender
 {
-    
+    CSMessageViewController* controller = [[CSMessageViewController alloc] initWithNibName:nil bundle:nil];
+    [self.parentController.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
+
 - (IBAction)changePasswordButtonPressed:(id)sender
 {
     ChangePasswordController *controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];

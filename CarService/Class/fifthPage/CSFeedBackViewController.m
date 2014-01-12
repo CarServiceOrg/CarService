@@ -275,12 +275,19 @@
     CustomLog(@"login request request dic:%@",requestDic);
     if (nil == [requestDic objectForKey:@"status"] || [[requestDic objectForKey:@"status"] intValue] != 0)
     {
-        [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论失败，请稍后重试!"];
+        if (currentType == ControllerType_IWannaRate)
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论失败，请稍后重试!"];
+        else
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"反馈失败，请稍后重试!"];
+
         return;
     }
     else
     {
-        [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论成功!"];
+        if (currentType == ControllerType_IWannaRate)
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论成功!"];
+        else
+            [[Util sharedUtil] showAlertWithTitle:@"" message:@"反馈成功!"];
         [self.navigationController popViewControllerAnimated:YES];
     }
     
@@ -288,9 +295,12 @@
 
 - (void)editingRequestDidFailed:(ASIHTTPRequest *)request
 {
-    [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论失败，请检查网络连接!"];
-    return;
     CustomLog(@"%@",[request responseString]);
+    if (currentType == ControllerType_IWannaRate)
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"评论失败，请检查网络连接!"];
+    else
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"反馈失败，请检查网络连接!"];
+    return;
 }
 
 - (void)didReceiveMemoryWarning
