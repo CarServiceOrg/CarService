@@ -119,8 +119,8 @@
     [self.backView addGestureRecognizer:tapReconginzer];
     [tapReconginzer release];
     
-    self.userNameField.text=@"15101059823";
-    self.passwordField.text=@"1";
+//    self.userNameField.text=@"15101059823";
+//    self.passwordField.text=@"1";
 }
 
 - (void)hideKeyBoard
