@@ -188,9 +188,9 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         //星期几
         y=y+height+10;
         [self setUpLabel:weatherView with_tag:1005 with_frame:CGRectMake(x, y, width, height) with_text:week_day with_Alignment:NSTextAlignmentLeft];
-        //明日限行
+        //今日限行
         y=y+height+10; width=13*5;
-        [self setUpLabel:weatherView with_tag:-1 with_frame:CGRectMake(x, y, width, height) with_text:@"明日限行:" with_Alignment:NSTextAlignmentLeft];
+        [self setUpLabel:weatherView with_tag:-1 with_frame:CGRectMake(x, y, width, height) with_text:@"今日限行:" with_Alignment:NSTextAlignmentLeft];
         //限行尾数1
         x=x+width-3; y=y+2; width=15; height=16;
         {
@@ -1134,10 +1134,6 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
             [self.navigationController pushViewController:ctrler animated:YES];
             [ctrler release];
         }
-        
-        CSMyConsumeRecordViewController *controller = [[CSMyConsumeRecordViewController alloc] initWithNibName:@"CSMyConsumeRecordViewController" bundle:nil];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
     }
     else
     {
