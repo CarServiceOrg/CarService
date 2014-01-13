@@ -34,25 +34,38 @@
 //字体
 #define CSPeccancyRecordViewController_font_text  12
 
+////网站抓取数据
+//static NSString* key_time = @"time";
+//static NSString* key_address = @"address";
+//static NSString* key_content = @"category";
+//static NSString* key_score = @"mark";
+//static NSString* key_price = @"cost";
+
+//接口数据
+static NSString* key_time=@"time";
+static NSString* key_address=@"address";
+static NSString* key_content=@"content";
+static NSString* key_score=@"score";
+static NSString* key_price=@"price";
 
 - (id)initWithDataArray:(NSMutableArray *)aArray
 {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
-        self.dataArray=[NSMutableArray arrayWithCapacity:3];
-        for (NSArray* indexAry in aArray) {
-            if ([indexAry count]==8) {
-                NSMutableDictionary* dict_index=[NSMutableDictionary dictionaryWithCapacity:3];
-                [dict_index setObject:[indexAry objectAtIndex:1] forKey:@"time"];
-                [dict_index setObject:[indexAry objectAtIndex:2] forKey:@"address"];
-                [dict_index setObject:[indexAry objectAtIndex:3] forKey:@"category"];
-                [dict_index setObject:[indexAry objectAtIndex:4] forKey:@"mark"];
-                [dict_index setObject:[indexAry objectAtIndex:5] forKey:@"cost"];
-                
-                [self.dataArray addObject:dict_index];
-            }
-        }
+//        self.dataArray=[NSMutableArray arrayWithCapacity:3];
+//        for (NSArray* indexAry in aArray) {
+//            if ([indexAry count]==8) {
+//                NSMutableDictionary* dict_index=[NSMutableDictionary dictionaryWithCapacity:3];
+//                [dict_index setObject:[indexAry objectAtIndex:1] forKey:@"time"];
+//                [dict_index setObject:[indexAry objectAtIndex:2] forKey:@"address"];
+//                [dict_index setObject:[indexAry objectAtIndex:3] forKey:@"category"];
+//                [dict_index setObject:[indexAry objectAtIndex:4] forKey:@"mark"];
+//                [dict_index setObject:[indexAry objectAtIndex:5] forKey:@"cost"];
+//                self.dataArray addObject:dict_index];
+//            }
+//        }
+        self.dataArray=[NSMutableArray arrayWithArray:aArray];
     }
     return self;
 }
@@ -93,7 +106,7 @@
 
 -(void)backBtnClick:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)setUpButton:(UIView*)superView with_tag:(int)tag with_frame:(CGRect)frame with_text:(NSString*)text
@@ -143,19 +156,19 @@
     
     switch (sender.tag) {
         case 1001:
-            [self sortDescriptorWithKey:@"time" withArray:self.dataArray ascending:isAscend];
+            [self sortDescriptorWithKey:key_time withArray:self.dataArray ascending:isAscend];
             break;
         case 1002:
-            [self sortDescriptorWithKey:@"address" withArray:self.dataArray ascending:isAscend];
+            [self sortDescriptorWithKey:key_address withArray:self.dataArray ascending:isAscend];
             break;
         case 1003:
-            [self sortDescriptorWithKey:@"category" withArray:self.dataArray ascending:isAscend];
+            [self sortDescriptorWithKey:key_content withArray:self.dataArray ascending:isAscend];
             break;
         case 1004:
-            [self sortDescriptorWithKey:@"mark" withArray:self.dataArray ascending:isAscend];
+            [self sortDescriptorWithKey:key_score withArray:self.dataArray ascending:isAscend];
             break;
         case 1005:
-            [self sortDescriptorWithKey:@"cost" withArray:self.dataArray ascending:isAscend];
+            [self sortDescriptorWithKey:key_price withArray:self.dataArray ascending:isAscend];
             break;
         default:
             break;
@@ -193,7 +206,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [ApplicationPublic selfDefineBg:self.view];
-    [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章记录" withTarget:self with_action:@selector(backBtnClicked:)];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章记录" withTarget:self with_action:@selector(backBtnClick:)];
     [self init_selfView];
     [self initSetUpTableView:CGRectMake(10, 15+35+3, 300, self.view.bounds.size.height-40-55-(15+35+3+8))];
 }
@@ -307,11 +320,11 @@
     
     if (self.dataArray && [self.dataArray count]>indexPath.row) {
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
-        NSString* time=[dict objectForKey:@"time"];
-        NSString* address=[dict objectForKey:@"address"];
-        NSString* category=[dict objectForKey:@"category"];
-        NSString* mark=[dict objectForKey:@"mark"];
-        NSString* cost=[dict objectForKey:@"cost"];
+        NSString* time=[dict objectForKey:key_time];
+        NSString* address=[dict objectForKey:key_address];
+        NSString* category=[dict objectForKey:key_content];
+        NSString* mark=[dict objectForKey:key_score];
+        NSString* cost=[dict objectForKey:key_price];
         
         float x, y, width, height;
         x=0; y=0; width=0; height=0;
@@ -422,9 +435,9 @@
 {
     if (self.dataArray && [self.dataArray count]>indexPath.row) {
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
-        NSString* time=[dict objectForKey:@"time"];
-        NSString* address=[dict objectForKey:@"address"];
-        NSString* category=[dict objectForKey:@"category"];
+        NSString* time=[dict objectForKey:key_time];
+        NSString* address=[dict objectForKey:key_address];
+        NSString* category=[dict objectForKey:key_content];
         
         float time_h = [self heigtForString:time with_width:CSPeccancyRecordViewController_time];
         float address_h = [self heigtForString:address with_width:CSPeccancyRecordViewController_address];

@@ -12,6 +12,7 @@
 #import "NSObject+SBJSON.h"
 #import "MBProgressHUD.h"
 #import "CSAuthCodeViewController.h"
+#import "CSPeccancyRecordViewController.h"
 
 @interface CSSecondViewController ()<UITextFieldDelegate, MBProgressHUDDelegate>
 {
@@ -227,12 +228,12 @@
         return;
     }
     
-    //(1)开始网络请求
-    [self startHttpRequest];
+//    //(1)开始网络请求
+//    [self startHttpRequest];
     
     //(2)开始网络请求
-    //NSMutableDictionary* dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:aTextField.text, @"lsnum", bTextField.text, @"engineno", nil];
-    //[self startHttpRequest:dict];
+    NSMutableDictionary* dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:aTextField.text, @"lsnum", bTextField.text, @"engineno", nil];
+    [self startHttpRequest:dict];
 }
 
 #pragma mark 网络相关
@@ -246,12 +247,14 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSString *urlStr = [[NSString stringWithFormat:@"%@?json={\"action\":\"wzcx\",\"lsprefix\":\"%@\",\"lsnum\":\"%@\",\"engineno\":\"%@\"}",
-                             ServerAddress,
-                             @"京",   //[[[Util sharedUtil] getUserInfo] objectForKey:@"id"],
-                             [dict objectForKey:@"lsnum"],
-                             [dict objectForKey:@"engineno"]
-                             ] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *urlStr = [NSString stringWithFormat:@"%@?json={\"action\":\"wzcx\",\"lsprefix\":\"%@\",\"lsnum\":\"%@\",\"engineno\":\"%@\"}",
+                            ServerAddress,
+                            @"京",   //[[[Util sharedUtil] getUserInfo] objectForKey:@"id"],
+                            [dict objectForKey:@"lsnum"],
+                            [dict objectForKey:@"engineno"]
+                            ];
+       urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
         
         ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
         [request setTimeOutSeconds:60.0];
@@ -268,8 +271,17 @@
                     
                     switch (status) {
                         case 0:
-                            [self showMessage:NSLocalizedString(@"成功", nil) with_detail:NSLocalizedString(@"提交成功！", nil) with_type:TSMessageNotificationTypeSuccess];
-                            [self performSelector:@selector(backBtnClicked:) withObject:nil afterDelay:1.5];
+                        {
+                            if ([requestDic objectForKey:@"list"]) {
+                                NSMutableArray* array=[requestDic objectForKey:@"list"];
+                                //跳转进入到下一个界面
+                                CSPeccancyRecordViewController* ctrler=[[CSPeccancyRecordViewController alloc] initWithDataArray:array];
+                                [self.navigationController pushViewController:ctrler animated:YES];
+                                [ctrler release];
+                            }
+                        }
+                            //[self showMessage:NSLocalizedString(@"成功", nil) with_detail:NSLocalizedString(@"提交成功！", nil) with_type:TSMessageNotificationTypeSuccess];
+                            //[self performSelector:@selector(backBtnClicked:) withObject:nil afterDelay:1.5];
                             break;
                         case 1:
                             [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"提交数据失败！", nil) with_type:TSMessageNotificationTypeError];
