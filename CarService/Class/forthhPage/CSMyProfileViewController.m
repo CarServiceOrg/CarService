@@ -73,7 +73,18 @@
     self.backView.hidden = NO;
     self.nameLabel.text = [self.userInfo objectForKey:@"username"];
     self.ageField.text = [self.userInfo objectForKey:@"age"];
-    self.sexLabel.text = [self.userInfo objectForKey:@"sex"];
+    if ([[self.userInfo objectForKey:@"sex"] isEqualToString:@"1"])
+    {
+        self.sexLabel.text = @"男";
+        self.headerSexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nantubiao.png"];
+        self.headerSexImageView.frame = CGRectMake(self.headerSexImageView.frame.origin.x, self.headerSexImageView.frame.origin.y, 18, 18);
+    }
+    else
+    {
+        self.sexLabel.text = @"女";
+        self.headerSexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nvtubiao.png"];
+        self.headerSexImageView.frame = CGRectMake(self.headerSexImageView.frame.origin.x, self.headerSexImageView.frame.origin.y, 12, 18);
+    }
     //set headerSexImageView
     self.phoneField.text = [self.userInfo objectForKey:@"phone"];
     self.headerNameLabel.text = [self.userInfo objectForKey:@"phone"];
@@ -228,11 +239,18 @@
     if ([self.pickerView selectedRowInComponent:0] == 0)
     {
         [self.userInfo setObject:@"男" forKey:@"sex"];
+        self.headerSexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nantubiao.png"];
+        self.headerSexImageView.frame = CGRectMake(self.headerSexImageView.frame.origin.x, self.headerSexImageView.frame.origin.y, 12, 18);
+
     }
     else
     {
         [self.userInfo setObject:@"女" forKey:@"sex"];
+        self.headerSexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nvtubiao.png"];
+        self.headerSexImageView.frame = CGRectMake(self.headerSexImageView.frame.origin.x, self.headerSexImageView.frame.origin.y, 12, 18);
+
     }
+
     self.sexLabel.text = [self.userInfo objectForKey:@"sex"];
     
     CSAppDelegate *delegate = [UIApplication sharedApplication].delegate;

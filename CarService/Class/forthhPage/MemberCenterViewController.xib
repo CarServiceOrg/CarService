@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="messageButton" destination="Ue4-Hn-4D6" id="MSg-qn-bAF"/>
                 <outlet property="nameLabel" destination="yyX-Gx-2xF" id="XgV-Gj-yzC"/>
+                <outlet property="sexImageView" destination="hdw-Fx-U0C" id="ZSs-TV-aNf"/>
                 <outlet property="timeLabel" destination="U7R-Gl-xRy" id="OaI-B0-dhP"/>
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="weatherLabel" destination="OB5-EX-pBj" id="BPB-X1-s1J"/>
@@ -22,7 +23,6 @@
                 <imageView contentMode="scaleToFill" image="new_denglubeijing.png" id="NNT-H4-86v">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T4R-NB-xNb">
                     <rect key="frame" x="10" y="25" width="35" height="35"/>
@@ -77,7 +77,7 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_gerenziliao_nvtubiao.png" id="hdw-Fx-U0C">
-                            <rect key="frame" x="76" y="154" width="12" height="18"/>
+                            <rect key="frame" x="72" y="154" width="12" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15901043512，你好" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yyX-Gx-2xF">

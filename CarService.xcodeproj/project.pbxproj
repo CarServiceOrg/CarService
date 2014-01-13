@@ -244,6 +244,7 @@
 		E16201C217F34C06008926D0 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E16201BE17F34C06008926D0 /* TFHppleElement.m */; };
 		E16201C317F34C06008926D0 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E16201C017F34C06008926D0 /* XPathQuery.m */; };
 		E16201C617F34CE4008926D0 /* CSAuthCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E16201C517F34CE4008926D0 /* CSAuthCodeViewController.m */; };
+		E17338A01883DB99005ED6A9 /* new_gerenziliao_nantubiao.png in Resources */ = {isa = PBXBuildFile; fileRef = E173389F1883DB99005ED6A9 /* new_gerenziliao_nantubiao.png */; };
 		E174C2AD17E5B71C00C1CE71 /* KeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2AC17E5B71C00C1CE71 /* KeyChainUtil.m */; };
 		E174C2B117E5B97200C1CE71 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B017E5B97200C1CE71 /* Util.m */; };
 		E174C2B417E5BAE300C1CE71 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E174C2B317E5BAE100C1CE71 /* CommonViewController.m */; };
@@ -861,6 +862,7 @@
 		E16201C017F34C06008926D0 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		E16201C417F34CE4008926D0 /* CSAuthCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAuthCodeViewController.h; sourceTree = "<group>"; };
 		E16201C517F34CE4008926D0 /* CSAuthCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAuthCodeViewController.m; sourceTree = "<group>"; };
+		E173389F1883DB99005ED6A9 /* new_gerenziliao_nantubiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_gerenziliao_nantubiao.png; sourceTree = "<group>"; };
 		E174C2AB17E5B71C00C1CE71 /* KeyChainUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainUtil.h; sourceTree = "<group>"; };
 		E174C2AC17E5B71C00C1CE71 /* KeyChainUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainUtil.m; sourceTree = "<group>"; };
 		E174C2AF17E5B97200C1CE71 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
@@ -1467,6 +1469,7 @@
 				E14FBD0B187C734300C6C466 /* new_baoanzixun_biaoge_zhongbu.png */,
 				E14FBD0C187C734300C6C466 /* new_baoanzixun_biaogetoubu.png */,
 				E14FBD0D187C734300C6C466 /* new_baoanzixun_quedinganniu.png */,
+				E173389F1883DB99005ED6A9 /* new_gerenziliao_nantubiao.png */,
 				E14FBD0E187C734300C6C466 /* new_baoanzixun_quedinganniu_dianji.png */,
 				E14FBD0F187C734300C6C466 /* new_baoanzixun_shanchuanniu.png */,
 				E14FBD10187C734300C6C466 /* new_baoanzixun_shangchuantupianbeijing.png */,
@@ -2735,6 +2738,7 @@
 				E1D0447017E71BED008CBE90 /* baoyangzixun_answer.png in Resources */,
 				E1D0447117E71BED008CBE90 /* baoyangzixun_ask.png in Resources */,
 				E1D0447217E71BED008CBE90 /* bg_iphone4.png in Resources */,
+				E17338A01883DB99005ED6A9 /* new_gerenziliao_nantubiao.png in Resources */,
 				E1D0447317E71BED008CBE90 /* bg_iphone5.png in Resources */,
 				E1D0447417E71BED008CBE90 /* black_bg.png in Resources */,
 				E1D0447517E71BED008CBE90 /* btn_back.png in Resources */,
@@ -3301,7 +3305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: yixuan li (43V7V9XCBH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yixuan li (43V7V9XCBH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: tuo zhang (7UTHN8A576)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3320,7 +3324,7 @@
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "75CF0A84-03BD-41C8-A7DD-0D7AB6BBC3BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75CF0A84-03BD-41C8-A7DD-0D7AB6BBC3BA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D4CDC2F-E7FF-402D-B845-F965305FFC41";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

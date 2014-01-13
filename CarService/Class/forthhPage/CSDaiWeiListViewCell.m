@@ -92,11 +92,18 @@
             self.detailButton.userInteractionEnabled = NO;
             break;
         case 1:
-            statusString = @"正在处理";
+            statusString = @"派单中";
+            self.detailButton.userInteractionEnabled = NO;
+        case 2:
+            statusString = @"代维中";
             self.detailButton.userInteractionEnabled = YES;
             break;
-        case 2:
-            statusString = @"处理完毕";
+        case 3:
+            statusString = @"代维结束";
+            self.detailButton.userInteractionEnabled = NO;
+            break;
+        case 4:
+            statusString = @"评价";
             self.detailButton.userInteractionEnabled = YES;
             break;
     }
@@ -105,13 +112,13 @@
 
 - (IBAction)detailButtonPressed:(id)sender
 {
-    if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 1)
+    if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 2)
     {
         CSWoDeDaiWeiViewController *controller = [[CSWoDeDaiWeiViewController alloc] initWithOrderInfo:self.infoDic];
         [self.parentViewController.navigationController pushViewController:controller animated:YES];
         [controller release];
     }
-    else if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 2)
+    else if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 4)
     {
         CSFeedBackViewController *controller = [[CSFeedBackViewController alloc] initWithOrderInfo:self.infoDic];
         [self.parentViewController.navigationController pushViewController:controller animated:YES];

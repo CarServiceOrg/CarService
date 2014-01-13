@@ -9,6 +9,8 @@
 #import "CSWoDeDaiWeiViewController.h"
 #import "ASIHTTPRequest.h"
 #import "CSCarTracViewController.h"
+#import "LBSDataUtil.h"
+#import "UIImageView+WebCache.h"
 
 @interface CSWoDeDaiWeiViewController ()
 
@@ -71,10 +73,19 @@
 - (void)loadContent
 {
     [self.infoRequest clearDelegatesAndCancel];
-    //NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
     //NSString *uid = [dic objectForKey:@"id"];
    // NSString *sessionId = [dic objectForKey:@"session_id"];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"j_order_status",@"action",[self.originalInfoDic objectForKey:@"order_sn"],@"id",nil];
+    
+    double longitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.longitude;
+    double latitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.latitude;
+    NSString *longitudeStr = [NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:longitude*100]];
+    NSString *latitudeStr = [NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:latitude*100]];
+    NSString *address = [LBSDataUtil shareUtil].address;
+    
+    //NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"k_order_status",@"action",[self.originalInfoDic objectForKey:@"id"],@"id",[dic objectForKey:@"phone"],@"phone",[self.originalInfoDic objectForKey:@"name"],@"server_name",address,@"address",longitudeStr,@"lon",latitudeStr,@"lat", nil];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"k_order_status",@"action",[self.originalInfoDic objectForKey:@"id"],@"id", nil];
+
     
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -111,6 +122,27 @@
         {
             case 0:
                 CustomLog(@"set data");
+                NSDictionary *info = [requestDic objectForKey:@"list"];
+                self.contentView.hidden = NO;
+                [self.imageView setImageWithURL:[NSURL URLWithString:[info objectForKey:@"img"]] placeholderImage:[UIImage imageNamed:@"new_daiweifuwu_tupianweishangchuan_tupianbeijing.png"]];
+                self.timeLabel.text = [info objectForKey:@"addtime"];
+                self.locationLabel.text = [info objectForKey:@"address"];
+                self.personLabel.text = [info objectForKey:@"server_name"];
+                self.phoneLabel.text = [info objectForKey:@"phone"];
+                
+                NSString *description = [info objectForKey:@"description"];
+                CGSize size = [description sizeWithFont:self.detailLabel.font constrainedToSize:CGSizeMake(self.detailLabel.frame.size.width, 1000)];
+                self.detailLabel.frame = CGRectMake(self.detailLabel.frame.origin.x, self.detailLabel.frame.origin.y,self.detailLabel.frame.size.width, size.height+5);
+                self.detailLabel.text = [info objectForKey:@"description"];
+                break;
+            case 3:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"代维人，请稍后重试!"];
+                break;
+            case 4:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"电话不正确，请稍后重试!"];
+                break;
+            case 5:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"抵制不正确，请稍后重试!"];
                 break;
             default:
                 [[Util sharedUtil] showAlertWithTitle:@"" message:@"服务器出错，请稍后重试!"];

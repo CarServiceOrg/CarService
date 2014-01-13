@@ -28,7 +28,6 @@
 @property (nonatomic,retain) IBOutlet UILabel *nameLabel;
 @property (nonatomic,retain) IBOutlet UIButton *messageButton;
 
-
 - (IBAction)messageButtonPressed:(id)sender;
 - (IBAction)changePasswordButtonPressed:(id)sender;
 - (IBAction)woDeDaiWeiButtonPressed:(id)sender;
@@ -86,9 +85,31 @@
     if ([controller isKindOfClass:[CSFirstViewController class]])
     {
         CustomLog(@"set message and weather info");
-        self.timeLabel.text = [NSString stringWithFormat:@"%@,%@",[controller.m_weatherDict objectForKey:@"date_y"],[controller.m_weatherDict objectForKey:@"week"]];
-        self.weatherLabel.text = [NSString stringWithFormat:@"%@  %@",[controller.m_weatherDict objectForKey:@"weather1"],[controller.m_weatherDict objectForKey:@"temp1"]];
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ ,你好",[[[Util sharedUtil] getUserInfo] objectForKey:@"username"]];
+        if (nil == controller.m_weatherDict)
+        {
+            self.timeLabel.text = @"加载时间失败";
+            self.weatherLabel.text = @"加载天气信息失败";
+        }
+        else
+        {
+            self.timeLabel.text = [NSString stringWithFormat:@"%@,%@",[controller.m_weatherDict objectForKey:@"date_y"],[controller.m_weatherDict objectForKey:@"week"]];
+            self.weatherLabel.text = [NSString stringWithFormat:@"%@  %@",[controller.m_weatherDict objectForKey:@"weather1"],[controller.m_weatherDict objectForKey:@"temp1"]];
+        }
+        
+        NSDictionary *userInfo = [[Util sharedUtil] getUserInfo];
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ ,你好",[userInfo objectForKey:@"username"]];
+        if ([[userInfo objectForKey:@"sex"] isEqualToString:@"1"])
+        {
+            self.sexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nantubiao.png"];
+            self.sexImageView.frame = CGRectMake(self.sexImageView.frame.origin.x, self.sexImageView.frame.origin.y, 18, 18);
+
+        }
+        else
+        {
+            self.sexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nvtubiao.png"];
+            self.sexImageView.frame = CGRectMake(self.sexImageView.frame.origin.x, self.sexImageView.frame.origin.y, 12, 18);
+
+        }
     }
 }
 
