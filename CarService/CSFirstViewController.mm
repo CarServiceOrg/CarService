@@ -463,7 +463,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         [weatherImgView setTag:1008];
         {
             //天气文本 如果没有对应图片时显示
-            [self setUpLabel:weatherImgView with_tag:10001 with_frame:weatherImgView.bounds with_text:@"" with_Alignment:NSTextAlignmentLeft fontSize:14.0];
+            [self setUpLabel:weatherImgView with_tag:10001 with_frame:weatherImgView.bounds with_text:@"" with_Alignment:NSTextAlignmentCenter fontSize:14.0];
             if ([weatherImgView viewWithTag:10001]) {
                 [[weatherImgView viewWithTag:10001] setHidden:YES];
             }
@@ -1492,6 +1492,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
                     }else{
                         UILabel* aLabel=(UILabel*)[aImgView viewWithTag:10001];
                         if (aLabel) {
+                            aLabel.hidden=NO;
                             [aLabel setText:text];
                         }
                     }
