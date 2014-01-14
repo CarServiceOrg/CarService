@@ -1409,9 +1409,6 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
     [request setTimeOutSeconds:60.0];
     [request setRequestMethod:@"Get"];
     [request setCompletionBlock:^{
-        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-        NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        CustomLog(@"<<Chao-->CSFirstViewController-->request_weather-->testResponseString:%@",testResponseString);
         NSDictionary *requestDic =[[request responseString] JSONValue];
         CustomLog(@"<<Chao-->CSFirstViewController-->request_weather-->requestDic:%@",requestDic);
         dispatch_async(dispatch_get_main_queue(), ^{
