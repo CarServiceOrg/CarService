@@ -105,9 +105,26 @@
 
     float x, y, width, height;
 
-    //时间
+    //联系人
     x=frame.origin.x+5; y=frame.origin.y+5; width=frame.size.width-5*2; height=40;
+    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:99 with_placeHolder:@"联系人" with_delegate:self];
+    
+    //联系电话
+    y=y+height+15;
+    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:100 with_placeHolder:@"联系电话" with_delegate:self];
+
+    //时间
+    y=y+height+15;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:firstHolderStr with_delegate:self];
+    {
+        UITextField* aField=(UITextField*)[self.view viewWithTag:101];
+        if (aField) {
+            NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString* formatStr=[formatter stringFromDate:[NSDate date]];
+            [aField setText:formatStr];
+        }
+    }
     
     //地点
     y=y+height+15;
@@ -128,7 +145,7 @@
     textView.placeholderColor=[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0];
     textView.placeholder=thirdHolderStr;
     [textView setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [textView setTextColor:[UIColor whiteColor]];
+    [textView setTextColor:[UIColor blackColor]];
     [self.view addSubview:textView];
     [textView release];
     
@@ -186,21 +203,25 @@
 }
 
 //客户预约
-//?json={“action”:”order”,“user_id”:”$user_id”,”session_id”:”$session_id”“order_time”:”$order_time”,“order_address”:”$order_address”,“serve_type”:”$serve_type”,“about”:”$about”,“order_sn”:”$ order_sn” ,”phone”:”$phone”}
+//??json={“action”:”order”,“user_id”:”$user_id”,”session_id”:”$session_id”“order_time”:”$order_time”,“order_address”:”$order_address”,“serve_type”:”$serve_type”,“about”:”$about”,”phone”:”$phone”,”username”:”$username”}
 //serve_type 服务类型 1为洗车服务 2为修车服务 3为卖车服务 4为验车
-//0预约成功
+//0 预约成功
 //1预约失败
-//2用户id不正确
+//2 session_id不正确
 //3预约序号不正确
 //4预约时间不正确
 //5预约地址不正确
 //6预约服务不正确
 //7简介说明不正确
 //8手机号码不正确
+//9用户名不正确
 -(BOOL)request_order
 {
+    NSString* order_username=[(UITextField*)[self.view viewWithTag:99] text];
+    NSString* order_phone=[(UITextField*)[self.view viewWithTag:100] text];
     NSString* order_time=[(UITextField*)[self.view viewWithTag:101] text];
     NSString* order_address=[(UITextField*)[self.view viewWithTag:102] text];
+    
     NSString* serve_type;
     switch (_type) {
         case CSDelegateServiceType_wash:
@@ -239,6 +260,8 @@
                             order_address, @"order_address",
                             serve_type, @"serve_type",
                             about, @"about",
+                            order_phone, @"phone",
+                            order_username, @"username",
                             nil];
     NSString *jsonArg = [[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
