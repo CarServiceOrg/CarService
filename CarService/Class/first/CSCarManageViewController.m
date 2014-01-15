@@ -25,6 +25,7 @@
 #define CSCarManageViewController_cell_hegight 80
 #define CSCarManageViewController_CarSign   @"车牌号："
 #define CSCarManageViewController_CarStand  @"车架号："
+#define CSCarManageViewController_CarDate   @"初次登记日期："
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -196,14 +197,17 @@
     [aImageView release];
     
     //车牌
-    x=x+width+10; width=320-x-10; height=(CSCarManageViewController_cell_hegight-y*2)/2.0;
+    x=x+width+10; width=320-x-10; height=(CSCarManageViewController_cell_hegight-y*2)/3.0;
     [self setUpLabel:cell.contentView with_tag:1002 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
     //车架号
     y=y+height; y=y+1;
     [self setUpLabel:cell.contentView with_tag:1003 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
-
+    //车辆初次登记日期
+    y=y+height; y=y+1;
+    [self setUpLabel:cell.contentView with_tag:1004 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentLeft];
+    
     //删除按钮
-    width=20; height=20; x=((320-10*2)-5*2)-width-5; y=3;
+    width=30; height=30; x=((320-10*2)-5*2)-width-5; y=3;
     UIButton* deleteBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
     deleteBtn.backgroundColor=[UIColor clearColor];
     [deleteBtn setBackgroundImage:[UIImage imageNamed:@"new_baoanzixun_shanchuanniu.png"] forState:UIControlStateNormal];
@@ -222,6 +226,8 @@
         if (superView) {
             NSString* carSign=@"";
             NSString* carStand=@"";
+            NSString* carDate=@"";
+
             //车牌号
             UILabel* carSignLabel=(UILabel*)[superView viewWithTag:1002];
             if (carSignLabel) {
@@ -232,12 +238,19 @@
             if (carStandLabel) {
                 carStand=[carStandLabel.text substringFromIndex:[[NSString stringWithFormat:@"%@",CSCarManageViewController_CarStand] length]];
             }
+            //车辆初次登记日期
+            UILabel* carDateLabel=(UILabel*)[superView viewWithTag:1004];
+            if (carDateLabel) {
+                carDate=[carDateLabel.text substringFromIndex:[[NSString stringWithFormat:@"%@",CSCarManageViewController_CarDate] length]];
+            }
             
             int index=0;
             for (NSDictionary* dict in self.dataArray) {
                 NSString* carSign_dict=[dict objectForKey:CSAddCarViewController_carSign];
                 NSString* carStand_dict=[dict objectForKey:CSAddCarViewController_carStand];
-                if ([carSign_dict isEqualToString:carSign] && [carStand_dict isEqualToString:carStand]) {
+                NSString* carDate_dict=[dict objectForKey:CSAddCarViewController_carDate];
+
+                if ([carSign_dict isEqualToString:carSign] && [carStand_dict isEqualToString:carStand] && [carDate_dict isEqualToString:carDate]) {
                     UITableView* tableView=(UITableView*)[self.view viewWithTag:101];
                     if (tableView) {
                         //更新数据
@@ -277,6 +290,7 @@
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
         NSString* carSign=[dict objectForKey:CSAddCarViewController_carSign];
         NSString* carStand=[dict objectForKey:CSAddCarViewController_carStand];
+        NSString* carDate=[dict objectForKey:CSAddCarViewController_carDate];
         
         //图片
         UIImageView* aImageView=(UIImageView*)[cell.contentView viewWithTag:1001];
@@ -294,6 +308,12 @@
         UILabel* carStandLabel=(UILabel*)[cell.contentView viewWithTag:1003];
         if (carStandLabel) {
             carStandLabel.text=[NSString stringWithFormat:@"%@%@",CSCarManageViewController_CarStand, carStand];
+        }
+        
+        //车辆初次登记日期
+        UILabel* carDateLabel=(UILabel*)[cell.contentView viewWithTag:1004];
+        if (carDateLabel) {
+            carDateLabel.text=[NSString stringWithFormat:@"%@%@",CSCarManageViewController_CarDate, carDate];
         }
      }
     
@@ -323,7 +343,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return CSCarManageViewController_cell_hegight;
 }
 
 @end

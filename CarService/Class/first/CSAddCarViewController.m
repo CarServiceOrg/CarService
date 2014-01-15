@@ -8,6 +8,7 @@
 
 #import "CSAddCarViewController.h"
 #import "TSMessage.h"
+#import "ActionSheetDatePicker.h"
 
 @interface CSAddCarViewController ()
 
@@ -34,6 +35,10 @@
     y=y+height+15;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"车架号：" with_delegate:self];
     
+    //车架号
+    y=y+height+15;
+    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:103 with_placeHolder:@"车辆初次登记日期：" with_delegate:self];
+
     //查询
     width=133/2.0+20; x=(320-width)/2.0; y=y+height+30; height=48/2.0+10;
     UIButton* doneBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
@@ -80,8 +85,14 @@
     if (stand) {
         carStandStr=stand.text;
     }
+    
+    NSString* carDateStr=nil;
+    UITextField* date=(UITextField*)[self.view viewWithTag:103];
+    if (date) {
+        carDateStr=date.text;
+    }
 
-    if ([carSignStr length]==0) {        
+    if ([carSignStr length]==0) {
         [TSMessage showNotificationInViewController:self
                                               title:NSLocalizedString(@"错误", nil)
                                            subtitle:NSLocalizedString(@"车牌号不能为空！", nil)
@@ -111,9 +122,22 @@
         return;
     }
 
+    if ([carDateStr length]==0) {
+        [TSMessage showNotificationInViewController:self
+                                              title:NSLocalizedString(@"错误", nil)
+                                           subtitle:NSLocalizedString(@"请选择车辆初次登记日期！", nil)
+                                              image:nil
+                                               type:TSMessageNotificationTypeError
+                                           duration:2.0
+                                           callback:nil
+                                        buttonTitle:nil
+                                     buttonCallback:nil
+                                         atPosition:TSMessageNotificationPositionTop
+                                canBeDismisedByUser:YES];
+        return;
+    }
     
-    if (carSignStr!=nil && carStandStr!=nil) {
-        NSDictionary* dict=[NSDictionary dictionaryWithObjectsAndKeys:carSignStr, CSAddCarViewController_carSign, carStandStr, CSAddCarViewController_carStand, nil];
+    if (carSignStr!=nil && carStandStr!=nil && carDateStr!=nil) {
         NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
         NSMutableArray* array;
         if (alreadyAry) {
@@ -121,7 +145,9 @@
             for (NSDictionary* dict in alreadyAry) {
                 NSString* carSign_dict=[dict objectForKey:CSAddCarViewController_carSign];
                 NSString* carStand_dict=[dict objectForKey:CSAddCarViewController_carStand];
-                if ([carSign_dict isEqualToString:carSignStr] && [carStand_dict isEqualToString:carStandStr]) {
+                NSString* carDate_dict=[dict objectForKey:CSAddCarViewController_carDate];
+
+                if ([carSign_dict isEqualToString:carSignStr] && [carStand_dict isEqualToString:carStandStr] && [carDate_dict isEqualToString:carDateStr]) {
                     flag=YES;
                     break;
                 }else{
@@ -150,7 +176,13 @@
         }else{
             array=[NSMutableArray arrayWithCapacity:1];
         }
-        [array addObject:dict];
+        
+        NSDictionary* dictNew=[NSDictionary dictionaryWithObjectsAndKeys:
+                               carSignStr, CSAddCarViewController_carSign,
+                               carStandStr, CSAddCarViewController_carStand,
+                               carDateStr, CSAddCarViewController_carDate,
+                               nil];
+        [array addObject:dictNew];
         [[NSUserDefaults standardUserDefaults] setObject:array forKey:CSAddCarViewController_carList];
     }
     
@@ -158,6 +190,34 @@
 }
 
 #pragma mark - UITextFieldDelegate
+// 选择查询日期
+-(void)dateWasSelected:(NSDate *)selectedDate element:(id)element
+{
+    if (selectedDate!=nil && element!=nil) {
+        UITextField* textField = (UITextField*)element;
+        if (textField) {
+            NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"YYYY-MM-dd"];
+            NSString* formatStr=[formatter stringFromDate:selectedDate];
+            [formatter release];
+            [textField setText:formatStr];
+        }
+    }
+}
+
+// return NO to disallow editing.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField.tag==103)
+    {
+        [textField resignFirstResponder];
+        [ActionSheetDatePicker showPickerWithTitle:@"选择日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
+        return NO;
+    }
+    
+    return YES;
+}
+
 //按Done键键盘消失
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
