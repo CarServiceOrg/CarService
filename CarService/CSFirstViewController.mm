@@ -472,12 +472,12 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         [weatherImgView release];
         
         //日期
-        x=0; y=50; width=80; height=20;
+        x=0; y=50; width=100; height=20;
         NSString *string_time=@"";
         NSString *week_day=@"";
         [self setUpLabel:weatherView with_tag:1004 with_frame:CGRectMake(x, y, width, height) with_text:string_time with_Alignment:NSTextAlignmentCenter fontSize:12];
         //星期几
-        x=x+width; width=60;
+        x=x+width-20; width=60;
         [self setUpLabel:weatherView with_tag:1005 with_frame:CGRectMake(x, y, width, height) with_text:week_day with_Alignment:NSTextAlignmentCenter fontSize:12];
         {
             NSDate *date = [NSDate date];
