@@ -73,6 +73,15 @@
     //车牌号
     x=5; y=10; width=view_ScrollView.frame.size.width-5*2; height=40;
     [ApplicationPublic setUp_UITextField:view_ScrollView with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"时间" with_delegate:self];
+    {
+        UITextField* aField=(UITextField*)[view_ScrollView viewWithTag:101];
+        if (aField) {
+            NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString* formatStr=[formatter stringFromDate:[NSDate date]];
+            [aField setText:formatStr];
+        }
+    }
     
     //发动机号
     y=y+height+15;

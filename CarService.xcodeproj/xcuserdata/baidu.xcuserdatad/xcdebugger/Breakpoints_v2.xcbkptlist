@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/CSSecondViewController.m"
-            timestampString = "411278388.653347"
+            timestampString = "411453948.604103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "256"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarService/CSSecondViewController.m"
-            timestampString = "411278388.653347"
+            timestampString = "411453948.604103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "266"
@@ -127,6 +127,52 @@
             endingLineNumber = "88"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CarService/CSFirstViewController.mm"
+            timestampString = "411455836.017296"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1422"
+            endingLineNumber = "1422"
+            landmarkName = "-request_weather"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[CSFirstViewController request_weather]_block_invoke"
+                  moduleName = "CarService"
+                  urlString = "file:///Users/baidu/Desktop/Self_Work/organization/CarService/CarService/CSFirstViewController.mm"
+                  timestampString = "411454803.285691"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1417"
+                  endingLineNumber = "1417"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[CSFirstViewController request_weather]_block_invoke_2"
+                  moduleName = "CarService"
+                  urlString = "file:///Users/baidu/Desktop/Self_Work/organization/CarService/CarService/CSFirstViewController.mm"
+                  timestampString = "411454803.286045"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1417"
+                  endingLineNumber = "1417"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
