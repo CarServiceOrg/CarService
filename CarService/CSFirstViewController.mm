@@ -548,17 +548,42 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         
         float x, y, width, height;
 
+        //246 × 133
+        x=5; y=30; width=246/2.0-20; height=133/2.0-10;
+        UIImageView* welComeText_ImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        welComeText_ImgView.tag=999;
+        [welComeText_ImgView setImage:[UIImage imageNamed:@"welcome_text.png"]];
+        [containView addSubview:welComeText_ImgView];
+        [welComeText_ImgView release];
+        welComeText_ImgView.alpha=0.0;
+        
+        //248 × 85
+        x=0; y=20; width=248/2.0; height=85/2.0;
+        UIImageView* welCome_ImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        welCome_ImgView.tag=1000;
+        [welCome_ImgView setImage:[UIImage imageNamed:@"welcome.png"]];
+        [containView addSubview:welCome_ImgView];
+        [welCome_ImgView release];
+        welCome_ImgView.alpha=0.0;
+        
         //车牌号
         x=15; y=20; width=containView.bounds.size.width-2*x; height=50;
         UIButton* mangerBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
         [mangerBtn setTag:1001];
         [mangerBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
-        [mangerBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
+        [mangerBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [mangerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [mangerBtn setTitleColor:BtnTitleColorBlue forState:UIControlStateHighlighted];
         [mangerBtn addTarget:self action:@selector(mangerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [containView addSubview:mangerBtn];
         [mangerBtn release];
+        {
+            UIImageView* car_ImgView=[[UIImageView alloc] initWithFrame:CGRectMake((width-38)/2.0, -10, 38, 27)];
+            car_ImgView.tag=1000;
+            [car_ImgView setImage:[UIImage imageNamed:@"shouye_car.png"]];
+            [mangerBtn addSubview:car_ImgView];
+            [car_ImgView release];
+        }
         
         //信息按钮
         x=10; y=y+height; width=containView.bounds.size.width-x*2; height=30;
@@ -611,6 +636,16 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
     
     //设置初始化位置
     {
+        UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
+        if (welComeText_ImgView) {
+            welComeText_ImgView.alpha=1.0;
+        }
+
+        UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
+        if (welCome_ImgView) {
+            welCome_ImgView.alpha=0.0;
+        }
+        
         UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
         if (mangerBtn) {
             mangerBtn.alpha=0.0;
@@ -618,10 +653,6 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
         if (msgBtn) {
             msgBtn.alpha=0.0;
-        }
-        UIButton* addCarBtn=(UIButton*)[containView viewWithTag:1003];
-        if (addCarBtn) {
-            addCarBtn.center=CGPointMake(CGRectGetMidX(containView.bounds), CGRectGetMidY(containView.bounds));
         }
     }
     
@@ -805,42 +836,82 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
     
     UIView* containView=(UIView*)[self.view viewWithTag:102];
     if (containView) {
-        NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
-        if (alreadyAry) {
-            //更新数据 为最后一个车牌号
-            UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
-            if (mangerBtn) {
-                mangerBtn.alpha=1.0;
+        [self updateContainView:containView];
+    }
+}
+
+-(void)updateContainView:(UIView*)containView
+{
+    NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
+    if (alreadyAry) {
+        
+        UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
+        if (welComeText_ImgView) {
+            welComeText_ImgView.alpha=0.0;
+        }
+        
+        UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
+        if (welCome_ImgView) {
+            welCome_ImgView.alpha=0.0;
+        }
+        
+        //更新数据 为最后一个车牌号
+        UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
+        if (mangerBtn) {
+            mangerBtn.alpha=1.0;
+            
+            NSString* signStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carSign]; //车牌号
+            //NSString* standStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carStand]; //车架号
+            [mangerBtn setTitle:[NSString stringWithFormat:@"%@",signStr] forState:UIControlStateNormal];
+        }
+        
+        UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
+        if (msgBtn) {
+            if (self.m_msgArray) {
+                msgBtn.alpha=1.0;
+            }else{
+                msgBtn.alpha=0.0;
+            }
+        }
+        
+    }else{
+        
+        UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
+        if (mangerBtn) {
+            mangerBtn.alpha=0.0;
+        }
+        
+        UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
+        if (msgBtn) {
+            if (self.m_msgArray) {
+                msgBtn.alpha=1.0;
                 
-                NSString* signStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carSign]; //车牌号
-                //NSString* standStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carStand]; //车架号
-                [mangerBtn setTitle:[NSString stringWithFormat:@"%@",signStr] forState:UIControlStateNormal];
-            }
-            
-            UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
-            if (msgBtn) {
-                if (self.m_msgArray) {
-                    msgBtn.alpha=1.0;
-                }else{
-                    msgBtn.alpha=0.0;
+                UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
+                if (welComeText_ImgView) {
+                    welComeText_ImgView.alpha=0.0;
                 }
-            }
-            
-            //更新位置
-            UIButton* addCarBtn=(UIButton*)[containView viewWithTag:1003];
-            if (addCarBtn) {
-                if (msgBtn.alpha) {
-                    addCarBtn.frame=CGRectMake(0, CGRectGetMaxY(msgBtn.frame)+5, addCarBtn.bounds.size.width, addCarBtn.bounds.size.height);
-                }else{
-                    addCarBtn.frame=CGRectMake(0, CGRectGetMinY(msgBtn.frame)+5, addCarBtn.bounds.size.width, addCarBtn.bounds.size.height);
+                
+                UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
+                if (welCome_ImgView) {
+                    welCome_ImgView.alpha=1.0;
                 }
+                
+            }else{
+                msgBtn.alpha=0.0;
+                
+                UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
+                if (welComeText_ImgView) {
+                    welComeText_ImgView.alpha=1.0;
+                }
+                
+                UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
+                if (welCome_ImgView) {
+                    welCome_ImgView.alpha=0.0;
+                }
+                
             }
-        }else{
-            
         }
     }
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -1313,11 +1384,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
                         }
                     }
                     
-                    //更新位置
-                    UIButton* addCarBtn=(UIButton*)[containView viewWithTag:1003];
-                    if (addCarBtn) {
-                        addCarBtn.frame=CGRectMake(0, CGRectGetMaxY(msgBtn.frame)+5, addCarBtn.bounds.size.width, addCarBtn.bounds.size.height);
-                    }
+                    [self updateContainView:containView];
                 }
             }
         });

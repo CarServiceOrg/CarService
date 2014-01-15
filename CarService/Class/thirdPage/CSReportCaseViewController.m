@@ -76,7 +76,7 @@
     {
         UITextField* aField=(UITextField*)[view_ScrollView viewWithTag:101];
         if (aField) {
-            NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+            NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
             [formatter setDateFormat:@"yyyy-MM-dd"];
             NSString* formatStr=[formatter stringFromDate:[NSDate date]];
             [aField setText:formatStr];
