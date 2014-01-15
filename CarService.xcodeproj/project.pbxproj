@@ -344,6 +344,8 @@
 		E1C063E817E48D94003336B2 /* CSFifthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C063E717E48D94003336B2 /* CSFifthViewController.m */; };
 		E1C957D517F4332B005063AC /* shigubaoan_cankaogeshi.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C957D417F4332B005063AC /* shigubaoan_cankaogeshi.png */; };
 		E1C957D817F4ABBC005063AC /* CSPeccancyRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C957D717F4ABBC005063AC /* CSPeccancyRecordViewController.m */; };
+		E1CFFA1C188661F800C6C741 /* CSAddConsumeRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CFFA1A188661F800C6C741 /* CSAddConsumeRecordViewController.m */; };
+		E1CFFA1D188661F800C6C741 /* CSAddConsumeRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1CFFA1B188661F800C6C741 /* CSAddConsumeRecordViewController.xib */; };
 		E1D043C517E6DCC2008CBE90 /* ApplicationPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043B317E6DCC2008CBE90 /* ApplicationPublic.m */; };
 		E1D043C617E6DCC2008CBE90 /* CSLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D043B717E6DCC2008CBE90 /* CSLogInViewController.m */; };
 		E1D043C717E6DCC2008CBE90 /* CSLogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D043B817E6DCC2008CBE90 /* CSLogInViewController.xib */; };
@@ -1048,6 +1050,9 @@
 		E1C957D417F4332B005063AC /* shigubaoan_cankaogeshi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shigubaoan_cankaogeshi.png; sourceTree = "<group>"; };
 		E1C957D617F4ABBC005063AC /* CSPeccancyRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPeccancyRecordViewController.h; sourceTree = "<group>"; };
 		E1C957D717F4ABBC005063AC /* CSPeccancyRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPeccancyRecordViewController.m; sourceTree = "<group>"; };
+		E1CFFA19188661F800C6C741 /* CSAddConsumeRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAddConsumeRecordViewController.h; sourceTree = "<group>"; };
+		E1CFFA1A188661F800C6C741 /* CSAddConsumeRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAddConsumeRecordViewController.m; sourceTree = "<group>"; };
+		E1CFFA1B188661F800C6C741 /* CSAddConsumeRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAddConsumeRecordViewController.xib; sourceTree = "<group>"; };
 		E1D043B217E6DCC2008CBE90 /* ApplicationPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationPublic.h; sourceTree = "<group>"; };
 		E1D043B317E6DCC2008CBE90 /* ApplicationPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationPublic.m; sourceTree = "<group>"; };
 		E1D043B617E6DCC2008CBE90 /* CSLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLogInViewController.h; sourceTree = "<group>"; };
@@ -1920,6 +1925,9 @@
 				E1D044CF17E741A9008CBE90 /* CSMyConsumeRecordViewController.h */,
 				E1D044D017E741A9008CBE90 /* CSMyConsumeRecordViewController.m */,
 				E1D044D117E741A9008CBE90 /* CSMyConsumeRecordViewController.xib */,
+				E1CFFA19188661F800C6C741 /* CSAddConsumeRecordViewController.h */,
+				E1CFFA1A188661F800C6C741 /* CSAddConsumeRecordViewController.m */,
+				E1CFFA1B188661F800C6C741 /* CSAddConsumeRecordViewController.xib */,
 				E1D044D417E74558008CBE90 /* CSMyConsumeRecordCell.h */,
 				E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */,
 				E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */,
@@ -2729,6 +2737,7 @@
 				E53ABB6417E0F10D0096754D /* popover-black-right-arrow-image@2x.png in Resources */,
 				E14FBDF1187C734400C6C466 /* new_xiaofeijilu_fanhui_dianjianniu.png in Resources */,
 				E53ABB6517E0F10D0096754D /* popover-black-top-arrow-image.png in Resources */,
+				E1CFFA1D188661F800C6C741 /* CSAddConsumeRecordViewController.xib in Resources */,
 				E53ABB6617E0F10D0096754D /* popover-black-top-arrow-image@2x.png in Resources */,
 				E53ABBD317E0FAF50096754D /* yinhangzhuanyong_xuxian.png in Resources */,
 				E14FBE11187C734400C6C466 /* shouye_xiaofeijilu_tubiao02.png in Resources */,
@@ -3104,6 +3113,7 @@
 				E53ABA9217E0E0E10096754D /* ASIDownloadCache.m in Sources */,
 				E53ABA9317E0E0E10096754D /* ASIFormDataRequest.m in Sources */,
 				E53ABA9417E0E0E10096754D /* ASIHTTPRequest.m in Sources */,
+				E1CFFA1C188661F800C6C741 /* CSAddConsumeRecordViewController.m in Sources */,
 				E53ABA9517E0E0E10096754D /* ASIInputStream.m in Sources */,
 				E53ABA9617E0E0E10096754D /* ASINetworkQueue.m in Sources */,
 				E53ABA9717E0E0E10096754D /* Reachability.m in Sources */,
