@@ -9,6 +9,7 @@
 #import "CSMyConsumeRecordViewController.h"
 #import "CSMyConsumeRecordCell.h"
 #import "CSAppDelegate.h"
+#import "CSAddConsumeRecordViewController.h"
 
 @interface CSMyConsumeRecordViewController ()
 
@@ -36,6 +37,8 @@
 - (void)showHeaderView:(BOOL)show;
 - (IBAction)datePickerButtonPressed:(id)sender;
 - (IBAction)headerButtonPressed:(id)sender;
+- (IBAction)addConsumeRecordButtonPressed:(id)sender;
+- (void)dataChanged:(NSNotification *)notify;
 
 @end
 
@@ -101,6 +104,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     [headerView release];
     [contentTableView release];
     [recordRuest clearDelegatesAndCancel];
@@ -123,10 +127,22 @@
     [super dealloc];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //[self loadContent];
+}
+
+- (void)dataChanged:(NSNotification *)notify
+{
+    [self loadContent];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged:) name:ConsumeRecordChangeNotification object:nil];
     self.navigationItem.leftBarButtonItem = [self getBackItem];
     self.navigationItem.title = @"消费记录";
     self.rightButtonItem = [self getRithtItem:@"筛选"];
@@ -366,6 +382,13 @@
 - (IBAction)rightButtonItemPressed:(id)sender
 {
     [self loadContent];
+}
+
+- (IBAction)addConsumeRecordButtonPressed:(id)sender
+{
+    CSAddConsumeRecordViewController *controller = [[CSAddConsumeRecordViewController alloc] initWithTypeDic:self.classArray];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (IBAction)headerButtonPressed:(id)sender
