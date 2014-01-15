@@ -472,12 +472,12 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         [weatherImgView release];
         
         //日期
-        x=0; y=50; width=100; height=20;
+        x=0; y=50; width=80; height=20;
         NSString *string_time=@"";
         NSString *week_day=@"";
         [self setUpLabel:weatherView with_tag:1004 with_frame:CGRectMake(x, y, width, height) with_text:string_time with_Alignment:NSTextAlignmentCenter fontSize:12];
         //星期几
-        x=x+width-10; width=40;
+        x=x+width; width=60;
         [self setUpLabel:weatherView with_tag:1005 with_frame:CGRectMake(x, y, width, height) with_text:week_day with_Alignment:NSTextAlignmentCenter fontSize:12];
         {
             NSDate *date = [NSDate date];
@@ -574,7 +574,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         welComeText_ImgView.alpha=0.0;
         
         //248 × 85
-        x=0; y=20; width=248/2.0; height=85/2.0;
+        x=0; y=25; width=248/2.0-15; height=85/2.0-10;
         UIImageView* welCome_ImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         welCome_ImgView.tag=1000;
         [welCome_ImgView setImage:[UIImage imageNamed:@"welcome.png"]];
@@ -1615,7 +1615,10 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         if (superView) {
             if ([[superView viewWithTag:labelTag] isKindOfClass:[UILabel class]]) {
                 UILabel* aLabel=(UILabel*)[superView viewWithTag:labelTag];
-                aLabel.text=[NSString stringWithFormat:@"%@",text];
+                if (aLabel) {
+                    aLabel.backgroundColor=[UIColor clearColor];
+                    aLabel.text=[NSString stringWithFormat:@"%@",text];
+                }
             }else if ([[superView viewWithTag:labelTag] isKindOfClass:[UIImageView class]]){
                 UIImageView* aImgView=(UIImageView*)[superView viewWithTag:labelTag];
                 if (aImgView) {
