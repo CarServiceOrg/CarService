@@ -316,16 +316,18 @@ static float CSTaoCanListViewController_title_font=12.0;
         //时间
         UILabel* timeLabel=(UILabel*)[cell.contentView viewWithTag:1002];
         if (timeLabel) {
-            NSDate* date=[NSDate dateWithTimeIntervalSince1970:[time intValue]];
-            NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
-            [formatter setDateFormat:@"yyyy-MM-dd"];
-            NSString* formatStr=[formatter stringFromDate:date];
-            timeLabel.text=[NSString stringWithFormat:@"%@",formatStr];
+            //NSDate* date=[NSDate dateWithTimeIntervalSince1970:[time intValue]];
+            //NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+            //[formatter setDateFormat:@"yyyy-MM-dd"];
+            //NSString* formatStr=[formatter stringFromDate:date];
+            //timeLabel.text=[NSString stringWithFormat:@"%@",formatStr];
+            timeLabel.text=[NSString stringWithFormat:@"%@",time];
             
             x=CSTaoCanListViewController_cell_Image_length+CSTaoCanListViewController_cell_title_length;
             y=0;
             width=CSTaoCanListViewController_cell_text_width;
-            height=[self heigtForString:formatStr with_width:CSTaoCanListViewController_cell_text_width];
+            //height=[self heigtForString:formatStr with_width:CSTaoCanListViewController_cell_text_width];
+            height=[self heigtForString:time with_width:CSTaoCanListViewController_cell_text_width];
             timeLabel.frame=CGRectMake(x, y, width, height);
         }
         if ([cell.contentView viewWithTag:2001]) {

@@ -258,7 +258,6 @@
 -(void)startHttpRequest{
     {
         self.alertView.mode = MBProgressHUDModeText;
-        self.alertView.color=[UIColor darkGrayColor];
         self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
         [self.alertView show:YES];
     }
@@ -266,7 +265,10 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL backBool=[self startHttpRequest_report];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.alertView hide:YES];
+            
+            self.alertView.labelText = NSLocalizedString(@"提交成功...", nil);
+            [self.alertView show:YES];
+            [self.alertView hide:YES afterDelay:2.0];
             if (backBool) {
                 [self backBtnClick:nil];
             }else{
