@@ -479,6 +479,22 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
         //星期几
         x=x+width-10; width=40;
         [self setUpLabel:weatherView with_tag:1005 with_frame:CGRectMake(x, y, width, height) with_text:week_day with_Alignment:NSTextAlignmentCenter fontSize:12];
+        {
+            NSDate *date = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateStyle:NSDateFormatterMediumStyle];
+            [formatter setTimeStyle:NSDateFormatterShortStyle];
+            [formatter setDateFormat:@"YYYY-MM-dd"];
+             string_time = [formatter stringFromDate:date];
+            [formatter setDateFormat:@"EEEE"];
+             week_day = [formatter stringFromDate:date];
+            [formatter release];
+
+            //日期
+            [self updateTextForLabel:[NSString stringWithFormat:@"%@",string_time] with_superViewTag:201 with_LabelTag:1004];
+            //星期几
+            [self updateTextForLabel:[NSString stringWithFormat:@"%@",week_day] with_superViewTag:201 with_LabelTag:1005];
+        }
         
         //明日限行
         x=0; y=70+2; width=90; height=28;
@@ -1427,7 +1443,10 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 -(void)startHttpRequest{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self request_TrafficControls];
-        [self request_weather];
+        //七日天气 但是2G下获取失败
+        //[self request_weather_first];
+        //今日天气
+        [self request_weather_second];
     });
 }
 
@@ -1468,13 +1487,19 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
     [request startAsynchronous];
 }
 
-//今日天气
--(void)request_weather
+-(void)request_weather_first
 {
     NSString *urlStr = [URL_Weather stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
     [request setTimeOutSeconds:60.0];
-    [request setRequestMethod:@"Get"];
+    [request setRequestMethod:@"GET"];
+    
+    [request addRequestHeader:@"Accept-Language" value:@"zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4,zh-TW;q=0.2\r\n"];
+    [request addRequestHeader:@"Accept" value:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n"];
+    [request addRequestHeader:@"Accept-Encoding" value:@"gzip,deflate,sdch\r\n"];
+    [request addRequestHeader:@"Connection" value:@"keep-alive\r\n"];
+    [request addRequestHeader:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36\r\n" value:@" User-Agent"];
+    
     [request setCompletionBlock:^{
         NSDictionary *requestDic =[[request responseString] JSONValue];
         CustomLog(@"<<Chao-->CSFirstViewController-->request_weather-->requestDic:%@",requestDic);
@@ -1541,6 +1566,46 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
     [request startAsynchronous];
 }
 
+-(void)request_weather_second
+{
+    NSString *urlStr = [URL_Weather_second stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"GET"];
+    
+    [request setCompletionBlock:^{
+        NSDictionary *requestDic =[[request responseString] JSONValue];
+        CustomLog(@"<<Chao-->CSFirstViewController-->request_weather-->requestDic:%@",requestDic);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([requestDic objectForKey:@"weatherinfo"]) {
+                NSDictionary* backDict=[requestDic objectForKey:@"weatherinfo"];
+                self.m_weatherDict=backDict;
+                
+                //天气
+                if ([backDict objectForKey:@"weather"]) {
+                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",[backDict objectForKey:@"weather"]] with_superViewTag:201 with_LabelTag:1002];
+                }
+                
+                //天气图片 1008
+                if ([backDict objectForKey:@"weather"]) {
+                    NSString* weather1_str=[backDict objectForKey:@"weather"];
+                    [self updateTextForLabel:[NSString stringWithFormat:@"%@",weather1_str] with_superViewTag:201 with_LabelTag:1008];
+                }
+                
+                //温度 1009
+                if ([backDict objectForKey:@"temp1"] && [backDict objectForKey:@"temp2"]) {
+                    [self updateTextForLabel_weather:[NSString stringWithFormat:@"%@~%@",[backDict objectForKey:@"temp1"],[backDict objectForKey:@"temp2"]] with_superViewTag:201 with_LabelTag:1009];
+                }
+            }
+        });
+    }];
+    [request setFailedBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载天气数据失败，请检验网络！", nil) with_type:TSMessageNotificationTypeError];
+        });
+    }];
+    [request startAsynchronous];
+}
 
 -(void)updateTextForLabel:(NSString*)text with_superViewTag:(int)superTag  with_LabelTag:(int)labelTag
 {
