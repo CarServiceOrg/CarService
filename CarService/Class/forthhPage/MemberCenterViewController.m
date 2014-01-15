@@ -71,9 +71,6 @@
 {
     //刷新消息数目
     [super viewWillAppear:animated];
-    CSFirstViewController *controller = (CSFirstViewController *)[self.parentController.navigationController.viewControllers objectAtIndex:0];
-    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateNormal];
-    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateHighlighted];
 }
 
 - (void)viewDidLoad
@@ -92,8 +89,18 @@
         }
         else
         {
-            self.timeLabel.text = [NSString stringWithFormat:@"%@,%@",[controller.m_weatherDict objectForKey:@"date_y"],[controller.m_weatherDict objectForKey:@"week"]];
-            self.weatherLabel.text = [NSString stringWithFormat:@"%@  %@",[controller.m_weatherDict objectForKey:@"weather1"],[controller.m_weatherDict objectForKey:@"temp1"]];
+            NSDate *date = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateStyle:NSDateFormatterMediumStyle];
+            [formatter setTimeStyle:NSDateFormatterShortStyle];
+            [formatter setDateFormat:@"YYYY-MM-dd"];
+            NSString* string_time = [formatter stringFromDate:date];
+            [formatter setDateFormat:@"EEEE"];
+            NSString* week_day = [formatter stringFromDate:date];
+            [formatter release];
+            
+            self.timeLabel.text = [NSString stringWithFormat:@"%@,%@",string_time,week_day];
+            self.weatherLabel.text = [NSString stringWithFormat:@"%@  %@~%@",[controller.m_weatherDict objectForKey:@"weather"],[controller.m_weatherDict objectForKey:@"temp1"],[controller.m_weatherDict objectForKey:@"temp2"]];
         }
         
         NSDictionary *userInfo = [[Util sharedUtil] getUserInfo];
@@ -110,6 +117,10 @@
             self.sexImageView.frame = CGRectMake(self.sexImageView.frame.origin.x, self.sexImageView.frame.origin.y, 12, 18);
 
         }
+        
+        [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateNormal];
+        [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateHighlighted];
+
     }
 }
 
