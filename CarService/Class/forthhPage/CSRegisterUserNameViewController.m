@@ -78,6 +78,9 @@
     tapReconginzer.numberOfTouchesRequired = 1;
     [self.backView addGestureRecognizer:tapReconginzer];
     [tapReconginzer release];
+    
+    //[self.phoneNumberField becomeFirstResponder];
+    //[self keyboardWillShow:nil];
 
 }
 
@@ -126,7 +129,7 @@
             if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder] || [self.checkSecretCodeField isFirstResponder])
             {
                 CustomLog(@"Do Nothing");
-                self.backView.frame = CGRectMake(0, -50, self.backView.frame.size.width, self.backView.frame.size.height);
+                self.backView.frame = CGRectMake(0, -65, self.backView.frame.size.width, self.backView.frame.size.height);
             }
         }
         else
