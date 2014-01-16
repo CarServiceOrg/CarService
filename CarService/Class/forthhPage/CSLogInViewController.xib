@@ -159,7 +159,7 @@
                     </connections>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NsU-AL-Iri">
-                    <rect key="frame" x="10" y="25" width="35" height="35"/>
+                    <rect key="frame" x="8" y="25" width="34" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                     <state key="normal" backgroundImage="new_xiaofeijilu_fanhui_anniu.png">
