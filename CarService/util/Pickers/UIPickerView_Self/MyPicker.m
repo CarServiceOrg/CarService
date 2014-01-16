@@ -42,8 +42,12 @@
 	
 	//4-选择区域的背景颜色; 0-大背景的颜色; 1-选择框左边的颜色; 2-? ;3-?; 5-滚动区域的颜色 回覆盖数据
 	//6-选择框的背景颜色 7-选择框左边的颜色 8-整个View的颜色 会覆盖所有的图片
-    UIView *subViewInPicker = [[self subviews] objectAtIndex:4];
-	[subViewInPicker setBackgroundColor:[UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0]];
+    if (IsIOS6OrLower) {
+        UIView *subViewInPicker = [[self subviews] objectAtIndex:4];
+        [subViewInPicker setBackgroundColor:[UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0]];
+    }else{
+        
+    }
     
     //layer覆盖选择框
     CGFloat color[4] = {203/255.0, 203/255.0, 203/255.0, 1};
