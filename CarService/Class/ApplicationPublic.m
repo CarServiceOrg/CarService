@@ -87,7 +87,7 @@
     [textLabel setBackgroundColor:[UIColor clearColor]];
     [textLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
     [textLabel setTextAlignment:NSTextAlignmentCenter];
-    [textLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
+    [textLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
     [textLabel setTextColor:[UIColor whiteColor]];
     [textLabel setLineBreakMode:NSLineBreakByTruncatingMiddle];
     [textLabel setText:titleStr];

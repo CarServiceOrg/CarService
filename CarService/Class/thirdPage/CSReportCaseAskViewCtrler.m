@@ -81,7 +81,7 @@ static inline NSRegularExpression * ParenthesisRegularExpression() {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [ApplicationPublic selfDefineBg:self.view];
-    [ApplicationPublic selfDefineNavigationBar:self.view title:@"事故报道" withTarget:self with_action:@selector(backBtnClicked:)];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"事故报案" withTarget:self with_action:@selector(backBtnClicked:)];
     [self initSetUpTableView:self.view.bounds];
 }
 

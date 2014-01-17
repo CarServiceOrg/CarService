@@ -50,7 +50,7 @@
     UIButton* photoBtn=[[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 32, 32)] autorelease];
     [photoBtn setBackgroundImage:[UIImage imageNamed:@"new_baoanzhaoxiang_zhaoxianganniu.png"] forState:UIControlStateNormal];
     [photoBtn addTarget:self action:@selector(photeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [ApplicationPublic selfDefineNavigationBar:self.view title:@"事故咨询" withTarget:self with_action:@selector(backBtnClick:) rightBtn:photoBtn];
+    [ApplicationPublic selfDefineNavigationBar:self.view title:@"事故报案" withTarget:self with_action:@selector(backBtnClick:) rightBtn:photoBtn];
     
     float x, y, width, height;
     
@@ -164,8 +164,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     // Do any additional setup after loading the view.
-    self.view.backgroundColor=[UIColor scrollViewTexturedBackgroundColor];
-    self.title=@"事故报案";
     [self init_selfView];
 }
 
