@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CommonViewController.h"
 
+#define UserInfoChangeNotification @"UserInfoChangeNotification"
 @interface CSMyProfileViewController : CommonViewController
 
 

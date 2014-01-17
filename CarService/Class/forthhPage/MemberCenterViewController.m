@@ -56,6 +56,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.contentTableView = nil;
     [logoutRequest clearDelegatesAndCancel];
     [logoutRequest release];
@@ -71,14 +72,13 @@
 {
     //刷新消息数目
     [super viewWillAppear:animated];
+
 }
 
-- (void)viewDidLoad
+- (void)reloadContent
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.contentTableView.tableFooterView = [self getFooterView];
-    CSFirstViewController *controller = (CSFirstViewController *)[self.parentController.navigationController.viewControllers objectAtIndex:0];
+    //CSFirstViewController *controller = (CSFirstViewController *)[self.parentController.navigationController.viewControllers objectAtIndex:0];
+    CSFirstViewController *controller = [CSFirstViewController getCommonFirstController];
     if ([controller isKindOfClass:[CSFirstViewController class]])
     {
         CustomLog(@"set message and weather info");
@@ -103,25 +103,41 @@
             self.weatherLabel.text = [NSString stringWithFormat:@"%@  %@~%@",[controller.m_weatherDict objectForKey:@"weather"],[controller.m_weatherDict objectForKey:@"temp1"],[controller.m_weatherDict objectForKey:@"temp2"]];
         }
         
-        NSDictionary *userInfo = [[Util sharedUtil] getUserInfo];
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ ,你好",[userInfo objectForKey:@"username"]];
-        if ([[userInfo objectForKey:@"sex"] isEqualToString:@"1"])
-        {
-            self.sexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nantubiao.png"];
-            self.sexImageView.frame = CGRectMake(self.sexImageView.frame.origin.x, self.sexImageView.frame.origin.y, 18, 18);
-
-        }
-        else
-        {
-            self.sexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nvtubiao.png"];
-            self.sexImageView.frame = CGRectMake(self.sexImageView.frame.origin.x, self.sexImageView.frame.origin.y, 12, 18);
-
-        }
-        
-        [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateNormal];
-        [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateHighlighted];
-
     }
+    NSDictionary *userInfo = [[Util sharedUtil] getUserInfo];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ ,你好",[userInfo objectForKey:@"username"]];
+    if ([[userInfo objectForKey:@"sex"] isEqualToString:@"0"])
+    {
+        self.sexImageView.hidden = YES;
+        
+    }
+    else if ([[userInfo objectForKey:@"sex"] isEqualToString:@"1"])
+    {
+        self.sexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nantubiao.png"];
+        self.sexImageView.frame = CGRectMake(self.sexImageView.frame.origin.x, self.sexImageView.frame.origin.y, 18, 18);
+        self.sexImageView.hidden = NO;
+        
+    }
+    else
+    {
+        self.sexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nvtubiao.png"];
+        self.sexImageView.frame = CGRectMake(self.sexImageView.frame.origin.x, self.sexImageView.frame.origin.y, 12, 18);
+        self.sexImageView.hidden = NO;
+        
+    }
+    
+    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateNormal];
+    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateHighlighted];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.contentTableView.tableFooterView = [self getFooterView];
+    [self reloadContent];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadContent) name:UserInfoChangeNotification object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning

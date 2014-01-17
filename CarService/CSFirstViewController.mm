@@ -34,6 +34,8 @@ static UIColor* BtnTitleColorBlue=[UIColor colorWithRed:56/255.0 green:127/255.0
 static UIColor* BtnTitleColorWhite=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
 static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 blue:0x41/255.0 alpha:1.0];
 
+static CSFirstViewController *theOnlyController = nil;
+
 @interface CSFirstViewController ()<CSLogInViewController_Delegate,UINavigationControllerDelegate>
 {
     UIViewController* _curPresentViewCtrler; //当前导航正处于preset的视图
@@ -48,6 +50,12 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 @synthesize m_msgArray;
 
 #pragma mark - view lifecycle
+
++ (CSFirstViewController *)getCommonFirstController
+{
+    return theOnlyController;
+}
+
 -(void)init_NaviView
 {
     [ApplicationPublic selfDefineNaviBar:self.navigationController.navigationBar];
@@ -827,6 +835,7 @@ static UIColor* MsgTextColor=[UIColor colorWithRed:0x1e/255.0 green:0xf1/255.0 b
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    theOnlyController = self;
     self.view.backgroundColor=[UIColor blackColor];
     self.navigationController.navigationBar.hidden=YES;
 	// Do any additional setup after loading the view, typically from a nib.

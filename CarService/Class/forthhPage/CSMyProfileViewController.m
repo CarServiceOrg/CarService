@@ -73,15 +73,22 @@
     self.backView.hidden = NO;
     self.nameLabel.text = [self.userInfo objectForKey:@"username"];
     self.ageField.text = [self.userInfo objectForKey:@"age"];
-    if ([[self.userInfo objectForKey:@"sex"] isEqualToString:@"1"])
+    if ([[self.userInfo objectForKey:@"sex"] isEqualToString:@"0"])
+    {
+        self.sexLabel.text = @"保密";
+        self.headerSexImageView.hidden = YES;
+    }
+    else if ([[self.userInfo objectForKey:@"sex"] isEqualToString:@"1"])
     {
         self.sexLabel.text = @"男";
+        self.headerSexImageView.hidden = NO;
         self.headerSexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nantubiao.png"];
         self.headerSexImageView.frame = CGRectMake(self.headerSexImageView.frame.origin.x, self.headerSexImageView.frame.origin.y, 18, 18);
     }
     else
     {
         self.sexLabel.text = @"女";
+        self.headerSexImageView.hidden = NO;
         self.headerSexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nvtubiao.png"];
         self.headerSexImageView.frame = CGRectMake(self.headerSexImageView.frame.origin.x, self.headerSexImageView.frame.origin.y, 12, 18);
     }
@@ -130,6 +137,7 @@
     {
         case 0:
             self.userInfo = [NSMutableDictionary dictionaryWithDictionary:[requestDic objectForKey:@"list"]];
+            [[Util sharedUtil] setLoginUserInfo:self.userInfo];
             [self reloadContent];
             break;
         case 2:
@@ -169,7 +177,16 @@
 
     NSString *uid = [dic objectForKey:@"id"];
     NSString *sessionId = [dic objectForKey:@"session_id"];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"edit_user_info",@"action",uid,@"user_id",sessionId,@"session_id",self.nameLabel.text,@"username",self.ageField.text,@"age",self.sexLabel.text,@"sex",self.phoneField.text,@"phone",self.driverLecenseField.text,@"drivecard", nil];
+    NSString *sexTip = @"0";
+    if ([self.sexLabel.text isEqualToString:@"男"])
+    {
+        sexTip = @"1";
+    }
+    else if ([self.sexLabel.text isEqualToString:@"女"])
+    {
+        sexTip = @"2";
+    }
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"edit_user_info",@"action",uid,@"user_id",sessionId,@"session_id",self.nameLabel.text,@"username",self.ageField.text,@"age",sexTip,@"sex",self.phoneField.text,@"phone",self.driverLecenseField.text,@"drivecard", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
@@ -203,6 +220,23 @@
     {
         case 0:
             [[Util sharedUtil] showAlertWithTitle:@"" message:@"修改成功!"];
+            NSMutableDictionary *newProfileDic = [NSMutableDictionary dictionaryWithDictionary:[[Util sharedUtil] getUserInfo]];
+            [newProfileDic setObject:nameLabel.text forKey:@"username"];
+            [newProfileDic setObject:ageField.text forKey:@"age"];
+            [newProfileDic setObject:phoneField.text forKey:@"phone"];
+            [newProfileDic setObject:driverLecenseField.text forKey:@"drivecard"];
+            NSString *sexTip = @"0";
+            if ([sexLabel.text isEqualToString:@"男"])
+            {
+                sexTip = @"1";
+            }
+            else if([sexLabel.text isEqualToString:@"女"])
+            {
+                sexTip = @"2";
+            }
+            [newProfileDic setObject:sexTip forKey:@"sex"];
+            [[Util sharedUtil] setLoginUserInfo:newProfileDic];
+            [[NSNotificationCenter defaultCenter ] postNotificationName:UserInfoChangeNotification object:nil];
             [self.navigationController popViewControllerAnimated:YES];
             break;
         case 2:
@@ -238,9 +272,16 @@
 {
     if ([self.pickerView selectedRowInComponent:0] == 0)
     {
+        [self.userInfo setObject:@"保密" forKey:@"sex"];
+        self.headerSexImageView.hidden = YES;
+        
+    }
+    else if ([self.pickerView selectedRowInComponent:0] == 1)
+    {
         [self.userInfo setObject:@"男" forKey:@"sex"];
         self.headerSexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nantubiao.png"];
         self.headerSexImageView.frame = CGRectMake(self.headerSexImageView.frame.origin.x, self.headerSexImageView.frame.origin.y, 12, 18);
+        self.headerSexImageView.hidden = NO;
 
     }
     else
@@ -248,6 +289,7 @@
         [self.userInfo setObject:@"女" forKey:@"sex"];
         self.headerSexImageView.image = [UIImage imageNamed:@"new_gerenziliao_nvtubiao.png"];
         self.headerSexImageView.frame = CGRectMake(self.headerSexImageView.frame.origin.x, self.headerSexImageView.frame.origin.y, 12, 18);
+        self.headerSexImageView.hidden = NO;
 
     }
 
@@ -285,6 +327,16 @@
         self.dataPickerView.frame = CGRectMake(0, 0, 320, delegate.window.frame.size.height);
     }];
     [self.pickerView reloadAllComponents];
+    int row = 0;
+    if ([self.sexLabel.text isEqualToString:@"男"])
+    {
+        row = 1;
+    }
+    else if ([self.sexLabel.text isEqualToString:@"女"])
+    {
+        row = 2;
+    }
+    [self.pickerView selectRow:row inComponent:0 animated:NO];
 }
 
 - (void)dealloc
@@ -394,9 +446,13 @@
 {
     if (row == 0)
     {
-        return @"男";
+        return @"保密";
     }
     else if (row == 1)
+    {
+        return @"男";
+    }
+    else if (row == 2)
     {
         return @"女";
     }
@@ -418,7 +474,7 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return 2;
+    return 3;
 }
 
 @end

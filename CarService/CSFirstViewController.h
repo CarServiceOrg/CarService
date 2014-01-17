@@ -18,4 +18,6 @@
 @property(nonatomic,retain)NSDictionary* m_weatherDict; //天气
 @property(nonatomic,retain)NSMutableArray* m_msgArray; //消息数组
 
++ (CSFirstViewController *)getCommonFirstController;
+
 @end
