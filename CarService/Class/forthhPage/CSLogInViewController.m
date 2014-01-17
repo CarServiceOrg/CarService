@@ -123,6 +123,16 @@
     //[self.userNameField becomeFirstResponder];
 //    self.userNameField.text=@"15101059823";
 //    self.passwordField.text=@"1";
+    if (Is_iPhone5)
+    {
+        self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - (AnimationChangeHeight - DeviceDiffHeight), self.backView.frame.size.width, self.backView.frame.size.height);
+    }
+    else
+    {
+        self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 100, self.backView.frame.size.width, self.backView.frame.size.height);
+
+    }
+
 }
 
 - (void)hideKeyBoard
@@ -199,8 +209,8 @@
 - (IBAction)registerButtonPressed:(id)sender
 {
     CustomLog(@"enter register view controller");
-    //[self.userNameField resignFirstResponder];
-    //[self.passwordField resignFirstResponder];
+    [self.userNameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
     if ([self.parentController isKindOfClass:[CSForthViewController class]]) {
         CSRegisterUserNameViewController *controller = [[CSRegisterUserNameViewController alloc] initWithNibName:@"CSRegisterUserNameViewController" bundle:nil];
         [self.parentController.navigationController pushViewController:controller animated:YES];
@@ -353,12 +363,12 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - (AnimationChangeHeight - DeviceDiffHeight), self.backView.frame.size.width, self.backView.frame.size.height);
+            //self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - (AnimationChangeHeight - DeviceDiffHeight), self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
         else
         {
-            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - AnimationChangeHeight, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 135, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
     }];
@@ -377,11 +387,11 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            self.backView.frame = CGRectMake(self.backView.frame.origin.x, 0, self.backView.frame.size.width, self.backView.frame.size.height);
+            //self.backView.frame = CGRectMake(self.backView.frame.origin.x, 0, self.backView.frame.size.width, self.backView.frame.size.height);
         }
         else
         {
-            self.backView.frame = CGRectMake(self.backView.frame.origin.x, 0, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(self.backView.frame.origin.x, -100, self.backView.frame.size.width, self.backView.frame.size.height);
         }
     }];
 

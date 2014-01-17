@@ -12,5 +12,6 @@
 
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)registerButtonPressed:(id)sender;
+- (IBAction)loginButtonPressed:(id)sender;
 
 @end

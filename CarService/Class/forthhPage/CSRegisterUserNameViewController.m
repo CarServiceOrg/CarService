@@ -66,7 +66,13 @@
     self.contentScrollView.contentSize = CGSizeMake(320, self.view.frame.size.height - 40 );
     if (Is_iPhone5)
     {
-       // self.inputBackView.frame = 
+       // self.inputBackView.frame =
+        self.backView.frame = CGRectMake(0, -40, self.backView.frame.size.width, self.backView.frame.size.height);
+
+    }
+    else
+    {
+        self.backView.frame = CGRectMake(0, -60, self.backView.frame.size.width, self.backView.frame.size.height);
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -100,7 +106,7 @@
         }
         else*/
         {
-            self.phoneNumberBackView.frame = CGRectMake(self.phoneNumberBackView.frame.origin.x, startY, self.phoneNumberBackView.frame.size.width, self.phoneNumberBackView.frame.size.height);
+            /*self.phoneNumberBackView.frame = CGRectMake(self.phoneNumberBackView.frame.origin.x, startY, self.phoneNumberBackView.frame.size.width, self.phoneNumberBackView.frame.size.height);
             self.phoneNumberField.frame = CGRectMake(self.phoneNumberField.frame.origin.x, startY + 1, self.phoneNumberField.frame.size.width, self.phoneNumberField.frame.size.height);
             self.secretCodeBackView.frame = CGRectMake(self.secretCodeBackView.frame.origin.x, startY + 40,self.secretCodeBackView.frame.size.width, self.secretCodeBackView.frame.size.height);
             self.secretCodeField.frame = CGRectMake(self.secretCodeField.frame.origin.x, startY + 40, self.secretCodeField.frame.size.width, self.secretCodeField.frame.size.height);
@@ -108,7 +114,8 @@
             self.checkSecretCodeField.frame = CGRectMake(self.checkSecretCodeField.frame.origin.x, startY + 80, self.checkSecretCodeField.frame.size.width, self.checkSecretCodeField.frame.size.height);
             self.registerButton.frame = CGRectMake(self.registerButton.frame.origin.x, startY + 140, self.registerButton.frame.size.width, self.registerButton.frame.size.height);
         
-
+*/
+            self.backView.frame = CGRectMake(0, startY, self.backView.frame.size.width, self.backView.frame.size.height);
         }
     }];
 
@@ -129,19 +136,21 @@
             if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder] || [self.checkSecretCodeField isFirstResponder])
             {
                 CustomLog(@"Do Nothing");
-                self.backView.frame = CGRectMake(0, -65, self.backView.frame.size.width, self.backView.frame.size.height);
+               // self.backView.frame = CGRectMake(0, -65, self.backView.frame.size.width, self.backView.frame.size.height);
             }
         }
         else
         {
-            if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder])
+            /*if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder])
             {
                 CustomLog(@"Do Nothing");
             }
             else if ([self.checkSecretCodeBackView isFirstResponder])
             {
                 [self adjustSubView:-40];
-            }
+            }*/
+            self.backView.frame = CGRectMake(0, -110, self.backView.frame.size.width, self.backView.frame.size.height);
+
         }
     }];
     
@@ -152,12 +161,14 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            self.backView.frame = CGRectMake(0, 41, self.backView.frame.size.width, self.backView.frame.size.height);
+            //self.backView.frame = CGRectMake(0, 41, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
         else
         {
-            [self adjustSubView:10];
+           // [self adjustSubView:10];
+            self.backView.frame = CGRectMake(0, -60, self.backView.frame.size.width, self.backView.frame.size.height);
+
         }
     }];
     
@@ -213,6 +224,17 @@
 
 - (IBAction)backButtonPressed:(id)sender
 {
+    [self.phoneNumberField resignFirstResponder];
+    [self.secretCodeField resignFirstResponder];
+    [self.checkSecretCodeField resignFirstResponder];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)loginButtonPressed:(id)sender
+{
+    [self.phoneNumberField resignFirstResponder];
+    [self.secretCodeField resignFirstResponder];
+    [self.checkSecretCodeField resignFirstResponder];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
