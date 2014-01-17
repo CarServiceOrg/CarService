@@ -511,6 +511,7 @@ static CSFirstViewController *theOnlyController = nil;
         x=x+width-3; y=y+(28-16)/2.0; width=15; height=16;
         {
             UIImageView* bgImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            bgImgView.tag=2006;
             //[bgImgView setImage:[UIImage imageNamed:@"shouye_shuzi_bg.png"]];
             [weatherView addSubview:bgImgView];
             [bgImgView release];
@@ -520,11 +521,13 @@ static CSFirstViewController *theOnlyController = nil;
             bgImgView.layer.cornerRadius=4.0;
             bgImgView.layer.borderWidth=0.5;
             bgImgView.layer.borderColor=[UIColor whiteColor].CGColor;
+            bgImgView.hidden=YES;
         }
-        [self setUpLabel:weatherView with_tag:1006 with_frame:CGRectMake(x, y, width, height) with_text:@"X" with_Alignment:NSTextAlignmentCenter];
+        [self setUpLabel:weatherView with_tag:1006 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentCenter];
         {
             UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1006];
             if (aLabel) {
+                aLabel.hidden=YES;
                 [aLabel setTextColor:[UIColor whiteColor]];
             }
         }
@@ -532,6 +535,7 @@ static CSFirstViewController *theOnlyController = nil;
         x=x+width+2;
         {
             UIImageView* bgImgView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+            bgImgView.tag=2007;
             //[bgImgView setImage:[UIImage imageNamed:@"shouye_shuzi_bg.png"]];
             [weatherView addSubview:bgImgView];
             [bgImgView release];
@@ -541,11 +545,26 @@ static CSFirstViewController *theOnlyController = nil;
             bgImgView.layer.cornerRadius=4.0;
             bgImgView.layer.borderWidth=0.5;
             bgImgView.layer.borderColor=[UIColor whiteColor].CGColor;
+            bgImgView.hidden=YES;
         }
-        [self setUpLabel:weatherView with_tag:1007 with_frame:CGRectMake(x, y, width, height) with_text:@"X" with_Alignment:NSTextAlignmentCenter];
+        
+        [self setUpLabel:weatherView with_tag:1007 with_frame:CGRectMake(x, y, width, height) with_text:@"" with_Alignment:NSTextAlignmentCenter];
         {
             UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1007];
             if (aLabel) {
+                aLabel.hidden=YES;
+                [aLabel setTextColor:[UIColor whiteColor]];
+            }
+        }
+        
+        //如果不限行时 显示无
+        x=0; y=70+2; width=90; height=28;
+        x=x+width; y=y+(28-16)/2.0; width=15*2; height=16;
+        [self setUpLabel:weatherView with_tag:1012 with_frame:CGRectMake(x, y, width, height) with_text:@"无" with_Alignment:NSTextAlignmentLeft];
+        {
+            UILabel* aLabel=(UILabel*)[weatherView viewWithTag:1012];
+            if (aLabel) {
+                aLabel.hidden=YES;
                 [aLabel setTextColor:[UIColor whiteColor]];
             }
         }
@@ -1467,24 +1486,25 @@ static CSFirstViewController *theOnlyController = nil;
     [request setTimeOutSeconds:60.0];
     [request setRequestMethod:@"POST"];
     [request setCompletionBlock:^{
-        //NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-        //NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        //CustomLog(@"<<Chao-->CSFirstViewController-->request_TrafficControls-->testResponseString:%@",testResponseString);
         NSDictionary *requestDic =[[request responseString] JSONValue];
         CustomLog(@"<<Chao-->CSFirstViewController-->request_TrafficControls-->requestDic:%@",requestDic);
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([requestDic objectForKey:@"str"]) {
                 NSString* backStr=[requestDic objectForKey:@"str"];
                 if ([backStr isEqualToString:@"-1"]) {
-                    
+                    [self updateTextForLabel_weather:@"无" with_superViewTag:201 with_LabelTag:1012];
                 }else{
                     if (backStr.length>0) {
-                        [self updateTextForLabel:[backStr substringWithRange:NSMakeRange(0, 1)] with_superViewTag:201 with_LabelTag:1006];
+                        [self updateTextForLabel_weather:[backStr substringWithRange:NSMakeRange(0, 1)] with_superViewTag:201 with_LabelTag:1006];
+                        [self updateTextForLabel_weather:[backStr substringWithRange:NSMakeRange(0, 1)] with_superViewTag:201 with_LabelTag:2006];
                     }
                     if (backStr.length>2) {
                         [self updateTextForLabel:[backStr substringWithRange:NSMakeRange(2, 1)] with_superViewTag:201 with_LabelTag:1007];
+                        [self updateTextForLabel_weather:[backStr substringWithRange:NSMakeRange(0, 1)] with_superViewTag:201 with_LabelTag:2007];
                     }
                 }
+            }else{
+                [self updateTextForLabel_weather:@"无" with_superViewTag:201 with_LabelTag:1012];
             }
         });
     }];
@@ -1625,6 +1645,7 @@ static CSFirstViewController *theOnlyController = nil;
             if ([[superView viewWithTag:labelTag] isKindOfClass:[UILabel class]]) {
                 UILabel* aLabel=(UILabel*)[superView viewWithTag:labelTag];
                 if (aLabel) {
+                    aLabel.hidden=NO;
                     aLabel.backgroundColor=[UIColor clearColor];
                     aLabel.text=[NSString stringWithFormat:@"%@",text];
                 }
@@ -1683,6 +1704,19 @@ static CSFirstViewController *theOnlyController = nil;
                         }
                         aLabel.text=[NSString stringWithFormat:@"%@",text];
                     }
+                }else{
+                    UILabel* aLabel=(UILabel*)[superView viewWithTag:labelTag];
+                    if (aLabel) {
+                        aLabel.hidden=NO;
+                        aLabel.backgroundColor=[UIColor clearColor];
+                        aLabel.text=[NSString stringWithFormat:@"%@",text];
+                    }
+                }
+            }else if ([[superView viewWithTag:labelTag] isKindOfClass:[UIImageView class]]){
+                UIImageView* aImgView=(UIImageView*)[superView viewWithTag:labelTag];
+                if (aImgView) {
+                    aImgView.hidden=NO;
+                    [aImgView setImage:[UIImage imageNamed:text]];
                 }
             }
         }
