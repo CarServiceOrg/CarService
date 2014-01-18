@@ -82,15 +82,12 @@
         [ApplicationPublic showMessage:[UIApplication sharedApplication].keyWindow.rootViewController with_title:@"网络错误" with_detail:@"加载我的信息数据失败，请检验您的网络！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
         return nil;
     }else{
-        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-        NSString *testResponseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding] autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_UserMessage-->testResponseString:%@",testResponseString);
-        
         NSDictionary *requestDic =[[request responseString] JSONValue];
         CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_UserMessage-->requestDic:%@",requestDic);
         if ([requestDic objectForKey:@"status"]) {
             if ([[requestDic objectForKey:@"status"] intValue]==1) {
-                [ApplicationPublic showMessage:[UIApplication sharedApplication].keyWindow.rootViewController with_title:@"错误" with_detail:@"加载我的信息数据失败！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                //[ApplicationPublic showMessage:[UIApplication sharedApplication].keyWindow.rootViewController with_title:@"错误" with_detail:@"加载我的信息数据失败！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                return [NSMutableArray arrayWithCapacity:3];
             }else if ([[requestDic objectForKey:@"status"] intValue]==0){
                 if ([requestDic objectForKey:@"list"]) {
                     return [NSMutableArray arrayWithArray:[requestDic objectForKey:@"list"]];

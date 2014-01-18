@@ -126,8 +126,8 @@
         
     }
     
-    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateNormal];
-    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller.m_msgArray count]] forState:UIControlStateHighlighted];
+    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller getMessageUnReadNumber]] forState:UIControlStateNormal];
+    [self.messageButton setTitle:[NSString stringWithFormat:@"%d条",[controller getMessageUnReadNumber]] forState:UIControlStateHighlighted];
 }
 
 - (void)viewDidLoad

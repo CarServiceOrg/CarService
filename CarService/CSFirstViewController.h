@@ -20,4 +20,7 @@
 
 + (CSFirstViewController *)getCommonFirstController;
 
+//未读信息数目
+-(int)getMessageUnReadNumber;
+
 @end
