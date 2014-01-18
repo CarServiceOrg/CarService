@@ -24,7 +24,7 @@
 
 #define CSCarManageViewController_cell_hegight 80
 #define CSCarManageViewController_CarSign   @"车牌号："
-#define CSCarManageViewController_CarStand  @"车架号："
+#define CSCarManageViewController_CarStand  @"发动机号："
 #define CSCarManageViewController_CarDate   @"初次登记日期："
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

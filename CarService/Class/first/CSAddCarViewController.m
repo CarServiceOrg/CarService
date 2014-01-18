@@ -33,7 +33,7 @@
     
     //车架号
     y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"车架号：" with_delegate:self];
+    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"发动机号：" with_delegate:self];
     
     //车架号
     y=y+height+15;
@@ -110,7 +110,7 @@
     if ([carStandStr length]==0) {
         [TSMessage showNotificationInViewController:self
                                               title:NSLocalizedString(@"错误", nil)
-                                           subtitle:NSLocalizedString(@"车架号不能为空！", nil)
+                                           subtitle:NSLocalizedString(@"发动机号不能为空！", nil)
                                               image:nil
                                                type:TSMessageNotificationTypeError
                                            duration:2.0

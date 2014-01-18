@@ -3331,7 +3331,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: yixuan li (43V7V9XCBH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: tuo zhang (7UTHN8A576)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yixuan li (43V7V9XCBH)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3350,7 +3350,7 @@
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "75CF0A84-03BD-41C8-A7DD-0D7AB6BBC3BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D4CDC2F-E7FF-402D-B845-F965305FFC41";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75CF0A84-03BD-41C8-A7DD-0D7AB6BBC3BA";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
