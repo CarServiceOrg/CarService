@@ -24,6 +24,7 @@
 @property (nonatomic,retain) IBOutlet UIView *backView;
 @property (nonatomic,retain) IBOutlet UIImageView *headerSexImageView;
 @property (nonatomic,retain) IBOutlet UILabel *headerNameLabel;
+@property (nonatomic,retain) IBOutlet UIButton *changeInfoButton;
 
 @end
 
@@ -41,6 +42,7 @@
 @synthesize backView;
 @synthesize headerNameLabel;
 @synthesize headerSexImageView;
+@synthesize changeInfoButton;
 
 - (id)initWithInfo:(NSMutableDictionary *)info
 {
@@ -101,6 +103,7 @@
 - (void)loadProfileInfo
 {
     self.backView.hidden = YES;
+    self.changeInfoButton.enabled = NO;
     [self.changeInfoRequest clearDelegatesAndCancel];
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
 
@@ -121,7 +124,7 @@
     [changeInfoRequest setDidFailSelector:@selector(profileRequestDidFailed:)];
     
     [changeInfoRequest startAsynchronous];
-    [self showFullActView:UIActivityIndicatorViewStyleWhite];
+    [self showActView:UIActivityIndicatorViewStyleWhite];
 }
 
 - (void)profileRequestDidFinished:(ASIFormDataRequest *)request
@@ -139,6 +142,7 @@
             self.userInfo = [NSMutableDictionary dictionaryWithDictionary:[requestDic objectForKey:@"list"]];
             [[Util sharedUtil] setLoginUserInfo:self.userInfo];
             [self reloadContent];
+            self.changeInfoButton.enabled = YES;
             break;
         case 2:
             [[Util sharedUtil] showAlertWithTitle:@"" message:@"session_id不正确，请稍后重试!"];
@@ -365,6 +369,11 @@
     [headerSexImageView release];
     [headerNameLabel release];
     [super dealloc];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad
