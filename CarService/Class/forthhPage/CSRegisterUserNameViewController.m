@@ -126,12 +126,12 @@
             if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder] || [self.checkSecretCodeField isFirstResponder])
             {
                 CustomLog(@"Do Nothing");
-                self.backView.frame = CGRectMake(0, - 80, self.backView.frame.size.width, self.backView.frame.size.height);
+                self.backView.frame = CGRectMake(0, - 90, self.backView.frame.size.width, self.backView.frame.size.height);
             }
         }
         else
         {
-            self.backView.frame = CGRectMake(0, -150, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(0, -160, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
     }];

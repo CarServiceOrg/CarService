@@ -346,12 +346,12 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 60, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 70, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
         else
         {
-            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 150, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 160, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
     }];

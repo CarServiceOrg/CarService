@@ -172,6 +172,17 @@
         return;
     }
     
+    if ([self.nameLabel.text length] == 0)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"请输入姓名"];
+        return;
+    }
+    if ([self.ageField.text length] == 0)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"请输入年龄"];
+        return;
+    }
+
     [self.changeInfoRequest clearDelegatesAndCancel];
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
 

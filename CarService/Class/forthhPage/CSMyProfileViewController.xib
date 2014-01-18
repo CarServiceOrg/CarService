@@ -58,7 +58,6 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" id="C2l-jF-g7e">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="410"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_huiyuanzhongxin_touxiang.png" highlightedImage="new_huiyuanzhongxin_touxiang.png" id="bWR-mt-8Kp">
                             <rect key="frame" x="71" y="10" width="41" height="41"/>
@@ -193,10 +192,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" backgroundImage="new_baoanzhaoxiang_zhaoxianganniu.png">
+                    <state key="normal" backgroundImage="new_baoxun.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="highlighted" backgroundImage="new_baoanzhaoxiang_zhaoxianganniu.png"/>
+                    <state key="highlighted" backgroundImage="new_baoxun_selected.png"/>
                     <connections>
                         <action selector="rightButtonItemPressed:" destination="-1" eventType="touchUpInside" id="wri-34-dGe"/>
                     </connections>
@@ -245,7 +244,8 @@
         </view>
     </objects>
     <resources>
-        <image name="new_baoanzhaoxiang_zhaoxianganniu.png" width="53" height="53"/>
+        <image name="new_baoxun.png" width="540" height="960"/>
+        <image name="new_baoxun_selected.png" width="540" height="960"/>
         <image name="new_denglubeijing.png" width="540" height="960"/>
         <image name="new_gerenziliao_biaogebeijing.png" width="475" height="321"/>
         <image name="new_gerenziliao_nvtubiao.png" width="16" height="24"/>
