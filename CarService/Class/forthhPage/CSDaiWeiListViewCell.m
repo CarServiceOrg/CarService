@@ -89,21 +89,18 @@
     {
         case 0:
             statusString = @"未受理";
-            self.detailButton.userInteractionEnabled = NO;
+            self.detailButton.userInteractionEnabled = YES;
             break;
         case 1:
             statusString = @"派单中";
-            self.detailButton.userInteractionEnabled = NO;
+            self.detailButton.userInteractionEnabled = YES;
         case 2:
             statusString = @"代维中";
             self.detailButton.userInteractionEnabled = YES;
             break;
         case 3:
-            statusString = @"代维结束";
-            self.detailButton.userInteractionEnabled = NO;
-            break;
         case 4:
-            statusString = @"评价";
+            statusString = @"代维结束";
             self.detailButton.userInteractionEnabled = YES;
             break;
     }
@@ -112,13 +109,17 @@
 
 - (IBAction)detailButtonPressed:(id)sender
 {
-    if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 2)
+    if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 0)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"尚未处理，请等待客服接单"];
+    }
+    else if (([[self.infoDic objectForKey:@"order_status"] integerValue] == 2) || ([[self.infoDic objectForKey:@"order_status"] integerValue] == 1))
     {
         CSWoDeDaiWeiViewController *controller = [[CSWoDeDaiWeiViewController alloc] initWithOrderInfo:self.infoDic];
         [self.parentViewController.navigationController pushViewController:controller animated:YES];
         [controller release];
     }
-    else if ([[self.infoDic objectForKey:@"order_status"] integerValue] == 4)
+    else if (([[self.infoDic objectForKey:@"order_status"] integerValue] == 4) ||([[self.infoDic objectForKey:@"order_status"] integerValue] == 3))
     {
         CSFeedBackViewController *controller = [[CSFeedBackViewController alloc] initWithOrderInfo:self.infoDic];
         [self.parentViewController.navigationController pushViewController:controller animated:YES];
