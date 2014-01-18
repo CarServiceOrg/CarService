@@ -244,8 +244,8 @@
         </view>
     </objects>
     <resources>
-        <image name="new_baoxun.png" width="540" height="960"/>
-        <image name="new_baoxun_selected.png" width="540" height="960"/>
+        <image name="new_baoxun.png" width="53" height="53"/>
+        <image name="new_baoxun_selected.png" width="53" height="53"/>
         <image name="new_denglubeijing.png" width="540" height="960"/>
         <image name="new_gerenziliao_biaogebeijing.png" width="475" height="321"/>
         <image name="new_gerenziliao_nvtubiao.png" width="16" height="24"/>
