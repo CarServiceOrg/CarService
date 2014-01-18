@@ -886,73 +886,74 @@ static CSFirstViewController *theOnlyController = nil;
 
 -(void)updateContainView:(UIView*)containView
 {
-    NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
-    if (alreadyAry) {
-        
-        UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
-        if (welComeText_ImgView) {
-            welComeText_ImgView.alpha=0.0;
-        }
-        
-        UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
-        if (welCome_ImgView) {
-            welCome_ImgView.alpha=0.0;
-        }
-        
-        //更新数据 为最后一个车牌号
-        UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
-        if (mangerBtn) {
-            mangerBtn.alpha=1.0;
+    if ([[Util sharedUtil] hasLogin]) {
+        NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
+        if (alreadyAry) {
             
-            NSString* signStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carSign]; //车牌号
-            //NSString* standStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carStand]; //车架号
-            [mangerBtn setTitle:[NSString stringWithFormat:@"%@",signStr] forState:UIControlStateNormal];
-        }
-        
-        UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
-        if (msgBtn) {
-            if (self.m_msgArray) {
-                msgBtn.alpha=1.0;
-            }else{
-                msgBtn.alpha=0.0;
+            UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
+            if (welComeText_ImgView) {
+                welComeText_ImgView.alpha=0.0;
             }
-        }
-        
-    }else{
-        
-        UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
-        if (mangerBtn) {
-            mangerBtn.alpha=0.0;
-        }
-        
-        UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
-        if (msgBtn) {
-            if (self.m_msgArray) {
-                msgBtn.alpha=1.0;
+            
+            UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
+            if (welCome_ImgView) {
+                welCome_ImgView.alpha=0.0;
+            }
+            
+            //更新数据 为最后一个车牌号
+            UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
+            if (mangerBtn) {
+                mangerBtn.alpha=1.0;
                 
-                UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
-                if (welComeText_ImgView) {
-                    welComeText_ImgView.alpha=0.0;
+                NSString* signStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carSign]; //车牌号
+                //NSString* standStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carStand]; //车架号
+                [mangerBtn setTitle:[NSString stringWithFormat:@"%@",signStr] forState:UIControlStateNormal];
+            }
+            
+            UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
+            if (msgBtn) {
+                if (self.m_msgArray) {
+                    msgBtn.alpha=1.0;
+                }else{
+                    msgBtn.alpha=0.0;
                 }
-                
-                UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
-                if (welCome_ImgView) {
-                    welCome_ImgView.alpha=1.0;
+            }
+            
+        }else{
+            
+            UIButton* mangerBtn=(UIButton*)[containView viewWithTag:1001];
+            if (mangerBtn) {
+                mangerBtn.alpha=0.0;
+            }
+            
+            UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
+            if (msgBtn) {
+                if (self.m_msgArray) {
+                    msgBtn.alpha=1.0;
+                    
+                    UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
+                    if (welComeText_ImgView) {
+                        welComeText_ImgView.alpha=0.0;
+                    }
+                    
+                    UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
+                    if (welCome_ImgView) {
+                        welCome_ImgView.alpha=1.0;
+                    }
+                    
+                }else{
+                    msgBtn.alpha=0.0;
+                    
+                    UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
+                    if (welComeText_ImgView) {
+                        welComeText_ImgView.alpha=1.0;
+                    }
+                    
+                    UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
+                    if (welCome_ImgView) {
+                        welCome_ImgView.alpha=0.0;
+                    }
                 }
-                
-            }else{
-                msgBtn.alpha=0.0;
-                
-                UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
-                if (welComeText_ImgView) {
-                    welComeText_ImgView.alpha=1.0;
-                }
-                
-                UIImageView* welCome_ImgView=(UIImageView*)[containView viewWithTag:1000];
-                if (welCome_ImgView) {
-                    welCome_ImgView.alpha=0.0;
-                }
-                
             }
         }
     }
@@ -1158,7 +1159,7 @@ static CSFirstViewController *theOnlyController = nil;
         }
     }else{
         //提示登录
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
             CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSReportCaseAskViewCtrler" with_NibName:@"CSLogInViewController" bundle:nil];
@@ -1205,7 +1206,7 @@ static CSFirstViewController *theOnlyController = nil;
         }
     }else{
         //提示登录
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
             CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSReportCaseAskViewCtrler" with_NibName:@"CSLogInViewController" bundle:nil];
@@ -1252,7 +1253,7 @@ static CSFirstViewController *theOnlyController = nil;
     }
     else
     {
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
             CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSMyConsumeRecordViewController" with_NibName:@"CSLogInViewController" bundle:nil];
@@ -1299,7 +1300,7 @@ static CSFirstViewController *theOnlyController = nil;
         }
     }else{
         //提示登录
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
             CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSReportCaseAskViewCtrler" with_NibName:@"CSLogInViewController" bundle:nil];
@@ -1355,7 +1356,7 @@ static CSFirstViewController *theOnlyController = nil;
         }
     }else{
         //提示登录
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
             CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSReportCaseAskViewCtrler" with_NibName:@"CSLogInViewController" bundle:nil];
@@ -1747,7 +1748,7 @@ static CSFirstViewController *theOnlyController = nil;
         [self push_messageViewCtrler];
     }else{
         //提示登录
-        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看消息详情请先登录！"];
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看详情请先登录！"];
         [alert setCancelButtonWithTitle:@"取消" block:nil];
         [alert setDestructiveButtonWithTitle:@"登录" block:^{
             //[self.tabBarController setSelectedIndex:3];
@@ -1768,9 +1769,27 @@ static CSFirstViewController *theOnlyController = nil;
 
 -(void)addBtnClick:(id)sender
 {
-    CSAddCarViewController* ctrler=[[CSAddCarViewController alloc] init];
-    [self.navigationController pushViewController:ctrler animated:YES];
-    [ctrler release];
+    if ([[Util sharedUtil] hasLogin]) {
+        //点击跳转
+        CSAddCarViewController* ctrler=[[CSAddCarViewController alloc] init];
+        [self.navigationController pushViewController:ctrler animated:YES];
+        [ctrler release];
+    }else{
+        //提示登录
+        BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"查看详情请先登录！"];
+        [alert setCancelButtonWithTitle:@"取消" block:nil];
+        [alert setDestructiveButtonWithTitle:@"登录" block:^{
+            CSLogInViewController *ctrler=[[CSLogInViewController alloc] initWithParentCtrler:self witjFlagStr:@"CSMessageViewController" with_NibName:@"CSLogInViewController" bundle:nil];
+            ctrler.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+            ctrler.delegate=self;
+            UINavigationController* navi=[[UINavigationController alloc] initWithRootViewController:ctrler];
+            [ApplicationPublic selfDefineNaviBar:navi.navigationBar];
+            [self presentModalViewController:navi animated:YES];
+            [ctrler release];
+            [navi release];
+        }];
+        [alert show];
+    }
 }
 
 -(void)mangerBtnClick:(id)sender
