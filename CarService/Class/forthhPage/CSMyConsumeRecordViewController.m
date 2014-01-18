@@ -180,14 +180,15 @@
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
      NSString *uid = [dic objectForKey:@"id"];
      NSString *sessionId = [dic objectForKey:@"session_id"];
-     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"start_time",[NSString stringWithFormat:@"%f",[self.toDate timeIntervalSince1970]],@"end_time",nil];
-    //NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",@"",@"start_time",@"",@"end_time",nil];
+     //NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"start_time",[NSString stringWithFormat:@"%f",[self.toDate timeIntervalSince1970]],@"end_time",nil];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",self.fromeLabel.text,@"start_time",self.toLabel.text,@"end_time",nil];
 
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
     
-    self.recordRuest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];    self.recordRuest.delegate = self;
+    self.recordRuest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
+    self.recordRuest.delegate = self;
     [self.recordRuest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.recordRuest setDidFailSelector:@selector(requestDidFailed:)];
     [self.recordRuest startAsynchronous];

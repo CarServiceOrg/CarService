@@ -74,7 +74,7 @@
     self.timeLabel.textColor = [UIColor blackColor];
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, MAX(self.scrollView.frame.size.height, CGRectGetMaxX(self.timeLabel.frame)+20));
-
+    [self.view bringSubviewToFront:self.scrollView];
 }
 
 - (void)viewDidLoad

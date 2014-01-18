@@ -62,7 +62,7 @@
     }
     
     NSString *uid = [[[Util sharedUtil] getUserInfo] objectForKey:@"id"];
-    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"consuming",@"action",self.constField.text,@"cons_time",uid,@"user_id",@"",@"cons_address",self.constField.text,@"cons_num",[self.currentClassInfoDic objectForKey:@"id"] ,@"cons_type", nil];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"consuming",@"action",self.timeField.text,@"cons_time",uid,@"user_id",@"",@"cons_address",self.constField.text,@"cons_num",[self.currentClassInfoDic objectForKey:@"id"] ,@"cons_type", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
     NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [jasonParser release];
