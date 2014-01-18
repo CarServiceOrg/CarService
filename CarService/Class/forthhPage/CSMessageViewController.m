@@ -372,8 +372,25 @@
         if (deleteBtn) {
             if (_rightBtn.isSelected) {
                 deleteBtn.hidden=NO;
+                [UIView animateWithDuration:0.5 animations:^{
+                    deleteBtn.transform=CGAffineTransformMakeScale(1.2, 1.2);
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.5 animations:^{
+                        deleteBtn.transform=CGAffineTransformMakeScale(1.0, 1.0);
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                }];
             }else{
-                deleteBtn.hidden=YES;
+                [UIView animateWithDuration:0.5 animations:^{
+                    deleteBtn.transform=CGAffineTransformMakeScale(1.2, 1.2);
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.5 animations:^{
+                        deleteBtn.transform=CGAffineTransformMakeScale(0.0, 0.0);
+                    } completion:^(BOOL finished) {
+                        deleteBtn.hidden=YES;
+                    }];
+                }];
             }
         }
     }

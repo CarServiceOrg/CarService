@@ -256,7 +256,7 @@
 -(void)startHttpRequest{
     {
         self.alertView.mode = MBProgressHUDModeText;
-        self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
+        self.alertView.labelText = NSLocalizedString(@"提交中", nil);
         [self.alertView show:YES];
     }
     
@@ -264,11 +264,12 @@
         BOOL backBool=[self startHttpRequest_report];
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            self.alertView.labelText = NSLocalizedString(@"提交成功...", nil);
+            self.alertView.labelText = NSLocalizedString(@"提交成功", nil);
             [self.alertView show:YES];
             [self.alertView hide:YES afterDelay:2.0];
+            
             if (backBool) {
-                [self backBtnClick:nil];
+                [self performSelector:@selector(backBtnClick:) withObject:nil afterDelay:2.0];
             }else{
                 [self showErrorMessage];
             }
