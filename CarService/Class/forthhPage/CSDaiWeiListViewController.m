@@ -47,7 +47,6 @@
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
     NSString *uid = [dic objectForKey:@"id"];
     NSString *sessionId = [dic objectForKey:@"session_id"];
-    //NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"cons_list",@"action",sessionId,@"session_id",uid,@"user_id",[self.currentClassInfoDic objectForKey:@"id"],@"cons_type",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"start_time",[NSString stringWithFormat:@"%f",[self.fromDate timeIntervalSince1970]],@"end_time",nil];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"order_list",@"action",sessionId,@"session_id",uid,@"user_id",nil];
     
     SBJSON *jasonParser = [[SBJSON alloc] init];
@@ -96,6 +95,8 @@
                 [[Util sharedUtil] showAlertWithTitle:@"" message:@"消费类型不正确，请稍后重试!"];
                 break;
             case 1:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"暂无代维服务!"];
+                break;
             default:
                 [[Util sharedUtil] showAlertWithTitle:@"" message:@"服务器出错，请稍后重试!"];
                 break;
