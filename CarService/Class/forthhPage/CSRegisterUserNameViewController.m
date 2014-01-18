@@ -131,7 +131,8 @@
         }
         else
         {
-            self.backView.frame = CGRectMake(0, -160, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(0, -150, self.backView.frame.size.width, self.backView.frame.size.height);
+
 
         }
     }];
