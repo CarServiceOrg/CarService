@@ -94,12 +94,17 @@
         x=0; y=0; width=82/2.0+4; height=26;
         UIButton* addCarBtn=[[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)] autorelease];
         _rightBtn=addCarBtn;
+        [addCarBtn setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:.4]];
         [addCarBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
-        [addCarBtn setTitleColor:[UIColor colorWithRed:13/255.0 green:43/255.0 blue:83/255.0 alpha:1.0] forState:UIControlStateNormal];
+        [addCarBtn setTitleColor:[UIColor colorWithWhite:1.0 alpha:1.0] forState:UIControlStateNormal];
+        [addCarBtn setTitleColor:[UIColor colorWithWhite:0.0 alpha:1.0] forState:UIControlStateSelected];
         [addCarBtn setTitle:@"编 辑" forState:UIControlStateNormal];
         [addCarBtn setTitle:@"完 成" forState:UIControlStateSelected];
-        [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
-        [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back_press.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
+        {
+            addCarBtn.layer.cornerRadius=8.0;
+        }
+        //[addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
+        //[addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back_press.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
         [addCarBtn addTarget:self action:@selector(addCarBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         [ApplicationPublic selfDefineNavigationBar:self.view title:@"我的消息" withTarget:self with_action:@selector(backButtonPressed:) rightBtn:addCarBtn];
