@@ -386,6 +386,11 @@ static CSFirstViewController *theOnlyController = nil;
     [logoImageView setImage:[UIImage imageNamed:@"new_logo.png"]];
     [self.view addSubview:logoImageView];
     [logoImageView release];
+    {
+        logoImageView.userInteractionEnabled=YES;
+        UITapGestureRecognizer* gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoCallPhone:)];
+        [logoImageView addGestureRecognizer:gesture];
+    }
     
     //电话图标
     y=y+height; width=18; height=18;
@@ -914,6 +919,16 @@ static CSFirstViewController *theOnlyController = nil;
             if (msgBtn) {
                 if (self.m_msgArray) {
                     msgBtn.alpha=1.0;
+                    
+                    UILabel* aLabel=(UILabel*)[msgBtn viewWithTag:10001];
+                    if (aLabel) {
+                        [aLabel setText:[NSString stringWithFormat:@"%d",[self getMessageUnReadNumber]]];
+                    }
+                    
+                    UILabel* bLabel=(UILabel*)[msgBtn viewWithTag:10002];
+                    if (bLabel) {
+                        [bLabel setText:[NSString stringWithFormat:@"您有%d条新的信息",[self getMessageUnReadNumber]]];
+                    }
                 }else{
                     msgBtn.alpha=0.0;
                 }
@@ -930,6 +945,16 @@ static CSFirstViewController *theOnlyController = nil;
             if (msgBtn) {
                 if (self.m_msgArray) {
                     msgBtn.alpha=1.0;
+                    
+                    UILabel* aLabel=(UILabel*)[msgBtn viewWithTag:10001];
+                    if (aLabel) {
+                        [aLabel setText:[NSString stringWithFormat:@"%d",[self getMessageUnReadNumber]]];
+                    }
+                    
+                    UILabel* bLabel=(UILabel*)[msgBtn viewWithTag:10002];
+                    if (bLabel) {
+                        [bLabel setText:[NSString stringWithFormat:@"您有%d条新的信息",[self getMessageUnReadNumber]]];
+                    }
                     
                     UIImageView* welComeText_ImgView=(UIImageView*)[containView viewWithTag:999];
                     if (welComeText_ImgView) {
@@ -1392,6 +1417,7 @@ static CSFirstViewController *theOnlyController = nil;
 }
 
 #pragma mark 通知
+//12接口我的消息增加status 1为未读0为已读
 -(void)startHttp_message
 {
     //获取代维服务地点列表
@@ -1409,12 +1435,12 @@ static CSFirstViewController *theOnlyController = nil;
                         
                         UILabel* aLabel=(UILabel*)[msgBtn viewWithTag:10001];
                         if (aLabel) {
-                            [aLabel setText:[NSString stringWithFormat:@"%d",[self.m_msgArray count]]];
+                            [aLabel setText:[NSString stringWithFormat:@"%d",[self getMessageUnReadNumber]]];
                         }
                         
                         UILabel* bLabel=(UILabel*)[msgBtn viewWithTag:10002];
                         if (bLabel) {
-                            [bLabel setText:[NSString stringWithFormat:@"您有%d条新的信息",[self.m_msgArray count]]];
+                            [bLabel setText:[NSString stringWithFormat:@"您有%d条新的信息",[self getMessageUnReadNumber]]];
                         }
                     }
                     
@@ -1423,6 +1449,19 @@ static CSFirstViewController *theOnlyController = nil;
             }
         });
     });
+}
+
+//12接口我的消息增加status 1为未读0为已读
+-(int)getMessageUnReadNumber
+{
+    int number=0;
+    for (NSDictionary* dict in self.m_msgArray) {
+        if ([dict objectForKey:@"status"] && [[dict objectForKey:@"status"] intValue]==1) {
+            number++;
+        }
+    }
+    
+    return number;
 }
 
 - (void)receiviLoginNotification:(NSNotification *)notify
@@ -1793,6 +1832,16 @@ static CSFirstViewController *theOnlyController = nil;
     [sheet showInView:self.view];
 }
 
+-(void)logoCallPhone:(UIGestureRecognizer*)gesture
+{
+    BlockAlertView *alert = [BlockAlertView alertWithTitle:@"" message:@"是否电话呼叫客服？"];
+    [alert setCancelButtonWithTitle:@"取消" block:nil];
+    [alert setDestructiveButtonWithTitle:@"呼叫" block:^{
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",TELEPHONE_BaoFeiYuSuan]]];
+    }];
+    [alert show];
+}
+
 #pragma mark - CSLogInViewController_Delegate
 -(void)loginFinishCallBack:(NSString*)flagStr
 {
@@ -1801,6 +1850,13 @@ static CSFirstViewController *theOnlyController = nil;
 
 -(void)push_messageViewCtrler
 {
+    //都变为已读信息数目
+    for (NSMutableDictionary* dict in self.m_msgArray) {
+        if ([dict objectForKey:@"status"] && [[dict objectForKey:@"status"] intValue]==1) {
+            [dict setObject:[NSNumber numberWithInt:0] forKey:@"status"];
+        }
+    }
+    
     CSMessageViewController* controller = [[CSMessageViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];

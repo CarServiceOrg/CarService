@@ -10,17 +10,22 @@
 #import "CSMessageDetailViewController.h"
 #import "NSString+SBJSON.h"
 #import "NSObject+SBJSON.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD.h"
 
-@interface CSMessageViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface CSMessageViewController ()<UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate>
 {
     UITableView* _tableView;
+    UIButton* _rightBtn;
 }
 
+@property(readonly,assign)MBProgressHUD *alertView;
 @property (nonatomic,retain) NSMutableArray *m_dataArray;
 
 @end
 
 @implementation CSMessageViewController
+@synthesize alertView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -69,13 +74,36 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)addCarBtnClicked:(UIButton*)sender
+{
+    sender.selected=!sender.isSelected;
+    if (_tableView) {
+        [_tableView reloadData];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor=[UIColor blackColor];
     [ApplicationPublic selfDefineBg:self.view];
-    [ApplicationPublic selfDefineNavigationBar:self.view title:@"我的消息" withTarget:self with_action:@selector(backButtonPressed:)];
+    {
+        //添加按钮
+        float x, y, width, height;
+        x=0; y=0; width=82/2.0+4; height=26;
+        UIButton* addCarBtn=[[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)] autorelease];
+        _rightBtn=addCarBtn;
+        [addCarBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
+        [addCarBtn setTitleColor:[UIColor colorWithRed:13/255.0 green:43/255.0 blue:83/255.0 alpha:1.0] forState:UIControlStateNormal];
+        [addCarBtn setTitle:@"编 辑" forState:UIControlStateNormal];
+        [addCarBtn setTitle:@"完 成" forState:UIControlStateSelected];
+        [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
+        [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back_press.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
+        [addCarBtn addTarget:self action:@selector(addCarBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [ApplicationPublic selfDefineNavigationBar:self.view title:@"我的消息" withTarget:self with_action:@selector(backButtonPressed:) rightBtn:addCarBtn];
+    }
     [self initSetUpTableView:self.view.bounds];
     //网络获取数据
     [self startHttpRequest];
@@ -120,7 +148,7 @@
                         }
                     }
                 }else{
-                    [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载数据失败！", nil) with_type:TSMessageNotificationTypeError];
+                    //[self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"加载数据失败！", nil) with_type:TSMessageNotificationTypeError];
                 }
             }
         });
@@ -131,6 +159,45 @@
         });
     }];
     [request startAsynchronous];
+}
+
+//
+-(BOOL)request_delete:(NSDictionary*)dict
+{
+    __block BOOL flag=NO;
+    NSString *uid = [NSString stringWithFormat:@"%@",[dict objectForKey:@"id"]];
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"del_my_news",@"action",uid,@"id", nil];
+    NSString *jsonArg = [(NSString*)[argDic JSONRepresentation] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setTimeOutSeconds:60.0];
+    [request setRequestMethod:@"POST"];
+    [request setCompletionBlock:^{
+        
+        NSDictionary *requestDic =[[request responseString] JSONValue];
+        MyNSLog(@"requestDic:%@",requestDic);
+        //
+        if ([requestDic objectForKey:@"status"]) {
+            int status=[[requestDic objectForKey:@"status"] intValue];
+            if (status==0) {
+                flag=YES;
+                
+            }else if(status==1){
+                
+            }else if(status==2){
+                
+            }else{
+                
+            }
+        }
+    }];
+    [request setFailedBlock:^{
+        flag=NO;
+    }];
+    [request startSynchronous];
+    
+    return flag;
 }
 
 -(void)showMessage:(NSString*)titleStr with_detail:(NSString*)detailStr with_type:(TSMessageNotificationType)type
@@ -189,6 +256,21 @@
     [cell.contentView addSubview:addressLabel];
     [addressLabel release];
     
+    //删除按钮
+    width=30; height=30; x=((320-10*2)-5*2)-width-5; y=3;
+    UIButton* deleteBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    [deleteBtn setTag:1003];
+    deleteBtn.backgroundColor=[UIColor clearColor];
+    [deleteBtn setBackgroundImage:[UIImage imageNamed:@"new_baoanzixun_shanchuanniu.png"] forState:UIControlStateNormal];
+    [deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:deleteBtn];
+    [deleteBtn release];
+    if (_rightBtn.isSelected) {
+        deleteBtn.hidden=NO;
+    }else{
+        deleteBtn.hidden=YES;
+    }
+
     //taglabel
     UILabel* taglabel=[[UILabel alloc] initWithFrame:CGRectZero];
     [taglabel setTag:2001];
@@ -196,6 +278,51 @@
     [taglabel release];
 }
 
+-(void)deleteBtnClick:(UIButton*)sender
+{
+    BlockAlertView *alert = [BlockAlertView alertWithTitle:@"提示" message:@"是否删除当前记录？"];
+    [alert setCancelButtonWithTitle:@"取消" block:nil];
+    [alert setDestructiveButtonWithTitle:@"确定" block:^{
+        UIView* superView=sender.superview;
+        if (superView) {
+            if ([superView viewWithTag:2001]) {
+                int index=[[(UILabel*)[superView viewWithTag:2001] text] intValue];
+                if (_tableView && index<[self.m_dataArray count]) {
+                    
+                    {
+                        self.alertView.mode = MBProgressHUDModeText;
+                        self.alertView.labelText = NSLocalizedString(@"删除中...", nil);
+                        [self.alertView show:YES];
+                    }
+                    
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        BOOL flag=[self request_delete:[self.m_dataArray objectAtIndex:index]];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (flag) {
+                                self.alertView.labelText = NSLocalizedString(@"删除成功", nil);
+                                [self.alertView show:YES];
+                                [self.alertView hide:YES afterDelay:1.5];
+                                
+                                //更新数据
+                                [self.m_dataArray removeObjectAtIndex:index];
+                                
+                                //动画更新列表
+                                NSMutableArray* indexPaths = [[[NSMutableArray alloc] init] autorelease];
+                                [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+                                [_tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationLeft];
+                            }else{
+                                self.alertView.labelText = NSLocalizedString(@"删除失败", nil);
+                                [self.alertView show:YES];
+                                [self.alertView hide:YES afterDelay:1.5];
+                            }
+                        });
+                    });
+                }
+            }
+        }
+    }];
+    [alert show];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -233,6 +360,16 @@
         UILabel* addressLabel=(UILabel*)[cell.contentView viewWithTag:1002];
         if (addressLabel) {
             addressLabel.text=[NSString stringWithFormat:@"%@",formatStr];
+        }
+        
+        
+        UIButton* deleteBtn=(UIButton*)[cell.contentView viewWithTag:1003];
+        if (deleteBtn) {
+            if (_rightBtn.isSelected) {
+                deleteBtn.hidden=NO;
+            }else{
+                deleteBtn.hidden=YES;
+            }
         }
     }
     
@@ -273,6 +410,30 @@
     [controller release];
 }
 
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    if (alertView&&alertView.superview) {
+        alertView.delegate = nil;
+        [alertView removeFromSuperview];
+        [alertView release],alertView = nil;
+    }
+}
+- (MBProgressHUD*) alertView
+{
+    if (alertView==nil) {
+        id delegate = [UIApplication sharedApplication].delegate;
+        UIWindow *window = [delegate window];
+        alertView = [[MBProgressHUD alloc] initWithView:window];
+        [window addSubview:alertView];
+        alertView.dimBackground = YES;
+        alertView.labelText = NSLocalizedString(@"加载中", @"");
+        alertView.delegate = self;
+    }
+    return alertView;
+}
 
 
 @end
