@@ -99,7 +99,7 @@
     [self.infoRequest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.infoRequest setDidFailSelector:@selector(requestDidFailed:)];
     [self.infoRequest startAsynchronous];
-    [self showActView:UIActivityIndicatorViewStyleWhite];
+    [self showActView:UIActivityIndicatorViewStyleGray];
 }
 
 #pragma mark - ASIHttpRequest Delegate Methods

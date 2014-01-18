@@ -57,7 +57,7 @@
     [self.recordRuest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.recordRuest setDidFailSelector:@selector(requestDidFailed:)];
     [self.recordRuest startAsynchronous];
-    [self showActView:UIActivityIndicatorViewStyleWhite];
+    [self showActView:UIActivityIndicatorViewStyleGray];
 }
 
 #pragma mark - ASIHttpRequest Delegate Methods

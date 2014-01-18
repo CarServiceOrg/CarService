@@ -238,7 +238,7 @@
     [self.changeRequest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.changeRequest setDidFailSelector:@selector(requestDidFailed:)];
     [self.changeRequest startAsynchronous];
-    [self showActView:UIActivityIndicatorViewStyleWhite];
+    [self showActView:UIActivityIndicatorViewStyleGray];
 }
 
 - (void)requestDidFinished:(ASIHTTPRequest *)request

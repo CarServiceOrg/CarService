@@ -72,7 +72,7 @@
     [self.recordRuest setDidFinishSelector:@selector(classRequestDidFinished:)];
     [self.recordRuest setDidFailSelector:@selector(classRequestDidFailed:)];
     [self.recordRuest startAsynchronous];
-    [self showActView:UIActivityIndicatorViewStyleWhite];
+    [self showActView:UIActivityIndicatorViewStyleGray];
 }
 
 - (void)classRequestDidFinished:(ASIHTTPRequest *)request

@@ -348,7 +348,7 @@
     [self.checkVersionRequest setDidFinishSelector:@selector(requestDidFinished:)];
     [self.checkVersionRequest setDidFailSelector:@selector(requestDidFailed:)];
     [self.checkVersionRequest startAsynchronous];
-    [self showFullActView:UIActivityIndicatorViewStyleWhite];
+    [self showFullActView:UIActivityIndicatorViewStyleGray];
 }
 
 #pragma mark - ASIHttpRequest Delegate Methods

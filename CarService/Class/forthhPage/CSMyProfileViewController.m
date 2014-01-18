@@ -124,13 +124,13 @@
     [changeInfoRequest setDidFailSelector:@selector(profileRequestDidFailed:)];
     
     [changeInfoRequest startAsynchronous];
-    [self showActView:UIActivityIndicatorViewStyleWhite];
+    [self showActView:UIActivityIndicatorViewStyleGray];
 }
 
 - (void)profileRequestDidFinished:(ASIFormDataRequest *)request
 {
     CustomLog(@"%@",[request responseString]);
-    [self hideFullActView];
+    [self hideActView];
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSString *responseString = [[[[[[NSString alloc] initWithData:[request responseData] encoding:encoding]autorelease] stringByReplacingOccurrencesOfString:@"\r" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     NSDictionary *requestDic = [responseString JSONValue];
@@ -163,7 +163,7 @@
 
 - (void)profileRequestDidFailed:(ASIFormDataRequest *)request
 {
-    [self hideFullActView];
+    [self hideActView];
     [[Util sharedUtil] showAlertWithTitle:@"" message:@"请求失败，请检查网络连接!"];
     return;
     CustomLog(@"%@",[request responseString]);
@@ -220,7 +220,7 @@
     [changeInfoRequest setDidFailSelector:@selector(editingRequestDidFailed:)];
     
     [changeInfoRequest startAsynchronous];
-    [self showActView:UIActivityIndicatorViewStyleWhite];
+    [self showActView:UIActivityIndicatorViewStyleGray];
 }
 
 - (void)editingRequestDidFinished:(ASIFormDataRequest *)request

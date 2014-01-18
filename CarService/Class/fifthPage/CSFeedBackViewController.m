@@ -262,7 +262,7 @@
     [commentRequest setDidFinishSelector:@selector(editingRequestDidFinished:)];
     [commentRequest setDidFailSelector:@selector(editingRequestDidFailed:)];
     [commentRequest startAsynchronous];
-    [self showActView:UIActivityIndicatorViewStyleWhite];
+    [self showActView:UIActivityIndicatorViewStyleGray];
 }
 
 - (void)editingRequestDidFinished:(ASIHTTPRequest *)request
