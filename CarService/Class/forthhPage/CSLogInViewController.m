@@ -80,23 +80,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    /*
-     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-     backButton.frame = CGRectMake(13, 13, 40, 40);
-     [backButton setBackgroundImage:[UIImage imageNamed:@"new_xiaofeijilu_fanhui_anniu.png"] forState:UIControlStateNormal];
-     [backButton setBackgroundImage:[UIImage imageNamed:@"new_xiaofeijilu_fanhui_dianjianniu.png"] forState:UIControlStateHighlighted];
-     [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-     [self.view addSubview:backButton];
-     
-     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 25, 160, 16)];
-     titleLabel.textAlignment = NSTextAlignmentCenter;
-     titleLabel.font = [UIFont systemFontOfSize:16];
-     titleLabel.textColor = [UIColor whiteColor];
-     titleLabel.backgroundColor = [UIColor clearColor];
-     titleLabel.tag = 100;
-     [self.view addSubview:titleLabel];
-     [titleLabel release];
-     */
     if (self.parentController && ([self.parentController isKindOfClass:[CSThirdViewController class]] || [self.parentController isKindOfClass:[CSFirstViewController class]])) {
         self.navigationItem.title=@"登录";
         [ApplicationPublic setUp_BackBtn:self.navigationItem withTarget:self with_action:@selector(backClicked)];
@@ -123,7 +106,7 @@
     //[self.userNameField becomeFirstResponder];
 //    self.userNameField.text=@"15101059823";
 //    self.passwordField.text=@"1";
-    if (Is_iPhone5)
+    /*if (Is_iPhone5)
     {
         self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - (AnimationChangeHeight - DeviceDiffHeight), self.backView.frame.size.width, self.backView.frame.size.height);
     }
@@ -131,7 +114,7 @@
     {
         self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 100, self.backView.frame.size.width, self.backView.frame.size.height);
 
-    }
+    }*/
 
 }
 
@@ -363,12 +346,12 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            //self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - (AnimationChangeHeight - DeviceDiffHeight), self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 60, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
         else
         {
-            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 135, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(self.backView.frame.origin.x,  - 150, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
     }];
@@ -387,11 +370,11 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            //self.backView.frame = CGRectMake(self.backView.frame.origin.x, 0, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(self.backView.frame.origin.x, 20, self.backView.frame.size.width, self.backView.frame.size.height);
         }
         else
         {
-            self.backView.frame = CGRectMake(self.backView.frame.origin.x, -100, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(self.backView.frame.origin.x, 20, self.backView.frame.size.width, self.backView.frame.size.height);
         }
     }];
 

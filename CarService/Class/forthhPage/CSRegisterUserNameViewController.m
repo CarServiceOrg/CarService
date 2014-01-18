@@ -64,16 +64,6 @@
     self.navigationItem.title = @"注册";
     
     self.contentScrollView.contentSize = CGSizeMake(320, self.view.frame.size.height - 40 );
-    if (Is_iPhone5)
-    {
-       // self.inputBackView.frame =
-        self.backView.frame = CGRectMake(0, -40, self.backView.frame.size.width, self.backView.frame.size.height);
-
-    }
-    else
-    {
-        self.backView.frame = CGRectMake(0, -60, self.backView.frame.size.width, self.backView.frame.size.height);
-    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -136,20 +126,12 @@
             if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder] || [self.checkSecretCodeField isFirstResponder])
             {
                 CustomLog(@"Do Nothing");
-               // self.backView.frame = CGRectMake(0, -65, self.backView.frame.size.width, self.backView.frame.size.height);
+                self.backView.frame = CGRectMake(0, - 80, self.backView.frame.size.width, self.backView.frame.size.height);
             }
         }
         else
         {
-            /*if ([self.phoneNumberField isFirstResponder] || [self.secretCodeField isFirstResponder])
-            {
-                CustomLog(@"Do Nothing");
-            }
-            else if ([self.checkSecretCodeBackView isFirstResponder])
-            {
-                [self adjustSubView:-40];
-            }*/
-            self.backView.frame = CGRectMake(0, -110, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(0, -150, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
     }];
@@ -161,13 +143,12 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (Is_iPhone5)
         {
-            //self.backView.frame = CGRectMake(0, 41, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(0, 0, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
         else
         {
-           // [self adjustSubView:10];
-            self.backView.frame = CGRectMake(0, -60, self.backView.frame.size.width, self.backView.frame.size.height);
+            self.backView.frame = CGRectMake(0, 0, self.backView.frame.size.width, self.backView.frame.size.height);
 
         }
     }];
