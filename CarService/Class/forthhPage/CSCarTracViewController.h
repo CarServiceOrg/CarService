@@ -12,4 +12,6 @@
 
 @interface CSCarTracViewController : CommonViewController<BMKMapViewDelegate>
 
+- (id)initWithDaiWeiInfo:(NSDictionary *)infoDic;
+
 @end

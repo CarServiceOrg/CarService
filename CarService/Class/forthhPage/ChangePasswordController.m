@@ -21,6 +21,8 @@
 @property (nonatomic,retain) IBOutlet UITextField *changePassField;
 @property (nonatomic,retain) IBOutlet UITextField *confirmField;
 @property (nonatomic,retain) ASIHTTPRequest *changeRequest;
+@property (nonatomic,retain) IBOutlet UIButton *confirmButtton;
+@property (nonatomic,retain) IBOutlet UIButton *cancelButton;
 
 @end
 
@@ -31,6 +33,8 @@
 @synthesize changePassField;
 @synthesize confirmField;
 @synthesize changeRequest;
+@synthesize confirmButtton;
+@synthesize cancelButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +47,8 @@
 
 - (void)dealloc
 {
+    [confirmButtton release];
+    [cancelButton release];
     [contentScrollView release];
     [backView release];
     [oldPassField release];
@@ -58,6 +64,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.confirmButtton.layer.cornerRadius = 6;
+    self.cancelButton.layer.cornerRadius = 6;
     self.navigationItem.leftBarButtonItem = [self getBackItem];
     self.navigationItem.title = @"修改密码";
     self.contentScrollView.contentSize = CGSizeMake(320, self.view.frame.size.height - 40 );

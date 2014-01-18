@@ -46,7 +46,7 @@
     /*
      {"cons_time":"2013.08.33","cons_address":"\u5317\u4eac\u6d77\u6dc0\u52a0\u6cb9\u7ad9","cons_type":"1","cons_num":"200"}
      */
-    self.nameLabel.text = @"cons_type";
+    self.nameLabel.text = [dic objectForKey:@"cons_type"];
     self.timeLabel.text = [dic objectForKey:@"cons_time"];
     self.locationlabel.text = [dic objectForKey:@"cons_address"];
     self.costLabel.text = [dic objectForKey:@"cons_num"];

@@ -22,16 +22,7 @@
                 <imageView contentMode="scaleToFill" image="new_denglubeijing.png" id="70">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uTg-Hu-KDS">
-                    <rect key="frame" x="80" y="32" width="160" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="OFe-o3-mtI">
                     <rect key="frame" x="0.0" y="70" width="320" height="419"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -43,14 +34,17 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_denglu_logo.png" id="GBf-Ss-liF">
                                     <rect key="frame" x="44" y="0.0" width="231" height="86"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="new_denglu_wenbenkuang.png" id="QcO-yJ-WNN">
                                     <rect key="frame" x="23" y="146" width="267" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_denglu_wenbenkuang_zhanghao.png" id="Vyj-qc-ET9">
+                                    <rect key="frame" x="27" y="146" width="44" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="邮箱/手机号" minimumFontSize="17" id="LeW-uN-fZa">
-                                    <rect key="frame" x="27" y="146" width="256" height="44"/>
+                                    <rect key="frame" x="79" y="146" width="204" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -60,8 +54,12 @@
                                     <rect key="frame" x="23" y="196" width="267" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_denglu_wenbenkuang_mima.png" id="if4-jG-pcv">
+                                    <rect key="frame" x="26" y="196" width="44" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" id="hjX-NR-9nL">
-                                    <rect key="frame" x="27" y="196" width="256" height="44"/>
+                                    <rect key="frame" x="79" y="196" width="204" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -71,8 +69,12 @@
                                     <rect key="frame" x="23" y="246" width="267" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" id="7Aa-dc-V0T">
-                                    <rect key="frame" x="27" y="246" width="256" height="44"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_denglu_wenbenkuang_mima.png" id="Pfn-xp-RdA">
+                                    <rect key="frame" x="27" y="246" width="44" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请确认密码" minimumFontSize="17" id="7Aa-dc-V0T">
+                                    <rect key="frame" x="79" y="246" width="204" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -95,7 +97,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jDR-RK-MCe">
-                                    <rect key="frame" x="24" y="296" width="267" height="44"/>
+                                    <rect key="frame" x="24" y="300" width="267" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                     <state key="normal" backgroundImage="new_zhuce_zhuceanniu.png">
@@ -142,6 +144,8 @@
     <resources>
         <image name="new_denglu_logo.png" width="462" height="173"/>
         <image name="new_denglu_wenbenkuang.png" width="454" height="88"/>
+        <image name="new_denglu_wenbenkuang_mima.png" width="84" height="86"/>
+        <image name="new_denglu_wenbenkuang_zhanghao.png" width="84" height="86"/>
         <image name="new_denglubeijing.png" width="540" height="960"/>
         <image name="new_xiaofeijilu_fanhui_anniu.png" width="53" height="53"/>
         <image name="new_xiaofeijilu_fanhui_dianjianniu.png" width="53" height="53"/>

@@ -23,6 +23,7 @@
 @property (nonatomic,retain) IBOutlet ASIHTTPRequest *infoRequest;
 @property (nonatomic,retain) IBOutlet UIView *contentView;
 @property (nonatomic,retain) IBOutlet NSDictionary *originalInfoDic;
+@property (nonatomic,retain) NSDictionary *contentDic;
 
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)carTracButtonPressed:(id)sender;
@@ -39,6 +40,7 @@
 @synthesize infoRequest;
 @synthesize contentView;
 @synthesize originalInfoDic;
+@synthesize contentDic;
 
 - (id) initWithOrderInfo:(NSDictionary *)info
 {
@@ -67,6 +69,7 @@
     [infoRequest clearDelegatesAndCancel];
     [infoRequest release];
     [imageView release];
+    [contentDic release];
     [super dealloc];
 }
 
@@ -122,6 +125,7 @@
         {
             case 0:
                 CustomLog(@"set data");
+                self.contentDic = requestDic;
                 NSDictionary *info = [requestDic objectForKey:@"list"];
                 self.contentView.hidden = NO;
                 [self.imageView setImageWithURL:[NSURL URLWithString:[info objectForKey:@"img"]] placeholderImage:[UIImage imageNamed:@"new_daiweifuwu_tupianweishangchuan_tupianbeijing.png"]];
@@ -173,7 +177,7 @@
 
 - (IBAction)carTracButtonPressed:(id)sender
 {
-    CSCarTracViewController *controller = [[CSCarTracViewController alloc] initWithNibName:@"CSCarTracViewController" bundle:nil];
+    CSCarTracViewController *controller = [[CSCarTracViewController alloc] initWithDaiWeiInfo:self.contentDic];
     [self.navigationController pushViewController:controller  animated:YES];
     [controller release];
 }

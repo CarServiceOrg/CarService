@@ -15,6 +15,7 @@
 @property (nonatomic,retain) IBOutlet UILabel *locationLabel;
 @property (nonatomic,retain) IBOutlet BMKMapView *mapView;
 @property (nonatomic,retain) IBOutlet UIView *contentBackView;
+@property (nonatomic,retain) NSDictionary *daiWeiInfo;
 
 @end
 
@@ -22,6 +23,17 @@
 @synthesize locationLabel;
 @synthesize mapView;
 @synthesize contentBackView;
+@synthesize daiWeiInfo;
+
+- (id)initWithDaiWeiInfo:(NSDictionary *)infoDic
+{
+    self = [super initWithNibName:@"CSCarTracViewController" bundle:nil];
+    if (self)
+    {
+        self.daiWeiInfo = infoDic;
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +46,7 @@
 
 - (void)dealloc
 {
+    [daiWeiInfo release];
     [locationLabel release];
     [mapView release];
     [contentBackView release];
@@ -47,19 +60,38 @@
     self.navigationItem.leftBarButtonItem = [self getBackItem];
     self.navigationItem.title = @"车辆追踪";
     
-    if (nil != [LBSDataUtil shareUtil].address)
+    if (nil != self.daiWeiInfo)
+    {
+        self.locationLabel.text = [[self.daiWeiInfo objectForKey:@"list"] objectForKey:@"address"];
+    }
+    else if (nil != [LBSDataUtil shareUtil].address)
     {
         self.locationLabel.text = [LBSDataUtil shareUtil].address;
     }
     else
     {
-        self.locationLabel.text = @"北京市";
+        self.locationLabel.text = @"";
         [[LBSDataUtil shareUtil] refreshLocation];
     }
     
     self.mapView = [[[BMKMapView alloc] initWithFrame:CGRectMake(8, 48, 285, 352)]autorelease];
     [self.contentBackView addSubview:self.mapView];
-    if (nil != [LBSDataUtil shareUtil].currentLocation)
+    if (nil != self.daiWeiInfo)
+    {
+        [self.mapView setShowsUserLocation:NO];
+        CLLocationCoordinate2D cordinate ;
+        cordinate.latitude = [[[self.daiWeiInfo objectForKey:@"list"] objectForKey:@"lat"] doubleValue];
+        cordinate.longitude = [[[self.daiWeiInfo objectForKey:@"list"] objectForKey:@"lon"] doubleValue];
+
+        [self.mapView setCenterCoordinate:cordinate animated:YES];
+        [self.mapView setRegion:BMKCoordinateRegionMake(cordinate, BMKCoordinateSpanMake(span, span))];
+        
+        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+        annotation.coordinate = cordinate;
+        [mapView addAnnotation:annotation];
+        [annotation release];
+    }
+    else if (nil != [LBSDataUtil shareUtil].currentLocation)
     {
         [self.mapView setShowsUserLocation:NO];
         [self.mapView setCenterCoordinate:[LBSDataUtil shareUtil].currentLocation.coordinate animated:YES];
