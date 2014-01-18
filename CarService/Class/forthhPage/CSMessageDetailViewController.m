@@ -62,6 +62,7 @@
     self.contentLabel.frame = CGRectMake(0, 0,frame.size.width, 5+size.height+5);
     self.sepratorView.frame = CGRectMake(0, self.contentLabel.frame.origin.y + self.contentLabel.frame.size.height + 10, frame.size.width, self.sepratorView.frame.size.height);
     self.timeLabel.frame = CGRectMake(0, self.sepratorView.frame.origin.y + 8, frame.size.width, self.timeLabel.frame.size.height);
+    self.timeLabel.textColor = [UIColor blackColor];
     
     self.contentLabel.text = [self.infoDic objectForKey:@"content"];
     NSString* time=[self.infoDic objectForKey:@"addtime"];
@@ -70,6 +71,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString* formatStr=[formatter stringFromDate:date];
     self.timeLabel.text = formatStr;
+    self.timeLabel.textColor = [UIColor blackColor];
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, MAX(self.scrollView.frame.size.height, CGRectGetMaxX(self.timeLabel.frame)+20));
 

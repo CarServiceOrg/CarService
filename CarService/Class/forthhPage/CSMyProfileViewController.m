@@ -186,6 +186,12 @@
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"请输入年龄"];
         return;
     }
+    
+    if ([self.driverLecenseField.text length] == 0)
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"请输入驾驶证号"];
+        return;
+    }
 
     [self.changeInfoRequest clearDelegatesAndCancel];
     NSDictionary *dic = [[Util sharedUtil] getUserInfo];
