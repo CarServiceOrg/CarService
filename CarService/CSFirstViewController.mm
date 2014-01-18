@@ -1333,17 +1333,6 @@ static CSFirstViewController *theOnlyController = nil;
 //套餐
 -(void)taoCanBtnClicked:(UIButton*)sender
 {
-    if ([sender.superview isEqual:self.m_tabScrollView]) {
-        
-    }else{
-        [self setTabBtnSelectedWithTag:-1];
-        
-        CSTaoCanListViewController* ctrler=[[CSTaoCanListViewController alloc] init];
-        [self.navigationController pushViewController:ctrler animated:YES];
-        [ctrler release];
-    }
-    return;
-    
     if ([[Util sharedUtil] hasLogin]) {
         if ([sender.superview isEqual:self.m_tabScrollView]) {
             

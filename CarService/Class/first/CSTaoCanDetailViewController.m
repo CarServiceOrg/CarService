@@ -112,13 +112,10 @@
     {
         //添加按钮
         float x, y, width, height;
-        x=0; y=0; width=82/2.0+4; height=26;
+        x=0; y=0; width=34; height=34;
         UIButton* addCarBtn=[[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)] autorelease];
-        [addCarBtn.titleLabel setFont:[UIFont systemFontOfSize:13.0]];
-        [addCarBtn setTitleColor:[UIColor colorWithRed:13/255.0 green:43/255.0 blue:83/255.0 alpha:1.0] forState:UIControlStateNormal];
-        [addCarBtn setTitle:@"订 购" forState:UIControlStateNormal];
-        [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
-        [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"btn_back_press.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
+        [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"new_dinggou.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
+        [addCarBtn setBackgroundImage:[[UIImage imageNamed:@"new_dinggou_selected.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
         [addCarBtn addTarget:self action:@selector(addCarBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [ApplicationPublic selfDefineNavigationBar:self.view title:@"套餐详情" withTarget:self with_action:@selector(backBtnClicked:) rightBtn:addCarBtn];
     }
