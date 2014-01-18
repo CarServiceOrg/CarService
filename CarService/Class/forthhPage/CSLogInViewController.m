@@ -382,6 +382,7 @@
 
 - (void)dealloc
 {
+    CustomLog(@"dealloc login viewcontroller");
     self.m_flagString=nil;
     [self hideKeyBoard];
     [[NSNotificationCenter defaultCenter] removeObserver:self];

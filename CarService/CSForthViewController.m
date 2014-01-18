@@ -14,11 +14,16 @@
 
 @interface CSForthViewController ()
 
+@property (nonatomic,retain) MemberCenterViewController *memberCenterController;
+@property (nonatomic,retain) CSLogInViewController *loginController;
+
 - (void)resetContentView;
 
 @end
 
 @implementation CSForthViewController
+@synthesize memberCenterController;
+@synthesize loginController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +32,13 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [memberCenterController release];
+    [loginController release];
+    [super dealloc];
 }
 
 - (void)receiviLoginNotification:(NSNotification *)notify
@@ -67,10 +79,10 @@
     {
         MemberCenterViewController *controller = [[MemberCenterViewController alloc] initWithNibName:@"MemberCenterViewController" bundle:nil];
         controller.parentController = self;
-        
         [self.view addSubview:controller.view];
-        
         titleLabel.text = @"会员中心";
+        self.memberCenterController = controller;
+        [controller release];
     }
     else
     {
@@ -79,6 +91,8 @@
         controller.parentController = self;
         [self.view addSubview:controller.view];
         titleLabel.text = @"登陆";
+        self.loginController = controller;
+        [controller release];
     }
 }
 - (void)didReceiveMemoryWarning
