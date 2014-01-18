@@ -76,7 +76,7 @@ static CGFloat const CellHeight = 50;
 
 	UITableView *aTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     [aTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-	[aTableView setSeparatorColor:[UIColor darkGrayColor]];
+	[aTableView setSeparatorColor:[UIColor clearColor]];
 	[aTableView setBackgroundColor:[UIColor clearColor]];
 	[aTableView setShowsVerticalScrollIndicator:YES];
 	[aTableView setDelegate:self];

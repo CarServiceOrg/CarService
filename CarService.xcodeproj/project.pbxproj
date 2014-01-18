@@ -40,6 +40,7 @@
 		E12A9ADE17EA275400A5F451 /* UIImagePLCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = E12A9AD917EA275400A5F451 /* UIImagePLCategory.m */; };
 		E12A9AE117EA3F6800A5F451 /* yonghumoshi_icon_5_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9ADF17EA3F6800A5F451 /* yonghumoshi_icon_5_2.png */; };
 		E12A9AE217EA3F6800A5F451 /* yonghumoshi_icon_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E12A9AE017EA3F6800A5F451 /* yonghumoshi_icon_5.png */; };
+		E131F22B188A34300032ACBD /* CarCityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E131F22A188A34300032ACBD /* CarCityList.plist */; };
 		E136CEDA18811F290034248B /* CSReportCaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E136CED918811F290034248B /* CSReportCaseListViewController.m */; };
 		E14FBD06187C6F5900C6C466 /* IOS7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E14FBD05187C6F5900C6C466 /* IOS7ViewController.m */; };
 		E14FBD8E187C734400C6C466 /* new_baoanzhaoxiang_zhaoxianganniu.png in Resources */ = {isa = PBXBuildFile; fileRef = E14FBD08187C734300C6C466 /* new_baoanzhaoxiang_zhaoxianganniu.png */; };
@@ -654,6 +655,7 @@
 		E12A9AD917EA275400A5F451 /* UIImagePLCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePLCategory.m; sourceTree = "<group>"; };
 		E12A9ADF17EA3F6800A5F451 /* yonghumoshi_icon_5_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yonghumoshi_icon_5_2.png; sourceTree = "<group>"; };
 		E12A9AE017EA3F6800A5F451 /* yonghumoshi_icon_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yonghumoshi_icon_5.png; sourceTree = "<group>"; };
+		E131F22A188A34300032ACBD /* CarCityList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CarCityList.plist; sourceTree = "<group>"; };
 		E136CED818811F290034248B /* CSReportCaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSReportCaseListViewController.h; sourceTree = "<group>"; };
 		E136CED918811F290034248B /* CSReportCaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSReportCaseListViewController.m; sourceTree = "<group>"; };
 		E14FBD04187C6F5900C6C466 /* IOS7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOS7ViewController.h; sourceTree = "<group>"; };
@@ -2291,6 +2293,7 @@
 				E53ABA5017E0DD020096754D /* CSFirstViewController.mm */,
 				E53ABA5617E0DD020096754D /* CSSecondViewController.h */,
 				E53ABA5717E0DD020096754D /* CSSecondViewController.m */,
+				E131F22A188A34300032ACBD /* CarCityList.plist */,
 				E1C063E017E48D14003336B2 /* CSThirdViewController.h */,
 				E1C063E117E48D15003336B2 /* CSThirdViewController.m */,
 				E1C063E317E48D62003336B2 /* CSForthViewController.h */,
@@ -3087,6 +3090,7 @@
 				E14FBDC6187C734400C6C466 /* new_huiyuanzhongxin_xiaoxi_tubiao.png in Resources */,
 				E14FBD9F187C734400C6C466 /* new_daiweifuwu_biaoge_toubu.png in Resources */,
 				E16201B717F2EAA6008926D0 /* cartrac_location_tip.png in Resources */,
+				E131F22B188A34300032ACBD /* CarCityList.plist in Resources */,
 				E16201B817F2EAA6008926D0 /* shouye_msg_logout.png in Resources */,
 				E1C957D517F4332B005063AC /* shigubaoan_cankaogeshi.png in Resources */,
 				E14FBDEE187C734400C6C466 /* new_xiaofeijilu_daiweifuwu_anniu.png in Resources */,

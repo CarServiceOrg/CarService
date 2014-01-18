@@ -13,6 +13,8 @@
 #import "MBProgressHUD.h"
 #import "CSAuthCodeViewController.h"
 #import "CSPeccancyRecordViewController.h"
+#import "ApplicationPublic.h"
+#import "ActionSheetStringPicker.h"
 
 @interface CSSecondViewController ()<UITextFieldDelegate, MBProgressHUDDelegate>
 {
@@ -22,6 +24,8 @@
 @property(readonly,assign)MBProgressHUD *alertView;
 @property(nonatomic,retain)NSString* m_responseString;
 @property(nonatomic,retain)NSArray* m_responseCookieAry;
+@property(nonatomic,retain)NSArray* m_dataArray;
+@property(nonatomic,assign)int m_selectedIndex;
 
 @end
 
@@ -42,12 +46,12 @@
     float x, y, width, height;
 
     x=frame.origin.x+5; y=frame.origin.y+5; width=frame.size.width-5*2; height=40;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:100 with_placeHolder:@"仅支持北京地区车牌" with_delegate:self];
+    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:100 with_placeHolder:@"选择省份" with_delegate:self];
     {
         UITextField* aField=(UITextField*)[self.view viewWithTag:100];
         if (aField) {
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
-            [aField setEnabled:NO];
+            [aField setEnabled:YES];
             [ApplicationPublic setLeftView:aField text:@"选择城市：" flag:YES fontSize:15.0];
         }
     }
@@ -98,6 +102,7 @@
     [ApplicationPublic selfDefineBg:self.view];
     [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章查询" withTarget:self with_action:@selector(backBtnClicked:)];
     [self init_selfView];
+    self.m_selectedIndex=-1;
 }
 
 - (void)didReceiveMemoryWarning
@@ -247,9 +252,18 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
+        NSString* lsprefix=@"";
+        
+        if (self.m_selectedIndex!=-1 && self.m_selectedIndex<[self.m_dataArray count]) {
+            NSDictionary* dict=[self.m_dataArray objectAtIndex:self.m_selectedIndex];
+            if ([dict objectForKey:@"lsprefix"]) {
+               lsprefix=[NSString stringWithFormat:@"%@",[dict objectForKey:@"lsprefix"]];
+            }
+        }
+
         NSString *urlStr = [NSString stringWithFormat:@"%@?json={\"action\":\"wzcx\",\"lsprefix\":\"%@\",\"lsnum\":\"%@\",\"engineno\":\"%@\"}",
                             ServerAddress,
-                            @"京",   //[[[Util sharedUtil] getUserInfo] objectForKey:@"id"],
+                            lsprefix,
                             [dict objectForKey:@"lsnum"],
                             [dict objectForKey:@"engineno"]
                             ];
@@ -334,6 +348,78 @@
         [aTextField resignFirstResponder];
         [bTextField resignFirstResponder];
     }
+}
+
+// return NO to disallow editing.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField.tag==100) {
+        {
+            {
+                self.alertView.mode = MBProgressHUDModeText;
+                self.alertView.color=[UIColor darkGrayColor];
+                self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
+                [self.alertView show:YES];
+            }
+            
+            //获取列表
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CarCityList" ofType:@"plist"];
+                self.m_dataArray=[NSArray arrayWithContentsOfFile:filePath];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.alertView hide:YES];
+                    if ([self.m_dataArray count]==0) {
+                        [ApplicationPublic showMessage:self with_title:@"错误" with_detail:@"加载数据失败！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+                    }else{
+                        //可选列表
+                        ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                            if (textField) {
+                                self.m_selectedIndex=selectedIndex;
+                                textField.text=[NSString stringWithFormat:@"%@",(NSString*)selectedValue];
+                                {
+                                    UITextField* carFiled=(UITextField*)[self.view viewWithTag:101];
+                                    if (carFiled) {
+                                        UIView* leftView=carFiled.leftView;
+                                        if (leftView) {
+                                            UIImageView* imageView=(UIImageView*)[leftView viewWithTag:1001];
+                                            if (imageView) {
+                                                UILabel* alabel=(UILabel*)[imageView viewWithTag:10001];
+                                                if (alabel) {
+                                                    if (selectedIndex<[self.m_dataArray count]) {
+                                                        NSDictionary* dict=[self.m_dataArray objectAtIndex:selectedIndex];
+                                                        if ([dict objectForKey:@"lsprefix"]) {
+                                                            alabel.text=[NSString stringWithFormat:@"%@",[dict objectForKey:@"lsprefix"]];
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        };
+                        ActionStringCancelBlock cancel = ^(ActionSheetStringPicker *picker) {
+                            
+                        };
+                        NSInteger selectedIndex=0;
+                        NSMutableArray* strArray=[NSMutableArray arrayWithCapacity:3];
+                        for (NSDictionary* dict in self.m_dataArray) {
+                            if ([dict objectForKey:@"city"]) {
+                                [strArray addObject:[dict objectForKey:@"city"]];
+                            }
+                        }
+                        [ActionSheetStringPicker showPickerWithTitle:@"选择地区" rows:strArray initialSelection:selectedIndex
+                                                           doneBlock:done cancelBlock:cancel origin:textField];
+                    }
+                });
+                
+            });
+            
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 #pragma mark -

@@ -126,10 +126,22 @@
     
     if (aField.tag==101) {
         UIImageView* imageView=[[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(bLabel.frame), (aField.frame.size.height-18)/2.0, 18, 18)];
-        [imageView setImage:[UIImage imageNamed:@"new_weichangchaxun_jing.png"]];
+        [imageView setTag:1001];
+        //[imageView setImage:[UIImage imageNamed:@"new_weichangchaxun_jing.png"]];
+        [imageView setBackgroundColor:[UIColor clearColor]];
         [view addSubview:imageView];
         [imageView release];
-        
+        {
+            UILabel* aLabel=[[UILabel alloc] initWithFrame:imageView.bounds];
+            [aLabel setTag:10001];
+            [aLabel setBackgroundColor:[UIColor colorWithRed:255/255.0 green:172/255.0 blue:55/255.0 alpha:1.0]];
+            [aLabel setTextAlignment:NSTextAlignmentCenter];
+            [aLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
+            [aLabel setTextColor:[UIColor whiteColor]];
+            [aLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
+            [imageView addSubview:aLabel];
+            [aLabel release];
+        }
         view.frame=CGRectMake(0, 0, CGRectGetWidth(aLabel.frame)+CGRectGetWidth(bLabel.frame)+CGRectGetWidth(imageView.frame)+5, aField.frame.size.height);
     }else{
         view.frame=CGRectMake(0, 0, CGRectGetWidth(aLabel.frame)+CGRectGetWidth(bLabel.frame), aField.frame.size.height);

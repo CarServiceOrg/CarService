@@ -15,6 +15,7 @@
 #import "ASIHTTPRequest.h"
 #import "NSString+SBJSON.h"
 #import "NSObject+SBJSON.h"
+#import "TPKeyboardAvoidingScrollView.h"
 
 @interface CSDelegateBookViewController ()<UITextFieldDelegate, UITextViewDelegate, MBProgressHUDDelegate>
 {
@@ -165,6 +166,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    TPKeyboardAvoidingScrollView* scrollView=[[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.frame];
+    scrollView.backgroundColor=[UIColor clearColor];
+    scrollView.showsVerticalScrollIndicator=NO;
+    self.view=scrollView;
+    [scrollView release];
+    //建立试图
     [self init_selfView];
 }
 
@@ -374,58 +382,57 @@
                 break;
         }
     }else if (textField.tag==102){
-        switch (_type) {
-            case CSDelegateServiceType_wash:
-            case CSDelegateServiceType_check:
-            case CSDelegateServiceType_fix:
-            case CSDelegateServiceType_sale:
-            {
-                {
-                    self.alertView.mode = MBProgressHUDModeText;
-                    self.alertView.color=[UIColor darkGrayColor];
-                    self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
-                    [self.alertView show:YES];
-                }
-                
-                //获取代维服务地点列表
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    self.dataArray=[NSMutableArray arrayWithCapacity:3];
-                    [ApplicationRequest startHttpRequest_delegateAddress:self.dataArray];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.alertView hide:YES];
-                        if ([self.dataArray count]==0) {
-                            [ApplicationPublic showMessage:self with_title:@"错误" with_detail:@"加载数据失败，请检验您的网络！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
-                        }else{
-                            //可选列表
-                            ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                if (textField) {
-                                    textField.text=[NSString stringWithFormat:@"%@",(NSString*)selectedValue];
-                                }
-                            };
-                            ActionStringCancelBlock cancel = ^(ActionSheetStringPicker *picker) {
-                                
-                            };
-                            NSInteger selectedIndex=1;
-                            NSMutableArray* strArray=[NSMutableArray arrayWithCapacity:3];
-                            for (NSDictionary* dict in self.dataArray) {
-                                if ([dict objectForKey:@"address"]) {
-                                    [strArray addObject:[dict objectForKey:@"address"]];
-                                }
-                            }                            
-                            [ActionSheetStringPicker showPickerWithTitle:@"选择地区" rows:strArray initialSelection:selectedIndex
-                                                               doneBlock:done cancelBlock:cancel origin:textField];
-                        }
-                    });
-                    
-                });
-                
-                return NO;
-
-            }
-                break;
-            default:
-                break;
-        }
+//        switch (_type) {
+//            case CSDelegateServiceType_wash:
+//            case CSDelegateServiceType_check:
+//            case CSDelegateServiceType_fix:
+//            case CSDelegateServiceType_sale:
+//            {
+//                {
+//                    self.alertView.mode = MBProgressHUDModeText;
+//                    self.alertView.color=[UIColor darkGrayColor];
+//                    self.alertView.labelText = NSLocalizedString(@"加载中...", nil);
+//                    [self.alertView show:YES];
+//                }
+//                
+//                //获取代维服务地点列表
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    self.dataArray=[NSMutableArray arrayWithCapacity:3];
+//                    [ApplicationRequest startHttpRequest_delegateAddress:self.dataArray];
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self.alertView hide:YES];
+//                        if ([self.dataArray count]==0) {
+//                            [ApplicationPublic showMessage:self with_title:@"错误" with_detail:@"加载数据失败，请检验您的网络！" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+//                        }else{
+//                            //可选列表
+//                            ActionStringDoneBlock done = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+//                                if (textField) {
+//                                    textField.text=[NSString stringWithFormat:@"%@",(NSString*)selectedValue];
+//                                }
+//                            };
+//                            ActionStringCancelBlock cancel = ^(ActionSheetStringPicker *picker) {
+//                                
+//                            };
+//                            NSInteger selectedIndex=1;
+//                            NSMutableArray* strArray=[NSMutableArray arrayWithCapacity:3];
+//                            for (NSDictionary* dict in self.dataArray) {
+//                                if ([dict objectForKey:@"address"]) {
+//                                    [strArray addObject:[dict objectForKey:@"address"]];
+//                                }
+//                            }                            
+//                            [ActionSheetStringPicker showPickerWithTitle:@"选择地区" rows:strArray initialSelection:selectedIndex
+//                                                               doneBlock:done cancelBlock:cancel origin:textField];
+//                        }
+//                    });
+//                    
+//                });
+//                
+//                return NO;
+//            }
+//                break;
+//            default:
+//                break;
+//        }
     }
     
     
