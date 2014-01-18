@@ -381,35 +381,36 @@ static CSFirstViewController *theOnlyController = nil;
     [ApplicationPublic selfDefineBg:self.view];
     
     //logo
-    x=10; y=20+10; width=229/2.0; height=52/2.0;
-    UIImageView* logoImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [logoImageView setImage:[UIImage imageNamed:@"new_logo.png"]];
-    [self.view addSubview:logoImageView];
-    [logoImageView release];
+    x=10; y=20+10; width=229/2.0; height=52/2.0+18;
+    UIView* logoView=[[UIView alloc] initWithFrame:CGRectMake(x, y, width, height+18)];
+    logoView.backgroundColor=[UIColor clearColor];
+    [self.view addSubview:logoView];
+    [logoView release];
     {
-        logoImageView.userInteractionEnabled=YES;
         UITapGestureRecognizer* gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoCallPhone:)];
-        [logoImageView addGestureRecognizer:gesture];
-    }
-    
-    //电话图标
-    y=y+height; width=18; height=18;
-    UIImageView* photoImageView=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    [photoImageView setImage:[UIImage imageNamed:@"new_dianhua_tubiao.png"]];
-    [self.view addSubview:photoImageView];
-    [photoImageView release];
-    
-    //电话
-    x=x+width; width=229/2.0-width; height=23;
-    {
-        UILabel* aLabel=[[UILabel alloc] initWithFrame:CGRectMake(x, y, width, height)];
+        [logoView addGestureRecognizer:gesture];
+        
+        UIImageView* logoImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, 52/2.0)];
+        logoImageView.backgroundColor=[UIColor clearColor];
+        [logoImageView setImage:[UIImage imageNamed:@"new_logo.png"]];
+        [logoView addSubview:logoImageView];
+        [logoImageView release];
+        
+        //电话图标
+        UIImageView* photoImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 52/2.0, 18, 18)];
+        [photoImageView setImage:[UIImage imageNamed:@"new_dianhua_tubiao.png"]];
+        [logoView addSubview:photoImageView];
+        [photoImageView release];
+        
+        //电话
+        UILabel* aLabel=[[UILabel alloc] initWithFrame:CGRectMake(18, 52/2.0, 229/2.0-18, 23)];
         [aLabel setBackgroundColor:[UIColor clearColor]];
         [aLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];
         [aLabel setTextAlignment:NSTextAlignmentCenter];
         [aLabel setFont:[UIFont boldSystemFontOfSize:14]];
         [aLabel setTextColor:[UIColor blackColor]];
         [aLabel setText:@"400-009-2885"];
-        [self.view addSubview:aLabel];
+        [logoView addSubview:aLabel];
         [aLabel release];
     }
     
