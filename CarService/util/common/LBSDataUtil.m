@@ -43,7 +43,7 @@ static LBSDataUtil *shareLbsUtil = nil;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
         [self startCollectionLocation];
         errorCode = LocationErrorCode_NoError;
-        self.address = @"地理位置未知";
+        self.address = @"";
     }
     return self;
 }
