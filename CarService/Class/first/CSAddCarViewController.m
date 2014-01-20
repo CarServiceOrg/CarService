@@ -11,6 +11,7 @@
 #import "ActionSheetDatePicker.h"
 #import "ActionSheetStringPicker.h"
 #import "MBProgressHUD.h"
+#import "TPKeyboardAvoidingScrollView.h"
 
 @interface CSAddCarViewController ()<UITextFieldDelegate, MBProgressHUDDelegate>
 {
@@ -76,6 +77,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    TPKeyboardAvoidingScrollView* scrollView=[[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.frame];
+    scrollView.backgroundColor=[UIColor clearColor];
+    scrollView.showsVerticalScrollIndicator=NO;
+    self.view=scrollView;
+    [scrollView release];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CarCityList" ofType:@"plist"];
     self.m_dataArray=[NSArray arrayWithContentsOfFile:filePath];
