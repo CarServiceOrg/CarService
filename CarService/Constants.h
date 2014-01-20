@@ -26,6 +26,8 @@
 #define CSAddCarViewController_carSign  @"carSign"  //存储文件中 车牌号对应的键
 #define CSAddCarViewController_carStand @"carStand"  //存储文件中 车架号对应的键
 #define CSAddCarViewController_carDate  @"carDate"  //存储文件中 车辆初次登记日期 对应的键
+#define CSAddCarViewController_carCity  @"carCity"  //存储文件中 车牌省份 全称
+#define CSAddCarViewController_carLsprefix  @"carlsprefix"  //存储文件中 车牌省份 简称
 
 typedef enum
 {

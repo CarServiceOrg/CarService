@@ -61,8 +61,8 @@
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [aField setEnabled:YES];
             [ApplicationPublic setLeftView:aField text:@"选择城市：" flag:YES fontSize:15.0];
-            if (carInfoDic) {
-                [aField setText:@"北京"];
+            if (carInfoDic && [carInfoDic objectForKey:CSAddCarViewController_carCity]) {
+                [aField setText:[carInfoDic objectForKey:CSAddCarViewController_carCity]];
             }
         }
     }
@@ -76,27 +76,31 @@
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [ApplicationPublic setLeftView:aField text:@"车牌号码：" flag:YES fontSize:15.0];
             //[aField setText:@"phq600"];
-            if (nil != [carInfoDic objectForKey:@"carSign"]){
-                aField.text = [carInfoDic objectForKey:@"carSign"];
+            if (carInfoDic && [carInfoDic objectForKey:CSAddCarViewController_carSign]) {
+                aField.text = [carInfoDic objectForKey:CSAddCarViewController_carSign];
                 
-                UITextField* carFiled=(UITextField*)[self.view viewWithTag:101];
-                if (carFiled) {
-                    UIView* leftView=carFiled.leftView;
-                    if (leftView) {
-                        UIImageView* imageView=(UIImageView*)[leftView viewWithTag:1001];
-                        if (imageView) {
-                            UILabel* alabel=(UILabel*)[imageView viewWithTag:10001];
-                            if (alabel) {
-                                if (self.m_selectedIndex<[self.m_dataArray count]) {
-                                    NSDictionary* dict=[self.m_dataArray objectAtIndex:self.m_selectedIndex];
-                                    if ([dict objectForKey:@"lsprefix"]) {
-                                        alabel.text=[NSString stringWithFormat:@"%@",[dict objectForKey:@"lsprefix"]];
+                UIView* leftView=aField.leftView;
+                if (leftView) {
+                    UIImageView* imageView=(UIImageView*)[leftView viewWithTag:1001];
+                    if (imageView) {
+                        UILabel* alabel=(UILabel*)[imageView viewWithTag:10001];
+                        if (alabel) {
+                            if (carInfoDic && [carInfoDic objectForKey:CSAddCarViewController_carLsprefix]) {
+                                for (int i=0; i<[self.m_dataArray count]; i++) {
+                                    NSDictionary* dict=[self.m_dataArray objectAtIndex:i];
+                                    NSString* aStr=[dict objectForKey:@"lsprefix"];
+                                    NSString* bStr=[carInfoDic objectForKey:CSAddCarViewController_carLsprefix];
+                                    if ([aStr isEqualToString:bStr]) {
+                                        self.m_selectedIndex=i;
+                                        break;
                                     }
                                 }
+                                alabel.text=[NSString stringWithFormat:@"%@",[carInfoDic objectForKey:CSAddCarViewController_carLsprefix]];
                             }
                         }
                     }
                 }
+                
             }
         }
     }
@@ -106,8 +110,8 @@
     {
         UITextField* aField=(UITextField*)[self.view viewWithTag:102];
         if (aField) {
-            if (nil != [carInfoDic objectForKey:@"carStand"]){
-                aField.text = [carInfoDic objectForKey:@"carStand"];
+            if (carInfoDic && [carInfoDic objectForKey:CSAddCarViewController_carStand]) {
+                aField.text = [carInfoDic objectForKey:CSAddCarViewController_carStand];
             }
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [ApplicationPublic setLeftView:aField text:@"发动机号：" flag:YES fontSize:15.0];
@@ -138,7 +142,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CarCityList" ofType:@"plist"];
     self.m_dataArray=[NSArray arrayWithContentsOfFile:filePath];
-    self.m_selectedIndex=0;
+    self.m_selectedIndex=-1;
 
     [ApplicationPublic selfDefineBg:self.view];
     [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章查询" withTarget:self with_action:@selector(backBtnClicked:)];
@@ -260,6 +264,13 @@
 #pragma mark - 点击事件
 -(void)queryBtnClick:(id)sender
 {
+    //省份
+    UITextField* cTextField=(UITextField*)[self.view viewWithTag:100];
+    if (cTextField.text.length==0) {
+        [ApplicationPublic showMessage:self with_title:@"请选择省份！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
+        return;
+    }
+
     //车牌号
     UITextField* aTextField=(UITextField*)[self.view viewWithTag:101];
     if (aTextField.text.length==0) {
@@ -272,9 +283,6 @@
         [ApplicationPublic showMessage:self with_title:@"请输入发动机号！" with_detail:@"" with_type:TSMessageNotificationTypeError with_Duration:2.0];
         return;
     }
-    
-//    //(1)开始网络请求
-//    [self startHttpRequest];
     
     //(2)开始网络请求
     NSMutableDictionary* dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:aTextField.text, @"lsnum", bTextField.text, @"engineno", nil];
