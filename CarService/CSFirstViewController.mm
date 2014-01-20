@@ -912,8 +912,8 @@ static CSFirstViewController *theOnlyController = nil;
                 mangerBtn.alpha=1.0;
                 
                 NSString* signStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carSign]; //车牌号
-                //NSString* standStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carStand]; //车架号
-                [mangerBtn setTitle:[NSString stringWithFormat:@"%@",signStr] forState:UIControlStateNormal];
+                NSString* lsprefixStr=[[alreadyAry lastObject] objectForKey:CSAddCarViewController_carLsprefix]; //车架号
+                [mangerBtn setTitle:[NSString stringWithFormat:@"%@%@",lsprefixStr, signStr] forState:UIControlStateNormal];
             }
             
             UIButton* msgBtn=(UIButton*)[containView viewWithTag:1002];
