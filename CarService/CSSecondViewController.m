@@ -43,6 +43,14 @@
     [self.view addSubview:tabviewBg];
     [tabviewBg release];
 
+    NSDictionary *carInfoDic = nil;
+    NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
+    if ([alreadyAry count] > 0){
+        carInfoDic = [alreadyAry lastObject];
+    }
+    
+    CustomLog(@"carinfo:%@",carInfoDic);
+
     float x, y, width, height;
 
     x=frame.origin.x+5; y=frame.origin.y+5; width=frame.size.width-5*2; height=40;
@@ -53,30 +61,43 @@
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [aField setEnabled:YES];
             [ApplicationPublic setLeftView:aField text:@"选择城市：" flag:YES fontSize:15.0];
+            if (carInfoDic) {
+                [aField setText:@"北京"];
+            }
         }
     }
     
-    NSDictionary *carInfoDic = nil;
-    NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
-    if ([alreadyAry count] > 0)
-    {
-        carInfoDic = [alreadyAry lastObject];
-    }
-    
-    CustomLog(@"carinfo:%@",carInfoDic);
     //车牌号
     y=y+height+1;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"请输入车牌号" with_delegate:self];
     {
         UITextField* aField=(UITextField*)[self.view viewWithTag:101];
         if (aField) {
-            if (nil != [carInfoDic objectForKey:@"carSign"])
-            {
-                aField.text = [carInfoDic objectForKey:@"carSign"];
-            }
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [ApplicationPublic setLeftView:aField text:@"车牌号码：" flag:YES fontSize:15.0];
             //[aField setText:@"phq600"];
+            if (nil != [carInfoDic objectForKey:@"carSign"]){
+                aField.text = [carInfoDic objectForKey:@"carSign"];
+                
+                UITextField* carFiled=(UITextField*)[self.view viewWithTag:101];
+                if (carFiled) {
+                    UIView* leftView=carFiled.leftView;
+                    if (leftView) {
+                        UIImageView* imageView=(UIImageView*)[leftView viewWithTag:1001];
+                        if (imageView) {
+                            UILabel* alabel=(UILabel*)[imageView viewWithTag:10001];
+                            if (alabel) {
+                                if (self.m_selectedIndex<[self.m_dataArray count]) {
+                                    NSDictionary* dict=[self.m_dataArray objectAtIndex:self.m_selectedIndex];
+                                    if ([dict objectForKey:@"lsprefix"]) {
+                                        alabel.text=[NSString stringWithFormat:@"%@",[dict objectForKey:@"lsprefix"]];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     //发动机号
@@ -85,8 +106,7 @@
     {
         UITextField* aField=(UITextField*)[self.view viewWithTag:102];
         if (aField) {
-            if (nil != [carInfoDic objectForKey:@"carStand"])
-            {
+            if (nil != [carInfoDic objectForKey:@"carStand"]){
                 aField.text = [carInfoDic objectForKey:@"carStand"];
             }
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
@@ -94,6 +114,7 @@
             //[aField setText:@"80229789"];
         }
     }
+    
     //查询
     width=133/2.0+20; x=(320-width)/2.0; y=y+height+30; height=48/2.0+10;
     UIButton* queryBtn=[[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
@@ -115,10 +136,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CarCityList" ofType:@"plist"];
+    self.m_dataArray=[NSArray arrayWithContentsOfFile:filePath];
+    self.m_selectedIndex=0;
+
     [ApplicationPublic selfDefineBg:self.view];
     [ApplicationPublic selfDefineNavigationBar:self.view title:@"违章查询" withTarget:self with_action:@selector(backBtnClicked:)];
     [self init_selfView];
-    self.m_selectedIndex=-1;
 }
 
 - (void)didReceiveMemoryWarning
@@ -314,11 +338,11 @@
                             //[self performSelector:@selector(backBtnClicked:) withObject:nil afterDelay:1.5];
                             break;
                         case 1:
-                            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"提交数据失败！", nil) with_type:TSMessageNotificationTypeError];
+                            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeError];
                             break;
                             
                         default:
-                            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"提交数据失败！", nil) with_type:TSMessageNotificationTypeError];
+                            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeError];
                             break;
                     }
                 }
@@ -380,8 +404,6 @@
             
             //获取列表
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CarCityList" ofType:@"plist"];
-                self.m_dataArray=[NSArray arrayWithContentsOfFile:filePath];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.alertView hide:YES];
                     if ([self.m_dataArray count]==0) {
