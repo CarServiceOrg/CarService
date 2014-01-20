@@ -56,12 +56,24 @@
         }
     }
     
+    NSDictionary *carInfoDic = nil;
+    NSArray* alreadyAry=[[NSUserDefaults standardUserDefaults] objectForKey:CSAddCarViewController_carList];
+    if ([alreadyAry count] > 0)
+    {
+        carInfoDic = [alreadyAry lastObject];
+    }
+    
+    CustomLog(@"carinfo:%@",carInfoDic);
     //车牌号
     y=y+height+1;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"请输入车牌号" with_delegate:self];
     {
         UITextField* aField=(UITextField*)[self.view viewWithTag:101];
         if (aField) {
+            if (nil != [carInfoDic objectForKey:@"carSign"])
+            {
+                aField.text = [carInfoDic objectForKey:@"carSign"];
+            }
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_zhongbu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [ApplicationPublic setLeftView:aField text:@"车牌号码：" flag:YES fontSize:15.0];
             //[aField setText:@"phq600"];
@@ -73,6 +85,10 @@
     {
         UITextField* aField=(UITextField*)[self.view viewWithTag:102];
         if (aField) {
+            if (nil != [carInfoDic objectForKey:@"carStand"])
+            {
+                aField.text = [carInfoDic objectForKey:@"carStand"];
+            }
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaoge_dibu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [ApplicationPublic setLeftView:aField text:@"发动机号：" flag:YES fontSize:15.0];
             //[aField setText:@"80229789"];
