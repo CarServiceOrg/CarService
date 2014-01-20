@@ -261,6 +261,7 @@
                         }else{
                             [[NSUserDefaults standardUserDefaults] removeObjectForKey:CSAddCarViewController_carList];
                         }
+                        [[NSUserDefaults standardUserDefaults] synchronize];
                         //动画更新列表
                         NSMutableArray* indexPaths = [[[NSMutableArray alloc] init] autorelease];
                         [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];

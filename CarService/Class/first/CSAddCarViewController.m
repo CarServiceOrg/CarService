@@ -184,6 +184,7 @@
                                nil];
         [array addObject:dictNew];
         [[NSUserDefaults standardUserDefaults] setObject:array forKey:CSAddCarViewController_carList];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
