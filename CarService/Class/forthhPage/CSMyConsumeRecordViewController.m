@@ -275,6 +275,7 @@
             NSTimeInterval secondsPerDay = 24 * 60 * 60;
             self.fromDate = [NSDate dateWithTimeIntervalSinceNow:- 7 * secondsPerDay];
             self.toDate = [NSDate date];
+            [self setHeaderViewContent];
             [self loadContent];
         }
         else
