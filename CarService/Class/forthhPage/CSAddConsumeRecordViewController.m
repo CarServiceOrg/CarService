@@ -18,6 +18,7 @@
 @property (nonatomic,retain) IBOutlet UITextField *timeField;
 @property (nonatomic,retain) IBOutlet UITextField *constField;
 @property (nonatomic,retain) IBOutlet UIButton *headerButton;
+@property (nonatomic,retain) IBOutlet UIButton *tijiaoButton;
 @property (nonatomic,retain) NSArray *classInfoDicArray;
 @property (nonatomic,retain) NSDictionary *currentClassInfoDic;
 @property (nonatomic,retain) IBOutlet UIDatePicker *datePicker;
@@ -39,6 +40,7 @@
 @synthesize recordRuest;
 @synthesize addressField;
 @synthesize backView;
+@synthesize tijiaoButton;
 
 - (IBAction)backButtonPressed:(id)sender
 {
@@ -147,6 +149,7 @@
 
 - (void)dealloc
 {
+    [tijiaoButton release];
     [backView release];
     [datePickerBackView release];
     [timeField release];
@@ -191,6 +194,11 @@
     [self.backView addGestureRecognizer:tapReconginzer];
     [tapReconginzer release];
     
+}
+
+- (void)confirmButtonClicked:(id)gesture
+{
+    [self comfirmActionPressed:self.tijiaoButton];
 }
 
 - (void)hideKeyBoard
@@ -334,6 +342,18 @@
         }
     }];
     
+}
+
+#pragma mark - UIGesture Delegate Method
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    UIView *view = [touch view];
+    
+    if ([view isKindOfClass:[UIButton class]]) {
+        return NO;
+    }
+    return YES;
 }
 
 
