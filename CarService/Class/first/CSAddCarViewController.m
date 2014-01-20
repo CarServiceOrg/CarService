@@ -53,7 +53,14 @@
     //车牌号
     y=y+height+15;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"车牌号：" with_delegate:self];
-    
+    {
+        UITextField* aField=(UITextField*)[self.view viewWithTag:101];
+        if (aField) {
+            [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
+            [aField setEnabled:YES];
+            [ApplicationPublic setLeftView:aField text:@"" flag:YES fontSize:15.0];
+        }
+    }
     //车架号
     y=y+height+15;
     [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"发动机号：" with_delegate:self];
