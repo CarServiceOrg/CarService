@@ -202,7 +202,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (backB) {
                 [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"提示", nil) with_detail:NSLocalizedString(@"提交订单成功！", nil) with_type:TSMessageNotificationTypeSuccess with_Duration:2.0];
-                [self performSelector:@selector(backBtnClick:) withObject:nil afterDelay:2.0];
+                //[self performSelector:@selector(backBtnClick:) withObject:nil afterDelay:2.0];
             }else{
                 
             }
