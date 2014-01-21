@@ -19,7 +19,7 @@
 
 @interface CSDelegateBookViewController ()<UITextFieldDelegate, UITextViewDelegate, MBProgressHUDDelegate>
 {
-    
+    TPKeyboardAvoidingScrollView* _scrollView;
 }
 
 @property (nonatomic,retain) NSMutableArray* dataArray;
@@ -104,19 +104,26 @@
     [self.view addSubview:tabviewBg];
     [tabviewBg release];
 
+    TPKeyboardAvoidingScrollView* scrollView=[[TPKeyboardAvoidingScrollView alloc] initWithFrame:frame];
+    scrollView.backgroundColor=[UIColor clearColor];
+    scrollView.showsVerticalScrollIndicator=NO;
+    [self.view addSubview:scrollView];
+    [scrollView release];
+    _scrollView=scrollView;
+    
     float x, y, width, height;
 
     //联系人
-    x=frame.origin.x+5; y=frame.origin.y+5; width=frame.size.width-5*2; height=40;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:99 with_placeHolder:@"联系人" with_delegate:self];
+    x=5; y=5; width=frame.size.width-5*2; height=40;
+    [ApplicationPublic setUp_UITextField:_scrollView with_frame:CGRectMake(x, y, width, height) with_tag:99 with_placeHolder:@"联系人" with_delegate:self];
     
     //联系电话
     y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:100 with_placeHolder:@"联系电话" with_delegate:self];
+    [ApplicationPublic setUp_UITextField:_scrollView with_frame:CGRectMake(x, y, width, height) with_tag:100 with_placeHolder:@"联系电话" with_delegate:self];
 
     //时间
     y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:firstHolderStr with_delegate:self];
+    [ApplicationPublic setUp_UITextField:_scrollView with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:firstHolderStr with_delegate:self];
     {
         UITextField* aField=(UITextField*)[self.view viewWithTag:101];
         if (aField) {
@@ -129,14 +136,14 @@
     
     //地点
     y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:secondtHolderStr with_delegate:self];
+    [ApplicationPublic setUp_UITextField:_scrollView with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:secondtHolderStr with_delegate:self];
 
     y=y+height+15; height=80;
     {
         UIImageView* textViewBg=[[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, height)];
         [textViewBg setBackgroundColor:[UIColor clearColor]];
         [textViewBg setImage:[ApplicationPublic getOriginImage:@"new_baoanzixun_xialakuang.png" withInset:UIEdgeInsetsMake(10, 10, 10, 10)]];
-        [self.view addSubview:textViewBg];
+        [_scrollView addSubview:textViewBg];
         [textViewBg release];
     }    
     GCPlaceholderTextView* textView=[[GCPlaceholderTextView alloc] initWithFrame:CGRectMake(x, y, width, height)];
@@ -147,7 +154,7 @@
     textView.placeholder=thirdHolderStr;
     [textView setAutocorrectionType:UITextAutocorrectionTypeNo];
     [textView setTextColor:[UIColor blackColor]];
-    [self.view addSubview:textView];
+    [_scrollView addSubview:textView];
     [textView release];
     
     //查询
@@ -158,7 +165,7 @@
     [queryBtn setBackgroundImage:[UIImage imageNamed:@"chaoxun_btn.png"] forState:UIControlStateNormal];
     [queryBtn setBackgroundImage:[UIImage imageNamed:@"chanxun_btn_press.png"] forState:UIControlStateHighlighted];
     [queryBtn addTarget:self action:@selector(queryBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:queryBtn];
+    [_scrollView addSubview:queryBtn];
     [queryBtn release];
 }
 
@@ -166,12 +173,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    TPKeyboardAvoidingScrollView* scrollView=[[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.frame];
-    scrollView.backgroundColor=[UIColor clearColor];
-    scrollView.showsVerticalScrollIndicator=NO;
-    self.view=scrollView;
-    [scrollView release];
     //建立试图
     [self init_selfView];
 }
