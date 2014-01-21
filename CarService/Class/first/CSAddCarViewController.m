@@ -15,7 +15,7 @@
 
 @interface CSAddCarViewController ()<UITextFieldDelegate, MBProgressHUDDelegate>
 {
-    
+    TPKeyboardAvoidingScrollView* _scrollView;
 }
 
 @property(readonly,assign)MBProgressHUD *alertView;
@@ -36,13 +36,20 @@
     [self.view addSubview:tabviewBg];
     [tabviewBg release];
     
+    TPKeyboardAvoidingScrollView* scrollView=[[TPKeyboardAvoidingScrollView alloc] initWithFrame:frame];
+    scrollView.backgroundColor=[UIColor clearColor];
+    scrollView.showsVerticalScrollIndicator=NO;
+    [self.view addSubview:scrollView];
+    [scrollView release];
+    _scrollView=scrollView;
+    
     float x, y, width, height;
     
     //选择省份
-    x=frame.origin.x+5; y=frame.origin.y+5; width=frame.size.width-5*2; height=40;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:100 with_placeHolder:@"选择省份" with_delegate:self];
+    x=5; y=5; width=frame.size.width-5*2; height=40;
+    [ApplicationPublic setUp_UITextField:_scrollView with_frame:CGRectMake(x, y, width, height) with_tag:100 with_placeHolder:@"选择省份" with_delegate:self];
     {
-        UITextField* aField=(UITextField*)[self.view viewWithTag:100];
+        UITextField* aField=(UITextField*)[_scrollView viewWithTag:100];
         if (aField) {
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [aField setEnabled:YES];
@@ -52,9 +59,9 @@
     
     //车牌号
     y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"车牌号：" with_delegate:self];
+    [ApplicationPublic setUp_UITextField:_scrollView with_frame:CGRectMake(x, y, width, height) with_tag:101 with_placeHolder:@"车牌号：" with_delegate:self];
     {
-        UITextField* aField=(UITextField*)[self.view viewWithTag:101];
+        UITextField* aField=(UITextField*)[_scrollView viewWithTag:101];
         if (aField) {
             [aField setBackground:[ApplicationPublic getOriginImage:@"new_baoanzixun_biaogetoubu.png" withInset:UIEdgeInsetsMake(25, 25, 25, 25)]];
             [aField setEnabled:YES];
@@ -63,11 +70,11 @@
     }
     //车架号
     y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"发动机号：" with_delegate:self];
+    [ApplicationPublic setUp_UITextField:_scrollView with_frame:CGRectMake(x, y, width, height) with_tag:102 with_placeHolder:@"发动机号：" with_delegate:self];
     
     //车架号
     y=y+height+15;
-    [ApplicationPublic setUp_UITextField:self.view with_frame:CGRectMake(x, y, width, height) with_tag:103 with_placeHolder:@"车辆初次登记日期：" with_delegate:self];
+    [ApplicationPublic setUp_UITextField:_scrollView with_frame:CGRectMake(x, y, width, height) with_tag:103 with_placeHolder:@"车辆初次登记日期：" with_delegate:self];
 
     //查询
     width=133/2.0+20; x=(320-width)/2.0; y=y+height+30; height=48/2.0+10;
@@ -77,19 +84,13 @@
     [doneBtn setBackgroundImage:[UIImage imageNamed:@"chaoxun_btn.png"] forState:UIControlStateNormal];
     [doneBtn setBackgroundImage:[UIImage imageNamed:@"chanxun_btn_press.png"] forState:UIControlStateHighlighted];
     [doneBtn addTarget:self action:@selector(doneBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:doneBtn];
+    [_scrollView addSubview:doneBtn];
     [doneBtn release];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    TPKeyboardAvoidingScrollView* scrollView=[[TPKeyboardAvoidingScrollView alloc] initWithFrame:self.view.frame];
-    scrollView.backgroundColor=[UIColor clearColor];
-    scrollView.showsVerticalScrollIndicator=NO;
-    self.view=scrollView;
-    [scrollView release];
-    
 	// Do any additional setup after loading the view, typically from a nib.
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CarCityList" ofType:@"plist"];
     self.m_dataArray=[NSArray arrayWithContentsOfFile:filePath];
@@ -118,7 +119,7 @@
     NSString* cityStr=nil;
     NSString* lsprefix=nil;
     if (self.m_selectedIndex!=-1) {
-        UITextField* cityField=(UITextField*)[self.view viewWithTag:100];
+        UITextField* cityField=(UITextField*)[_scrollView viewWithTag:100];
         if (cityField) {
             cityStr=cityField.text;
 
@@ -132,19 +133,19 @@
     }
     
     NSString* carSignStr=nil;
-    UITextField* sign=(UITextField*)[self.view viewWithTag:101];
+    UITextField* sign=(UITextField*)[_scrollView viewWithTag:101];
     if (sign) {
         carSignStr=sign.text;
     }
     
     NSString* carStandStr=nil;
-    UITextField* stand=(UITextField*)[self.view viewWithTag:102];
+    UITextField* stand=(UITextField*)[_scrollView viewWithTag:102];
     if (stand) {
         carStandStr=stand.text;
     }
     
     NSString* carDateStr=nil;
-    UITextField* date=(UITextField*)[self.view viewWithTag:103];
+    UITextField* date=(UITextField*)[_scrollView viewWithTag:103];
     if (date) {
         carDateStr=date.text;
     }
@@ -307,7 +308,7 @@
                                 self.m_selectedIndex=selectedIndex;
                                 textField.text=[NSString stringWithFormat:@"%@",(NSString*)selectedValue];
                                 {
-                                    UITextField* carFiled=(UITextField*)[self.view viewWithTag:101];
+                                    UITextField* carFiled=(UITextField*)[_scrollView viewWithTag:101];
                                     if (carFiled) {
                                         UIView* leftView=carFiled.leftView;
                                         if (leftView) {
@@ -365,8 +366,8 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITextField* aTextField=(UITextField*)[self.view viewWithTag:101];
-    UITextField* bTextField=(UITextField*)[self.view viewWithTag:102];
+    UITextField* aTextField=(UITextField*)[_scrollView viewWithTag:101];
+    UITextField* bTextField=(UITextField*)[_scrollView viewWithTag:102];
     if ([aTextField isFirstResponder] || [bTextField isFirstResponder]) {
         [aTextField resignFirstResponder];
         [bTextField resignFirstResponder];
