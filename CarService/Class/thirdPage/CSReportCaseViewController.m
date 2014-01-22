@@ -264,11 +264,10 @@
         BOOL backBool=[self startHttpRequest_report];
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            self.alertView.labelText = NSLocalizedString(@"提交成功", nil);
-            [self.alertView show:YES];
-            [self.alertView hide:YES afterDelay:2.0];
-            
             if (backBool) {
+                self.alertView.labelText = NSLocalizedString(@"提交成功", nil);
+                [self.alertView show:YES];
+                [self.alertView hide:YES afterDelay:2.0];
                 [self performSelector:@selector(backBtnClick:) withObject:nil afterDelay:2.0];
             }else{
                 [self showErrorMessage];
@@ -299,6 +298,13 @@
     NSString *urlStr =[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg];
     CustomLog(@"<<Chao-->ApplicationRequest-->startHttpRequest_report-->urlStr:%@",urlStr);
     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setShouldAttemptPersistentConnection:NO];
+    [request setValidatesSecureCertificate:NO];
+    NSString *fileName = @"";
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HHmmss"];
+    fileName = [NSString stringWithFormat:@"%@.png", [formatter stringFromDate:[NSDate date]]];
+    [formatter release];
     [request setTimeOutSeconds:60.0];
     [request setRequestMethod:@"POST"];
     for(UIView* subview in pic_ScrollView.subviews){
@@ -308,8 +314,11 @@
         if ([jpeg length] == 0){
             jpeg = [NSData dataWithData:UIImagePNGRepresentation(imgView.image)];
         }
-        [request addData:jpeg withFileName:@"file" andContentType:@"file" forKey:@"input"];
-        [request setPostLength:jpeg.length];
+        //[request addData:jpeg withFileName:@"file" andContentType:@"jpeg" forKey:@"file"];
+        [request addData:jpeg withFileName:fileName andContentType:@"image/jpeg" forKey:@"file"];
+
+        //[request addData:jpeg forKey:@"file"];
+        //[request setPostLength:jpeg.length];
     }
     [request startSynchronous];
     
