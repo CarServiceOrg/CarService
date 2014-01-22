@@ -345,6 +345,20 @@
 
 -(void)queryBtnClick:(id)sender
 {
+    NSString* order_phone=[(UITextField*)[self.view viewWithTag:100] text];
+    
+    //验证手机号码
+    if ([order_phone length] == 0)
+    {
+        [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"提示", nil) with_detail:NSLocalizedString(@"请输入手机号！", nil) with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+        return ;
+    }
+    else if(![[Util sharedUtil] isMobileNumber:order_phone])
+    {
+        [ApplicationPublic showMessage:self with_title:NSLocalizedString(@"提示", nil) with_detail:NSLocalizedString(@"手机号格式不正确，请重新输入！", nil) with_type:TSMessageNotificationTypeWarning with_Duration:2.0];
+        return ;
+    }
+    
     [self startHttpRequest];
 }
 
