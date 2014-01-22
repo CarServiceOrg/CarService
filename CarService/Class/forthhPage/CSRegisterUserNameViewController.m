@@ -241,12 +241,16 @@
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"两次输入密码不一致，请重新输入!"];
         return;
     }
-    
-    if (![[Util sharedUtil] isMobileNumber:self.phoneNumberField.text])
+    if ([[Util sharedUtil] isValidEmail:self.phoneNumberField.text] || [[Util sharedUtil] isMobileNumber:self.phoneNumberField.text])
     {
-        [[Util sharedUtil] showAlertWithTitle:@"" message:@"手机号码格式不正确，请重新输入!"];
+        CustomLog(@"valid username");
+    }
+    else
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"请填写正确的手机号或邮箱"];
         return;
     }
+    
     [self.registerRequest clearDelegatesAndCancel];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"register",@"action",self.phoneNumberField.text,@"phone",self.phoneNumberField.text,@"username", [self.secretCodeField.text md5String],@"password", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];

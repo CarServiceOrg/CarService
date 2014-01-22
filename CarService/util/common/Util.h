@@ -27,5 +27,6 @@
 - (NSDictionary *)getUserInfo;
 - (void)setLoginUserInfo:(NSDictionary *)userDic;
 - (BOOL)isMobileNumber:(NSString *)mobileNum;
+- (BOOL)isValidEmail:(NSString *)email;
 
 @end
