@@ -70,6 +70,7 @@
     
     //点击页面使键盘消失
     UITapGestureRecognizer* tapReconginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
+    tapReconginzer.delegate = self;
     tapReconginzer.numberOfTapsRequired = 1;
     tapReconginzer.numberOfTouchesRequired = 1;
     [self.backView addGestureRecognizer:tapReconginzer];
@@ -222,6 +223,7 @@
 
 - (IBAction)registerButtonPressed:(id)sender
 {
+    NSLog(@"registerbuttonpressed");
     if ([self.phoneNumberField.text length] == 0)
     {
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"手机号不能为空!"];
@@ -353,6 +355,22 @@
         }
     }];
 
+}
+
+#pragma mark - UIGesture Delegate Method
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    UIView *view = [touch view];
+    
+    if ([view isKindOfClass:[UIButton class]]) {
+        NSLog(@"test by zhou,judge no");
+
+        return NO;
+    }
+    NSLog(@"test by zhou,judge yes");
+
+    return YES;
 }
 
 @end
