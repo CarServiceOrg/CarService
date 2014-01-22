@@ -26,5 +26,6 @@
 - (void)logout;
 - (NSDictionary *)getUserInfo;
 - (void)setLoginUserInfo:(NSDictionary *)userDic;
+- (BOOL)isMobileNumber:(NSString *)mobileNum;
 
 @end

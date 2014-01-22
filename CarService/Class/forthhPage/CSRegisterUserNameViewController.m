@@ -240,6 +240,11 @@
         return;
     }
     
+    if (![[Util sharedUtil] isMobileNumber:self.phoneNumberField.text])
+    {
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"手机号码格式不正确，请重新输入!"];
+        return;
+    }
     [self.registerRequest clearDelegatesAndCancel];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"register",@"action",self.phoneNumberField.text,@"phone",self.phoneNumberField.text,@"username", [self.secretCodeField.text md5String],@"password", nil];
     SBJSON *jasonParser = [[SBJSON alloc] init];
