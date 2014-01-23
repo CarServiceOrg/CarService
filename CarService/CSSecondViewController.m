@@ -346,11 +346,11 @@
                             //[self performSelector:@selector(backBtnClicked:) withObject:nil afterDelay:1.5];
                             break;
                         case 1:
-                            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeError];
+                            [self showMessage:NSLocalizedString(@"", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeSuccess];
                             break;
                             
                         default:
-                            [self showMessage:NSLocalizedString(@"错误", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeError];
+                            [self showMessage:NSLocalizedString(@"", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeSuccess];
                             break;
                     }
                 }

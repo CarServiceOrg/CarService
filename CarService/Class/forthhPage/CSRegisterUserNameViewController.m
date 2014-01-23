@@ -241,7 +241,7 @@
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"两次输入密码不一致，请重新输入!"];
         return;
     }
-    if ([[Util sharedUtil] isValidEmail:self.phoneNumberField.text] || [[Util sharedUtil] isMobileNumber:self.phoneNumberField.text])
+    /*if ([[Util sharedUtil] isValidEmail:self.phoneNumberField.text] || [[Util sharedUtil] isMobileNumber:self.phoneNumberField.text])
     {
         CustomLog(@"valid username");
     }
@@ -249,7 +249,7 @@
     {
         [[Util sharedUtil] showAlertWithTitle:@"" message:@"请填写正确的手机号或邮箱"];
         return;
-    }
+    }*/
     
     [self.registerRequest clearDelegatesAndCancel];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"register",@"action",self.phoneNumberField.text,@"phone",self.phoneNumberField.text,@"username", [self.secretCodeField.text md5String],@"password", nil];
@@ -307,7 +307,7 @@
                 [[Util sharedUtil] showAlertWithTitle:@"" message:@"身份证号已存在,请重新输入或直接登陆!"];
                 break;
             case 6:
-                [[Util sharedUtil] showAlertWithTitle:@"" message:@"手机号码已经存在,请重新输入!"];
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"用户名已经存在,请重新输入!"];
                 break;
             case 8:
                 [[Util sharedUtil] showAlertWithTitle:@"" message:@"驾驶证号已经存在,请重新输入!"];
