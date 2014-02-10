@@ -10,6 +10,12 @@
 	</dict>
 	<dict>
 		<key>city</key>
+		<string>天津市</string>
+		<key>lsprefix</key>
+		<string>津</string>
+	</dict>
+	<dict>
+		<key>city</key>
 		<string>上海市</string>
 		<key>lsprefix</key>
 		<string>沪</string>
