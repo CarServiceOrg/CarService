@@ -458,6 +458,7 @@
 		E1D044D317E741A9008CBE90 /* CSMyConsumeRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D044D117E741A9008CBE90 /* CSMyConsumeRecordViewController.xib */; };
 		E1D044D717E74559008CBE90 /* CSMyConsumeRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */; };
 		E1D044D817E74559008CBE90 /* CSMyConsumeRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */; };
+		E1EBE5C718A8B310009E860A /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EBE5C618A8B310009E860A /* icon120.png */; };
 		E1EBEC8617EACEBC0026682A /* CSExampleReferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBEC8517EACEBC0026682A /* CSExampleReferViewController.m */; };
 		E1EBEC8A17EADA570026682A /* CSCarManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBEC8917EADA570026682A /* CSCarManageViewController.m */; };
 		E1EBEC8D17EB5B800026682A /* CSAddCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBEC8C17EB5B800026682A /* CSAddCarViewController.m */; };
@@ -1180,6 +1181,7 @@
 		E1D044D417E74558008CBE90 /* CSMyConsumeRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMyConsumeRecordCell.h; sourceTree = "<group>"; };
 		E1D044D517E74559008CBE90 /* CSMyConsumeRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMyConsumeRecordCell.m; sourceTree = "<group>"; };
 		E1D044D617E74559008CBE90 /* CSMyConsumeRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMyConsumeRecordCell.xib; sourceTree = "<group>"; };
+		E1EBE5C618A8B310009E860A /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
 		E1EBEC8417EACEBC0026682A /* CSExampleReferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSExampleReferViewController.h; sourceTree = "<group>"; };
 		E1EBEC8517EACEBC0026682A /* CSExampleReferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSExampleReferViewController.m; sourceTree = "<group>"; };
 		E1EBEC8817EADA570026682A /* CSCarManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCarManageViewController.h; sourceTree = "<group>"; };
@@ -2253,6 +2255,7 @@
 			children = (
 				E118BB6017F7C6BB00610ED6 /* icon@2x.png */,
 				E118BB5E17F7C6B300610ED6 /* icon.png */,
+				E1EBE5C618A8B310009E860A /* icon120.png */,
 				E19AE9DD17F042AC007B9F07 /* Default.png */,
 				E19AE9DE17F042AC007B9F07 /* Default@2x.png */,
 				E19AE9DF17F042AD007B9F07 /* Default-568h@2x.png */,
@@ -2800,6 +2803,7 @@
 				E1D0447C17E71BED008CBE90 /* cheliangbaoyang_acknowledge.png in Resources */,
 				E1D0447D17E71BED008CBE90 /* cheliangbaoyang_question.png in Resources */,
 				E14FBDF6187C734400C6C466 /* new_xiaofeijilu_woyaotoubao_anniu.png in Resources */,
+				E1EBE5C718A8B310009E860A /* icon120.png in Resources */,
 				E1D0447E17E71BED008CBE90 /* cheliangbaoyang_record.png in Resources */,
 				E1D0447F17E71BED008CBE90 /* daiweifuwu_check.png in Resources */,
 				E1D0448017E71BED008CBE90 /* daiweifuwu_clean.png in Resources */,
@@ -3355,7 +3359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: yixuan li (43V7V9XCBH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Baidu (China) Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yixuan li (43V7V9XCBH)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3374,7 +3378,7 @@
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "75CF0A84-03BD-41C8-A7DD-0D7AB6BBC3BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B34DDCB7-3D15-41CA-8AB9-45000A22E249";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75CF0A84-03BD-41C8-A7DD-0D7AB6BBC3BA";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3382,8 +3386,8 @@
 		E53ABA6117E0DD020096754D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: tuo zhang (L6J7N4623F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Baidu (China) Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: hongguang wang (3A938DMJX2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: hongguang wang (3A938DMJX2)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3401,8 +3405,8 @@
 				);
 				OTHER_LDFLAGS = "-fobj-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B34DDCB7-3D15-41CA-8AB9-45000A22E249";
+				PROVISIONING_PROFILE = "CF668FC3-AD68-42A4-968E-9FD30378D5AE";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CF668FC3-AD68-42A4-968E-9FD30378D5AE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
