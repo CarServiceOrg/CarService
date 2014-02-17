@@ -61,6 +61,7 @@
     */
     //在无网情况下启动 会耽误应用启动时间
     [LBSDataUtil shareUtil]; //开启定位
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 要使用百度地图，请先启动BaiduMapManager
         _mapManager = [[BMKMapManager alloc] init];
