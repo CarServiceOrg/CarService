@@ -42,11 +42,11 @@
 //static NSString* key_price = @"cost";
 
 //接口数据
-static NSString* key_time=@"time";
-static NSString* key_address=@"address";
-static NSString* key_content=@"content";
-static NSString* key_score=@"score";
-static NSString* key_price=@"price";
+static NSString* key_time=@"date";
+static NSString* key_address=@"area";
+static NSString* key_content=@"act";
+static NSString* key_score=@"fen";
+static NSString* key_price=@"money";
 
 - (id)initWithDataArray:(NSMutableArray *)aArray
 {

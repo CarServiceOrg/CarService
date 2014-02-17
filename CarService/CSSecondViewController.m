@@ -309,8 +309,7 @@
             }
         }
 
-        NSString *urlStr = [NSString stringWithFormat:@"%@?json={\"action\":\"wzcx\",\"lsprefix\":\"%@\",\"lsnum\":\"%@\",\"engineno\":\"%@\"}",
-                            ServerAddress,
+        NSString *urlStr = [NSString stringWithFormat:@"http://v.juhe.cn/wz/query?city=BJ&hpzl=02&key=8325c1ce579c620f2011096180386297&hphm=%@%@&engineno=%@",
                             lsprefix,
                             [dict objectForKey:@"lsnum"],
                             [dict objectForKey:@"engineno"]
@@ -320,7 +319,7 @@
         
         ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
         [request setTimeOutSeconds:60.0];
-        [request setRequestMethod:@"POST"];
+        [request setRequestMethod:@"GET"];
         [request setCompletionBlock:^{
             
             NSDictionary *requestDic =[[request responseString] JSONValue];
@@ -328,27 +327,23 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.alertView hide:YES];
                 
-                if ([requestDic objectForKey:@"status"]) {
-                    int status=[[requestDic objectForKey:@"status"] intValue];
+                if ([requestDic objectForKey:@"resultcode"]) {
+                    int status=[[requestDic objectForKey:@"resultcode"] intValue];
                     
                     switch (status) {
-                        case 0:
+                        case 200:
                         {
-                            if ([requestDic objectForKey:@"list"]) {
-                                NSMutableArray* array=[requestDic objectForKey:@"list"];
+                            if ([requestDic objectForKey:@"result"] && [[requestDic objectForKey:@"result"] objectForKey:@"lists"] && [[[requestDic objectForKey:@"result"] objectForKey:@"lists"] count]) {
+                                NSMutableArray* array=[[requestDic objectForKey:@"result"] objectForKey:@"lists"];
                                 //跳转进入到下一个界面
                                 CSPeccancyRecordViewController* ctrler=[[CSPeccancyRecordViewController alloc] initWithDataArray:array];
                                 [self.navigationController pushViewController:ctrler animated:YES];
                                 [ctrler release];
+                            }else{
+                                [self showMessage:NSLocalizedString(@"", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeSuccess];
                             }
                         }
-                            //[self showMessage:NSLocalizedString(@"成功", nil) with_detail:NSLocalizedString(@"提交成功！", nil) with_type:TSMessageNotificationTypeSuccess];
-                            //[self performSelector:@selector(backBtnClicked:) withObject:nil afterDelay:1.5];
                             break;
-                        case 1:
-                            [self showMessage:NSLocalizedString(@"", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeSuccess];
-                            break;
-                            
                         default:
                             [self showMessage:NSLocalizedString(@"", nil) with_detail:NSLocalizedString(@"无违章记录！", nil) with_type:TSMessageNotificationTypeSuccess];
                             break;
