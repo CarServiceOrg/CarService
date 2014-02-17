@@ -188,7 +188,7 @@
     //self.addressField.delegate = self;
     //点击页面使键盘消失
     UITapGestureRecognizer* tapReconginzer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
-    tapReconginzer.delegate = self;
+//    tapReconginzer.delegate = self;
     tapReconginzer.numberOfTapsRequired = 1;
     tapReconginzer.numberOfTouchesRequired = 1;
     [self.backView addGestureRecognizer:tapReconginzer];

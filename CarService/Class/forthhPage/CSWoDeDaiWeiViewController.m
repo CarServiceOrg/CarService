@@ -76,17 +76,17 @@
 - (void)loadContent
 {
     [self.infoRequest clearDelegatesAndCancel];
-    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
-    //NSString *uid = [dic objectForKey:@"id"];
-   // NSString *sessionId = [dic objectForKey:@"session_id"];
+//    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+//    NSString *uid = [dic objectForKey:@"id"];
+//    NSString *sessionId = [dic objectForKey:@"session_id"];
+//    
+//    double longitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.longitude;
+//    double latitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.latitude;
+//    NSString *longitudeStr = [NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:longitude*100]];
+//    NSString *latitudeStr = [NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:latitude*100]];
+//    NSString *address = [LBSDataUtil shareUtil].address;
+//    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"k_order_status",@"action",[self.originalInfoDic objectForKey:@"id"],@"id",[dic objectForKey:@"phone"],@"phone",[self.originalInfoDic objectForKey:@"name"],@"server_name",address,@"address",longitudeStr,@"lon",latitudeStr,@"lat", nil];
     
-    double longitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.longitude;
-    double latitude=[LBSDataUtil shareUtil].m_addrResult.geoPt.latitude;
-    NSString *longitudeStr = [NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:longitude*100]];
-    NSString *latitudeStr = [NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:latitude*100]];
-    NSString *address = [LBSDataUtil shareUtil].address;
-    
-    //NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"k_order_status",@"action",[self.originalInfoDic objectForKey:@"id"],@"id",[dic objectForKey:@"phone"],@"phone",[self.originalInfoDic objectForKey:@"name"],@"server_name",address,@"address",longitudeStr,@"lon",latitudeStr,@"lat", nil];
     NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"k_order_status",@"action",[self.originalInfoDic objectForKey:@"id"],@"id", nil];
 
     

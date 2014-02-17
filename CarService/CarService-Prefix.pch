@@ -23,7 +23,7 @@
     #import "BlockAlertView.h"
     #import "BlockActionSheet.h"
 
-#define LOG_ON
+//#define LOG_ON
 static inline void CustomLog(NSString *format, ...)
 {
 #ifdef LOG_ON
