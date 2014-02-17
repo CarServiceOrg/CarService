@@ -895,6 +895,9 @@
 		E17C2FC417EC3B7D00D29BD4 /* CSInsuranceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSInsuranceDetailViewController.m; sourceTree = "<group>"; };
 		E17C2FC617ECCB1300D29BD4 /* ApplicationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationRequest.h; path = Class/ApplicationRequest.h; sourceTree = "<group>"; };
 		E17C2FC717ECCB1500D29BD4 /* ApplicationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationRequest.m; sourceTree = "<group>"; };
+		E192AC2818B1C54A008BF5B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		E192AC2918B1C67D008BF5B6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hant"; path = "zh-Hant.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
+		E192AC2A18B1C67D008BF5B6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E19808AA1886611400D00553 /* shouye_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shouye_car.png; sourceTree = "<group>"; };
 		E19808AB1886611400D00553 /* welcome_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_text.png; sourceTree = "<group>"; };
 		E19808AC1886611400D00553 /* welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome.png; sourceTree = "<group>"; };
@@ -2671,6 +2674,7 @@
 			knownRegions = (
 				en,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = E53ABA2817E0DD020096754D;
 			productRefGroup = E53ABA3217E0DD020096754D /* Products */;
@@ -3284,6 +3288,7 @@
 			children = (
 				E53ABA3E17E0DD020096754D /* en */,
 				E19AE9D817F00513007B9F07 /* zh-Hans */,
+				E192AC2A18B1C67D008BF5B6 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3292,6 +3297,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E19AE9DA17F005C7007B9F07 /* zh-Hans */,
+				E192AC2818B1C54A008BF5B6 /* en */,
+				E192AC2918B1C67D008BF5B6 /* zh-Hant */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
