@@ -463,7 +463,7 @@
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [UIView animateWithDuration:0.5 animations:^{
-        self.view.frame=CGRectMake(0, Is_iPhone5?0:-120, self.view.frame.size.width, self.view.frame.size.height);
+        //self.view.frame=CGRectMake(0, Is_iPhone5?0:-120, self.view.frame.size.width, self.view.frame.size.height);
     }];
     return YES;
 }
@@ -479,7 +479,7 @@
         [textView resignFirstResponder];
         
         [UIView animateWithDuration:0.5 animations:^{
-            self.view.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+            //self.view.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         }];
     }
 }

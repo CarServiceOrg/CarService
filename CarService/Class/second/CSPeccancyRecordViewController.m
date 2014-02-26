@@ -320,11 +320,11 @@ static NSString* key_price=@"money";
     
     if (self.dataArray && [self.dataArray count]>indexPath.row) {
         NSDictionary* dict=[self.dataArray objectAtIndex:indexPath.row];
-        NSString* time=[dict objectForKey:key_time];
-        NSString* address=[dict objectForKey:key_address];
-        NSString* category=[dict objectForKey:key_content];
-        NSString* mark=[dict objectForKey:key_score];
-        NSString* cost=[dict objectForKey:key_price];
+        NSString* time=[NSString stringWithFormat:@"%@",[dict objectForKey:key_time]];
+        NSString* address=[NSString stringWithFormat:@"%@",[dict objectForKey:key_address]];
+        NSString* category=[NSString stringWithFormat:@"%@",[dict objectForKey:key_content]];
+        NSString* mark=[NSString stringWithFormat:@"%@",[dict objectForKey:key_score]];
+        NSString* cost=[NSString stringWithFormat:@"%@",[dict objectForKey:key_price]];
         
         float x, y, width, height;
         x=0; y=0; width=0; height=0;
