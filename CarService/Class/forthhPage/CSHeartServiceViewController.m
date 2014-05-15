@@ -7,6 +7,7 @@
 //
 
 #import "CSHeartServiceViewController.h"
+#import "ActionSheetDatePicker.h"
 
 @interface CSHeartServiceViewController ()
 
@@ -52,6 +53,21 @@
     NSLog(@"confirmButtonPressed");
 }
 
+// 选择查询日期
+-(void)dateWasSelected:(NSDate *)selectedDate element:(id)element
+{
+    if (selectedDate!=nil && element!=nil) {
+        UITextField* textField = (UITextField*)element;
+        if (textField) {
+            NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"YYYY-MM-dd"];
+            NSString* formatStr=[formatter stringFromDate:selectedDate];
+            [formatter release];
+            [textField setText:formatStr];
+        }
+    }
+}
+
 - (void)hideKeyBoard
 {
     [self.textFiled1 resignFirstResponder];
@@ -92,6 +108,28 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     NSLog(@"enter here");
+    if (textField == self.textFiled1)
+    {
+        [ActionSheetDatePicker showPickerWithTitle:@"出生日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
+    }
+    else if (textField == self.textFiled2)
+    {
+        [ActionSheetDatePicker showPickerWithTitle:@"驾驶证到期日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
+    }
+    else if (textField == self.textFiled3)
+    {
+        [ActionSheetDatePicker showPickerWithTitle:@"保险到期日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
+    }
+    else if (textField == self.textFiled4)
+    {
+        [ActionSheetDatePicker showPickerWithTitle:@"上次保养日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
+    }
+    else if (textField == self.textFiled5)
+    {
+        [ActionSheetDatePicker showPickerWithTitle:@"下次验车日期" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] target:self action:@selector(dateWasSelected:element:) origin:textField];
+    }
+    return NO;
+/*
     CGFloat startY = 0;
     if (Is_iPhone5)
     {
@@ -121,7 +159,7 @@
             
         }
     }];
-    return YES;
+    return YES;*/
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification
