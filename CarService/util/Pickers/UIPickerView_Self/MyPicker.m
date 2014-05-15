@@ -45,22 +45,22 @@
     if (IsIOS6OrLower) {
         UIView *subViewInPicker = [[self subviews] objectAtIndex:4];
         [subViewInPicker setBackgroundColor:[UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0]];
+        
+        //layer覆盖选择框
+        CGFloat color[4] = {203/255.0, 203/255.0, 203/255.0, 1};
+        CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+        CGColorRef layerBounderColor = CGColorCreate(rgb, color);
+        CGColorSpaceRelease(rgb);
+        CALayer *viewLayer = self.layer;
+        [viewLayer setBounds:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [viewLayer setBackgroundColor:layerBounderColor];
+        [viewLayer setContentsRect:CGRectMake(0, 0, 1.0, 1.0)];
+        [viewLayer setBorderWidth:15];
+        [viewLayer setBorderColor:layerBounderColor];
+        CGColorRelease(layerBounderColor);
     }else{
         
     }
-    
-    //layer覆盖选择框
-    CGFloat color[4] = {203/255.0, 203/255.0, 203/255.0, 1};
-    CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
-    CGColorRef layerBounderColor = CGColorCreate(rgb, color);
-    CGColorSpaceRelease(rgb);
-    CALayer *viewLayer = self.layer;
-    [viewLayer setBounds:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [viewLayer setBackgroundColor:layerBounderColor];
-    [viewLayer setContentsRect:CGRectMake(0, 0, 1.0, 1.0)];
-    [viewLayer setBorderWidth:15];
-    [viewLayer setBorderColor:layerBounderColor];
-    CGColorRelease(layerBounderColor);
 	
 	[self setNeedsDisplay];
 }

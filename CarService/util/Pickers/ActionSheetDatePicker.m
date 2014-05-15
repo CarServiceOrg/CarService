@@ -107,7 +107,9 @@
     [datePicker setDate:self.selectedDate animated:NO];
     [datePicker addTarget:self action:@selector(eventForDatePicker:) forControlEvents:UIControlEventValueChanged];
     //编辑添加自定义图片
-    [self addSelfDefineImages:datePicker];
+    if (IsIOS6OrLower) {
+        [self addSelfDefineImages:datePicker];
+    }
     
     //need to keep a reference to the picker so we can clear the DataSource / Delegate when dismissing (not used in this picker, but just in case somebody uses this as a template for another picker)
     self.pickerView = datePicker;
