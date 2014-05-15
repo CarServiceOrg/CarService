@@ -486,6 +486,9 @@
 		E1EBECC617EB6CC30026682A /* TSMessagesDefaultDesign.json in Resources */ = {isa = PBXBuildFile; fileRef = E1EBECAB17EB6CC30026682A /* TSMessagesDefaultDesign.json */; };
 		E1EBECC717EB6CC30026682A /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBECAE17EB6CC30026682A /* TSBlurView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E1EBECC817EB6CC30026682A /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBECB017EB6CC30026682A /* TSMessageView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		E1EE9D271924B2D200266C5E /* CSHeartServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EE9D251924B2D200266C5E /* CSHeartServiceViewController.m */; };
+		E1EE9D281924B2D200266C5E /* CSHeartServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EE9D261924B2D200266C5E /* CSHeartServiceViewController.xib */; };
+		E1EE9D2A1924C00F00266C5E /* tiexinfuwu_laugh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E1EE9D291924C00F00266C5E /* tiexinfuwu_laugh.jpg */; };
 		E53ABA3517E0DD020096754D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3417E0DD020096754D /* UIKit.framework */; };
 		E53ABA3717E0DD020096754D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3617E0DD020096754D /* Foundation.framework */; };
 		E53ABA3917E0DD020096754D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53ABA3817E0DD020096754D /* CoreGraphics.framework */; };
@@ -1219,6 +1222,10 @@
 		E1EBECAE17EB6CC30026682A /* TSBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBlurView.m; sourceTree = "<group>"; };
 		E1EBECAF17EB6CC30026682A /* TSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessageView.h; sourceTree = "<group>"; };
 		E1EBECB017EB6CC30026682A /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
+		E1EE9D241924B2D200266C5E /* CSHeartServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSHeartServiceViewController.h; sourceTree = "<group>"; };
+		E1EE9D251924B2D200266C5E /* CSHeartServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSHeartServiceViewController.m; sourceTree = "<group>"; };
+		E1EE9D261924B2D200266C5E /* CSHeartServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSHeartServiceViewController.xib; sourceTree = "<group>"; };
+		E1EE9D291924C00F00266C5E /* tiexinfuwu_laugh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tiexinfuwu_laugh.jpg; sourceTree = "<group>"; };
 		E53ABA3117E0DD020096754D /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53ABA3417E0DD020096754D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E53ABA3617E0DD020096754D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1992,6 +1999,9 @@
 				E19D5EC817F1B88A007AAE23 /* CSOrderListCell.h */,
 				E19D5EC917F1B88A007AAE23 /* CSOrderListCell.m */,
 				E19D5ECA17F1B88B007AAE23 /* CSOrderListCell.xib */,
+				E1EE9D241924B2D200266C5E /* CSHeartServiceViewController.h */,
+				E1EE9D251924B2D200266C5E /* CSHeartServiceViewController.m */,
+				E1EE9D261924B2D200266C5E /* CSHeartServiceViewController.xib */,
 			);
 			path = forthhPage;
 			sourceTree = "<group>";
@@ -1999,6 +2009,7 @@
 		E1D0441517E71BEC008CBE90 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E1EE9D291924C00F00266C5E /* tiexinfuwu_laugh.jpg */,
 				E1C957D417F4332B005063AC /* shigubaoan_cankaogeshi.png */,
 				E152A9EE17E8DBE400E73902 /* baoxianzhishiku_line.png */,
 				E152A9EF17E8DBE400E73902 /* baoxianzhishiku_sanjiao.png */,
@@ -2738,6 +2749,7 @@
 				E14FBDB0187C734400C6C466 /* new_denglubeijing.png in Resources */,
 				E53ABB1217E0EAC60096754D /* button_red.png in Resources */,
 				E53ABB1317E0EAC60096754D /* button_red@2x.png in Resources */,
+				E1EE9D281924B2D200266C5E /* CSHeartServiceViewController.xib in Resources */,
 				E53ABB1E17E0EAC60096754D /* README_TTTAttributedLabel.md in Resources */,
 				E53ABB2117E0EC330096754D /* readme in Resources */,
 				E14FBDB1187C734400C6C466 /* new_dianhua_tubiao.png in Resources */,
@@ -2781,6 +2793,7 @@
 				E1D043C917E6DCC2008CBE90 /* CSRegisterUserNameViewController.xib in Resources */,
 				E131F232188A599A0032ACBD /* new_baoxun_selected.png in Resources */,
 				E1D043D217E6DF4F008CBE90 /* MemberCenterViewController.xib in Resources */,
+				E1EE9D2A1924C00F00266C5E /* tiexinfuwu_laugh.jpg in Resources */,
 				E1D043E517E6F0F7008CBE90 /* CSMoreViewController.xib in Resources */,
 				E1D0447017E71BED008CBE90 /* baoyangzixun_answer.png in Resources */,
 				E1D0447117E71BED008CBE90 /* baoyangzixun_ask.png in Resources */,
@@ -3247,6 +3260,7 @@
 				E152A9EA17E8BFAB00E73902 /* CSCareRecordViewController.m in Sources */,
 				E123DA24187F8E4900158CD4 /* CSShareViewController.m in Sources */,
 				E152A9ED17E8D98100E73902 /* CSCareReferViewController.m in Sources */,
+				E1EE9D271924B2D200266C5E /* CSHeartServiceViewController.m in Sources */,
 				E11D05CB17E98428005A976D /* NSString+MD5.m in Sources */,
 				E11D05CE17E985B8005A976D /* CSCareKnowledgeViewController.m in Sources */,
 				E123DAB7187FCAA200158CD4 /* CSKefuViewController.m in Sources */,

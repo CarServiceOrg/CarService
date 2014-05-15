@@ -17,6 +17,7 @@
 #import "CSOrderListViewController.h"
 #import "CSDaiWeiViewController.h"
 #import "CSFirstViewController.h"
+#import "CSHeartServiceViewController.h"
 
 @interface MemberCenterViewController ()
 
@@ -338,9 +339,15 @@
 
 - (IBAction)changePasswordButtonPressed:(id)sender
 {
-    ChangePasswordController *controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];
+    
+    //test
+    CSHeartServiceViewController *controller = [[CSHeartServiceViewController alloc] initWithNibName:@"CSHeartServiceViewController" bundle:nil];
     [self.parentController.navigationController pushViewController:controller animated:YES];
     [controller release];
+    /*
+    ChangePasswordController *controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];
+    [self.parentController.navigationController pushViewController:controller animated:YES];
+    [controller release];*/
 }
 - (IBAction)woDeDaiWeiButtonPressed:(id)sender
 {
