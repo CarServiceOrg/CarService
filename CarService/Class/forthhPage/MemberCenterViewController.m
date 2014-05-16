@@ -337,18 +337,20 @@
     [controller release];
 }
 
-- (IBAction)changePasswordButtonPressed:(id)sender
+- (IBAction)heatServiceButtonPressed:(id)sender
 {
-    
-    //test
     CSHeartServiceViewController *controller = [[CSHeartServiceViewController alloc] initWithNibName:@"CSHeartServiceViewController" bundle:nil];
     [self.parentController.navigationController pushViewController:controller animated:YES];
     [controller release];
-    /*
+}
+
+- (IBAction)changePasswordButtonPressed:(id)sender
+{
     ChangePasswordController *controller = [[ChangePasswordController alloc] initWithNibName:@"ChangePasswordController" bundle:nil];
     [self.parentController.navigationController pushViewController:controller animated:YES];
-    [controller release];*/
+    [controller release];
 }
+
 - (IBAction)woDeDaiWeiButtonPressed:(id)sender
 {
     CSDaiWeiViewController *controller = [[CSDaiWeiViewController alloc] initWithNibName:@"CSDaiWeiViewController" bundle:nil];

@@ -199,6 +199,7 @@
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
     NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     
+    /*
     //test
     NSTimeInterval testinterval = [[NSDate date] timeIntervalSince1970] + 20 ;
     NSDate *testDate = [NSDate dateWithTimeIntervalSince1970:testinterval];
@@ -213,7 +214,7 @@
     item.body = @"测试local通知^_^";
     [self scheduleNotificationWithItem:item];
     return;
-    
+    */
     NSString *birthday = [self.userInfo objectForKey:@"birthday"];
     if (birthday.length > 0)
     {

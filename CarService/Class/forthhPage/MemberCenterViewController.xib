@@ -122,71 +122,97 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_huiyuanzhongxin_beijing.png" id="QvB-Xw-ZCv">
-                                    <rect key="frame" x="0.0" y="0.0" width="282" height="192"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="282" height="198"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiexiefuwu_heart.png" id="EAl-S7-8ct">
+                                    <rect key="frame" x="10" y="9" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_huiyuanzhongxin_xiugaimima_tubiao.png" id="yHz-VF-DHr">
-                                    <rect key="frame" x="10" y="10" width="22" height="22"/>
+                                    <rect key="frame" x="10" y="49" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_huiyuanzhongxin_zhuxiao_tubiao.png" id="2kd-n2-YI9">
-                                    <rect key="frame" x="10" y="155" width="22" height="22"/>
+                                    <rect key="frame" x="10" y="169" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_huiyuanzhongxin_wodedaiwei_tubiao.png" id="I7O-kG-Bw8">
-                                    <rect key="frame" x="10" y="60" width="22" height="22"/>
+                                    <rect key="frame" x="10" y="89" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_huiyuanzhongxin_xiaofeijilu_tubiao.png" id="rQs-qu-lLf">
-                                    <rect key="frame" x="10" y="107" width="22" height="22"/>
+                                    <rect key="frame" x="10" y="129" width="22" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贴心服务" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AUy-CL-Xs3">
+                                    <rect key="frame" x="40" y="9" width="201" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GR0-iR-Zq5">
-                                    <rect key="frame" x="40" y="11" width="201" height="21"/>
+                                    <rect key="frame" x="40" y="49" width="201" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的代维" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MA6-h8-Vo1">
-                                    <rect key="frame" x="40" y="61" width="201" height="21"/>
+                                    <rect key="frame" x="40" y="89" width="201" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的消费记录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iVv-VQ-ZRj">
-                                    <rect key="frame" x="40" y="107" width="201" height="21"/>
+                                    <rect key="frame" x="40" y="129" width="201" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注销" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yn4-Jv-9e2">
-                                    <rect key="frame" x="40" y="155" width="201" height="21"/>
+                                    <rect key="frame" x="40" y="169" width="201" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="membercenter_arrow.png" id="8LG-go-Ozp">
+                                    <rect key="frame" x="256" y="12" width="8" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="membercenter_arrow.png" id="77C-8W-wkU">
-                                    <rect key="frame" x="256" y="17" width="8" height="16"/>
+                                    <rect key="frame" x="256" y="52" width="8" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="membercenter_arrow.png" id="RvH-Mi-8vd">
-                                    <rect key="frame" x="256" y="62" width="8" height="16"/>
+                                    <rect key="frame" x="256" y="92" width="8" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="membercenter_arrow.png" id="eOQ-ck-wX3">
-                                    <rect key="frame" x="256" y="107" width="8" height="16"/>
+                                    <rect key="frame" x="256" y="132" width="8" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="membercenter_arrow.png" id="043-kV-QY4">
-                                    <rect key="frame" x="256" y="162" width="8" height="16"/>
+                                    <rect key="frame" x="256" y="172" width="8" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="s1B-Oy-36q">
+                                    <rect key="frame" x="11" y="0.0" width="260" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="heatServiceButtonPressed:" destination="-1" eventType="touchUpInside" id="llf-tV-4QS"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V5a-uf-r5H">
-                                    <rect key="frame" x="11" y="4" width="260" height="39"/>
+                                    <rect key="frame" x="11" y="40" width="260" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal">
@@ -197,7 +223,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RaN-de-PWU">
-                                    <rect key="frame" x="11" y="51" width="260" height="43"/>
+                                    <rect key="frame" x="11" y="80" width="260" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal">
@@ -208,7 +234,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Bc-rI-N8S">
-                                    <rect key="frame" x="11" y="100" width="260" height="38"/>
+                                    <rect key="frame" x="11" y="120" width="260" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal">
@@ -219,7 +245,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XNd-qt-4h3">
-                                    <rect key="frame" x="11" y="147" width="262" height="40"/>
+                                    <rect key="frame" x="11" y="160" width="262" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal">
@@ -246,7 +272,7 @@
         <image name="new_denglubeijing.png" width="540" height="960"/>
         <image name="new_gerenziliao_nvtubiao.png" width="16" height="24"/>
         <image name="new_huiyuanzhongxin_banner.png" width="477" height="238"/>
-        <image name="new_huiyuanzhongxin_beijing.png" width="577" height="325"/>
+        <image name="new_huiyuanzhongxin_beijing.png" width="577" height="405"/>
         <image name="new_huiyuanzhongxin_riqi_beijing.png" width="299" height="44"/>
         <image name="new_huiyuanzhongxin_tianqiyubao_beijing.png" width="261" height="56"/>
         <image name="new_huiyuanzhongxin_touxiang.png" width="113" height="113"/>
@@ -258,5 +284,6 @@
         <image name="new_xiaofeijilu_fanhui_anniu.png" width="53" height="53"/>
         <image name="new_xiaofeijilu_fanhui_dianjianniu.png" width="53" height="53"/>
         <image name="new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" width="605" height="683"/>
+        <image name="tiexiefuwu_heart.png" width="31" height="26"/>
     </resources>
 </document>
