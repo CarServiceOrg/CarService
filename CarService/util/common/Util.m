@@ -345,6 +345,11 @@
     [dateComps setSecond:item.second];
     NSDate *itemDate = [calendar dateFromComponents:dateComps];
     
+    if ([itemDate timeIntervalSince1970] < [[NSDate date] timeIntervalSince1970])
+    {
+        CustomLog(@"do nothing");
+        return;
+    }
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     if (localNotif == nil)
         return;
