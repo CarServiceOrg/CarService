@@ -273,7 +273,7 @@
                 NSMutableDictionary* dataDict=[NSMutableDictionary dictionaryWithDictionary:requestDic];
                 [dataDict setObject:[self.userInfo objectForKey:@"username"] forKey:@"username"];
                 [[Util sharedUtil] setLoginUserInfo:dataDict];
-                
+                [[Util sharedUtil] scheduleLocalNotification];
                 //save user data in keychain
                 if (rememberPassword)
                 {

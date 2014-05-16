@@ -21,6 +21,7 @@
 @synthesize textFiled3;
 @synthesize textFiled4;
 @synthesize textFiled5;
+@synthesize recordRuest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +41,8 @@
     [textFiled3 release];
     [textFiled2 release];
     [textFiled1 release];
+    [recordRuest clearDelegatesAndCancel];
+    [recordRuest release];
     [super dealloc];
 }
 
@@ -48,11 +51,80 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (NSString *)getTimeInterval:(NSString *)string
+{
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    NSDate *date = [formatter dateFromString:string];
+    return [NSString stringWithFormat:@"%f",[date timeIntervalSince1970]];
+}
+
 - (IBAction)confirmButtonPressed:(id)sender
 {
     NSLog(@"confirmButtonPressed");
+    
+    [self.recordRuest clearDelegatesAndCancel];
+    NSDictionary *dic = [[Util sharedUtil] getUserInfo];
+    NSString *uid = [dic objectForKey:@"id"];
+    NSString *sessionId = [dic objectForKey:@"session_id"];
+
+    NSDictionary *argDic = [NSDictionary dictionaryWithObjectsAndKeys:@"edit_user_carinfo",@"action",uid,@"user_id",[self getTimeInterval:self.textFiled1.text],@"birthday",[self getTimeInterval:self.textFiled2.text],@"drivecard_exp",[self getTimeInterval:self.textFiled3.text],@"secure_exp",[self getTimeInterval:self.textFiled4.text],@"last_repair_time",[self getTimeInterval:self.textFiled5.text],@"next_repair_time",sessionId,@"session_id",nil];
+    
+    SBJSON *jasonParser = [[SBJSON alloc] init];
+    NSString *jsonArg = [[jasonParser stringWithObject:argDic error:nil] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [jasonParser release];
+    
+    self.recordRuest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?json=%@",ServerAddress,jsonArg]]];
+    self.recordRuest.delegate = self;
+    [self.recordRuest setDidFinishSelector:@selector(requestDidFinished:)];
+    [self.recordRuest setDidFailSelector:@selector(requestDidFailed:)];
+    [self.recordRuest startAsynchronous];
+    [self showActView:UIActivityIndicatorViewStyleGray];
 }
 
+#pragma mark - ASIHttpRequest Delegate Methods
+
+- (void)requestDidFinished:(ASIHTTPRequest *)request
+{
+    [self hideActView];
+    NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSString *responseString = [[[NSString alloc] initWithData:[request responseData] encoding:encoding]autorelease];
+    
+    NSDictionary *requestDic = [responseString JSONValue];
+    CustomLog(@"login request request dic:%@",requestDic);
+    if (nil == [requestDic objectForKey:@"status"])
+    {
+        CustomLog(@"parse error");
+        [[Util sharedUtil] showAlertWithTitle:@"" message:@"服务器出错，请稍后重试!"];
+        return;
+    }
+    else
+    {
+        switch ([[requestDic objectForKey:@"status"] intValue])
+        {
+            case 0:
+                NSLog(@"data:%@",requestDic);
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"已成功提交信息!"];
+                [self.navigationController popViewControllerAnimated:YES];
+                break;
+            case 2:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"session id不正确，请重新登陆!"];
+                break;
+            case 3:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"用户id不正确，请重新登陆!"];
+                break;
+            default:
+                [[Util sharedUtil] showAlertWithTitle:@"" message:@"服务器出错，请稍后重试!"];
+                break;
+        }
+    }
+}
+
+- (void)requestDidFailed:(ASIHTTPRequest *)request
+{
+    [self hideActView];
+    [[Util sharedUtil] showAlertWithTitle:@"" message:@"网络请求失败，请检查网络连接"];
+}
 // 选择查询日期
 -(void)dateWasSelected:(NSDate *)selectedDate element:(id)element
 {

@@ -22,6 +22,8 @@
 
 -(NSString *)get_appVersion;
 
+- (void)scheduleLocalNotification;
+- (void)unscheduleLoaclNotification;
 - (BOOL)hasLogin;
 - (void)logout;
 - (NSDictionary *)getUserInfo;

@@ -15,6 +15,55 @@
 
 @end
 
+@interface ToDoItem : NSObject
+
+@property (nonatomic,assign) NSInteger day;
+@property (nonatomic,assign) NSInteger month;
+@property (nonatomic,assign) NSInteger year;
+@property (nonatomic,assign) NSInteger hour;
+@property (nonatomic,assign) NSInteger minute;
+@property (nonatomic,assign) NSInteger second;
+@property (nonatomic,retain) NSString *action;
+@property (nonatomic,retain) NSString *body;
+
+@end
+
+@implementation ToDoItem
+@synthesize day;
+@synthesize month;
+@synthesize year;
+@synthesize minute;
+@synthesize hour;
+@synthesize second;
+@synthesize action;
+@synthesize body;
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.day = 0;
+        self.month = 0;
+        self.year = 0;
+        self.minute = 0;
+        self.hour = 0;
+        self.second = 0;
+        self.action = nil;
+        self.body = nil;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [action release];
+    [body release];
+    [super dealloc];
+}
+
+@end
+
 @implementation Util
 @synthesize userInfo;
 
@@ -142,9 +191,177 @@
     return (nil != self.userInfo);
 }
 
+- (void)scheduleLocalNotification
+{
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
+    //test
+    NSTimeInterval testinterval = [[NSDate date] timeIntervalSince1970] + 20 ;
+    NSDate *testDate = [NSDate dateWithTimeIntervalSince1970:testinterval];
+    NSDateComponents *comps11  = [calendar components:unitFlags fromDate:testDate];
+    ToDoItem *item = [[[ToDoItem alloc] init] autorelease];
+    item.year = [comps11 year];
+    item.month = [comps11 month];
+    item.day = [comps11 day];
+    item.hour = [comps11 hour];
+    item.minute = [comps11 minute];
+    item.second = [comps11 second];
+    item.body = @"测试local通知^_^";
+    [self scheduleNotificationWithItem:item];
+    return;
+    
+    NSString *birthday = [self.userInfo objectForKey:@"birthday"];
+    if (birthday.length > 0)
+    {
+        //NSDate *birthDay = [formatter dateFromString:birthday];
+        NSTimeInterval timeInterval = [birthday intValue];
+        NSDate *birthDay = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+        if (nil != birthDay)
+        {
+            NSDateComponents *comps  = [calendar components:unitFlags fromDate:birthDay];
+            ToDoItem *item = [[[ToDoItem alloc] init] autorelease];
+            item.year = [comps year];
+            item.month = [comps month];
+            item.day = [comps day];
+            item.body = @"尊敬的用户，这个月您就要生日了^_^";
+            [self scheduleNotificationWithItem:item];
+            
+            ToDoItem *item1 = [[[ToDoItem alloc] init] autorelease];
+            item1.year = [comps year];
+            item1.month = [comps month];
+            item1.day = [comps day];
+            item1.body = @"尊敬的用户，今天是您的生日，祝您生日快乐";
+            [self scheduleNotificationWithItem:item1];
+        }
+        
+    }
+    
+    NSString *dateString = [self.userInfo objectForKey:@"drivecard_exp"];
+    NSDate *theDate;
+    NSDateComponents *comps;
+    if (dateString.length > 0)
+    {
+        NSTimeInterval timeInterval = [dateString intValue];
+        theDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+        //theDate = [formatter dateFromString:dateString];
+        if (nil != theDate)
+        {
+            comps  = [calendar components:unitFlags fromDate:theDate];
+            ToDoItem *item = [[[ToDoItem alloc] init] autorelease];
+            item.year = [comps year];
+            item.month = [comps month] - 1;
+            item.day = [comps day];
+            item.body = @"尊敬的用户，这个月您的驾驶证马上要到期，记得审本";
+            [self scheduleNotificationWithItem:item];
+        }
+        
+    }
+    
+    dateString = [self.userInfo objectForKey:@"secure_exp"];
+    if (dateString.length > 0)
+    {
+        NSTimeInterval timeInterval = [dateString intValue];
+        theDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+        //theDate = [formatter dateFromString:dateString];
+        if (nil != theDate)
+        {
+            NSTimeInterval newInterval = [theDate timeIntervalSince1970] - 45 * 24 * 60 *60;
+            theDate = [NSDate dateWithTimeIntervalSince1970:newInterval];
+            comps  = [calendar components:unitFlags fromDate:theDate];
+            ToDoItem *item = [[[ToDoItem alloc] init] autorelease];
+            item.year = [comps year];
+            item.month = [comps month] - 1;
+            item.day = [comps day];
+            item.body = @"尊敬的用户，这个保险即将到期";
+            [self scheduleNotificationWithItem:item];
+        }
+        
+    }
+    
+    dateString = [self.userInfo objectForKey:@"last_repair_time"];
+    if (dateString.length > 0)
+    {
+        //theDate = [formatter dateFromString:dateString];
+        NSTimeInterval timeInterval = [dateString intValue];
+        theDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+        if (nil != theDate)
+        {
+            NSTimeInterval newInterval = [theDate timeIntervalSince1970] + 75 * 24 * 60 *60;
+            theDate = [NSDate dateWithTimeIntervalSince1970:newInterval];
+            comps  = [calendar components:unitFlags fromDate:theDate];
+            ToDoItem *item = [[[ToDoItem alloc] init] autorelease];
+            item.year = [comps year];
+            item.month = [comps month] - 1;
+            item.day = [comps day];
+            item.body = @"尊敬的用户，您距离上次保养车辆已经很长时间了";
+            [self scheduleNotificationWithItem:item];
+        }
+        
+    }
+    
+    dateString = [self.userInfo objectForKey:@"next_repair_time"];
+    if (dateString.length > 0)
+    {
+        //theDate = [formatter dateFromString:dateString];
+        NSTimeInterval timeInterval = [dateString intValue];
+        theDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+        if (nil != theDate)
+        {
+            NSTimeInterval newInterval = [theDate timeIntervalSince1970] - 45 * 24 * 60 *60;
+            theDate = [NSDate dateWithTimeIntervalSince1970:newInterval];
+            comps  = [calendar components:unitFlags fromDate:theDate];
+            ToDoItem *item = [[[ToDoItem alloc] init] autorelease];
+            item.year = [comps year];
+            item.month = [comps month] - 1;
+            item.day = [comps day];
+            item.body = @"尊敬的用户，您的验车期限即将到期";
+            [self scheduleNotificationWithItem:item];
+        }
+        
+    }
+    [formatter release];
+}
+
+- (void)unscheduleLoaclNotification
+{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
+- (void)scheduleNotificationWithItem:(ToDoItem *)item
+{
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setDay:item.day];
+    [dateComps setMonth:item.month];
+    [dateComps setYear:item.year];
+    [dateComps setHour:item.hour];
+    [dateComps setMinute:item.minute];
+    [dateComps setSecond:item.second];
+    NSDate *itemDate = [calendar dateFromComponents:dateComps];
+    
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    if (localNotif == nil)
+        return;
+    localNotif.fireDate = itemDate;
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    
+    localNotif.alertBody = item.body;
+    localNotif.alertAction = item.action;
+    
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
+    localNotif.applicationIconBadgeNumber = 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+}
+
 - (void)logout
 {
     self.userInfo = nil;
+    [self unscheduleLoaclNotification];
 }
 
 - (NSDictionary *)getUserInfo

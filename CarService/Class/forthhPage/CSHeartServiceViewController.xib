@@ -133,7 +133,7 @@
                                                 <outlet property="delegate" destination="-1" id="MyS-PG-d19"/>
                                             </connections>
                                         </textField>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiexinfuwu_laugh.jpg" id="rnh-pd-7aM">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiexinfuwu_laugh.png" id="rnh-pd-7aM">
                                             <rect key="frame" x="29" y="272" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -156,6 +156,9 @@
                                             <state key="highlighted" backgroundImage="xiugaimima_quxiao_press.png">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="confirmButtonPressed:" destination="-1" eventType="touchUpInside" id="lHO-Q1-1K8"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -181,7 +184,7 @@
         <image name="new_xiaofeijilu_fanhui_anniu.png" width="53" height="53"/>
         <image name="new_xiaofeijilu_fanhui_dianjianniu.png" width="53" height="53"/>
         <image name="new_xiaofeijilu_liebiaoxinxi_toumingbeijing.png" width="605" height="683"/>
-        <image name="tiexinfuwu_laugh.jpg" width="51" height="49"/>
+        <image name="tiexinfuwu_laugh.png" width="48" height="48"/>
         <image name="xiugaimima_quxiao.png" width="133" height="48"/>
         <image name="xiugaimima_quxiao_press.png" width="133" height="48"/>
     </resources>

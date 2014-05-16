@@ -18,5 +18,6 @@
 @property  (nonatomic,retain) IBOutlet UITextField *textFiled3;
 @property  (nonatomic,retain) IBOutlet UITextField *textFiled4;
 @property  (nonatomic,retain) IBOutlet UITextField *textFiled5;
+@property  (nonatomic,retain) ASIHTTPRequest *recordRuest;
 
 @end
