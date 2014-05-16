@@ -9,6 +9,7 @@
 #import "Util.h"
 #import "URLConfig.h"
 
+#define  UserInfoDefault @"UserInfoDefault"
 @interface Util ()
 
 @property (nonatomic,retain) NSDictionary *userInfo;
@@ -362,6 +363,8 @@
 - (void)logout
 {
     self.userInfo = nil;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserDefaultUserInfo];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self unscheduleLoaclNotification];
 }
 
@@ -370,9 +373,36 @@
     return self.userInfo;
 }
 
-- (void)setLoginUserInfo:(NSDictionary *)userDic
+- (void)setLoginUserInfo:(NSDictionary *)userDic shouldUseDiskCache:(BOOL)useCache
 {
     self.userInfo = userDic;
+    
+    if (useCache)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:userDic forKey:UserInfoDefault];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+}
+
+- (void)updateUserInfo:(NSDictionary *)userDic
+{
+    self.userInfo = userDic;
+    
+    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserDefaultUserInfo])
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:userDic forKey:UserInfoDefault];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+}
+
+- (void)autoLogin
+{
+    if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:UserInfoDefault])
+    {
+        self.userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:UserInfoDefault];
+    }
 }
 
 - (BOOL)isMobileNumber:(NSString *)mobileNum

@@ -140,7 +140,7 @@
     {
         case 0:
             self.userInfo = [NSMutableDictionary dictionaryWithDictionary:[requestDic objectForKey:@"list"]];
-            [[Util sharedUtil] setLoginUserInfo:self.userInfo];
+            [[Util sharedUtil] updateUserInfo:self.userInfo];
             [self reloadContent];
             self.changeInfoButton.enabled = YES;
             break;
@@ -256,7 +256,7 @@
                 sexTip = @"2";
             }
             [newProfileDic setObject:sexTip forKey:@"sex"];
-            [[Util sharedUtil] setLoginUserInfo:newProfileDic];
+            [[Util sharedUtil] updateUserInfo:newProfileDic];
             [[NSNotificationCenter defaultCenter ] postNotificationName:UserInfoChangeNotification object:nil];
             [self.navigationController popViewControllerAnimated:YES];
             break;

@@ -272,18 +272,15 @@
                 
                 NSMutableDictionary* dataDict=[NSMutableDictionary dictionaryWithDictionary:requestDic];
                 [dataDict setObject:[self.userInfo objectForKey:@"username"] forKey:@"username"];
-                [[Util sharedUtil] setLoginUserInfo:dataDict];
+                [[Util sharedUtil] setLoginUserInfo:dataDict shouldUseDiskCache:rememberPassword];
                 [[Util sharedUtil] scheduleLocalNotification];
                 //save user data in keychain
-                if (rememberPassword)
+                NSString *username = [self.userInfo objectForKey:@"username"];
+                NSString *password = [self.userInfo objectForKey:@"password"];
+                if ([username length] > 0 && [password length] > 0)
                 {
-                    NSString *username = [self.userInfo objectForKey:@"username"];
-                    NSString *password = [self.userInfo objectForKey:@"password"];
-                    if ([username length] > 0 && [password length] > 0)
-                    {
-                        [KeyChainUtil delete:username];
-                        [KeyChainUtil save:username data:[password dataUsingEncoding:NSUTF8StringEncoding]];
-                    }
+                    [KeyChainUtil delete:username];
+                    [KeyChainUtil save:username data:[password dataUsingEncoding:NSUTF8StringEncoding]];
                 }
                 
                 [[NSNotificationCenter defaultCenter ] postNotificationName:LoginSuccessNotification object:nil userInfo:nil];

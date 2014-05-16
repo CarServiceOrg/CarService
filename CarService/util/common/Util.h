@@ -25,9 +25,11 @@
 - (void)scheduleLocalNotification;
 - (void)unscheduleLoaclNotification;
 - (BOOL)hasLogin;
+- (void)autoLogin;
 - (void)logout;
 - (NSDictionary *)getUserInfo;
-- (void)setLoginUserInfo:(NSDictionary *)userDic;
+- (void)setLoginUserInfo:(NSDictionary *)userDic shouldUseDiskCache:(BOOL)useCache;
+- (void)updateUserInfo:(NSDictionary *)userDic;
 - (BOOL)isMobileNumber:(NSString *)mobileNum;
 - (BOOL)isValidEmail:(NSString *)email;
 

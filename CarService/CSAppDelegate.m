@@ -76,6 +76,7 @@
     //新浪微博
     [WeiboSDK registerApp:@"3912808798"];
     [WeiboSDK enableDebugMode:YES];
+    [[Util sharedUtil] autoLogin];
     return YES;
 }
 
