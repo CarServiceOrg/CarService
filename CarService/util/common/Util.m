@@ -228,15 +228,17 @@
             ToDoItem *item = [[[ToDoItem alloc] init] autorelease];
             item.year = [comps year];
             item.month = [comps month];
-            item.day = [comps day];
-            item.body = @"尊敬的用户，这个月您就要生日了^_^";
+            item.day = 1;
+            item.hour = 8;
+            item.body = [NSString stringWithFormat:@"亲，这个月%d号是您的生日，轱辘汇全体员工提前祝您生日快乐！",[comps day]];
             [self scheduleNotificationWithItem:item];
             
             ToDoItem *item1 = [[[ToDoItem alloc] init] autorelease];
             item1.year = [comps year];
             item1.month = [comps month];
             item1.day = [comps day];
-            item1.body = @"尊敬的用户，今天是您的生日，祝您生日快乐";
+            item1.hour = 8;
+            item1.body = @"亲，今天是您的生日，轱辘汇全体员工祝您生日快乐！";
             [self scheduleNotificationWithItem:item1];
         }
         
@@ -257,7 +259,8 @@
             item.year = [comps year];
             item.month = [comps month] - 1;
             item.day = [comps day];
-            item.body = @"尊敬的用户，这个月您的驾驶证马上要到期，记得审本";
+            item.hour = 8;
+            item.body = @"亲，您的驾驶证还有一个月就要到期了，记得提前审本，如需帮助请联系轱辘汇客服！";
             [self scheduleNotificationWithItem:item];
         }
         
@@ -278,7 +281,8 @@
             item.year = [comps year];
             item.month = [comps month] - 1;
             item.day = [comps day];
-            item.body = @"尊敬的用户，这个保险即将到期";
+            item.hour = 8;
+            item.body = @"亲，您的保险马上就要到期了，请记得及时续保哦！";
             [self scheduleNotificationWithItem:item];
         }
         
@@ -299,7 +303,8 @@
             item.year = [comps year];
             item.month = [comps month] - 1;
             item.day = [comps day];
-            item.body = @"尊敬的用户，您距离上次保养车辆已经很长时间了";
+            item.hour = 8;
+            item.body = @"亲，您的爱车可能太累了，及时保养哦！";
             [self scheduleNotificationWithItem:item];
         }
         
@@ -320,6 +325,7 @@
             item.year = [comps year];
             item.month = [comps month] - 1;
             item.day = [comps day];
+            item.hour = 8;
             item.body = @"尊敬的用户，您的验车期限即将到期";
             [self scheduleNotificationWithItem:item];
         }
